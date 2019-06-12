@@ -139,9 +139,9 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $vehicle)
+    public function update(Request $request, $id)
     {
-        // dd($vehicle);
+        $vehicle = Vehicle::find($id);
         $rules = [
             'name' => 'required|string|max:150',
             'year' => 'required|integer|min:1900|max:2050',
@@ -160,7 +160,7 @@ class VehicleController extends Controller
         $this->validate(request(), $rules, $messages);
 
         $msg = 'Vehicle updated successfully.';
-        // $vehicle = Vehicle::find($id);
+        
         $vehicle->name = $request->name;
         $vehicle->year = $request->year;
         $vehicle->make = $request->make;

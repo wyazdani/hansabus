@@ -25,12 +25,12 @@ class VehicleController extends Controller
         return view('vehicle.index', compact('vehicles', 'pageTitle'));
     }
 
-    public function status(Vehicle $vehicle)
+    public function status(Vehicle $Vehicle)
     {
         // dd($vehicle);
-        $vehicle->status = !$vehicle->status;
-        $vehicle->save();
-        return redirect()->back()->with('info','Vehicle # '.$vehicle->id.' status updated!');
+        $Vehicle->status = !$Vehicle->status;
+        $Vehicle->save();
+        return redirect()->back()->with('info','Vehicle # '.$Vehicle->id.' status updated!');
     }
 
     /**
@@ -172,7 +172,6 @@ class VehicleController extends Controller
         $vehicle->registrationNumber = $request->registrationNumber;
         $vehicle->transmission = $request->transmission;
 
-        $status = true;
         $ac = $sunroof = $radio = $phoneCharging = false;
 
         if ($request->ac) $ac = true;
@@ -184,7 +183,6 @@ class VehicleController extends Controller
         $vehicle->radio = $radio;
         $vehicle->sunroof = $sunroof;
         $vehicle->phoneCharging = $phoneCharging;
-        $vehicle->status = $status;
 
         if ($vehicle->save()) {
 

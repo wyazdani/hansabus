@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 text-right">
                         <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                            <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label>
+                            <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
                             <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                                     href="{{ url('/vehicles/'.$vehicle->id.'/edit') }}">
                                         <i class="icon-pencil font-medium-3 mr-2"></i>
                                     </a>
-                                    <a href="{{ url('/vehicle-change-status/'.$vehicle->id) }}"
+                                    <a href="{{ url('/vehicles/change-status/'.$vehicle->id) }}"
                                        class="{{ (!$vehicle->status)?'danger':'success' }} p-0" 
                                        data-original-title="" title="{{ ($vehicle->status)?'Click to in-activate':'Click to activate' }}">
                                         <i class="icon-power font-medium-3 mr-2"></i>

@@ -1,0 +1,31 @@
+$breakpoints: (
+	'xs-phone': 580px,
+	'phone': 640px,
+	'tablet': 768px,
+	'tablet-x': 992px,
+	'desktop': 1024px,
+	'widescreen': 1200px,
+	'widescreen-large': 1400px,
+);
+
+
+@import 'vendors/include-media';
+@import 'vendors/normalize';
+@import 'vendors/fonts';
+@import 'vendors/bootstrap';
+@import 'vendors/fontawesome';
+@import 'vendors/feather';
+
+
+@import 'base/variables';
+@import 'base/functions';
+@import 'base/mixins';
+@import 'base/helpers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/forms';
+
+@import 'vendors/prism';
+@import 'vendors/perfectscrollbar';
+@import 'vendors/switchery';
+@import 'vendors/themeapp'; 

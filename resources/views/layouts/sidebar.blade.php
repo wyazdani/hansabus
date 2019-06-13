@@ -3,7 +3,7 @@ data-image="{{ asset('images/01.jpg') }}"
 			class="app-sidebar">
 		
 	<div class="sidebar-header">
-		<div class="logo clearfix"><a href="index.html" class="logo-text float-left">
+		<div class="logo clearfix"><a href="#" class="logo-text float-left">
 				<div class="logo-img"><img src="{{ asset('images/logo.png') }}" alt="Convex Logo" /></div>
 				<span class="text align-middle">E-Coach<br>Managment</span>
 			</a>

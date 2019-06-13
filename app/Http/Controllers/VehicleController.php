@@ -69,8 +69,6 @@ class VehicleController extends Controller
             // 'title.required' => 'Title is required',
         ];
         $this->validate(request(), $rules, $messages);
-
-        
         $msg = 'Vehicle created successfully.';
         $vehicle = new Vehicle;
         $vehicle->name = $request->name;

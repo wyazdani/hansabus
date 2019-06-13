@@ -32,17 +32,19 @@
                             <tr>
                                 <th class="border-top-0">ID</th>
                                 <th class="border-top-0">Vehicle Name</th>
-                                <th class="border-top-0">Make</th>
+                               {{-- <th class="border-top-0">Make</th>
                                 <th class="border-top-0">Model</th>
-                                <th class="border-top-0">Engine Number</th>
+                                <th class="border-top-0">Engine Number</th>--}}
                                 <th class="border-top-0">Vehicle Type</th>
                                 <th class="border-top-0">License Plate</th>                        
                                 <th class="border-top-0">No. of Seats</th>
                                 <th class="border-top-0">Color</th>
                                 <th class="border-top-0">Transmission</th>                    
-                                <th class="border-top-0">Registration #</th>
+                                {{--<th class="border-top-0">Registration #</th>--}}
                                 <th class="border-top-0">Status</th>
                                 <th class="border-top-0">Action</th>
+                                <th class="border-top-0">View</th>
+
                             </tr>
                         </thead>
 
@@ -52,15 +54,19 @@
                             <tr>
                                 <td class="text-truncate">{{ $vehicle->id }}</td>
                                 <td class="text-truncate">{{ str_limit($vehicle->name,15) }}</td>
-                                <td class="text-truncate">{{ $vehicle->make }}</td>
-                                <td class="text-truncate">{{ $vehicle->year }}</td>
-                                <td class="text-truncate">{{ $vehicle->engineNumber }}</td>
                                 <td class="text-truncate">{{ $vehicle->type->name }}</td>
                                 <td class="text-truncate">{{ $vehicle->licensePlate }}</td>
                                 <td class="text-truncate">{{ $vehicle->seats }}</td>
                                 <td class="text-truncate">{{ $vehicle->color }}</td>
                                 <td class="text-truncate">{{ ucwords($vehicle->transmission) }}</td>
-                                <td class="text-truncate">{{ $vehicle->registrationNumber }}</td>
+                                {{--<td class="text-truncate">{{ $vehicle->make }}</td>
+                                <td class="text-truncate">{{ $vehicle->year }}</td>
+                                <td class="text-truncate">{{ $vehicle->engineNumber }}</td>--}}
+
+
+
+
+                              {{--  <td class="text-truncate">{{ $vehicle->registrationNumber }}</td>--}}
                                 <td class="text-truncate">{{ ($vehicle->status)?'Active':'Inactive' }}</td>
                                 <td>
                                     <a class="info p-0" data-original-title="" title="Edit" 
@@ -72,7 +78,8 @@
                                        data-original-title="" title="{{ ($vehicle->status)?'Click to in-activate':'Click to activate' }}">
                                         <i class="icon-power font-medium-3 mr-2"></i>
                                     </a>
-
+                                </td>
+                                <td>
                                     <button 
                                 class="btn btn-sm btn-outline-danger round mb-0" 
                                 onclick="viewVehicle('{{ $vehicle->id }}')"

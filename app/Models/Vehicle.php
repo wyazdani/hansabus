@@ -16,4 +16,9 @@ class Vehicle extends Model
         return $this->hasOne('App\Models\VehicleType', 'id', 'vehicle_type');
     }
 
+    public function tour()
+    {
+        return$this->hasOne('tours','vehicle_id','id');
+    }
+
 }

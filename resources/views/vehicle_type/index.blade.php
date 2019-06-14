@@ -23,13 +23,13 @@
 
 				</div>
 				<div class="row">
-
 					@if(session()->get('success'))
 						<div class="alert alert-success">
 							{{ session()->get('success') }}
 						</div><br />
 					@endif
 				</div>
+				{{--<div class="row"><div class="col-12">@include('layouts.errors')</div></div>--}}
 				<div class="card-content mt-1">
 					<div class="table-responsive">
 						<table class="table table-hover table-xl mb-0" id="recent-orders">

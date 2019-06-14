@@ -28,7 +28,7 @@ data-image="{{ asset('images/01.jpg') }}"
 
 					</ul>
 				</li>
-				<li><a href="{{ url('/drivers') }}" class="menu-item">Drivers</a></li>
+				<li ><a href="{{ url('/drivers') }}" class="menu-item">Drivers</a></li>
 				<li><a href="{{ url('/customers') }}" class="menu-item">Customers</a></li>
 				<li><a href="{{ url('/tours') }}" class="menu-item">Tours</a></li>
 				<li class="open"><a href="{{ url('/settings') }}'" class="menu-item">Settings</a></li>

@@ -15,9 +15,9 @@ class CreateToursTable extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('tour_id')->default(0);
-            $table->bigInteger('driver_id')->default(0);
-            $table->bigInteger('customer_id')->default(0);
+            $table->bigInteger('tour_id')->default(0)->nullable();
+            $table->bigInteger('driver_id')->default(0)->nullable();
+            $table->bigInteger('customer_id')->default(0)->nullable();
             $table->string('tour_name')->nullable();
             $table->string('price')->nullable();
             $table->string('location')->nullable();

@@ -60,9 +60,10 @@ class ToursController extends Controller
      */
     public function show($id)
     {
+        $pageTitle = 'Show Tour';
         $tour = tours::find($id);
 
-        return redirect('/tours.show');
+        return view('tours.show',compact('tour','pageTitle'));
     }
 
     /**
@@ -90,12 +91,10 @@ class ToursController extends Controller
     {
         $request->validate([
             'tour_name'=>'required',
-            'mobile_number'=> 'required',
-            'tour_license' => 'required',
-            'nic' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
-            'other_details' => 'required',
+            'departure_date'=> 'required',
+            'price' => 'required',
+            'location' => 'required',
+            'destination' => 'required',
         ]);
 
         $tour = tours::find($id);
@@ -112,7 +111,7 @@ class ToursController extends Controller
 
         $tour->save();
 
-        return redirect('/tours')->with('success', 'tour has been updated');
+        return redirect('/tours')->with('success', 'Tour has been updated');
     }
 
     /**

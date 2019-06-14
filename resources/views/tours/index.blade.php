@@ -22,13 +22,16 @@
 					</div>
 
 				</div>
-				<div class="row">
-
+				<div class="row ">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
 					@if(session()->get('success'))
-						<div class="alert alert-success">
-							{{ session()->get('success') }}
+						<div class="btn btn-info ml-2 mt-2">
+						{{ session()->get('success') }}
 						</div><br />
 					@endif
+				</div>
+					<div class="col-md-4"></div>
 				</div>
 				<div class="card-content mt-1">
 					<div class="table-responsive">
@@ -43,7 +46,6 @@
 								<th class="border-top-0">Time & Date</th>
 								<th class="border-top-0">Price</th>
 								<th class="border-top-0">Action</th>
-								<th class="border-top-0">View</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -61,9 +63,11 @@
 											<i class="icon-pencil font-medium-1 mr-1"></i>
 										</a>
 
-										<a href="{{ route('tours.show',$tour->id)}}" class="title p-0">
-											<i class="icon-eye font-medium-1 mr-1"></i>
-										</a>
+										<a
+												class="icon-eye font-medium-1 mr-1"
+												onclick="viewTour('{{ $tour->id }}')"
+												type="button" data-toggle="modal"
+										>View</a>
 
 										<a href="{{ route('tours.destroy',$tour->id)}}" class="danger p-0">
 											<i class="icon-trash font-medium-1 mr-1"></i>
@@ -79,4 +83,20 @@
 			</div>
 		</div>
 	</div>
+	@include('tours.view')
+@endsection
+@section('pagejs')
+	<script>
+        function viewTour(id){
+
+            $.ajax({
+                url: "tour",
+                cache: false,
+                success: function(html){
+                    $("#results").append(html);
+                }
+            });
+
+        }
+	</script>
 @endsection

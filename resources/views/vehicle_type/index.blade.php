@@ -23,11 +23,15 @@
 
 				</div>
 				<div class="row">
-					@if(session()->get('success'))
-						<div class="alert alert-success">
-							{{ session()->get('success') }}
-						</div><br />
-					@endif
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						@if(session()->get('success'))
+							<div class="btn btn-info ml-2 mt-2">
+								{{ session()->get('success') }}
+							</div><br />
+						@endif
+					</div>
+					<div class="col-md-4"></div>
 				</div>
 				{{--<div class="row"><div class="col-12">@include('layouts.errors')</div></div>--}}
 				<div class="card-content mt-1">
@@ -51,7 +55,7 @@
 										</a>
 
 										<a href="{{ route('vehicle-type.destroy',$type->id)}}" class="danger p-0">
-											<i class="icon-power font-medium-3 mr-2"></i>
+											<i class="icon-trash font-medium-3 mr-2"></i>
 										</a>
 
 								</tr>

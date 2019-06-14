@@ -7,17 +7,29 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function (){
 
     Route::resource('drivers', 'DriverController');
+//    Route::resource('/vehicle-type', 'VehicleTypeController');
     Route::resource('/vehicles', 'VehicleController');
+    Route::get('/vehicle-list', 'VehicleController@getList');
+    Route::get('/vehicles/change-status/{Vehicle}', 'VehicleController@status')->name('vehicles.status-change');
 
-    Route::get('/vehicles/change-status/{Vehicle}', 'VehicleController@status');
-    
-	// Route::get('/vehicles', 'VehicleController@index')->name('vehicles');
-    // Route::get('/vehicle-add', 'VehicleController@create')->name('vehicle-add');
-    // Route::get('/vehicle-edit/{vehicle}', 'VehicleController@edit')->name('vehicle-edit');
-    // Route::get('/vehicle-change-status/{vehicle}', 'VehicleController@status')->name('vehicle-status');
-    // Route::post('/vehicle-store', 'VehicleController@store')->name('vehicle-store');
+
+    /*Route::get('/vehicle-list', function() {
+
+        $model = App\User::query();
+
+        return DataTables::eloquent($model)
+            ->addColumn('intro', function(User $user) {
+                return 'Hi ' . $user->name . '!';
+            })
+            ->toJson();
+    });*/
+
+
+
+    Route::resource('customers', 'CustomerController');
+    Route::get('/customers/change-status/{Customer}', 'CustomerController@status')->name('customers.status-change');
+
 });
-
 
 
 

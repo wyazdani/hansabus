@@ -46527,6 +46527,10 @@ datetime .form-group {
 .app-sidebar .navigation li a, .off-canvas-sidebar .navigation li a {
   position : relative;
 }
+.app-sidebar .navigation li.open{
+    background: rgba(255,255,255,0.1);
+
+}
 .app-sidebar .navigation li a span.badge, .off-canvas-sidebar .navigation li a span.badge {
   position : absolute;
   right : 3rem;
@@ -46543,7 +46547,9 @@ datetime .form-group {
 .app-sidebar .navigation li:not(.open) > ul, .off-canvas-sidebar .navigation li:not(.open) > ul {
   display : none;
 }
-.app-sidebar .navigation li:hover > a, .off-canvas-sidebar .navigation li:hover > a {
+.app-sidebar .navigation li:hover > a,
+.off-canvas-sidebar .navigation li:hover > a,
+.app-sidebar .navigation .open > a{
   background : rgba(200, 200, 200, 0.2);
 }
 .app-sidebar .navigation li ul, .off-canvas-sidebar .navigation li ul {

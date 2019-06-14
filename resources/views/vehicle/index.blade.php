@@ -1,111 +1,215 @@
 @extends('layouts.app')
 @section('page_title') {{ $pageTitle }} @endsection
 @section('content')
-<div class="row match-height">
+    <div class="row match-height">
 
-    <div class="col-md-12" id="recent-sales">
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
+        <div class="col-md-12" id="recent-sales">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
 
-                    <div class="col-sm-6 col-md-6">
-                        <div class="card-title-wrap bar-primary">
-                            <h4 class="card-title">Vehicles</h4>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="card-title-wrap bar-primary">
+                                <h4 class="card-title">Vehicles</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 text-right">
-                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                            <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
-                            <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
+                        <div class="col-sm-6 col-md-6 text-right">
+                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
+                                <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
+                    <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
                 </div>
-                <div class="row"><div class="col-12">@include('layouts.errors')</div></div>    
-            </div>
 
-            <div class="card-content mt-1">
-                <div class="table-responsive">
-                    <table class="table table-hover table-xl mb-0" id="recent-orders">
+                <div class="card-content mt-1">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-xl mb-0" id="listingTable">
 
-                        <thead>
+                            <thead>
                             <tr>
                                 <th class="border-top-0">ID</th>
                                 <th class="border-top-0">Vehicle Name</th>
                                 <th class="border-top-0">Make</th>
-                                <th class="border-top-0">Model</th>
+                                <th class="border-top-0">Year</th>
+                                <th class="border-top-0">License Plate</th>
                                 <th class="border-top-0">Engine Number</th>
-                                <th class="border-top-0">Vehicle Type</th>
-                                <th class="border-top-0">License Plate</th>                        
-                                <th class="border-top-0">No. of Seats</th>
-                                <th class="border-top-0">Color</th>
-                                <th class="border-top-0">Transmission</th>                    
-                                <th class="border-top-0">Registration #</th>
-                                <th class="border-top-0">Status</th>
+                                <th class="border-top-0">Registration Number</th>
                                 <th class="border-top-0">Action</th>
+{{--                                <th class="border-top-0">Action</th>--}}
                             </tr>
-                        </thead>
+                            </thead>
+                            <tbody>
 
-                        <tbody>
 
-                        @foreach($vehicles as $vehicle)
-                            <tr>
-                                <td class="text-truncate">{{ $vehicle->id }}</td>
-                                <td class="text-truncate">{{ str_limit($vehicle->name,15) }}</td>
-                                <td class="text-truncate">{{ $vehicle->make }}</td>
-                                <td class="text-truncate">{{ $vehicle->year }}</td>
-                                <td class="text-truncate">{{ $vehicle->engineNumber }}</td>
-                                <td class="text-truncate">{{ $vehicle->type->name }}</td>
-                                <td class="text-truncate">{{ $vehicle->licensePlate }}</td>
-                                <td class="text-truncate">{{ $vehicle->seats }}</td>
-                                <td class="text-truncate">{{ $vehicle->color }}</td>
-                                <td class="text-truncate">{{ ucwords($vehicle->transmission) }}</td>
-                                <td class="text-truncate">{{ $vehicle->registrationNumber }}</td>
-                                <td class="text-truncate">{{ ($vehicle->status)?'Active':'Inactive' }}</td>
-                                <td>
-                                    <a class="info p-0" data-original-title="" title="Edit" 
-                                    href="{{ url('/vehicles/'.$vehicle->id.'/edit') }}">
-                                        <i class="icon-pencil font-medium-3 mr-2"></i>
-                                    </a>
-                                    <a href="{{ url('/vehicles/change-status/'.$vehicle->id) }}"
-                                       class="{{ (!$vehicle->status)?'danger':'success' }} p-0" 
-                                       data-original-title="" title="{{ ($vehicle->status)?'Click to in-activate':'Click to activate' }}">
-                                        <i class="icon-power font-medium-3 mr-2"></i>
-                                    </a>
 
-                                    <button 
-                                class="btn btn-sm btn-outline-danger round mb-0" 
-                                onclick="viewVehicle('{{ $vehicle->id }}')"
-                                type="button" data-toggle="modal"
-                                >View</button>
 
-                                </td>
-                            </tr>
-                        @endforeach
-                            
-
-                            <tr><td colspan="14" class="text-right">{{ $vehicles->links() }}</td></tr>
-                        </tbody>
-                    </table>
+{{--                            <tr><td colspan="14" class="text-right">{{ $vehicles->links() }}</td></tr>--}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@include('vehicle.view')
+
 @endsection
 @section('pagejs')
-<script> 
-function viewVehicle(id){
-    
-    $.ajax({
-    url: "vehicle",
-    cache: false,
-    success: function(html){
-        $("#results").append(html);
-    }
-    });
+    @include('vehicle.view')
+    <script>
+        var deleteMe = function(id){
+            // console.log('here');
 
-}
-</script>
+            if(confirm('Are you sure you want to delete?')){
+
+                $.ajax({
+                    url: '/vehicles/'+id,
+                    data: "_token={{ csrf_token() }}",
+                    type: 'DELETE',  // user.destroy
+                    success: function(result) {
+                        // console.log(result);
+                        $('#'+id).remove();
+                    }
+                });
+            }
+
+        };
+    var viewVehicle = function(id){
+        // console.log(id);
+        $.ajax({
+            url: "{{ url('/vehicles') }}/"+id,
+            cache: false,
+            success: function(vehicle){
+
+                // console.log(vehicle);
+
+                $('#v_name').html(vehicle.name);
+                $('#v_make').html(vehicle.make);
+                $('#v_year').html(vehicle.year);
+                $('#v_vehicle_type').html(vehicle.type.name);
+                $('#v_licensePlate').html(vehicle.licensePlate);
+                $('#v_registrationNumber').html(vehicle.registrationNumber);
+                $('#v_engineNumber').html(vehicle.engineNumber);
+                $('#v_seats').html(vehicle.seats);
+                $('#v_transmission').html(vehicle.transmission);
+                $('#v_color').html(vehicle.color);
+
+                if(vehicle.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
+                if(vehicle.AC == 1) $('#v_AC').html('Yes'); else $('#v_AC').html('No');
+                if(vehicle.radio == 1) $('#v_radio').html('Yes'); else $('#v_radio').html('No');
+                if(vehicle.sunroof == 1) $('#v_sunroof').html('Yes'); else $('#v_sunroof').html('No');
+                if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('Yes'); else $('#v_phoneCharging').html('No');
+
+                $('#viewModel').modal('show');
+
+            }
+        });
+    };
+        $(document).ready(function() {
+
+
+
+
+            var tableDiv = $('#listingTable').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "searchable" : true,
+                "pageLength": 2,
+                "aoColumnDefs": [{
+
+                    "aTargets": [7],
+                    "mData": "",
+                    "mRender": function (data, type, row) {
+
+                        var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';
+
+                        // console.log(row.status);
+                        status  = '<a class="danger p-0" data-original-title="Change Status" title="Change Status" ';
+                        if(row.status == '1'){
+                            status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
+                        }
+
+                        status += 'href="/vehicles/change-status/'+row.id+'">';
+                        status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
+
+
+                        edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
+                        edit += 'href="/vehicles/'+row.id+'/edit">';
+                        edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
+
+                        trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
+                        trash += ' href="javascript:;" onclick="deleteMe('+row.id+')" >';
+                        trash += '<i class="icon-trash font-medium-3 mr-2"></i></a>';
+
+                        view  = '<a class="p-0" data-original-title="View" title="View" ';
+                        view += ' href="javascript:;" onclick="viewVehicle('+row.id+');" >';
+                        view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
+
+                        buttons = status+edit+trash+view;
+                        return buttons;
+
+
+
+                        // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
+                    }
+                }],
+                "ajax": "{{ url('/vehicle-list') }}",
+                'rowId': 'id',
+                "columns": [
+                    { "data": "id" },
+                    { "data": "name" },
+                    { "data": "make" },
+                    { "data": "year" },
+                    { "data": "licensePlate" },
+                    { "data": "engineNumber" },
+                    { "data": "registrationNumber" },
+                    // { "data": "actions" }
+                ],
+                drawCallback: deleteMe|viewVehicle,
+
+            });
+
+            // tableDiv.search($("input[type=search]").val()).draw();
+            
+
+            // $('#listingTable').on( 'keyup', function () {
+            //
+            //         table.search( this.value ).draw();
+            // } );
+
+
+            {{--$('#listingTable').DataTable({--}}
+            {{--    "serverSide": true,--}}
+            {{--    "processing": true,--}}
+            {{--    "paging": true,--}}
+            {{--    "searching": { "regex": true },--}}
+            {{--    "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],--}}
+            {{--    "pageLength": 10,--}}
+            {{--    "ajax": {--}}
+            {{--        "type": "GET",--}}
+            {{--        "url": "{{ url('/vehicle-list') }}",--}}
+            {{--        "dataType": "json",--}}
+            {{--        "contentType": 'application/json; charset=utf-8',--}}
+            {{--        "data": function (data) {--}}
+            {{--            // Grab form values containing user options--}}
+            {{--            var form = {};--}}
+            {{--            $.each($("form").serializeArray(), function (i, field) {--}}
+            {{--                form[field.name] = field.value || "";--}}
+            {{--            });--}}
+            {{--            // Add options used by Datatables--}}
+            {{--            var info = { "start": 0, "length": 10, "draw": 1 };--}}
+            {{--            $.extend(form, info);--}}
+            {{--            return JSON.stringify(form);--}}
+            {{--        },--}}
+            {{--        "complete": function(response) {--}}
+            {{--            console.log(response);--}}
+            {{--        }--}}
+            {{--    }--}}
+            {{--});--}}
+
+        } );
+
+    </script>
 @endsection

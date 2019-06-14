@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Driver;
 use App\Models\Vehicle;
-use App\tours;
+use App\Models\tours;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

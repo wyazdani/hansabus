@@ -12870,8 +12870,8 @@ input:focus ~ .bg-success {
 }
 
 .alert-success {
-  border-color : #28D094 !important;
-  background-color : #41DBA4 !important;
+  border-color : #1e9ff2 !important;
+  background-color : #1e9ff2 !important;
   color : #0B3A29 !important;
 }
 .alert-success .alert-link {
@@ -16470,7 +16470,7 @@ input:focus ~ .bg-danger {
 .btn-danger {
   background-color : #FF4961 !important;
   color : #FFFFFF !important;
-  border-color : #FF4961;
+  border-color : #FF4961 ;
 }
 .btn-danger.active {
   background-color : #FF2542 !important;

@@ -23,6 +23,7 @@ class CreateDriversTable extends Migration
             $table->string('phone')->nullable();
             $table->string('other_details')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

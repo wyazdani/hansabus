@@ -21,8 +21,11 @@ data-image="{{ asset('images/01.jpg') }}"
 					<ul class="menu-content">
 						<li><a href="{{ url('/vehicles') }}" class="menu-item">Vehicles</a>
 						</li>
+						<li><a href="{{ url('/vehicle-type') }}" class="menu-item">Vehicle Types</a>
+						</li>
 						<li><a href="{{ url('/vehicle-maintinance') }}" class="menu-item">Maintinance</a>
 						</li>
+
 					</ul>
 				</li>
 				<li><a href="{{ url('/drivers') }}" class="menu-item">Drivers</a></li>

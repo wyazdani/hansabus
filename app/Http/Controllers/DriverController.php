@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Driver\Driver;
+use App\Driver;
 
 class DriverController extends Controller
 {
@@ -15,7 +15,7 @@ class DriverController extends Controller
     public function index()
     {
         $pageTitle = 'Drivers';
-        //$drivers = Driver::paginate(10);
+        $drivers = Driver::all();
         return view('drivers.index',compact('drivers','pageTitle'));
     }
     /**
@@ -37,19 +37,19 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'dname' => 'required|string|max:150',
-            'mno' => 'required|integer|min:000-000-000-0000|max:999-999-999-9999',
-            'phone' => 'required|integer',
-            'dlicense' => 'required|string|max:100',
-            'nicno' => 'required|integer',
-            'address' => 'required|string|max:500',
-            'comment' => 'required|string|max:500',
-        ];
-        $messages = [
-            // 'title.required' => 'Title is required',
-        ];
-        $this->validate(request(), $rules, $messages);
+        $driver = new Driver([
+            'driver_name'  => $request->get('driver_name'),
+            'mobile_number'  => $request->get('mobile_number'),
+            'driver_license'  => $request->get('driver_license'),
+            'nic'  => $request->get('nic'),
+            'address'  => $request->get('address'),
+            'phone'  => $request->get('phone'),
+            'other_details'  => $request->get('other_details'),
+
+        ]);
+
+        $driver->save();
+        return redirect('/drivers')->with('success', 'New Driver has been added');
 
     }
 
@@ -61,7 +61,10 @@ class DriverController extends Controller
      */
     public function show($id)
     {
-        //
+        $driver = Driver::find($id);
+        $driver->delete();
+
+        return redirect('/drivers')->with('success', 'Driver has been deleted Successfully');
     }
 
     /**
@@ -72,7 +75,10 @@ class DriverController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pageTitle = 'Edit Driver';
+        $driver = Driver::find($id);
+
+        return view('drivers.edit', compact('driver','pageTitle'));
     }
 
     /**
@@ -84,7 +90,29 @@ class DriverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'driver_name'=>'required',
+            'mobile_number'=> 'required',
+            'driver_license' => 'required',
+            'nic' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'other_details' => 'required',
+        ]);
+
+        $driver = Driver::find($id);
+
+        $driver->driver_name = $request->get('driver_name');
+        $driver->mobile_number = $request->get('mobile_number');
+        $driver->driver_license = $request->get('driver_name');
+        $driver->nic = $request->get('nic');
+        $driver->address = $request->get('address');
+        $driver->phone = $request->get('phone');
+        $driver->other_details = $request->get('other_details');
+
+        $driver->save();
+
+        return redirect('/drivers')->with('success', 'Driver has been updated');
     }
 
     /**
@@ -95,6 +123,9 @@ class DriverController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $driver = Driver::find($id);
+        $driver->delete();
+
+        return redirect('/drivers')->with('success', 'Driver has been deleted Successfully');
     }
 }

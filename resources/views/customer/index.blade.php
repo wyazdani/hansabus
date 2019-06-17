@@ -22,6 +22,9 @@
                     <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
                 </div>
                 <div class="card-content mt-1">
+                    <div class="card-body">
+                        <div class="px-3 mb-4">
+
                     <div class="table-responsive">
                         <table class="table table-hover table-xl mb-0" id="listingTable">
                             <thead>
@@ -31,13 +34,15 @@
                                     <th class="border-top-0" width="20%">Email</th>
                                     <th class="border-top-0" width="10%">Phone</th>
                                     <th class="border-top-0" width="20%">Address</th>
-                                    <th class="border-top-0" width="13%">Web</th>
-                                    <th class="border-top-0" width="12%">Action</th>
+                                    <th class="border-top-0" width="15%">Web</th>
+                                    <th class="border-top-0" width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
+                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -141,6 +146,8 @@
                 drawCallback: deleteMe|viewCustomer,
 
             });
+
+            tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
 
         } );
 

@@ -2,12 +2,10 @@
 @section('page_title') {{ $pageTitle }} @endsection
 @section('content')
     <div class="row match-height">
-
         <div class="col-md-12" id="recent-sales">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
                                 <h4 class="card-title">Vehicles</h4>
@@ -19,31 +17,32 @@
                                 <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
                             </div>
                         </div>
-
                     </div>
                     <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
                 </div>
-
                 <div class="card-content mt-1">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-xl mb-0" id="listingTable">
+                    <div class="card-body">
+                        <div class="px-3 mb-4">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-xl mb-0" id="listingTable">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-top-0" width="7%">ID</th>
+                                        <th class="border-top-0" width="20%">Vehicle Name</th>
+                                        <th class="border-top-0" width="10%">Make</th>
+                                        <th class="border-top-0" width="10%">Year</th>
+                                        <th class="border-top-0" width="20%">License Plate</th>
+                                        <th class="border-top-0" width="20%">Engine #</th>
+                                        <th class="border-top-0" width="15%">Registration #</th>
+                                        <th class="border-top-0" width="10%">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                            <thead>
-                            <tr>
-                                <th class="border-top-0">ID</th>
-                                <th class="border-top-0">Vehicle Name</th>
-                                <th class="border-top-0">Make</th>
-                                <th class="border-top-0">Year</th>
-                                <th class="border-top-0">License Plate</th>
-                                <th class="border-top-0">Engine Number</th>
-                                <th class="border-top-0">Registration Number</th>
-                                <th class="border-top-0">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

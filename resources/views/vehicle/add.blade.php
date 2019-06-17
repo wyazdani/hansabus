@@ -27,11 +27,12 @@
             <div class="card-content mt-1">
 
                     @if(!empty($vehicle->id))
-                    <form class="form" method="PUT" action="/vehicles/{{ $vehicle->id }}" 
+                    <form class="form" method="POST" action="{{ route('vehicles.update',$vehicle->id) }}" 
                     id="theForm">
+                    @method('PUT')
                     <input type="hidden" id="id" name="id" value="{{ $vehicle->id }}">
                     @else
-                    <form class="form" method="POST" action="/vehicles" id="theForm">
+                    <form class="form" method="POST" action="{{ route('vehicles.store') }}" id="theForm">
                     @endif
 
 

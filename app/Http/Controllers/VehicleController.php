@@ -13,24 +13,95 @@ use Illuminate\Support\Facades\Validator;
 
 class VehicleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+
+    public function getList(Request $request)
     {
-        $pageTitle = 'Vehicles';
-        $vehicles = Vehicle::paginate(10);
-        return view('vehicle.index', compact('vehicles', 'pageTitle'));
+        $draw = 0;
+        if(!empty($request->input('draw')) ) {
+            $draw = $request->input('draw');
+        }
+
+        $query = Vehicle::where('id','>',0);
+        $start =0;
+        if(!empty($request->input('start'))){
+
+//            if($request->input('start')>0){
+            $start = ($request->input('start')-1);
+//            }
+        }
+        $limit = 10;
+        if(!empty($request->input('length'))){
+            $limit = $request->input('length');
+        }
+        $search = '';
+        if(!empty($request->input('q'))){
+
+            $search = $request->input('q');
+        }else if(!empty($request->input('search.value'))){
+
+            $search = $request->input('search.value');
+        }
+
+        if(!empty($search)){
+
+            $query = Vehicle::where('name', 'LIKE','%'.$search.'%')
+                ->orWhere('make', 'LIKE','%'.$search.'%')
+                ->orWhere('year', 'LIKE','%'.$search.'%')
+                ->orWhere('registrationNumber', 'LIKE',"%{$search}%")
+                ->orWhere('engineNumber', 'LIKE',"%{$search}%")
+                ->orWhere('licensePlate', 'LIKE',"%{$search}%")
+                ->orWhere('transmission', 'LIKE',"%{$search}%");
+
+
+        }
+        $recordsTotal = $query->count();
+        $rows = $query->offset($start)->limit($limit)->get(['id','name','make','year','licensePlate','engineNumber','registrationNumber','status']);
+
+        $data=[];
+        foreach($rows as $row){
+            $row['action']='';
+            $data[] = $row;
+        }
+        $recordsFiltered = $query->offset($start)->limit($limit)->count();
+
+        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
 
-    public function status(Vehicle $vehicle)
+    public function index(Request $request)
+    {
+        $pageTitle = 'Vehicles';
+
+        /*$query = Vehicle::where('id', '>',0);
+
+        $search =  '';
+        if(!empty($request->input('q'))){
+
+            $search = $request->input('q');
+        }
+
+        if(!empty($search)){
+
+            $query = Vehicle::where('name', 'LIKE','%'.$search.'%')
+                ->orWhere('make', 'LIKE','%'.$search.'%')
+                ->orWhere('year', 'LIKE','%'.$search.'%')
+                ->orWhere('registrationNumber', 'LIKE',"%{$search}%")
+                ->orWhere('engineNumber', 'LIKE',"%{$search}%")
+                ->orWhere('licensePlate', 'LIKE',"%{$search}%")
+                ->orWhere('transmission', 'LIKE',"%{$search}%");
+        }
+
+        $vehicles = $query->paginate(4);*/
+
+        return view('vehicle.index', compact( 'pageTitle'));
+    }
+
+    public function status(Vehicle $Vehicle)
     {
         // dd($vehicle);
-        $vehicle->status = !$vehicle->status;
-        $vehicle->save();
-        return redirect()->back()->with('info','Vehicle # '.$vehicle->id.' status updated!');
+        $Vehicle->status = !$Vehicle->status;
+        $Vehicle->save();
+        return redirect()->back()->with('info','Vehicle # '.$Vehicle->id.' status updated!');
     }
 
     /**
@@ -70,7 +141,7 @@ class VehicleController extends Controller
         ];
         $this->validate(request(), $rules, $messages);
 
-        
+
         $msg = 'Vehicle created successfully.';
         $vehicle = new Vehicle;
         $vehicle->name = $request->name;
@@ -98,14 +169,22 @@ class VehicleController extends Controller
         $vehicle->phoneCharging = $phoneCharging;
         $vehicle->status = $status;
 
+//        $vehicle->created_at = date('Y-m-d h:i:s');
+//        $vehicle->updated_at = date('Y-m-d h:i:s');
+
+
+//        dd($vehicle);
         if ($vehicle->save()) {
 
             if ($request->returnFlag == 1) {
-                return redirect('/vehicles');
+                return redirect('/vehicles')->with('success','Record created successfully.');
             } else {
-                return redirect('/vehicle-add');
+                return redirect('/vehicles/create')->with('success','Record created successfully.');
             }
+        }else{
+            dd('error');
         }
+
         return redirect()->back()->with('info', $msg);
     }
 
@@ -115,9 +194,10 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Vehicle $vehicle)
+    public function show(Vehicle $Vehicle)
     {
-        // return $vehicle;
+        $Vehicle->type;
+        return $Vehicle;
     }
 
     /**
@@ -139,9 +219,9 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $vehicle)
+    public function update(Request $request, $id)
     {
-        // dd($vehicle);
+        $vehicle = Vehicle::find($id);
         $rules = [
             'name' => 'required|string|max:150',
             'year' => 'required|integer|min:1900|max:2050',
@@ -160,7 +240,7 @@ class VehicleController extends Controller
         $this->validate(request(), $rules, $messages);
 
         $msg = 'Vehicle updated successfully.';
-        // $vehicle = Vehicle::find($id);
+
         $vehicle->name = $request->name;
         $vehicle->year = $request->year;
         $vehicle->make = $request->make;
@@ -172,7 +252,6 @@ class VehicleController extends Controller
         $vehicle->registrationNumber = $request->registrationNumber;
         $vehicle->transmission = $request->transmission;
 
-        $status = true;
         $ac = $sunroof = $radio = $phoneCharging = false;
 
         if ($request->ac) $ac = true;
@@ -184,15 +263,15 @@ class VehicleController extends Controller
         $vehicle->radio = $radio;
         $vehicle->sunroof = $sunroof;
         $vehicle->phoneCharging = $phoneCharging;
-        $vehicle->status = $status;
 
         if ($vehicle->save()) {
 
             if ($request->returnFlag == 1) {
-                return redirect('/vehicles');
+                return redirect('/vehicles')->with('info','Record # '.$vehicle->id.' updated!');
             } else {
-                return redirect('/vehicle-add');
+                return redirect('/vehicles/create')->with('info','Record # '.$vehicle->id.' updated!');
             }
+
         }
         return redirect()->back()->with('info', $msg);
     }

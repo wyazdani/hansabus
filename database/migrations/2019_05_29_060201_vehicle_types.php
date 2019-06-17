@@ -15,8 +15,11 @@ class VehicleTypes extends Migration
     {
         Schema::create('vehicle_types', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name',150);  
-            
+            $table->string('name',150);
+            $table->timestamps();
+            $table->softdeletes();
+
+
             $table->collation = 'utf8_unicode_ci';
             $table->charset = 'utf8';
             $table->engine = 'InnoDB';

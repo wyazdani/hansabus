@@ -2,7 +2,6 @@
 @section('page_title') {{ $pageTitle }} @endsection
 @section('content')
     <div class="row match-height">
-
         <div class="col-md-12" id="recent-sales">
             <div class="card">
                 <div class="card-header">
@@ -10,38 +9,33 @@
 
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Vehicles</h4>
+                                <h4 class="card-title">Customers</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
-                                <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
+                                <a href="{{ url('/customers/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Customer</a>
                             </div>
                         </div>
 
                     </div>
                     <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
                 </div>
-
                 <div class="card-content mt-1">
                     <div class="table-responsive">
                         <table class="table table-hover table-xl mb-0" id="listingTable">
-
                             <thead>
-                            <tr>
-                                <th class="border-top-0">ID</th>
-                                <th class="border-top-0">Vehicle Name</th>
-                                <th class="border-top-0">Make</th>
-                                <th class="border-top-0">Year</th>
-                                <th class="border-top-0">License Plate</th>
-                                <th class="border-top-0">Engine Number</th>
-                                <th class="border-top-0">Registration Number</th>
-                                <th class="border-top-0">Action</th>
-                            </tr>
+                                <tr>
+                                    <th class="border-top-0" width="5%">ID</th>
+                                    <th class="border-top-0" width="20%">Name</th>
+                                    <th class="border-top-0" width="20%">Email</th>
+                                    <th class="border-top-0" width="10%">Phone</th>
+                                    <th class="border-top-0" width="20%">Address</th>
+                                    <th class="border-top-0" width="13%">Web</th>
+                                    <th class="border-top-0" width="12%">Action</th>
+                                </tr>
                             </thead>
                             <tbody>
-
                             </tbody>
                         </table>
                     </div>
@@ -52,15 +46,14 @@
 
 @endsection
 @section('pagejs')
-    @include('vehicle.view')
+    @include('customer.view')
     <script>
         var deleteMe = function(id){
-            // console.log('here');
 
             if(confirm('Are you sure you want to delete?')){
 
                 $.ajax({
-                    url: '/vehicles/'+id,
+                    url: '/customers/'+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {
@@ -69,50 +62,38 @@
                     }
                 });
             }
-
         };
-        var viewVehicle = function(id){
-            // console.log(id);
+        var viewCustomer = function(id){
+
             $.ajax({
-                url: "{{ url('/vehicles') }}/"+id,
+                url: "{{ url('/customers') }}/"+id,
                 cache: false,
-                success: function(vehicle){
+                success: function(cus){
 
-                    // console.log(vehicle);
+                    $('#v_name').html(cus.name);
+                    $('#v_email').html(cus.email);
+                    $('#v_phone').html(cus.phone);
+                    $('#v_url').html(cus.url);
+                    $('#v_address').html(cus.address);
 
-                    $('#v_name').html(vehicle.name);
-                    $('#v_make').html(vehicle.make);
-                    $('#v_year').html(vehicle.year);
-                    $('#v_vehicle_type').html(vehicle.type.name);
-                    $('#v_licensePlate').html(vehicle.licensePlate);
-                    $('#v_registrationNumber').html(vehicle.registrationNumber);
-                    $('#v_engineNumber').html(vehicle.engineNumber);
-                    $('#v_seats').html(vehicle.seats);
-                    $('#v_transmission').html(vehicle.transmission);
-                    $('#v_color').html(vehicle.color);
-
-                    if(vehicle.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
-                    if(vehicle.AC == 1) $('#v_AC').html('Yes'); else $('#v_AC').html('No');
-                    if(vehicle.radio == 1) $('#v_radio').html('Yes'); else $('#v_radio').html('No');
-                    if(vehicle.sunroof == 1) $('#v_sunroof').html('Yes'); else $('#v_sunroof').html('No');
-                    if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('Yes'); else $('#v_phoneCharging').html('No');
+                    if(cus.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
 
                     $('#viewModel').modal('show');
-
                 }
             });
         };
         $(document).ready(function() {
 
 
-            var tableDiv = $('#listingTable').DataTable( {
+            var tableDiv = $('#listingTable').DataTable({
+
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,
-                "pageLength": 2,
+                "pageLength": 10,
                 "aoColumnDefs": [{
 
-                    "aTargets": [7],
+                    "aTargets": [6],
                     "mData": "",
                     "mRender": function (data, type, row) {
 
@@ -124,12 +105,12 @@
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
                         }
 
-                        status += 'href="/vehicles/change-status/'+row.id+'">';
+                        status += 'href="/customers/change-status/'+row.id+'">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
                         edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-                        edit += 'href="/vehicles/'+row.id+'/edit">';
+                        edit += 'href="/customers/'+row.id+'/edit">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                         trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
@@ -137,30 +118,27 @@
                         trash += '<i class="icon-trash font-medium-3 mr-2"></i></a>';
 
                         view  = '<a class="p-0" data-original-title="View" title="View" ';
-                        view += ' href="javascript:;" onclick="viewVehicle('+row.id+');" >';
+                        view += ' href="javascript:;" onclick="viewCustomer('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
                         buttons = status+edit+trash+view;
                         return buttons;
-
-
-
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],
-                "ajax": "{{ url('/vehicle-list') }}",
+                "ajax": "{{ url('/customer-list') }}",
                 'rowId': 'id',
                 "columns": [
                     { "data": "id" },
                     { "data": "name" },
-                    { "data": "make" },
-                    { "data": "year" },
-                    { "data": "licensePlate" },
-                    { "data": "engineNumber" },
-                    { "data": "registrationNumber" },
+                    { "data": "email" },
+                    { "data": "phone" },
+                    { "data": "address" },
+                    { "data": "url" },
+
                     // { "data": "actions" }
                 ],
-                drawCallback: deleteMe|viewVehicle,
+                drawCallback: deleteMe|viewCustomer,
 
             });
 

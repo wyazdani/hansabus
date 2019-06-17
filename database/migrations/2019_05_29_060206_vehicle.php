@@ -31,6 +31,7 @@ class Vehicle extends Migration
             $table->boolean('phoneCharging');
             $table->boolean('status');
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('vehicle_type')->references('id')->on('vehicle_types')->onDelete('cascade');
 

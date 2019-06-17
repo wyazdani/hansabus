@@ -49,7 +49,7 @@
 													<i class="fa fa-university success font-large-2 float-left"></i>
 												</div>
 												<div class="media-body text-right">
-													<h3>{!! $vehicle !!}</h3>
+													<h3>{!! count($vehicle) !!}</h3>
 													<span>Companies</span>
 												</div>
 											</div>

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bbddbc2-aed8-44c7-b061-be5d8e47153b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Driver.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/tours.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +51,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
+            <state relative-caret-position="-1056">
               <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
@@ -128,9 +125,9 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeAjaxController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
       </list>
     </option>
   </component>
@@ -242,41 +239,6 @@
             <path>
               <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -341,16 +303,15 @@
       <workItem from="1560322995960" duration="11399000" />
       <workItem from="1560418421222" duration="2161000" />
       <workItem from="1560420594837" duration="314000" />
-      <workItem from="1560420993581" duration="38107000" />
+      <workItem from="1560420993581" duration="39670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55040000" />
+    <option name="totallyTimeSpent" value="56603000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30030257" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -503,13 +464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="17" column="64" lean-forward="true" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="230" column="67" selection-start-line="230" selection-start-column="67" selection-end-line="230" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -689,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-720">
-          <caret line="51" column="68" selection-start-line="51" selection-start-column="68" selection-end-line="51" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/tours.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -723,9 +670,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="38" column="46" lean-forward="true" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1079">
+          <caret line="230" column="67" selection-start-line="230" selection-start-column="67" selection-end-line="230" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="-1056">
           <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
           <folding>
             <element signature="e#40#55#0#PHP" expanded="true" />

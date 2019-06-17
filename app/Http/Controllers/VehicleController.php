@@ -101,12 +101,12 @@ class VehicleController extends Controller
         return view('vehicle.index', compact('vehicles', 'pageTitle'));
     }
 
-    public function status(Vehicle $Vehicle)
+    public function status(Vehicle $vehicle)
     {
         // dd($vehicle);
-        $Vehicle->status = !$Vehicle->status;
-        $Vehicle->save();
-        return redirect()->back()->with('info','Vehicle # '.$Vehicle->id.' status updated!');
+        $vehicle->status = !$vehicle->status;
+        $vehicle->save();
+        return redirect()->back()->with('info','Vehicle # '.$vehicle->id.' status updated!');
     }
 
     /**
@@ -145,8 +145,6 @@ class VehicleController extends Controller
             // 'title.required' => 'Title is required',
         ];
         $this->validate(request(), $rules, $messages);
-
-        
         $msg = 'Vehicle created successfully.';
         $vehicle = new Vehicle;
         $vehicle->name = $request->name;
@@ -224,9 +222,9 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $vehicle)
     {
-        $vehicle = Vehicle::find($id);
+        // dd($vehicle);
         $rules = [
             'name' => 'required|string|max:150',
             'year' => 'required|integer|min:1900|max:2050',
@@ -245,7 +243,7 @@ class VehicleController extends Controller
         $this->validate(request(), $rules, $messages);
 
         $msg = 'Vehicle updated successfully.';
-        
+        // $vehicle = Vehicle::find($id);
         $vehicle->name = $request->name;
         $vehicle->year = $request->year;
         $vehicle->make = $request->make;
@@ -257,6 +255,7 @@ class VehicleController extends Controller
         $vehicle->registrationNumber = $request->registrationNumber;
         $vehicle->transmission = $request->transmission;
 
+        $status = true;
         $ac = $sunroof = $radio = $phoneCharging = false;
 
         if ($request->ac) $ac = true;
@@ -268,6 +267,7 @@ class VehicleController extends Controller
         $vehicle->radio = $radio;
         $vehicle->sunroof = $sunroof;
         $vehicle->phoneCharging = $phoneCharging;
+        $vehicle->status = $status;
 
         if ($vehicle->save()) {
 

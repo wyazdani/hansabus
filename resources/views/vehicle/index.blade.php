@@ -38,15 +38,10 @@
                                 <th class="border-top-0">Engine Number</th>
                                 <th class="border-top-0">Registration Number</th>
                                 <th class="border-top-0">Action</th>
-{{--                                <th class="border-top-0">Action</th>--}}
                             </tr>
                             </thead>
                             <tbody>
 
-
-
-
-{{--                            <tr><td colspan="14" class="text-right">{{ $vehicles->links() }}</td></tr>--}}
                             </tbody>
                         </table>
                     </div>
@@ -76,40 +71,38 @@
             }
 
         };
-    var viewVehicle = function(id){
-        // console.log(id);
-        $.ajax({
-            url: "{{ url('/vehicles') }}/"+id,
-            cache: false,
-            success: function(vehicle){
+        var viewVehicle = function(id){
+            // console.log(id);
+            $.ajax({
+                url: "{{ url('/vehicles') }}/"+id,
+                cache: false,
+                success: function(vehicle){
 
-                // console.log(vehicle);
+                    // console.log(vehicle);
 
-                $('#v_name').html(vehicle.name);
-                $('#v_make').html(vehicle.make);
-                $('#v_year').html(vehicle.year);
-                $('#v_vehicle_type').html(vehicle.type.name);
-                $('#v_licensePlate').html(vehicle.licensePlate);
-                $('#v_registrationNumber').html(vehicle.registrationNumber);
-                $('#v_engineNumber').html(vehicle.engineNumber);
-                $('#v_seats').html(vehicle.seats);
-                $('#v_transmission').html(vehicle.transmission);
-                $('#v_color').html(vehicle.color);
+                    $('#v_name').html(vehicle.name);
+                    $('#v_make').html(vehicle.make);
+                    $('#v_year').html(vehicle.year);
+                    $('#v_vehicle_type').html(vehicle.type.name);
+                    $('#v_licensePlate').html(vehicle.licensePlate);
+                    $('#v_registrationNumber').html(vehicle.registrationNumber);
+                    $('#v_engineNumber').html(vehicle.engineNumber);
+                    $('#v_seats').html(vehicle.seats);
+                    $('#v_transmission').html(vehicle.transmission);
+                    $('#v_color').html(vehicle.color);
 
-                if(vehicle.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
-                if(vehicle.AC == 1) $('#v_AC').html('Yes'); else $('#v_AC').html('No');
-                if(vehicle.radio == 1) $('#v_radio').html('Yes'); else $('#v_radio').html('No');
-                if(vehicle.sunroof == 1) $('#v_sunroof').html('Yes'); else $('#v_sunroof').html('No');
-                if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('Yes'); else $('#v_phoneCharging').html('No');
+                    if(vehicle.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
+                    if(vehicle.AC == 1) $('#v_AC').html('Yes'); else $('#v_AC').html('No');
+                    if(vehicle.radio == 1) $('#v_radio').html('Yes'); else $('#v_radio').html('No');
+                    if(vehicle.sunroof == 1) $('#v_sunroof').html('Yes'); else $('#v_sunroof').html('No');
+                    if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('Yes'); else $('#v_phoneCharging').html('No');
 
-                $('#viewModel').modal('show');
+                    $('#viewModel').modal('show');
 
-            }
-        });
-    };
+                }
+            });
+        };
         $(document).ready(function() {
-
-
 
 
             var tableDiv = $('#listingTable').DataTable( {
@@ -170,44 +163,6 @@
                 drawCallback: deleteMe|viewVehicle,
 
             });
-
-            // tableDiv.search($("input[type=search]").val()).draw();
-            
-
-            // $('#listingTable').on( 'keyup', function () {
-            //
-            //         table.search( this.value ).draw();
-            // } );
-
-
-            {{--$('#listingTable').DataTable({--}}
-            {{--    "serverSide": true,--}}
-            {{--    "processing": true,--}}
-            {{--    "paging": true,--}}
-            {{--    "searching": { "regex": true },--}}
-            {{--    "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],--}}
-            {{--    "pageLength": 10,--}}
-            {{--    "ajax": {--}}
-            {{--        "type": "GET",--}}
-            {{--        "url": "{{ url('/vehicle-list') }}",--}}
-            {{--        "dataType": "json",--}}
-            {{--        "contentType": 'application/json; charset=utf-8',--}}
-            {{--        "data": function (data) {--}}
-            {{--            // Grab form values containing user options--}}
-            {{--            var form = {};--}}
-            {{--            $.each($("form").serializeArray(), function (i, field) {--}}
-            {{--                form[field.name] = field.value || "";--}}
-            {{--            });--}}
-            {{--            // Add options used by Datatables--}}
-            {{--            var info = { "start": 0, "length": 10, "draw": 1 };--}}
-            {{--            $.extend(form, info);--}}
-            {{--            return JSON.stringify(form);--}}
-            {{--        },--}}
-            {{--        "complete": function(response) {--}}
-            {{--            console.log(response);--}}
-            {{--        }--}}
-            {{--    }--}}
-            {{--});--}}
 
         } );
 

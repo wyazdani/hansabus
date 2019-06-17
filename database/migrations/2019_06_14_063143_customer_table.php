@@ -23,7 +23,7 @@ class CustomerTable extends Migration
         $table->string('address',200);
         $table->boolean('status');
         $table->timestamps();
-        $table->softdeletes();
+
 
         $table->collation = 'utf8_unicode_ci';
         $table->charset = 'utf8';

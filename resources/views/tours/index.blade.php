@@ -50,6 +50,7 @@
 							</thead>
 							<tbody>
 							@foreach($tours as $tour)
+
 								<tr>
 									<td>{!! !empty($tour->id)?$tour->id:'' !!}</td>
 									<td>{!! !empty($tour->tour_name)?$tour->tour_name:'' !!}</td>
@@ -63,11 +64,11 @@
 											<i class="icon-pencil font-medium-1 mr-1"></i>
 										</a>
 
-										<a
+										{{--<a
 												class="icon-eye font-medium-1 mr-1"
 												onclick="viewTour('{{ $tour->id }}')"
 												type="button" data-toggle="modal"
-										>View</a>
+										>View</a>--}}
 
 										<a href="{{ route('tours.destroy',$tour->id)}}" class="danger p-0">
 											<i class="icon-trash font-medium-1 mr-1"></i>

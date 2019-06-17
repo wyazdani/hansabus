@@ -14,6 +14,10 @@ class VehicleType extends Model
 
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-     
+
+    public function vehicle()
+    {
+        return $this->hasMany(Vehicle::class, 'vehicle_type', 'id');
+    }
      
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Driver;
+use App\Driver;
 
 class DriverController extends Controller
 {

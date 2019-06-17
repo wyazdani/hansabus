@@ -32,7 +32,7 @@
 				</div>
 				<div class="card-content mt-1">
 					<div class="table-responsive">
-						<table class="table table-hover table-xl mb-0" id="recent-orders">
+						<table class=" table table-hover datatable-basic table-xl mb-0" id="recent-orders">
 							<thead>
 							<tr>
 								<th class="border-top-0">ID</th>

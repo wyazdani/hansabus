@@ -23,8 +23,8 @@ class tours extends Model
     protected $dates = ['deleted_at'];
     use SoftDeletes;
 
-    public function vehicle()
+    public function vehicles()
     {
-        return $this->hasMany('App\Models\Vehicle','vehicle_id','id');
+        return $this->hasMany(Vehicle::class,'vehicle_id','id');
     }
 }

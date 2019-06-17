@@ -27,4 +27,6 @@ class tours extends Model
     {
         return $this->hasMany('App\Models\Vehicle','vehicle_id','id');
     }
+
+
 }

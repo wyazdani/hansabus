@@ -9,7 +9,7 @@
 
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Edit Driver</h4>
+								<h4 class="card-title">Edit Vehicle Type</h4>
 							</div>
 						</div>
 

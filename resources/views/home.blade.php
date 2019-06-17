@@ -15,7 +15,7 @@
 
 												</div>
 												<div class="media-body text-right">
-													<h3>287</h3>
+													<h3>{!! count($vehicle) !!}</h3>
 													<span>Vehicles</span>
 												</div>
 											</div>
@@ -32,7 +32,7 @@
 													<i class="icon-users warning font-large-2 float-left"></i>
 												</div>
 												<div class="media-body text-right">
-													<h3>156</h3>
+													<h3>{!! count($driver) !!}</h3>
 													<span>Drivers</span>
 												</div>
 											</div>
@@ -49,7 +49,7 @@
 													<i class="fa fa-university success font-large-2 float-left"></i>
 												</div>
 												<div class="media-body text-right">
-													<h3>50</h3>
+													<h3>{!! count($vehicle) !!}</h3>
 													<span>Companies</span>
 												</div>
 											</div>

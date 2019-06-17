@@ -23,6 +23,8 @@ class VehicleTypes extends Migration
             $table->collation = 'utf8_unicode_ci';
             $table->charset = 'utf8';
             $table->engine = 'InnoDB';
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

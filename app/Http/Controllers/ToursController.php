@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Driver;
+use App\Models\TourStatus;
+use App\Models\TourAttachment;
+use App\Models\Customer;
 use App\Models\Vehicle;
-use App\tours;
+use App\Models\Tour;
+use App\Models\Attachment;
+use App\Driver;
+
 use Illuminate\Http\Request;
+use App\Helpers\General;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class ToursController extends Controller
 {
@@ -20,10 +28,14 @@ class ToursController extends Controller
     public function create()
     {
         $pageTitle = 'Add Tour';
-        $vehicle_name = Vehicle::pluck('name','id');
-        $vehicle_reg = Vehicle::pluck('registrationNumber','id');
-        $driver = Driver::pluck('driver_name','id');
-        return view('tours.add',compact('pageTitle','vehicle_name','vehicle_reg','driver'));
+        $general = new General();
+        $randomKey = $general->randomKey();
+        $vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
+        $tour_statuses = TourStatus::get(['id','name']);
+        $customers = Customer::pluck('name','id');
+        $drivers = Driver::pluck('driver_name','id');
+
+        return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));
     }
 
     /**
@@ -34,20 +46,50 @@ class ToursController extends Controller
      */
     public function store(Request $request)
     {
-        $tour = new tours([
-            'tour_name'  => $request->get('tour_name'),
-            'price'  => $request->get('price'),
-            'location'  => $request->get('location'),
-            'destination'  => $request->get('destination'),
-            'departure_date'  => $request->get('departure_date'),
-            'vehicle_id'        => $request->get('vehicle_id'),
-            'tour_id'  => $request->get('tour_id'),
-            'customer_id'   => 0,
-            'driver_id'    =>  !empty($request['driver_id'])?$request['driver_id']:0,
+        $rules = [
+            'customer_id' => 'required|integer',
+            'vehicle_id' => 'required|integer',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'driver_id' => 'required|integer',
+            'price' => 'required|integer',
+            'passengers' => 'required|integer',
+            'guide' => 'required',
+        ];
+        $messages = [
+            // 'title.required' => 'Title is required',
+        ];
+        $this->validate(request(), $rules, $messages);
+//        dd($request->all());
 
-        ]);
+        $attachments=[];
+        if(!empty($request->temp_key)){
+            $attachments = Attachment::where('temp_key',$request->temp_key)->get();
+        }
 
+        $data = [
+            'status' => (int)$request->status,
+            'customer_id' => (int)$request->customer_id,
+            'vehicle_id' => (int)$request->vehicle_id,
+            'from_date' => date('Y-m-d h:i:s',strtotime($request->from_date)),
+            'to_date'  => date('Y-m-d h:i:s',strtotime($request->to_date)),
+            'driver_id' => $request->driver_id,
+            'passengers' => $request->passengers,
+            'guide' => $request->guide,
+            'price' => $request->price
+        ];
+
+        $tour = new Tour($data);
         $tour->save();
+        dd($data);
+
+        $files=[];
+        foreach($attachments as $attachment){
+            $files[] = ['tour_id'=>$tour->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
+        }
+        TourAttachment::insert($files);
+        unset($files); unset($attachments);
+//        unset($request);
         return redirect('/tours')->with('success', 'New Tour has been added');
 
     }

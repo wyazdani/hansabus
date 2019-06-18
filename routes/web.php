@@ -26,4 +26,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/customer-list', 'CustomerController@getList')->name('customer-list');
     Route::get('/customers/change-status/{Customer}', 'CustomerController@status')->name('customers.status-change');
 
+
+    Route::post('/file-upload', 'AttachmentController@uploadFiles')->name('file-upload');
+
 });

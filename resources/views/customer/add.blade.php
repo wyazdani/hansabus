@@ -50,21 +50,21 @@
 
                                                         <div class="form-body">
 
-                                                            @include('layouts.errors')
+
                                                             <div class="row">
 
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput1">Name</label>
 
-                                                                        <input type="text" name="name" class="form-control" value="{{ (!empty($customer->name))?$customer->name:old('name') }}" >
+                                                                        <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->name))?$customer->name:old('name') }}" >
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput2">Email</label>
 
-                                                                        <input type="email" name="email" class="form-control" value="{{ (!empty($customer->email))?$customer->email:old('email') }}"
+                                                                        <input type="email" name="email" class="{{($errors->has('email')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->email))?$customer->email:old('email') }}"
                                                                         @if(!empty($customer->id))
                                                                             {{ 'readonly="readonly"'  }}
                                                                                 @endif
@@ -78,7 +78,7 @@
                                                                     <div class="form-group">
                                                                         <label for="projectinput3">COMPANY WEB</label>
 
-                                                                        <input type="text" name="url" class="form-control" value="{{ (!empty($customer->url))?$customer->url:old('url') }}">
+                                                                        <input type="text" name="url" class="{{($errors->has('url')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->url))?$customer->url:old('url') }}">
 
 
                                                                     </div>
@@ -87,7 +87,7 @@
                                                                     <div class="form-group">
                                                                         <label for="projectinput4">CELL NUMBER</label>
 
-                                                                        <input type="number" name="phone" class="form-control" value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
+                                                                        <input type="number" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
 
                                                                     </div>
                                                                 </div>
@@ -98,7 +98,7 @@
                                                                     <div class="form-group">
                                                                         <label for="projectinput4">ADDRESS</label>
 
-                                                                        <input type="text" name="address" class="form-control" value="{{ (!empty($customer->address))?$customer->address:old('address') }}">
+                                                                        <input type="text" name="address" class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->address))?$customer->address:old('address') }}">
 
                                                                     </div>
                                                                 </div>

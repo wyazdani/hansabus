@@ -73,7 +73,7 @@
         var viewVehicle = function(id){
             // console.log(id);
             $.ajax({
-                url: "{{ url('vehicles') }}/"+id,
+                url: "{{ url('/vehicles') }}/"+id,
                 cache: false,
                 success: function(vehicle){
 

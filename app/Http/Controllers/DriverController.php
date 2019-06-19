@@ -106,6 +106,17 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'driver_name' => 'required|string|max:150',
+            'mobile_number' => 'required',
+            'driver_license' => 'required|string|max:100',
+            'nic' => 'required|string|max:100',
+            'address' => 'required|string',
+            'phone' => 'required',
+            'other_details' => 'required|string'
+        ];
+
+        $this->validate(request(), $rules);
         $driver = new Driver([
             'driver_name'  => $request->get('driver_name'),
             'mobile_number'  => $request->get('mobile_number'),
@@ -145,15 +156,17 @@ class DriverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'driver_name'=>'required',
-            'mobile_number'=> 'required',
-            'driver_license' => 'required',
-            'nic' => 'required',
-            'address' => 'required',
+        $rules = [
+            'driver_name' => 'required|string|max:150',
+            'mobile_number' => 'required',
+            'driver_license' => 'required|string|max:100',
+            'nic' => 'required|string|max:100',
+            'address' => 'required|string',
             'phone' => 'required',
-            'other_details' => 'required',
-        ]);
+            'other_details' => 'required|string'
+        ];
+
+        $this->validate(request(), $rules);
 
         $driver = Driver::find($id);
 

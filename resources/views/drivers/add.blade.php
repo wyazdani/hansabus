@@ -40,7 +40,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="projectinput1">Driver Name</label>
-															<input type="text" class="form-control" name="driver_name">
+															<input type="text" class="{{($errors->has('driver_name')) ?'form-control error_input':'form-control'}}" name="driver_name">
 														</div>
 													</div>
 													<div class="col-md-6">
@@ -48,7 +48,7 @@
 															<label for="projectinput2">Mobile
 																No.</label>
 															<input type="text" id=""
-																   class="form-control" name="mobile_number">
+																   class="{{($errors->has('mobile_number')) ?'form-control error_input':'form-control'}}" name="mobile_number">
 														</div>
 													</div>
 												</div>
@@ -59,7 +59,7 @@
 															<label for="projectinput3">Driver
 																License</label>
 															<input type="text" id=""
-																   class="form-control"
+																   class="{{($errors->has('driver_license')) ?'form-control error_input':'form-control'}}"
 																   name="driver_license">
 														</div>
 													</div>
@@ -68,7 +68,7 @@
 															<label for="projectinput4">Nic
 																No.</label>
 															<input type="text" id=""
-																   class="form-control" name="nic">
+																   class="{{($errors->has('nic')) ?'form-control error_input':'form-control'}}" name="nic">
 														</div>
 													</div>
 												</div>
@@ -79,7 +79,7 @@
 															<label
 																	for="projectinput3">Address</label>
 															<input type="text" id=""
-																   class="form-control" name="address">
+																   class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}" name="address">
 														</div>
 													</div>
 													<div class="col-md-6">
@@ -87,7 +87,7 @@
 															<label for="projectinput4">Phone
 																Number</label>
 															<input type="text" id=""
-																   class="form-control" name="phone">
+																   class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" name="phone">
 														</div>
 													</div>
 												</div>
@@ -95,7 +95,7 @@
 												<div class="form-group">
 													<label for="projectinput8">Other Details</label>
 													<textarea id="projectinput8" rows="5"
-															  class="form-control"
+															  class="{{($errors->has('other_details')) ?'form-control error_input':'form-control'}}"
 															  name="other_details"></textarea>
 												</div>
 											</div>

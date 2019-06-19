@@ -73,7 +73,7 @@
         var viewVehicle = function(id){
             // console.log(id);
             $.ajax({
-                url: "{{ url('/vehicles') }}/"+id,
+                url: "{{ url('vehicles') }}/"+id,
                 cache: false,
                 success: function(vehicle){
 
@@ -124,12 +124,11 @@
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
                         }
 
-                        status += 'href="/vehicles/change-status/'+row.id+'">';
+                        status += 'href="{!! url("/vehicles/change-status/'+row.id+'") !!}">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
-
                         edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-                        edit += 'href="/vehicles/'+row.id+'/edit">';
+                        edit += 'href="{!! url("/vehicles/'+row.id+'/edit") !!}">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                         trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';

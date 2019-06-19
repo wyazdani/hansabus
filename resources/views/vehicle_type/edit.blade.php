@@ -44,8 +44,8 @@
 															{{Form::text("name",
   													           old("name") ? old("name") : (!empty($vehicleType->name) ? $vehicleType->name : null),
              													[
-												                "class" => "form-control",
-                												"placeholder" => "name",
+												                "class" => ($errors->has('name')) ?'form-control error_input':'form-control',
+                												"placeholder" => "Name",
             													 ])
 															 }}
 														</div>

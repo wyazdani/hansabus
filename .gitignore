@@ -3,7 +3,8 @@
 /public/storage
 /public/attachments
 /storage/*.key
-/vendor
+/vendor*
+/bootstrap*
 .env
 .phpunit.result.cache
 .idea/

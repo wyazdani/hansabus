@@ -53785,3 +53785,8 @@ input:checked + .slider:before {
     width: 100%;
     height: auto;
 }
+.error_input{
+    border-color : red !important;
+}
+
+

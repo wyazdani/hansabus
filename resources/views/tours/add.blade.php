@@ -22,9 +22,25 @@
 				</div>
 
 				<div class="card-content mt-1">
-					<form method="post" action="{{ route('tours.store') }} "  enctype="multipart/form-data" id="tourForm">
-						@csrf
-						<input type="hidden" name="temp_key" value="{{ $randomKey }}">
+
+
+					@if(!empty($tour->id))
+						<form class="form" method="POST" action="{{ route('tours.update',$tour->id) }}" id="tourForm" enctype="multipart/form-data" >
+						@method('PUT')
+							<input type="hidden" id="id" name="id" value="{{ $tour->id }}">
+					@else
+						<form class="form" method="POST" action="{{ route('tours.store') }}" id="tourForm" enctype="multipart/form-data" >
+					@endif
+
+
+					@csrf
+					<input type="hidden" name="temp_key" value="{{ $randomKey }}">
+					@if(!empty($attachments))
+						@foreach($attachments as $attachment)
+							<input type="hidden" name="old_attachments[]" value="{{ $attachment->file }}">
+						@endforeach
+					@endif
+
 
 						<div class="row">
 							<div class="col-md-12">
@@ -38,7 +54,11 @@
 															<label for="projectinput3">Status</label>
 															<select name="status" class="form-control">
 																@foreach($tour_statuses as $status)
-																	<option value="{{ $status->id  }}">{{ $status->name }}</option>
+																	<option value="{{ $status->id  }}"
+																	@if(!empty($tour->status) && $tour->status==$status->id)
+																		{{ 'Selected' }}
+																			@endif
+																	>{{ $status->name }}</option>
 																@endforeach
 															</select>
 														</div>
@@ -46,7 +66,16 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="customSelect">Customer</label>
-															{!!Form::select('customer_id', $customers, 'Select', ['class' => 'form-control'])!!}
+															<select name="customer_id" class="form-control">
+																@foreach($customers as $customer)
+																	<option value="{{ $customer->id  }}"
+																	@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id)
+																		{{ 'Selected' }}
+																			@endif
+																	>{{ $customer->name }}</option>
+																@endforeach
+															</select>
+
 														</div>
 													</div>
 													<div class="col-md-6">
@@ -54,7 +83,11 @@
 															<label>Vehicle</label>
 															<select name="vehicle_id" class="form-control">
 																@foreach($vehicles as $vehicle)
-																	<option value="{{ $vehicle->id  }}">{{
+																	<option value="{{ $vehicle->id  }}"
+																	@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id)
+																		{{ 'Selected' }}
+																			@endif
+																	>{{
 																	$vehicle->name.' - '.$vehicle->make.' - '.$vehicle->year.' - '.
 																	$vehicle->licensePlate.' - '.$vehicle->transmission
 																	 }}</option>
@@ -70,10 +103,10 @@
 																   data-toggle="tooltip"
 																   data-trigger="hover"
 																   data-placement="top"
-																   data-title="Date Opened">
+																   data-title="Date Opened"
+																   value="{{ (!empty($tour->from_date))?$tour->from_date:old('from_date') }}" >
 														</div>
 													</div>
-
 													<div class="col-md-3">
 														<div class="form-group">
 															<label for="issueinput3">To</label>
@@ -82,16 +115,26 @@
 																   data-toggle="tooltip"
 																   data-trigger="hover"
 																   data-placement="top"
-																   data-title="Date Opened">
+																   data-title="Date Opened"
+																   value="{{ (!empty($tour->to_date))?date('m/d/Y, h:i A',strtotime($tour->to_date)):old('to_date') }}" >
 														</div>
 													</div>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="customSelect">Driver</label>
-															{!!Form::select('driver_id', $drivers, '', ['class' => 'form-control'])!!}
+															<select name="driver_id" class="form-control">
+																@foreach($drivers as $driver)
+																	<option value="{{ $driver->id  }}"
+																	@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id)
+																		{{ 'Selected' }}
+																			@endif
+																	>{{
+																	$driver->driver_name
+																	 }}</option>
+																@endforeach
+															</select>
 														</div>
 													</div>
-
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="projectinput3"># of Passengers</label>
@@ -133,12 +176,23 @@
 							</div>
 						</div>
 						<div class="col-md-6 text-right">
-								@include('layouts.upload_files')
+							@if(!empty($attachments))
+								<div class="col-md-12">
+									@foreach($attachments as $attachment)
+										<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+												<img src="{{ url('/attachments/'.$attachment->file) }}" width="200" border="0"></a>
+										</div>
+									@endforeach
+								</div>
+							@endif
 						</div>
 					</div>
+					@include('layouts.upload_files')
+
 				</div>
 
 			</div>
+
 		</div>
 	</div>
 @endsection

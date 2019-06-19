@@ -14,7 +14,11 @@
 		<div class="nav-container">
 			<ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
 				<li @if(Request::route()->getName() == 'home') {{ ' class=open' }} @endif ><a href="{{ url('/') }}" class="menu-item">Dashboard</a></li>
-				<li @if(in_array(Request::route()->getName(),['vehicles.index','vehicles.create','vehicles.edit']))
+
+				<li @if(in_array(Request::route()->getName(),[
+				'vehicles.index','vehicles.create','vehicles.edit',
+				'vehicle-type.index','vehicle-type.create','vehicle-type.edit'
+				]))
 					{{ ' class=open' }} @endif
 					class="has-sub nav-item">
 					<a href="javascript:;">

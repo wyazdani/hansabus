@@ -15,6 +15,9 @@ Route::group(['middleware' => 'auth'], function (){
 
     /* tuors */
     Route::resource('tours', 'ToursController');
+    Route::get('/tours-list', 'ToursController@getList')->name('tour-list');
+
+
 
     /* vehicles */
     Route::resource('/vehicles', 'VehicleController');

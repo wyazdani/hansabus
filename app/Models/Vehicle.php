@@ -13,7 +13,7 @@ class Vehicle extends Model
 
      public function type()
     {
-        return $this->hasOne('App\Models\VehicleType', 'vehicle_type', 'id');
+        return $this->hasOne('App\Models\VehicleType', 'id', 'vehicle_type');
     }
 
 }

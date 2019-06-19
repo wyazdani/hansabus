@@ -97,7 +97,7 @@
 													</div>
 													<div class="col-md-3">
 														<div class="form-group">
-															<label for="issueinput3">From</label>
+															<label for="issueinput3">From Date</label>
 															<input type="datetime-local" name="from_date" id="from_date"
 																   class="form-control"
 																   data-toggle="tooltip"
@@ -109,14 +109,14 @@
 													</div>
 													<div class="col-md-3">
 														<div class="form-group">
-															<label for="issueinput3">To</label>
+															<label for="issueinput3">To Date</label>
 															<input type="datetime-local" name="to_date" id="to_date"
 																   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}}"
 																   data-toggle="tooltip"
 																   data-trigger="hover"
 																   data-placement="top"
 																   data-title="Date Opened"
-																   value="{{ (!empty($tour->to_date))?date('m/d/Y, h:i A',strtotime($tour->to_date)):old('to_date') }}" >
+																   value="{{ (!empty($tour->to_date))?$tour->to_date:old('to_date') }}" >
 														</div>
 													</div>
 													<div class="col-md-6">
@@ -163,33 +163,58 @@
 							</div>
 						</div>
 					</form>
-					<div class="col-md-12">
-						<div class="col-md-6 text-left">
-							<div class="form-actions">
-								<a href="{{route('drivers.index')}}" class="btn btn-danger mr-1"><b>
-										<i class="icon-trash"></i></b> Cancel</a>
-								<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
-										<i class="icon-note"></i></b> Save</button>
-								<button type="button" class="btn btn-info">
-									<i class="icon-note"></i> Save & add another
-								</button>
+
+
+
+					@if(!empty($attachments))
+							<div class="col-sm-12"><h5>Attachments:</h5></div>
+							<div class="row">
+							<div class="col-lg-12">
+								<ul class="upload-list">
+									@foreach($attachments as $attachment)
+										@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
+										@if(in_array($ext,['png','jpg','jpeg','gif']))
+											<li>
+												<a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+													<img src="{{ url('/attachments/'.$attachment->file) }}" border="0">
+												</a>
+											</li>
+										@endif
+									@endforeach
+								</ul>
+								@foreach($attachments as $attachment)
+									@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
+									@if(!in_array($ext,['png','jpg','jpeg','gif']))
+										<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+												{{ $attachment->file }}
+											</a></div>
+									@endif
+								@endforeach
 							</div>
 						</div>
-						<div class="col-md-6 text-right">
-							@if(!empty($attachments))
-								<div class="col-md-12">
-									@foreach($attachments as $attachment)
-										<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
-												<img src="{{ url('/attachments/'.$attachment->file) }}" width="200" border="0"></a>
-										</div>
-									@endforeach
-								</div>
-							@endif
-						</div>
-					</div>
-					@include('layouts.upload_files')
+					@endif
+
+
 
 				</div>
+				<div class="row">
+					<div class="col-md-12">
+						@include('layouts.upload_files')
+					</div>
+				</div>
+
+				<div class="col-md-12 text-left">
+					<div class="form-actions">
+						<a href="{{route('drivers.index')}}" class="btn btn-danger mr-1"><b>
+								<i class="icon-trash"></i></b> Cancel</a>
+						<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
+								<i class="icon-note"></i></b> Save</button>
+						<button type="button" class="btn btn-info">
+							<i class="icon-note"></i> Save & add another
+						</button>
+					</div>
+				</div>
+
 
 			</div>
 

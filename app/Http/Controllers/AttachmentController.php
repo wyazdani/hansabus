@@ -17,6 +17,7 @@ class AttachmentController extends Controller
 
 
     public function uploadFiles(Request $request) {
+
         $general = new General;
         $ext = $request->file('file')->getClientOriginalExtension();
         $imageName = $general->randomKey().'.'.$ext;
@@ -26,6 +27,7 @@ class AttachmentController extends Controller
         );
 
         $attachment = new Attachment;
+        $attachment->ext = $ext;
         $attachment->file = $imageName;
         $attachment->temp_key = $request->temp_key;
         $attachment->save();

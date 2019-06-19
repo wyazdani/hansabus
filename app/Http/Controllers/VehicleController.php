@@ -19,8 +19,6 @@ class VehicleController extends Controller
     {
 
 
-
-
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
         }else{
@@ -172,11 +170,6 @@ class VehicleController extends Controller
         $vehicle->phoneCharging = $phoneCharging;
         $vehicle->status = $status;
 
-//        $vehicle->created_at = date('Y-m-d h:i:s');
-//        $vehicle->updated_at = date('Y-m-d h:i:s');
-
-
-//        dd($vehicle);
         if ($vehicle->save()) {
 
             if ($request->returnFlag == 1) {

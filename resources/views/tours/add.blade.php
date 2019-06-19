@@ -148,7 +148,7 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="projectinput3">Guide Name</label>
-															<input type="text" name="guide" class="form-control" value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
+															<input type="text" name="guide" class="{{($errors->has('passengers')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
 														</div>
 													</div>
 

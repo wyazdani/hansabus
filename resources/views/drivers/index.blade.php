@@ -63,16 +63,9 @@
 										</a>
 
 										<a href="{{ route('drivers.destroy',$driver->id)}}" class="danger p-0">
-											<i class="icon-power font-medium-3 mr-2"></i>
+											<i class="icon-trash font-medium-3 mr-2"></i>
 										</a>
 
-										{{--<a class="danger p-0">
-										<form action="{{ route('drivers.destroy', $driver->id)}}" method="post">
-											@csrf
-											@method('DELETE')
-											<button class="icon-power font-medium-3 mr-2" type="submit"></button>
-										</form>
-										</a>--}}
 									</td>
 
 								</tr>

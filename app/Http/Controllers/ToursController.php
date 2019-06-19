@@ -127,6 +127,7 @@ class ToursController extends Controller
         $tour->passengers = (int)$request->passengers;
         $tour->price = (int)$request->price;
         $tour->guide = $request->guide;
+
         $tour->save();
 
 

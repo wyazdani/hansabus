@@ -78,7 +78,7 @@
 				cache: false,
 				success: function(t){
 
-					$('#v_name').html(t.customer.name+ ': <small>'+ t.from_date +' - '+ t.to_date +'</small>');
+					$('#v_name').html(t.customer.name+  ': <small>'+ t.from_date+ ' - '+ t.to_date +'</small>');
 
 					$('#v_driver').html(t.driver.driver_name);
 					$('#v_vehicle').html(t.vehicle.name);

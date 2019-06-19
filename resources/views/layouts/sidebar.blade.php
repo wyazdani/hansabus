@@ -40,8 +40,8 @@
 					{{ ' class=open' }} @endif ><a href="{{ url('/customers') }}" class="menu-item">Customers</a></li>
 				<li @if(in_array(Request::route()->getName(),['tours.index','tours.create','tours.edit']))
 					{{ ' class=open' }} @endif ><a href="{{ url('/tours') }}" class="menu-item">Tours</a></li>
-				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="{{ url('/settings') }}" class="menu-item">Settings</a></li>
-				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="{{ url('/reports') }}" class="menu-item">Reports</a></li>
+				{{--<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="{{ url('/settings') }}" class="menu-item">Settings</a></li>
+				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="{{ url('/reports') }}" class="menu-item">Reports</a></li>--}}
 			</ul>
 		</div>
 	</div>

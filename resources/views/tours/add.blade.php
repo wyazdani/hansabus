@@ -52,7 +52,7 @@
 													<div class="col-md-2">
 														<div class="form-group">
 															<label for="projectinput3">Status</label>
-															<select name="status" class="form-control">
+															<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}">
 																@foreach($tour_statuses as $status)
 																	<option value="{{ $status->id  }}"
 																	@if(!empty($tour->status) && $tour->status==$status->id)
@@ -66,7 +66,7 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="customSelect">Customer</label>
-															<select name="customer_id" class="form-control">
+															<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
 																@foreach($customers as $customer)
 																	<option value="{{ $customer->id  }}"
 																	@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id)
@@ -111,7 +111,7 @@
 														<div class="form-group">
 															<label for="issueinput3">To</label>
 															<input type="datetime-local" name="to_date" id="to_date"
-																   class="form-control"
+																   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}}"
 																   data-toggle="tooltip"
 																   data-trigger="hover"
 																   data-placement="top"

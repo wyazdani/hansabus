@@ -13,10 +13,9 @@
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="<?php echo e(url('/customers/create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Customer</a>
+                                <a href="<?php echo e(route('customers.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Customer</a>
                             </div>
                         </div>
-
                     </div>
                     <div class="row"><div class="col-12"><?php echo $__env->make('layouts.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></div></div>
                 </div>
@@ -95,6 +94,7 @@
                 "serverSide": true,
                 "searchable" : true,
                 "pageLength": 10,
+                "bLengthChange" : false,
                 "aoColumnDefs": [{
 
                     "aTargets": [6],

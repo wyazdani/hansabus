@@ -25,4 +25,14 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" rel="stylesheet">
 
+
+	<?php if(Request::route()->getName() == 'tour-calendar'): ?>
+	
+	<link href="<?php echo e(asset('calendar/core/main.css')); ?>" rel='stylesheet' />
+	<link href="<?php echo e(asset('calendar/daygrid/main.css')); ?>" rel='stylesheet' />
+	<link href="<?php echo e(asset('calendar/timegrid/main.css')); ?>" rel='stylesheet' />
+	<script src="<?php echo e(asset('calendar/core/main.js')); ?>"></script>
+	<script src="<?php echo e(asset('calendar/daygrid/main.js')); ?>"></script>
+	<script src="<?php echo e(asset('calendar/timegrid/main.js')); ?>"></script>
+	<?php endif; ?>
 </head><?php /**PATH /var/www/html/ecoach/resources/views/layouts/head.blade.php ENDPATH**/ ?>

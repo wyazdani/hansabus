@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customer/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/drivers/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/drivers/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/drivers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/drivers/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/packages.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/packages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,26 +28,41 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="304">
+              <caret line="19" column="99" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="103" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/customer/add.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="100" column="113" lean-forward="true" selection-start-line="100" selection-start-column="113" selection-end-line="100" selection-end-column="185" />
+            <state relative-caret-position="16">
+              <caret line="117" column="41" selection-start-line="117" selection-start-column="41" selection-end-line="117" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1343">
+              <caret line="110" column="48" lean-forward="true" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="21" column="99" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="103" />
             </state>
           </provider>
         </entry>
@@ -42,8 +70,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/drivers/add.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="97" column="148" lean-forward="true" selection-start-line="97" selection-start-column="148" selection-end-line="97" selection-end-column="148" />
+            <state relative-caret-position="1264">
+              <caret line="97" column="148" lean-forward="true" selection-start-line="97" selection-start-column="61" selection-end-line="97" selection-end-column="148" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/tours/view.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -65,7 +102,11 @@
       <find>deleteMe</find>
       <find>from_date</find>
       <find>viewVehicle</find>
+      <find>{{($errors-&gt;has('url')) ?'form-control error_input':'form-control'}}</find>
     </findStrings>
+    <dirStrings>
+      <dir>D:\laragon\www\new_ecoach\ecoach</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -89,7 +130,6 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/upload_files.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_18_062713_tour_attachments_table.php" />
         <option value="$PROJECT_DIR$/app/Models/TourAttachment.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
         <option value="$PROJECT_DIR$/app/Models/Tour.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
@@ -97,8 +137,6 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_29_060201_vehicle_types_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_14_071503_create_tours_table.php" />
         <option value="$PROJECT_DIR$/resources/views/vehicle_type/add.blade.php" />
@@ -115,6 +153,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" />
         <option value="$PROJECT_DIR$/resources/views/drivers/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/customer/add.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
+        <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
       </list>
     </option>
   </component>
@@ -220,58 +261,46 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
+              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
+              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
+              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
+              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
+              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
+              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="e-coach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="e-coach" type="462c0819:PsiDirectoryNode" />
+              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="drivers" type="462c0819:PsiDirectoryNode" />
@@ -280,7 +309,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,13 +354,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37009000" />
+    <option name="totallyTimeSpent" value="39163000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13313162" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -378,16 +406,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Models/VehicleType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="23" />
-          <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_14_103914_add_status_to_drivers_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -585,13 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="958">
-          <caret line="168" column="6" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_12_130007_create_drivers_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -606,13 +617,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_14_103826_add_status_to_tours_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_14_103826_add_status_to_tours_table.php" />
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_18_062713_tour_attachments_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -624,20 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="33" column="44" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="116" column="36" lean-forward="true" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -655,13 +646,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_19_103418_rename_vehiclesentries_to_null_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="22" column="49" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_19_103418_rename_vehiclesentries_to_null_table.php" />
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_29_060206_vehicle_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -735,24 +720,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/customer/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="110" column="48" lean-forward="true" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+        <state relative-caret-position="578">
+          <caret line="100" column="113" lean-forward="true" selection-start-line="100" selection-start-column="113" selection-end-line="100" selection-end-column="185" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/view.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/drivers/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="97" column="148" lean-forward="true" selection-start-line="97" selection-start-column="148" selection-end-line="97" selection-end-column="148" />
+        <state relative-caret-position="1264">
+          <caret line="97" column="148" lean-forward="true" selection-start-line="97" selection-start-column="61" selection-end-line="97" selection-end-column="148" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/customer/add.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="100" column="113" lean-forward="true" selection-start-line="100" selection-start-column="113" selection-end-line="100" selection-end-column="185" />
+        <state relative-caret-position="1343">
+          <caret line="110" column="48" lean-forward="true" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="117" column="41" selection-start-line="117" selection-start-column="41" selection-end-line="117" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="21" column="99" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="19" column="99" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="103" />
         </state>
       </provider>
     </entry>

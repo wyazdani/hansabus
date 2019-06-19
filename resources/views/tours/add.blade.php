@@ -17,7 +17,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+					{{--<div class="row"><div class="col-12">@include('layouts.errors')</div></div>--}}
 
 				</div>
 
@@ -53,6 +53,7 @@
 														<div class="form-group">
 															<label for="projectinput3">Status</label>
 															<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}">
+																<option>Select Status</option>
 																@foreach($tour_statuses as $status)
 																	<option value="{{ $status->id  }}"
 																	@if(!empty($tour->status) && $tour->status==$status->id)
@@ -67,6 +68,7 @@
 														<div class="form-group">
 															<label for="customSelect">Customer</label>
 															<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
+																<option>Select Customer</option>
 																@foreach($customers as $customer)
 																	<option value="{{ $customer->id  }}"
 																	@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id)
@@ -81,7 +83,8 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Vehicle</label>
-															<select name="vehicle_id" class="form-control">
+															<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}">
+																<option>Select Vehicle</option>
 																@foreach($vehicles as $vehicle)
 																	<option value="{{ $vehicle->id  }}"
 																	@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id)
@@ -99,7 +102,7 @@
 														<div class="form-group">
 															<label for="issueinput3">From</label>
 															<input type="datetime-local" name="from_date" id="from_date"
-																   class="form-control"
+																   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}}"
 																   data-toggle="tooltip"
 																   data-trigger="hover"
 																   data-placement="top"
@@ -122,7 +125,8 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="customSelect">Driver</label>
-															<select name="driver_id" class="form-control">
+															<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
+																<option>Select Driver</option>
 																@foreach($drivers as $driver)
 																	<option value="{{ $driver->id  }}"
 																	@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id)
@@ -138,7 +142,7 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="projectinput3"># of Passengers</label>
-															<input type="number" name="passengers" class="form-control" value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
+															<input type="number" name="passengers" class="{{($errors->has('passengers')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 														</div>
 													</div>
 													<div class="col-md-4">
@@ -151,7 +155,7 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="projectinput3">Price</label>
-															<input type="number" name="price" class="form-control" value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
+															<input type="number" name="price" class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
 														</div>
 													</div>
 

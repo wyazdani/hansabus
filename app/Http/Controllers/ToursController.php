@@ -51,11 +51,11 @@ class ToursController extends Controller
 
         if(!empty($search)){
 
-            $query = Tour::where('name', 'LIKE','%'.$search.'%')
-                ->orWhere('email', 'LIKE','%'.$search.'%')
-                ->orWhere('phone', 'LIKE','%'.$search.'%')
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('url', 'LIKE',"%{$search}%");
+            $query = Tour::where('id', 'LIKE','%'.$search.'%')
+                /*->orWhere('	passengers', 'LIKE','%'.$search.'%')*/
+                ->orWhere('price', 'LIKE','%'.$search.'%')
+                ->orWhere('guide', 'LIKE',"%{$search}%")
+                ->orWhere('driver_id', 'LIKE',"%{$search}%");
         }
         $recordsTotal = $query->count();
         $rows = $query->offset($start)->limit($limit)->get([
@@ -112,10 +112,10 @@ class ToursController extends Controller
             'passengers' => 'required|integer',
             'guide' => 'required',
         ];
-        $messages = [
+     /*   $messages = [
             // 'title.required' => 'Title is required',
-        ];
-        $this->validate(request(), $rules, $messages);
+        ];*/
+        $this->validate(request(), $rules);
 
         $tour = new Tour;
         $tour->status = (int)$request->status;

@@ -192,6 +192,7 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $Vehicle)
     {
+
          $Vehicle->type;
          return $Vehicle;
     }

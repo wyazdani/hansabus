@@ -58,7 +58,7 @@
             if(confirm('Are you sure you want to delete?')){
 
                 $.ajax({
-                    url: '/customers/'+id,
+                    url: "{{ url('/customers') }}/"+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {
@@ -110,12 +110,12 @@
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
                         }
 
-                        status += 'href="/customers/change-status/'+row.id+'">';
+                        status += 'href="{!! url("/customers/change-status/'+row.id+'") !!}">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
                         edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-                        edit += 'href="/customers/'+row.id+'/edit">';
+                        edit += 'href="{!! url("/customers/'+row.id+'/edit") !!}">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                         trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';

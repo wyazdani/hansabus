@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Validator;
 class VehicleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function getList(Request $request)
     {
-
 
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -236,7 +239,7 @@ class VehicleController extends Controller
         $this->validate(request(), $rules, $messages);
 
         $msg = 'Vehicle updated successfully.';
-        // $vehicle = Vehicle::find($id);
+         $vehicle = Vehicle::find($request->id);
         $vehicle->name = $request->name;
         $vehicle->year = $request->year;
         $vehicle->make = $request->make;

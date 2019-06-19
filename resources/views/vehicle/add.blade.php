@@ -50,21 +50,21 @@
 
                                         <div class="form-body">
 
-                                            @include('layouts.errors')
+
                                             <div class="row">
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">Vehicle Name</label>
 
-                                                        <input type="text" name="name" class="form-control" value="{{ (!empty($vehicle->name))?$vehicle->name:old('name') }}">
+                                                        <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->name))?$vehicle->name:old('name') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput2">Year of Manufacture</label>
 
-                                                        <input type="number" name="year" maxlength="4" class="form-control" value="{{ (!empty($vehicle->year))?$vehicle->year:old('year') }}">
+                                                        <input type="number" name="year" maxlength="4" class="{{($errors->has('year')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->year))?$vehicle->year:old('year') }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,7 +74,7 @@
                                                     <div class="form-group">
                                                         <label for="projectinput3">Make/Model</label>
 
-                                                        <input type="text" name="make" class="form-control" value="{{ (!empty($vehicle->make))?$vehicle->make:old('make') }}">
+                                                        <input type="text" name="make" class="{{($errors->has('make')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->make))?$vehicle->make:old('make') }}">
 
 
                                                     </div>
@@ -83,7 +83,7 @@
                                                     <div class="form-group">
                                                         <label for="projectinput4">Engine Number</label>
 
-                                                        <input type="text" name="engineNumber" class="form-control" value="{{ (!empty($vehicle->engineNumber))?$vehicle->engineNumber:old('engineNumber') }}">
+                                                        <input type="text" name="engineNumber" class="{{($errors->has('engineNumber')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->engineNumber))?$vehicle->engineNumber:old('engineNumber') }}">
 
                                                     </div>
                                                 </div>
@@ -95,7 +95,7 @@
                                                     <fieldset class="form-group">
                                                         <label for="customSelect">Type of Vehicle</label>
 
-                                                        <select class="custom-select d-block w-100" 
+                                                        <select class="{{($errors->has('vehicle_type')) ?'custom-select d-block w-100 error_input':'custom-select d-block w-100'}}"
                                                         id="customSelect" name="vehicle_type">
                                                             @foreach($vehicleTypes as $vehicleType)
                                                             
@@ -112,14 +112,14 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput4">Number of Seats</label>
-                                                        <input type="number" name="seats" class="form-control" value="{{ (!empty($vehicle->seats))?$vehicle->seats:old('seats') }}">
+                                                        <input type="number" name="seats" class="{{($errors->has('seats')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->seats))?$vehicle->seats:old('seats') }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput4">License Plate</label>
-                                                        <input type="text" name="licensePlate" class="form-control" value="{{ (!empty($vehicle->licensePlate))?$vehicle->licensePlate:old('licensePlate') }}">
+                                                        <input type="text" name="licensePlate" class="{{($errors->has('licensePlate')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->licensePlate))?$vehicle->licensePlate:old('licensePlate') }}">
                                                     </div>
                                                 </div>
 
@@ -127,7 +127,7 @@
                                                     <div class="form-group">
                                                         <label for="projectinput4">Vehicle Color</label>
 
-                                                        <input type="text" name="color" class="form-control" value="{{ (!empty($vehicle->color))?$vehicle->color:old('color') }}">
+                                                        <input type="text" name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->color))?$vehicle->color:old('color') }}">
 
 
                                                     </div>
@@ -137,7 +137,7 @@
                                                     <div class="form-group">
                                                         <label for="projectinput4">Vehicle Reg Number</label>
 
-                                                        <input type="text" name="registrationNumber" class="form-control" value="{{ (!empty($vehicle->registrationNumber))?$vehicle->registrationNumber:old('registrationNumber') }}">
+                                                        <input type="text" name="registrationNumber" class="{{($errors->has('registrationNumber')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->registrationNumber))?$vehicle->registrationNumber:old('registrationNumber') }}">
 
 
                                                     </div>
@@ -146,8 +146,9 @@
                                                 <div class="col-md-6">
 
 
-                                                                            
 
+                                                    @if ($errors->has('transmission'))
+                                                        <span class="label label-danger">{!! $errors->first('transmission') !!}</span>@endif
                                                     <div class="form-group">
                                                         <label>Transmission</label>
                                                         <div class="input-group">

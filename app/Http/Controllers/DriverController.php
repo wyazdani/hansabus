@@ -106,9 +106,10 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
+        //regex:/[0-9]{3}-[0-9]{3}-[0-9]{3}$/
         $rules = [
             'driver_name' => 'required|string|max:150',
-            'mobile_number' => 'required|numeric',
+            'mobile_number' => 'required|regex:/[0-9]{15}$/|max:11',
             'driver_license' => 'required|string|max:100',
             'nic' => 'required|numeric',
             'address' => 'required|string',

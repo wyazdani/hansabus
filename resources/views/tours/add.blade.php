@@ -52,6 +52,7 @@
 																		<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
 
 																		>
+																			<option>Select Status</option>
 																			@foreach($tour_statuses as $status)
 																				<option value="{{ $status->id  }}"
 																				@if(!empty($tour->status) && $tour->status==$status->id)
@@ -66,6 +67,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">Customer</label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
+																			<option>Select Customer</option>
 																			@foreach($customers as $customer)
 																				<option value="{{ $customer->id  }}"
 																				@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id)
@@ -81,6 +83,7 @@
 																	<div class="form-group">
 																		<label>Vehicle</label>
 																		<select name="vehicle_id" class="form-control" onchange="getVehicleSeats(this.value);">
+																			<option>Select Vehicle</option>
 																			@foreach($vehicles as $vehicle)
 																				<option value="{{ $vehicle->id  }}"
 																				@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id)
@@ -126,6 +129,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">Driver</label>
 																		<select name="driver_id" class="form-control">
+																			<option>Select Driver</option>
 																			@foreach($drivers as $driver)
 																				<option value="{{ $driver->id  }}"
 																				@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id)

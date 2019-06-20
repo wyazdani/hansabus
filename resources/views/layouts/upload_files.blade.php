@@ -1,10 +1,11 @@
 <div class="card">
     <div class="card-body collapse show">
         <div class="card-block">
+            <label for="Attachments">Attachments</label>
             <form action="{{ url('file-upload') }}" class="dropzone dropzone-area dropzone_multiple" id="dpz-multiple-files"
                   method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="Attachments">Attachments</label>
+
 
                     <input type="hidden" name="temp_key" value="{{ $randomKey }}">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}">

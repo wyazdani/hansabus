@@ -64,8 +64,7 @@ class VehicleTypeController extends Controller
     public function index()
     {
         $pageTitle = 'Vehicle Types';
-        $vehicle_type = VehicleType::all();
-        return view('vehicle_type.index',compact('vehicle_type','pageTitle'));
+        return view('vehicle_type.index',compact('pageTitle'));
     }
 
     public function create()

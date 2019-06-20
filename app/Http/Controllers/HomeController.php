@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Driver;
+use App\Models\Tour;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,9 @@ class HomeController extends Controller
         $totalVehicles = Vehicle::where('status',1)->count();
         $totalDrivers= Driver::where('status',1)->count();
         $totalCustomers = Customer::where('status',1)->count();
+        $recentTours    = Tour::limit(10)->orderby('id', 'desc')->get();
 
-        return view('home',compact('pageTitle','totalVehicles','totalDrivers','totalCustomers'));
+
+        return view('home',compact('pageTitle','totalVehicles','totalDrivers','totalCustomers','recentTours'));
     }
 }

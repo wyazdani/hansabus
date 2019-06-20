@@ -167,6 +167,11 @@
 					// { "data": "actions" }
 				],
 				drawCallback: deleteMe|viewTour,
+				"fnDrawCallback": function(oSettings) {
+					if ($('#listingTable tr').length < 11) {
+						$('.dataTables_paginate').hide();
+					}
+				}
 			});
 
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';

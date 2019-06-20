@@ -19,11 +19,8 @@
                                 <i class="ft-arrow-right mt-3"></i></a>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
             <div class="card-content mt-1">
 
                     @if(!empty($vehicle->id))
@@ -273,15 +270,21 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="form-actions">
-                                <a href="{{ url('/vehicles') }}" class="btn btn-danger mr-1">
-                                    <i class="icon-trash"></i> Cancel
-                                </a>
-                                <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
-                                    <i class="icon-note"></i> Save
-                                </button>
-                                <button type="button" onclick="$('#returnFlag').val('0'); $('#theForm').submit();" class="btn btn-info">
-                                    <i class="icon-note"></i> Save & add another
-                                </button>
+                                @if(!empty($vehicle->id))
+                                    <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
+                                        <i class="icon-note"></i> Update
+                                    </button>
+                                @else
+                                    <a href="{{ url('/vehicles') }}" class="btn btn-danger mr-1">
+                                        <i class="icon-trash"></i> Cancel
+                                    </a>
+                                    <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
+                                        <i class="icon-note"></i> Save
+                                    </button>
+                                    <button type="button" onclick="$('#returnFlag').val('0'); $('#theForm').submit();" class="btn btn-info">
+                                        <i class="icon-note"></i> Save & add another
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </div>

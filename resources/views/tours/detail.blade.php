@@ -33,8 +33,6 @@
 								<dd>{{ $Tour->driver->driver_name }}</dd>
 								<dt>Passengers:</dt>
 								<dd>{{ $Tour->passengers }}</dd>
-
-
 							</dl>
 						</div>
 						<div class="col-md-6">

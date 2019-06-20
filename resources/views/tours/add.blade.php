@@ -17,10 +17,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
-
 				</div>
-
 				<div class="card-content mt-1">
 
 
@@ -215,13 +212,18 @@
 
 				<div class="col-md-12 text-left">
 					<div class="form-actions">
-						<a href="{{route('drivers.index')}}" class="btn btn-danger mr-1"><b>
+						@if(!empty($tour->id))
+							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
+									<i class="icon-note"></i></b> Update</button>
+						@else
+						<a href="{{route('tours.index')}}" class="btn btn-danger mr-1"><b>
 								<i class="icon-trash"></i></b> Cancel</a>
 						<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 								<i class="icon-note"></i></b> Save</button>
-						<button type="button" class="btn btn-info">
+						<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">
 							<i class="icon-note"></i> Save & add another
 						</button>
+						@endif
 					</div>
 				</div>
 			</div>

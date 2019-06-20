@@ -17,7 +17,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+					{{--<div class="row"><div class="col-12">@include('layouts.errors')</div></div>--}}
 
 				</div>
 
@@ -53,6 +53,7 @@
 														<div class="form-group">
 															<label for="projectinput3">Status</label>
 															<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}">
+																<option>Select Status</option>
 																@foreach($tour_statuses as $status)
 																	<option value="{{ $status->id  }}"
 																	@if(!empty($tour->status) && $tour->status==$status->id)
@@ -67,6 +68,7 @@
 														<div class="form-group">
 															<label for="customSelect">Customer</label>
 															<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
+																<option>Select Customer</option>
 																@foreach($customers as $customer)
 																	<option value="{{ $customer->id  }}"
 																	@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id)
@@ -81,7 +83,8 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Vehicle</label>
-															<select name="vehicle_id" class="form-control">
+															<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}">
+																<option>Select Vehicle</option>
 																@foreach($vehicles as $vehicle)
 																	<option value="{{ $vehicle->id  }}"
 																	@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id)
@@ -97,9 +100,9 @@
 													</div>
 													<div class="col-md-3">
 														<div class="form-group">
-															<label for="issueinput3">From</label>
+															<label for="issueinput3">From Date</label>
 															<input type="datetime-local" name="from_date" id="from_date"
-																   class="form-control"
+																   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}}"
 																   data-toggle="tooltip"
 																   data-trigger="hover"
 																   data-placement="top"
@@ -109,20 +112,21 @@
 													</div>
 													<div class="col-md-3">
 														<div class="form-group">
-															<label for="issueinput3">To</label>
+															<label for="issueinput3">To Date</label>
 															<input type="datetime-local" name="to_date" id="to_date"
 																   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}}"
 																   data-toggle="tooltip"
 																   data-trigger="hover"
 																   data-placement="top"
 																   data-title="Date Opened"
-																   value="{{ (!empty($tour->to_date))?date('m/d/Y, h:i A',strtotime($tour->to_date)):old('to_date') }}" >
+																   value="{{ (!empty($tour->to_date))?$tour->to_date:old('to_date') }}" >
 														</div>
 													</div>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="customSelect">Driver</label>
-															<select name="driver_id" class="form-control">
+															<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
+																<option>Select Driver</option>
 																@foreach($drivers as $driver)
 																	<option value="{{ $driver->id  }}"
 																	@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id)
@@ -138,20 +142,20 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="projectinput3"># of Passengers</label>
-															<input type="number" name="passengers" class="form-control" value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
+															<input type="number" name="passengers" class="{{($errors->has('passengers')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="projectinput3">Guide Name</label>
-															<input type="text" name="guide" class="form-control" value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
+															<input type="text" name="guide" class="{{($errors->has('passengers')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
 														</div>
 													</div>
 
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="projectinput3">Price</label>
-															<input type="number" name="price" class="form-control" value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
+															<input type="number" name="price" class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
 														</div>
 													</div>
 
@@ -163,33 +167,58 @@
 							</div>
 						</div>
 					</form>
-					<div class="col-md-12">
-						<div class="col-md-6 text-left">
-							<div class="form-actions">
-								<a href="{{route('drivers.index')}}" class="btn btn-danger mr-1"><b>
-										<i class="icon-trash"></i></b> Cancel</a>
-								<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
-										<i class="icon-note"></i></b> Save</button>
-								<button type="button" class="btn btn-info">
-									<i class="icon-note"></i> Save & add another
-								</button>
+
+
+
+					@if(!empty($attachments))
+							<div class="col-sm-12"><h5>Attachments:</h5></div>
+							<div class="row">
+							<div class="col-lg-12">
+								<ul class="upload-list">
+									@foreach($attachments as $attachment)
+										@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
+										@if(in_array($ext,['png','jpg','jpeg','gif']))
+											<li>
+												<a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+													<img src="{{ url('/attachments/'.$attachment->file) }}" border="0">
+												</a>
+											</li>
+										@endif
+									@endforeach
+								</ul>
+								@foreach($attachments as $attachment)
+									@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
+									@if(!in_array($ext,['png','jpg','jpeg','gif']))
+										<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+												{{ $attachment->file }}
+											</a></div>
+									@endif
+								@endforeach
 							</div>
 						</div>
-						<div class="col-md-6 text-right">
-							@if(!empty($attachments))
-								<div class="col-md-12">
-									@foreach($attachments as $attachment)
-										<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
-												<img src="{{ url('/attachments/'.$attachment->file) }}" width="200" border="0"></a>
-										</div>
-									@endforeach
-								</div>
-							@endif
-						</div>
-					</div>
-					@include('layouts.upload_files')
+					@endif
+
+
 
 				</div>
+				<div class="row">
+					<div class="col-md-12">
+						@include('layouts.upload_files')
+					</div>
+				</div>
+
+				<div class="col-md-12 text-left">
+					<div class="form-actions">
+						<a href="{{route('drivers.index')}}" class="btn btn-danger mr-1"><b>
+								<i class="icon-trash"></i></b> Cancel</a>
+						<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
+								<i class="icon-note"></i></b> Save</button>
+						<button type="button" class="btn btn-info">
+							<i class="icon-note"></i> Save & add another
+						</button>
+					</div>
+				</div>
+
 
 			</div>
 

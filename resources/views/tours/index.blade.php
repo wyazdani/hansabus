@@ -19,7 +19,7 @@
 						</div>
 
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+					{{--<div class="row"><div class="col-12">@include('layouts.errors')</div></div>--}}
 				</div>
 				<div class="card-content mt-1">
 					<div class="card-body">
@@ -78,7 +78,7 @@
 				cache: false,
 				success: function(t){
 
-					$('#v_name').html(t.customer.name+': <small>'+t.from_date+' - '+t.to_date+'</small>');
+					$('#v_name').html(t.customer.name+  ': <small>'+ t.from_date+ ' - '+ t.to_date +'</small>');
 
 					$('#v_driver').html(t.driver.driver_name);
 					$('#v_vehicle').html(t.vehicle.name);
@@ -115,6 +115,7 @@
 				"serverSide": true,
 				"searchable" : true,
 				"pageLength": 10,
+				"bLengthChange" : false,
 				"aoColumnDefs": [{
 
 					"aTargets": [8],
@@ -129,12 +130,12 @@
 							status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
 						}
 
-						status += 'href="/tours/change-status/'+row.id+'">';
+						status += 'href="{!! url("/tours/change-status/'+row.id+'") !!}">';
 						status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-						edit += 'href="/tours/'+row.id+'/edit">';
+						edit += 'href="{{url("/tours/'+row.id+'/edit")}}">';
 						edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
 						trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';

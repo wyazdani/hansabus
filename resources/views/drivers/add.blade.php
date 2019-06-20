@@ -49,7 +49,7 @@
 															<label for="projectinput2">Mobile
 																No.</label>
 															<input type="text" id=""
-																   class="{{($errors->has('mobile_number')) ?'form-control error_input':'form-control'}}" placeholder="Only Numbers"
+																   class="{{($errors->has('mobile_number')) ?'form-control error_input':'form-control'}}" maxlength="11" placeholder="Only Numbers"
 																   value="{{ (!empty($driver->mobile_number))?$driver->mobile_number:old('mobile_number') }}" name="mobile_number">
 														</div>
 													</div>
@@ -70,7 +70,7 @@
 															<label for="projectinput4">NIN
 																No.</label>
 															<input type="text" id=""
-																   class="{{($errors->has('nic')) ?'form-control error_input':'form-control'}}" name="nic"
+																   class="{{($errors->has('nic')) ?'form-control error_input':'form-control'}}" name="nic" maxlength="11"
 																   value="{{ (!empty($driver->nic))?$driver->nic:old('nic') }}" placeholder="Only Numbers">
 														</div>
 													</div>
@@ -92,7 +92,7 @@
 																Number</label>
 															<input type="text" id=""
 																   class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}"
-																   value="{{ (!empty($driver->phone))?$driver->phone:old('phone') }}" name="phone" placeholder="Only Numbers">
+																   value="{{ (!empty($driver->phone))?$driver->phone:old('phone') }}" name="phone" maxlength="11" placeholder="Only Numbers">
 														</div>
 													</div>
 												</div>

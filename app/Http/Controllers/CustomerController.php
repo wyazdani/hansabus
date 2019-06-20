@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function getList(Request $request)
     {
@@ -115,7 +118,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|email|unique:customer',
 //            'url' => 'required|url|max:200',
-            'phone' => 'required|max:15',
+            'phone' => 'required|numeric',
             'address' => 'required|string|max:200',
         ];
         $messages = [

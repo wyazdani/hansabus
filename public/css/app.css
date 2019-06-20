@@ -53754,3 +53754,45 @@ input:checked + .slider:before {
 	right: -80px;
 	top: 4px;
 }
+
+.card-content .modal-body.row {
+    border-top: 1px solid #E9ECEF;
+    padding: 20px 40px 20px;
+    margin: 0 0px;
+}
+.upload-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding: 15px;
+    letter-spacing: -5px;
+}
+
+.upload-list li {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
+    letter-spacing: 0;
+    overflow: hidden;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+
+.upload-list li img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.error_input{
+    border-color : red !important;
+}
+.datepicker table tr td span.active,
+.datepicker table tr td span.active:hover,
+.datepicker table tr td span.active.disabled,
+.datepicker table tr td span.active.disabled:hover {
+    background: #0C84D1 !important;
+    background-image:none;
+}
+

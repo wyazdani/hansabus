@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Validator;
 class VehicleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function getList(Request $request)
     {
-
-
-
 
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -172,11 +173,6 @@ class VehicleController extends Controller
         $vehicle->phoneCharging = $phoneCharging;
         $vehicle->status = $status;
 
-//        $vehicle->created_at = date('Y-m-d h:i:s');
-//        $vehicle->updated_at = date('Y-m-d h:i:s');
-
-
-//        dd($vehicle);
         if ($vehicle->save()) {
 
             if ($request->returnFlag == 1) {
@@ -199,6 +195,7 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $Vehicle)
     {
+
          $Vehicle->type;
          return $Vehicle;
     }
@@ -243,7 +240,7 @@ class VehicleController extends Controller
         $this->validate(request(), $rules, $messages);
 
         $msg = 'Vehicle updated successfully.';
-        // $vehicle = Vehicle::find($id);
+         $vehicle = Vehicle::find($request->id);
         $vehicle->name = $request->name;
         $vehicle->year = $request->year;
         $vehicle->make = $request->make;

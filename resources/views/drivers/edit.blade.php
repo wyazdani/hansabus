@@ -13,11 +13,11 @@
 							</div>
 						</div>
 
-						{{--<div class="col-sm-6 col-md-6 text-right">
+						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter"><a href="{{ route('drivers.index') }}" class="btn btn-info ml-2 mt-2">Drivers List
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
-						</div>--}}
+						</div>
 
 					</div>
 
@@ -42,9 +42,9 @@
 															{{--{!! dd($driver) !!}--}}
 															<label for="projectinput1">Driver Name</label>
 															{{Form::text("driver_name",
-  													           old("driver_name") ? old("driver_name") : (!empty($driver->driver_name) ? $driver->driver_name : null),
+  													           !empty($driver->driver_name) ? $driver->driver_name : null,
              													[
-												                "class" => "form-control",
+												                "class" => ($errors->has('driver_name')) ?'form-control has-error':'form-control',
                 												"placeholder" => "driver_name",
             													 ])
 															 }}
@@ -55,9 +55,9 @@
 														<div class="form-group">
 															<label for="projectinput2">Mobile No.</label>
 															{{Form::text("mobile_number",
-  													           old("mobile_number") ? old("mobile_number") : (!empty($driver->mobile_number) ? $driver->mobile_number: null),
+  													           !empty($driver->mobile_number) ? $driver->mobile_number: null,
              													[
-												                "class" => "form-control",
+												                "class" => ($errors->has('mobile_number')) ?'form-control has-error':'form-control',
                 												"placeholder" => "mobile_number",
             													 ])
 															 }}
@@ -70,9 +70,9 @@
 															<label for="projectinput3">Driver
 																License</label>
 															{{Form::text("driver_license",
-  													           old("driver_license") ? old("driver_license") : (!empty($driver->driver_license) ? $driver->driver_license: null),
+  													           !empty($driver->driver_license) ? $driver->driver_license: null,
              													[
-												                "class" => "form-control",
+												                "class" => ($errors->has('driver_license')) ?'form-control has-error':'form-control',
                 												"placeholder" => "driver_license",
             													 ])
 															 }}
@@ -83,9 +83,9 @@
 															<label for="projectinput4">Nic
 																No.</label>
 															{{Form::text("nic",
-  													           old("nic") ? old("nic") : (!empty($driver->nic) ? $driver->nic: null),
+  													           !empty($driver->nic) ? $driver->nic: null,
              													[
-												                "class" => "form-control",
+												                "class" => ($errors->has('nic')) ?'form-control has-error':'form-control',
                 												"placeholder" => "nic",
             													 ])
 															 }}
@@ -99,9 +99,9 @@
 															<label
 																	for="projectinput3">Address</label>
 															{{Form::text("address",
-  													           old("address") ? old("address") : (!empty($driver->address) ? $driver->address: null),
+  													           !empty($driver->address) ? $driver->address: null,
              													[
-												                "class" => "form-control",
+												                "class" => ($errors->has('address')) ?'form-control has-error':'form-control',
                 												"placeholder" => "address",
             													 ])
 															 }}
@@ -112,9 +112,9 @@
 															<label for="projectinput4">Phone
 																Number</label>
 															{{Form::text("phone",
-  													           old("phone") ? old("phone") : (!empty($driver->phone) ? $driver->phone: null),
+  													           !empty($driver->phone) ? $driver->phone: null,
              													[
-												                "class" => "form-control",
+												                "class" => ($errors->has('phone')) ?'form-control has-error':'form-control',
                 												"placeholder" => "phone",
             													 ])
 															 }}
@@ -125,9 +125,9 @@
 												<div class="form-group">
 													<label for="projectinput8">Other Details</label>
 													{{Form::textarea("other_details",
-  													           old("other_details") ? old("other_details") : (!empty($driver->other_details) ? $driver->other_details: null),
+  													           !empty($driver->other_details) ? $driver->other_details: null,
              													[
-												                "class" => "form-control",
+												                "class" => ($errors->has('other_details')) ?'form-control has-error':'form-control',
                 												"placeholder" => "other_details",
             													 ])
 															 }}

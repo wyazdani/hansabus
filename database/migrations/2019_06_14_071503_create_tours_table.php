@@ -15,16 +15,19 @@ class CreateToursTable extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('tour_id')->default(0)->nullable();
-            $table->bigInteger('driver_id')->default(0)->nullable();
-            $table->bigInteger('customer_id')->default(0)->nullable();
-            $table->string('tour_name')->nullable();
-            $table->string('price')->nullable();
-            $table->string('location')->nullable();
-            $table->string('destination')->nullable();
-            $table->dateTime('departure_date')->nullable();
-            $table->softDeletes();
 
+            $table->enum('status', [1,2,3,4,5,6,7]);
+            $table->bigInteger('customer_id')->default(0)->nullable();
+
+            $table->string('from_date')->nullable();
+            $table->string('to_date')->nullable();
+            $table->bigInteger('driver_id')->default(0)->nullable();
+
+            $table->string('passengers')->nullable();
+            $table->string('guide')->nullable();
+            $table->integer('price')->default(0)->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

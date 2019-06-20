@@ -15,7 +15,7 @@
 
 												</div>
 												<div class="media-body text-right">
-													<h3>{!! count($vehicle) !!}</h3>
+													<h3>{{ $totalVehicles }}</h3>
 													<span>Vehicles</span>
 												</div>
 											</div>
@@ -32,7 +32,7 @@
 													<i class="icon-users warning font-large-2 float-left"></i>
 												</div>
 												<div class="media-body text-right">
-													<h3>{!! count($driver) !!}</h3>
+													<h3>{{ $totalDrivers  }}</h3>
 													<span>Drivers</span>
 												</div>
 											</div>
@@ -49,7 +49,7 @@
 													<i class="fa fa-university success font-large-2 float-left"></i>
 												</div>
 												<div class="media-body text-right">
-													<h3>{!! count($vehicle) !!}</h3>
+													<h3>{{ $totalCustomers  }}</h3>
 													<span>Companies</span>
 												</div>
 											</div>
@@ -91,7 +91,6 @@
 									<div class="card-content mt-1">
 										<div class="table-responsive">
 											<table class="table table-hover table-xl mb-0" id="recent-orders">
-
 												<thead>
 													<tr>
 														<th class="border-top-0">ID</th>
@@ -99,102 +98,25 @@
 														<th class="border-top-0">Vehicle</th>
 														<th class="border-top-0">Driver</th>
 														<th class="border-top-0">Time & Date</th>
-														<th class="border-top-0">View</th>
+														{{--<th class="border-top-0">View</th>--}}
 													</tr>
 												</thead>
 
 												<tbody>
 
 													<tr>
-														<td class="text-truncate">001</td>
+														@foreach($recentTours as $tour)
+														<td class="text-truncate">{!! $tour->id !!}</td>
 														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-														<td>
+														<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
+														<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
+														<td class="text-truncate">{!! \Carbon\Carbon::parse($tour->from_date) !!}</td>
+														{{--<td>
 															<button class="btn btn-sm btn-outline-danger round mb-0" type="button" data-toggle="modal"
 																data-target="#large">View</button>
-														</td>
+														</td>--}}
 													</tr>
-
-													<tr>
-														<td class="text-truncate">001</td>
-														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-														<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button">View</button>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="text-truncate">001</td>
-														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-
-														<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button">View</button>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="text-truncate">001</td>
-														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-														<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button">View</button>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="text-truncate">001</td>
-														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-														<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button">View</button>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="text-truncate">001</td>
-														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-														<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button">View</button>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="text-truncate">001</td>
-														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-														<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button">View</button>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="text-truncate">001</td>
-														<td class="text-truncate">Lorem ipsum</td>
-														<td class="text-truncate">Honda City</td>
-														<td class="text-truncate">John Smith</td>
-														<td class="text-truncate">04:55 PM - 16 May...</td>
-														<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button">View</button>
-														</td>
-													</tr>
-
+													@endforeach
 												</tbody>
 
 											</table>

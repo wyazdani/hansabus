@@ -16,7 +16,7 @@
 							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">Tours List
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
-							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">Back to Calendar
+							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">Calendar
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>

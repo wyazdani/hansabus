@@ -10,6 +10,10 @@
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
 								<h4 class="card-title">Tours</h4>
+								{{--<ul class="">
+									<li><a href="{!! route('home') !!}">Dashboard</a></li>
+									<li><a href="{!! route('tours.index') !!}">Tours</a></li>
+								</ul>--}}
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-6 text-right">
@@ -38,7 +42,7 @@
 
 										<th class="border-top-0" width="10%">Guide</th>
 										<th class="border-top-0" width="8%">Price</th>
-										<th class="border-top-0" width="10%">&nbsp;</th>
+										<th class="border-top-0" width="10%">Actions</th>
 									</tr>
 									</thead>
 									<tbody>

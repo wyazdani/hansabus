@@ -58,7 +58,7 @@
 			if(confirm('Are you sure you want to delete?')){
 
 				$.ajax({
-					url: '/drivers/'+id,
+					url: 'drivers/'+id,
 					data: "_token={{ csrf_token() }}",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
@@ -114,7 +114,7 @@
 							status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
 						}
 
-						status += 'href="/drivers/change-status/'+row.id+'">';
+						status += 'href="drivers/change-status/'+row.id+'">';
 						status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 

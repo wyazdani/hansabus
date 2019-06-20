@@ -87,7 +87,7 @@
                                                                     <div class="form-group">
                                                                         <label for="projectinput4">CELL NUMBER</label>
 
-                                                                        <input type="number" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
+                                                                        <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" maxlength = "11"  value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
 
                                                                     </div>
                                                                 </div>

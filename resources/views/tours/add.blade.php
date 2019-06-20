@@ -100,7 +100,9 @@
 													</div>
 													<div class="col-md-3">
 														<div class="form-group">
-															<label for="issueinput3">From Date</label>
+
+
+														<label for="issueinput3">From Date</label>
 															<input type="datetime-local" name="from_date" id="from_date"
 																   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}}"
 																   data-toggle="tooltip"

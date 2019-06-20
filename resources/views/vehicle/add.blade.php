@@ -64,7 +64,17 @@
                                                     <div class="form-group">
                                                         <label for="projectinput2">Year of Manufacture</label>
 
-                                                        <input type="number" name="year" maxlength="4" class="{{($errors->has('year')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->year))?$vehicle->year:old('year') }}">
+                                                        <select name="year" class="{{($errors->has('year')) ?'form-control error_input':'form-control'}}">
+                                                            @for($year=date('Y'); $year>(date('Y')-50); $year--)
+                                                            <option value="{{ $year }}"
+
+                                                             @if( (!empty($vehicle->year) && $vehicle->year==$year) ||
+                                                             (!empty(old('year')) && old('year') == $year) )
+                                                                 {{ 'Selected' }}
+                                                             @endif
+                                                            >{{ $year }}</option>
+                                                            @endfor
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +208,8 @@
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">
-                                            <input type="checkbox" name="AC" @if(!empty(old('AC')) && old('AC')) {{ 'checked' }} @elseif(!empty($vehicle->AC) && $vehicle->AC)
+                                            <input type="checkbox" name="AC"
+                                            @if(!empty(old('AC')) && old('AC')) {{ 'checked' }} @elseif(!empty($vehicle->AC) && $vehicle->AC)
                                             {{ 'checked' }}
                                             @endif >
                                             <span class="slider round"></span>
@@ -213,7 +224,8 @@
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">
-                                            <input type="checkbox" name="radio" @if(!empty(old('radio')) && old('radio')) {{ 'checked' }} @elseif(!empty($vehicle->radio) && $vehicle->radio)
+                                            <input type="checkbox" name="radio"
+                                            @if(!empty(old('radio')) && old('radio')) {{ 'checked' }} @elseif(!empty($vehicle->radio) && $vehicle->radio)
                                             {{ 'checked' }}
                                             @endif >
                                             <span class="slider round"></span>

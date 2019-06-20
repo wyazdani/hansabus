@@ -255,12 +255,12 @@ class VehicleController extends Controller
         $status = true;
         $ac = $sunroof = $radio = $phoneCharging = false;
 
-        if ($request->ac) $ac = true;
+        if ($request->AC) $ac = true;
         if ($request->sunroof) $sunroof = true;
         if ($request->radio) $radio = true;
         if ($request->phoneCharging) $phoneCharging = true;
 
-        $vehicle->ac = $ac;
+        $vehicle->AC = $ac;
         $vehicle->radio = $radio;
         $vehicle->sunroof = $sunroof;
         $vehicle->phoneCharging = $phoneCharging;

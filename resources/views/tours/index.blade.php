@@ -113,7 +113,8 @@
 
 				"processing": true,
 				"serverSide": true,
-				"searchable" : true,
+				// "searchable" : true,
+				'searching':false,
 				"pageLength": 10,
 				"bLengthChange" : false,
 				"aoColumnDefs": [{
@@ -167,6 +168,11 @@
 				],
 
 				drawCallback: deleteMe|viewTour,
+				"fnDrawCallback": function(oSettings) {
+					if ($('#listingTable tr').length < 11) {
+						$('.dataTables_paginate').hide();
+					}
+				}
 			});
 
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';

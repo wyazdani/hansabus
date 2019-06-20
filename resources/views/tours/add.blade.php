@@ -100,7 +100,9 @@
 													</div>
 													<div class="col-md-3">
 														<div class="form-group">
-															<label for="issueinput3">From Date</label>
+
+
+														<label for="issueinput3">From Date</label>
 															<input type="datetime-local" name="from_date" id="from_date"
 																   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}}"
 																   data-toggle="tooltip"
@@ -111,7 +113,7 @@
 														</div>
 													</div>
 													<div class="col-md-3">
-														<div class="form-group">
+														<div id="to_date" class="input-group date" data-date-format="mm-dd-yyyy">
 															<label for="issueinput3">To Date</label>
 															<input type="datetime-local" name="to_date" id="to_date"
 																   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}}"
@@ -241,5 +243,17 @@
 				}
 			});
 		});
+        $(function () {
+            $("#to_date").datepicker({
+                autoclose: true,
+                todayHighlight: true
+            }).datepicker('update', new Date());
+        });
+
+	</script>
+	<script type="text/css">
+		label{margin-left: 20px;}
+		#to_date{width:180px; margin: 0 20px 20px 20px;}
+		#to_date > span:hover{cursor: pointer;}
 	</script>
 @endsection

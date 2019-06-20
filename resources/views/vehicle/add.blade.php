@@ -64,7 +64,8 @@
                                                     <div class="form-group">
                                                         <label for="projectinput2">Year of Manufacture</label>
 
-                                                        <input type="number" name="year" maxlength="4" class="{{($errors->has('year')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->year))?$vehicle->year:old('year') }}">
+                                                        <input type="number" name="year" maxlength="4" class=" date-own {{($errors->has('year')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->year))?$vehicle->year:old('year') }}">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,6 +98,7 @@
 
                                                         <select class="{{($errors->has('vehicle_type')) ?'custom-select d-block w-100 error_input':'custom-select d-block w-100'}}"
                                                         id="customSelect" name="vehicle_type">
+                                                            <option>Select Vehicle Type</option>
                                                             @foreach($vehicleTypes as $vehicleType)
                                                             
                                                             <option value="{{ $vehicleType->id }}"
@@ -279,6 +281,11 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    $('.date-own').datepicker({
+        minViewMode: 2,
+        format: 'yyyy'
+    });
+</script>
 
 @endsection

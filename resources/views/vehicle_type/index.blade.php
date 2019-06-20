@@ -53,7 +53,7 @@
 			if(confirm('Are you sure you want to delete?')){
 
 				$.ajax({
-					url: '/vehicle-type/'+id,
+					url: 'vehicle-type/'+id,
 					data: "_token={{ csrf_token() }}",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
@@ -112,6 +112,11 @@
 					// { "data": "actions" }
 				],
 				// drawCallback: deleteMe,
+				"fnDrawCallback": function(oSettings) {
+					if ($('#listingTable tr').length < 11) {
+						$('.dataTables_paginate').hide();
+					}
+				}
 
 			});
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';

@@ -108,11 +108,11 @@ class DriverController extends Controller
     {
         $rules = [
             'driver_name' => 'required|string|max:150',
-            'mobile_number' => 'required',
+            'mobile_number' => 'required|numeric|max:11',
             'driver_license' => 'required|string|max:100',
-            'nic' => 'required|string|max:100',
+            'nic' => 'required|numeric|max:100',
             'address' => 'required|string',
-            'phone' => 'required',
+            'phone' => 'required|numeric|max:11',
             'other_details' => 'required|string'
         ];
 

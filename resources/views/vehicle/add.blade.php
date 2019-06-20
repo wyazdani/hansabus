@@ -65,7 +65,6 @@
                                                         <label for="projectinput2">Year of Manufacture</label>
 
                                                         <input type="number" name="year" maxlength="4" class=" date-own {{($errors->has('year')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->year))?$vehicle->year:old('year') }}">
-                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div>
                                                 </div>
                                             </div>

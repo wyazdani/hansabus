@@ -119,7 +119,7 @@
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-						edit += 'href="/drivers/'+row.id+'/edit">';
+						edit += 'href="drivers/'+row.id+'/edit">';
 						edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
 						trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';

@@ -53788,5 +53788,11 @@ input:checked + .slider:before {
 .error_input{
     border-color : red !important;
 }
-
+.datepicker table tr td span.active,
+.datepicker table tr td span.active:hover,
+.datepicker table tr td span.active.disabled,
+.datepicker table tr td span.active.disabled:hover {
+    background: #0C84D1 !important;
+    background-image:none;
+}
 

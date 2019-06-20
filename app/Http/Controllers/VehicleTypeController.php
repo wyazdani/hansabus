@@ -77,7 +77,7 @@ class VehicleTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  =>'required|unique:vehicle_types'
+            'name'  =>'required|unique:vehicle_types|regex:/^[a-zA-Z]+$/u|'
         ]);
         $vehicle_type = new VehicleType([
             'name'  => $request->get('name')

@@ -53,7 +53,7 @@
 			if(confirm('Are you sure you want to delete?')){
 
 				$.ajax({
-					url: '/vehicle-type/'+id,
+					url: 'vehicle-type/'+id,
 					data: "_token={{ csrf_token() }}",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {

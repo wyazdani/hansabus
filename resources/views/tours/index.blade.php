@@ -136,7 +136,7 @@
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-						edit += 'href="{{url("/tours/'+row.id+'/edit")}}">';
+						edit += 'href="tours/'+row.id+'/edit")">';
 						edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
 						trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
@@ -166,6 +166,7 @@
 					{ "data": "price" }
 					// { "data": "actions" }
 				],
+
 				drawCallback: deleteMe|viewTour,
 				"fnDrawCallback": function(oSettings) {
 					if ($('#listingTable tr').length < 11) {

@@ -7,13 +7,16 @@
 				<div class="card-header">
 					<div class="row">
 
-						<div class="col-sm-6 col-md-6">
+						<div class="col-sm-4 col-md-6">
 							<div class="card-title-wrap bar-primary">
 								<h4 class="card-title">{{ $pageTitle }}</h4>
 							</div>
 						</div>
-						<div class="col-sm-6 col-md-6 text-right">
+						<div class="col-sm-4 col-md-6 text-right">
 							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">Tours List
+									<i class="ft-arrow-right mt-3"></i></a>
+							</div>
+							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">Back to Calendar
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>

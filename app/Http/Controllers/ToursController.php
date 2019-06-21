@@ -131,10 +131,11 @@ class ToursController extends Controller
         $pageTitle = 'Add Tour';
         $general = new General();
         $randomKey = $general->randomKey();
-        $vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
+        //$vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
         $tour_statuses = TourStatus::get(['id','name']);
         $customers = Customer::get(['name','id']);
         $drivers = Driver::get(['driver_name','id']);
+        $vehicles = Vehicle::where('status','=',1)->get();
 
 
         return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));

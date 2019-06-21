@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('page_title') {{ $pageTitle }} @endsection
-@section('content')
+<?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 	<div class="row match-height">
 		<div class="col-md-12" id="recent-sales">
 			<div class="card">
@@ -14,11 +13,11 @@
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle Type</a>
+								<a href="<?php echo e(route('vehicle-type.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle Type</a>
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+					<div class="row"><div class="col-12"><?php echo $__env->make('layouts.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></div></div>
 				</div>
 
 				<div class="card-content mt-1">
@@ -45,8 +44,8 @@
 			</div>
 		</div>
 	</div>
-@endsection
-@section('pagejs')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pagejs'); ?>
 	<script>
 		var deleteMe = function(id){
 
@@ -54,7 +53,7 @@
 
 				$.ajax({
 					url: 'vehicle-type/'+id,
-					data: "_token={{ csrf_token() }}",
+					data: "_token=<?php echo e(csrf_token()); ?>",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
 						// console.log(result);
@@ -104,7 +103,7 @@
 						// return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
 					}
 				}],
-				"ajax": "{{ url('/vehicle-type-list') }}",
+				"ajax": "<?php echo e(url('/vehicle-type-list')); ?>",
 				'rowId': 'id',
 				"columns": [
 					{ "data": "id" },
@@ -122,4 +121,5 @@
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
 		} );
 	</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\new_ecoach\ecoach\resources\views/vehicle_type/index.blade.php ENDPATH**/ ?>

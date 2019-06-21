@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('page_title') {{ $pageTitle }} @endsection
-@section('content')
+<?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
 <!--Statistics cards Starts-->
 
@@ -15,8 +14,8 @@
 
 												</div>
 												<div class="media-body text-right">
-													<h3>{{ $totalVehicles }}</h3>
-													<span>{{ __('messages.vehicle') }}</span>
+													<h3><?php echo e($totalVehicles); ?></h3>
+													<span><?php echo e(__('messages.vehicle')); ?></span>
 												</div>
 											</div>
 										</div>
@@ -32,8 +31,8 @@
 													<i class="icon-users warning font-large-2 float-left"></i>
 												</div>
 												<div class="media-body text-right">
-													<h3>{{ $totalDrivers  }}</h3>
-													<span>{{ __('messages.drivers') }}</span>
+													<h3><?php echo e($totalDrivers); ?></h3>
+													<span><?php echo e(__('messages.drivers')); ?></span>
 												</div>
 											</div>
 										</div>
@@ -49,8 +48,8 @@
 													<i class="fa fa-university success font-large-2 float-left"></i>
 												</div>
 												<div class="media-body text-right">
-													<h3>{{ $totalCustomers  }}</h3>
-													<span>{{ __('messages.companies') }}</span>
+													<h3><?php echo e($totalCustomers); ?></h3>
+													<span><?php echo e(__('messages.companies')); ?></span>
 												</div>
 											</div>
 										</div>
@@ -67,7 +66,7 @@
 												</div>
 												<div class="media-body text-right">
 													<h3>423</h3>
-													<span>{{ __('messages.vehicle_maintenance') }}</span>
+													<span><?php echo e(__('messages.vehicle_maintenance')); ?></span>
 												</div>
 											</div>
 										</div>
@@ -83,7 +82,7 @@
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title-wrap bar-primary">
-											<h4 class="card-title">{{ __('messages.Recent_Add_trip') }}</h4>
+											<h4 class="card-title"><?php echo e(__('messages.Recent_Add_trip')); ?></h4>
 										</div>
 										<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 									</div>
@@ -94,29 +93,26 @@
 												<thead>
 													<tr>
 														<th class="border-top-0">ID</th>
-{{--														//<th class="border-top-0">{{__('messages.trip_name')}}</th>--}}
-														<th class="border-top-0">{{__('messages.vehicle')}}</th>
-														<th class="border-top-0">{{__('messages.drivers')}}</th>
-														<th class="border-top-0">{{__('messages.time_date')}}</th>
-														{{--<th class="border-top-0">View</th>--}}
+
+														<th class="border-top-0"><?php echo e(__('messages.vehicle')); ?></th>
+														<th class="border-top-0"><?php echo e(__('messages.drivers')); ?></th>
+														<th class="border-top-0"><?php echo e(__('messages.time_date')); ?></th>
+														
 													</tr>
 												</thead>
 
 												<tbody>
 
 													<tr>
-														@foreach($recentTours as $tour)
-														<td class="text-truncate">{!! $tour->id !!}</td>
-														{{--<td class="text-truncate">Lorem ipsum</td>--}}
-														<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
-														<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
-														<td class="text-truncate">{!! \Carbon\Carbon::parse($tour->from_date) !!}</td>
-														{{--<td>
-															<button class="btn btn-sm btn-outline-danger round mb-0" type="button" data-toggle="modal"
-																data-target="#large">View</button>
-														</td>--}}
+														<?php $__currentLoopData = $recentTours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+														<td class="text-truncate"><?php echo $tour->id; ?></td>
+														
+														<td class="text-truncate"><?php echo !empty($tour->vehicle_id)?$tour->vehicle->name:''; ?></td>
+														<td class="text-truncate"><?php echo !empty($tour->driver_id)?$tour->driver->driver_name:''; ?></td>
+														<td class="text-truncate"><?php echo \Carbon\Carbon::parse($tour->from_date); ?></td>
+														
 													</tr>
-													@endforeach
+													<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 												</tbody>
 
 											</table>
@@ -129,33 +125,33 @@
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title-wrap bar-warning">
-											<h4 class="card-title">{{__('messages.project_statistics')}}</h4>
+											<h4 class="card-title"><?php echo e(__('messages.project_statistics')); ?></h4>
 										</div>
 									</div>
 									<div class="card-body">
 
-										<p class="font-medium-2 text-muted text-center">{{__('messages.project_tasks')}}</p>
+										<p class="font-medium-2 text-muted text-center"><?php echo e(__('messages.project_tasks')); ?></p>
 										<div id="donut-dashboard-chart" class="height-250 donut donutShadow">
 										</div>
 
 										<div class="card-block">
 											<div class="row my-3">
 												<div class="col">
-													<span class="mb-1 text-muted d-block">23% - {{__('messages.drivers')}}</span>
+													<span class="mb-1 text-muted d-block">23% - <?php echo e(__('messages.drivers')); ?></span>
 													<div class="progress" style="height: 8px;">
 														<div class="progress-bar gradient-blackberry" role="progressbar" style="width: 23%;"
 															aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
 													</div>
 												</div>
 												<div class="col">
-													<span class="mb-1 text-muted d-block">35% - {{__('messages.maintenance')}}</span>
+													<span class="mb-1 text-muted d-block">35% - <?php echo e(__('messages.maintenance')); ?></span>
 													<div class="progress" style="height: 8px;">
 														<div class="progress-bar gradient-pomegranate" role="progressbar" style="width: 35%;"
 															aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
 													</div>
 												</div>
 												<div class="col">
-													<span class="mb-1 text-muted d-block">50% - {{__('messages.vehicles')}}</span>
+													<span class="mb-1 text-muted d-block">50% - <?php echo e(__('messages.vehicles')); ?></span>
 													<div class="progress" style="height: 8px;">
 														<div class="progress-bar gradient-green-tea" role="progressbar" style="width: 50%;"
 															aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -168,7 +164,8 @@
 							</div>
 
 						</div>
-@endsection
-@section('pagejs')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pagejs'); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\new_ecoach\ecoach\resources\views/home.blade.php ENDPATH**/ ?>

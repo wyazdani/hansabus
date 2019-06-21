@@ -100,7 +100,7 @@
 
 					var attachments = '<ul>';
 				$.each(t.attachments, function(index, item) {
-						attachments += '<li><a href="/attachments/'+item.file+'" target="_blank">'+item.file+'</a></li>';
+						attachments += '<li><a href="attachments/'+item.file+'" target="_blank">'+item.file+'</a></li>';
 					});
 					attachments += '</ul>';
 

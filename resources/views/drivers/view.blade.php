@@ -18,7 +18,7 @@
                         <dt style="width:25%">License:</dt>
                         <dd id="v_driver_license"></dd>
 
-                        <dt style="width:25%">Nic:</dt>
+                        <dt style="width:25%">NIN No.</dt>
                         <dd id="v_nic"></dd>
 
                         <dt style="width:25%">Address:</dt>

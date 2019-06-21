@@ -78,28 +78,7 @@ class VehicleController extends Controller
     {
         $pageTitle = 'Vehicles';
 
-        $query = Vehicle::where('id', '>',0);
-
-        $search =  '';
-        if(!empty($request->input('q'))){
-
-            $search = $request->input('q');
-        }
-
-        if(!empty($search)){
-
-            $query = Vehicle::where('name', 'LIKE','%'.$search.'%')
-                ->orWhere('make', 'LIKE','%'.$search.'%')
-                ->orWhere('year', 'LIKE','%'.$search.'%')
-                ->orWhere('registrationNumber', 'LIKE',"%{$search}%")
-                ->orWhere('engineNumber', 'LIKE',"%{$search}%")
-                ->orWhere('licensePlate', 'LIKE',"%{$search}%")
-                ->orWhere('transmission', 'LIKE',"%{$search}%");
-        }
-
-        $vehicles = $query->paginate(4);
-
-        return view('vehicle.index', compact('vehicles', 'pageTitle'));
+        return view('vehicle.index', compact('pageTitle'));
     }
 
     public function status(Vehicle $vehicle)

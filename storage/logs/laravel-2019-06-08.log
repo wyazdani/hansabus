@@ -1,8 +1,0 @@
-[2019-06-08 13:19:01] production.ERROR: Maximum execution time of 60 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 60 seconds exceeded at /var/www/html/ecoach/storage/framework/views/30e7c3f8a04b92f11727c401a6d31833ffc462fd.php:1)
-[stacktrace]
-#0 {main}
-"} 
-[2019-06-08 13:21:01] production.ERROR: Maximum execution time of 60 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 60 seconds exceeded at /var/www/html/ecoach/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesEvents.php:177)
-[stacktrace]
-#0 {main}
-"} 

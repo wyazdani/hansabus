@@ -39,4 +39,9 @@ Route::group(['middleware' => 'auth'], function (){
     /* file upload */
     Route::post('/file-upload', 'AttachmentController@uploadFiles')->name('file-upload');
 
+    Route::get('locale/{locale}', function ($locale){
+        Session::put('locale', $locale);
+        return redirect()->back();
+    });
+
 });

@@ -16,7 +16,7 @@
 												</div>
 												<div class="media-body text-right">
 													<h3>{{ $totalVehicles }}</h3>
-													<span>Vehicles</span>
+													<span>{{ __('messages.vehicle') }}</span>
 												</div>
 											</div>
 										</div>
@@ -33,7 +33,7 @@
 												</div>
 												<div class="media-body text-right">
 													<h3>{{ $totalDrivers  }}</h3>
-													<span>Drivers</span>
+													<span>{{ __('messages.drivers') }}</span>
 												</div>
 											</div>
 										</div>
@@ -50,7 +50,7 @@
 												</div>
 												<div class="media-body text-right">
 													<h3>{{ $totalCustomers  }}</h3>
-													<span>Companies</span>
+													<span>{{ __('messages.companies') }}</span>
 												</div>
 											</div>
 										</div>
@@ -67,7 +67,7 @@
 												</div>
 												<div class="media-body text-right">
 													<h3>423</h3>
-													<span>Vehicles Mentinance</span>
+													<span>{{ __('messages.vehicle_maintenance') }}</span>
 												</div>
 											</div>
 										</div>
@@ -83,7 +83,7 @@
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title-wrap bar-primary">
-											<h4 class="card-title">Recent Add Trip</h4>
+											<h4 class="card-title">{{ __('messages.Recent_Add_trip') }}</h4>
 										</div>
 										<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 									</div>
@@ -94,10 +94,10 @@
 												<thead>
 													<tr>
 														<th class="border-top-0">ID</th>
-														<th class="border-top-0">Trip Name</th>
-														<th class="border-top-0">Vehicle</th>
-														<th class="border-top-0">Driver</th>
-														<th class="border-top-0">Time & Date</th>
+														<th class="border-top-0">{{__('messages.trip_name')}}</th>
+														<th class="border-top-0">{{__('messages.vehicle')}}</th>
+														<th class="border-top-0">{{__('messages.drivers')}}</th>
+														<th class="border-top-0">{{__('messages.time_date')}}</th>
 														{{--<th class="border-top-0">View</th>--}}
 													</tr>
 												</thead>
@@ -129,33 +129,33 @@
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title-wrap bar-warning">
-											<h4 class="card-title">Project Stats</h4>
+											<h4 class="card-title">{{__('messages.project_statistics')}}</h4>
 										</div>
 									</div>
 									<div class="card-body">
 
-										<p class="font-medium-2 text-muted text-center">Project Tasks</p>
+										<p class="font-medium-2 text-muted text-center">{{__('messages.project_tasks')}}</p>
 										<div id="donut-dashboard-chart" class="height-250 donut donutShadow">
 										</div>
 
 										<div class="card-block">
 											<div class="row my-3">
 												<div class="col">
-													<span class="mb-1 text-muted d-block">23% - Drivers</span>
+													<span class="mb-1 text-muted d-block">23% - {{__('messages.drivers')}}</span>
 													<div class="progress" style="height: 8px;">
 														<div class="progress-bar gradient-blackberry" role="progressbar" style="width: 23%;"
 															aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
 													</div>
 												</div>
 												<div class="col">
-													<span class="mb-1 text-muted d-block">35% - Maintinance</span>
+													<span class="mb-1 text-muted d-block">35% - {{__('messages.maintenance')}}</span>
 													<div class="progress" style="height: 8px;">
 														<div class="progress-bar gradient-pomegranate" role="progressbar" style="width: 35%;"
 															aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
 													</div>
 												</div>
 												<div class="col">
-													<span class="mb-1 text-muted d-block">50% - Vehicles</span>
+													<span class="mb-1 text-muted d-block">50% - {{__('messages.vehicles')}}</span>
 													<div class="progress" style="height: 8px;">
 														<div class="progress-bar gradient-green-tea" role="progressbar" style="width: 50%;"
 															aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

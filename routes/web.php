@@ -8,9 +8,9 @@ Route::group(['middleware' => 'auth'], function (){
 
 
     /* drivers */
-    Route::resource('drivers', 'DriverController');
-    Route::get('/drivers-list', 'DriverController@getList')->name('driver-list');
-    Route::get('/drivers/change-status/{Driver}', 'DriverController@status')->name('driver.status-change');
+    Route::resource('v-drivers', 'DriverController');
+    Route::get('/drivers-list', 'DriverController@getList')->name('drivers-list');
+    Route::get('/v-drivers/change-status/{Driver}', 'DriverController@status')->name('driver.status-change');
 
 
     /* vehicle types */

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
-use Illuminate\Http\Request;
+use App\Helpers\General;
 use App\Models\Driver;
+use Illuminate\Http\Request;
+
 
 class DriverController extends Controller
 {
@@ -84,8 +85,7 @@ class DriverController extends Controller
     public function index()
     {
         $pageTitle = 'Drivers';
-        $drivers = Driver::all();
-        return view('drivers.index',compact('drivers','pageTitle'));
+        return view('drivers.index',compact('pageTitle'));
     }
     /**
      * Show the form for creating a new resource.
@@ -106,31 +106,44 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //regex:/[0-9]{3}-[0-9]{3}-[0-9]{3}$/
         $rules = [
             'driver_name' => 'required|string|max:150',
-            'mobile_number' => 'required|numeric',
+            'mobile_number' => 'required|numeric|digits_between:1,16',
             'driver_license' => 'required|string|max:100',
-            'nic' => 'required|numeric',
+            'nic' => 'required|numeric|digits_between:1,30',
             'address' => 'required|string',
-            'phone' => 'required|numeric',
+            'phone' => 'required|numeric|digits_between:1,16',
             'other_details' => 'required|string'
         ];
 
         $this->validate(request(), $rules);
-        $driver = new Driver([
-            'driver_name'  => $request->get('driver_name'),
-            'mobile_number'  => $request->get('mobile_number'),
-            'driver_license'  => $request->get('driver_license'),
-            'nic'  => $request->get('nic'),
-            'address'  => $request->get('address'),
-            'phone'  => $request->get('phone'),
-            'other_details'  => $request->get('other_details'),
 
-        ]);
 
+        /* Profile picture upload */
+        $profilePic = '';
+        if(!empty($request->profile_pic)){
+
+            $general = new General;
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $profilePic = $general->randomKey().'.'.$ext;
+
+            $request->file('profile_pic')->move(
+                base_path() . '/public/images/drivers/', $profilePic
+            );
+        }
+        /* save data into database */
+        $driver = new Driver;
+        $driver->driver_name = $request->get('driver_name');
+        $driver->mobile_number = $request->get('mobile_number');
+        $driver->driver_license = $request->get('driver_name');
+        $driver->nic = $request->get('nic');
+        $driver->address = $request->get('address');
+        $driver->phone = $request->get('phone');
+        $driver->other_details = $request->get('other_details');
+        $driver->profile_pic = $profilePic;
         $driver->save();
-        return redirect('/drivers')->with('success', 'New Driver has been added');
+
+        return redirect('/v-drivers')->with('success', 'New Driver has been added');
 
     }
 
@@ -145,7 +158,7 @@ class DriverController extends Controller
         $pageTitle = 'Edit Driver';
         $driver = Driver::find($id);
 
-        return view('drivers.edit', compact('driver','pageTitle'));
+        return view('drivers.add', compact('driver','pageTitle'));
     }
 
     /**
@@ -159,18 +172,33 @@ class DriverController extends Controller
     {
         $rules = [
             'driver_name' => 'required|string|max:150',
-            'mobile_number' => 'required',
+            'mobile_number' => 'required|numeric|digits_between:1,16',
             'driver_license' => 'required|string|max:100',
-            'nic' => 'required|string|max:100',
+            'nic' => 'required|numeric|digits_between:1,30',
             'address' => 'required|string',
-            'phone' => 'required',
+            'phone' => 'required|numeric|digits_between:1,16',
             'other_details' => 'required|string'
         ];
 
         $this->validate(request(), $rules);
 
-        $driver = Driver::find($id);
+        /* Profile picture upload */
+        $profilePic = '';
+        if(!empty($request->old_profile_pic)){
+            $profilePic = $request->old_profile_pic;
+        }
+        if(!empty($request->profile_pic)){
 
+            $general = new General;
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $profilePic = $general->randomKey().'.'.$ext;
+
+            $request->file('profile_pic')->move(
+                base_path() . '/public/images/drivers/', $profilePic
+            );
+        }
+        /* save data into database */
+        $driver = Driver::find($id);
         $driver->driver_name = $request->get('driver_name');
         $driver->mobile_number = $request->get('mobile_number');
         $driver->driver_license = $request->get('driver_name');
@@ -178,10 +206,10 @@ class DriverController extends Controller
         $driver->address = $request->get('address');
         $driver->phone = $request->get('phone');
         $driver->other_details = $request->get('other_details');
-
+        $driver->profile_pic = $profilePic;
         $driver->save();
 
-        return redirect('/drivers')->with('success', 'Driver has been updated');
+        return redirect('/v-drivers')->with('success', 'Driver has been updated');
     }
 
 

@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="v_driver_name"></h4>
+                <h4 class="modal-title" id="v_name"></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="ft-x blue-grey darken-4"></i>
                 </button>
@@ -12,26 +12,17 @@
             <div class="modal-body row">
                 <div class="col-md-12">
                     <dl>
-                        <dt style="width:25%">Mobile No.:</dt>
-                        <dd id="v_mobile_number"></dd>
+                        <dt style="width:25%">Email:</dt>
+                        <dd id="v_email"></dd>
 
-                        <dt style="width:25%">License:</dt>
-                        <dd id="v_driver_license"></dd>
-
-                        <dt style="width:25%">NIN No.</dt>
-                        <dd id="v_nic"></dd>
+                        <dt style="width:25%">Cell Number:</dt>
+                        <dd id="v_phone"></dd>
 
                         <dt style="width:25%">Address:</dt>
                         <dd id="v_address"></dd>
 
-
-                        <dt style="width:25%">Phone:</dt>
-                        <dd id="v_phone"></dd>
-
-                        <dt style="width:25%">Other Details:</dt>
-                        <dd id="v_other_details"></dd>
-
-
+                        <dt style="width:25%">Company Web:</dt>
+                        <dd id="v_url"></dd>
 
                         <dt style="width:25%">Is Active:</dt>
                         <dd id="v_status"></dd>
@@ -41,4 +32,4 @@
             </div>
         </div>
     </div>
-</div>
+</div><?php /**PATH D:\laragon\www\new_ecoach\ecoach\resources\views/customer/view.blade.php ENDPATH**/ ?>

@@ -18,7 +18,7 @@
                         <dt style="width:25%">License:</dt>
                         <dd id="v_driver_license"></dd>
 
-                        <dt style="width:25%">NIN No.</dt>
+                        <dt style="width:25%">Nic:</dt>
                         <dd id="v_nic"></dd>
 
                         <dt style="width:25%">Address:</dt>
@@ -41,4 +41,4 @@
             </div>
         </div>
     </div>
-</div>
+</div><?php /**PATH D:\laragon\www\new_ecoach\ecoach\resources\views/drivers/view.blade.php ENDPATH**/ ?>

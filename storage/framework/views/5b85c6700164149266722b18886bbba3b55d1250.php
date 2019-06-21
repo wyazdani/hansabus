@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('page_title') {{ $pageTitle }} @endsection
-@section('content')
+<?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 	<div class="row match-height">
 		<div class="col-md-12" id="recent-sales">
 			<div class="card">
@@ -14,11 +13,11 @@
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('v-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Driver</a>
+								<a href="<?php echo e(route('drivers.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Driver</a>
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+					<div class="row"><div class="col-12"><?php echo $__env->make('layouts.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></div></div>
 				</div>
 
 				<div class="card-content mt-1">
@@ -33,7 +32,7 @@
 											<th class="border-top-0" width="20%">Name</th>
 											<th class="border-top-0" width="15%">Mobile No.</th>
 											<th class="border-top-0" width="15%">License</th>
-											<th class="border-top-0" width="10%">NIN No.</th>
+											<th class="border-top-0" width="10%">NIC No.</th>
 											<th class="border-top-0" width="10%">Phone</th>
 											<th class="border-top-0" width="10%">Action</th>
 										</tr>
@@ -49,17 +48,17 @@
 			</div>
 		</div>
 	</div>
-@endsection
-@section('pagejs')
-	@include('drivers.view')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pagejs'); ?>
+	<?php echo $__env->make('drivers.view', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 	<script>
 		var deleteMe = function(id){
 
 			if(confirm('Are you sure you want to delete?')){
 
 				$.ajax({
-					url: '/v-drivers/'+id,
-					data: "_token={{ csrf_token() }}",
+					url: 'drivers/'+id,
+					data: "_token=<?php echo e(csrf_token()); ?>",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
 						// console.log(result);
@@ -71,7 +70,7 @@
 		var viewDriver = function(id){
 
 			$.ajax({
-				url: "{{ route('v-drivers.index') }}/"+id,
+				url: "<?php echo e(url('/drivers')); ?>/"+id,
 				cache: false,
 				success: function(d){
 
@@ -114,12 +113,12 @@
 							status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
 						}
 
-						status += 'href="/v-drivers/change-status/'+row.id+'">';
+						status += 'href="drivers/change-status/'+row.id+'">';
 						status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-						edit += 'href="v-drivers/'+row.id+'/edit">';
+						edit += 'href="drivers/'+row.id+'/edit">';
 						edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
 						trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
@@ -135,7 +134,7 @@
 						// return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
 					}
 				}],
-				"ajax": "{{ route('drivers-list') }}",
+				"ajax": "<?php echo e(url('/drivers-list')); ?>",
 				'rowId': 'id',
 				"columns": [
 					{ "data": "id" },
@@ -158,4 +157,5 @@
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
 		} );
 	</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\new_ecoach\ecoach\resources\views/drivers/index.blade.php ENDPATH**/ ?>

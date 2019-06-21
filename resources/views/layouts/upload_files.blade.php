@@ -2,7 +2,7 @@
     <div class="card-body collapse show">
         <div class="card-block">
             <form action="{{ url('file-upload') }}" class="dropzone dropzone-area dropzone_multiple" id="dpz-multiple-files"
-                  method="POST" enctype="multipart/form-data">
+                  method="POST" enctype="multipart/form-data" style="height: 100px;">
                 <div class="form-group">
                     <label for="Attachments">Attachments</label>
 

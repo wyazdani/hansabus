@@ -10,7 +10,7 @@
 
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Customer Details</h4>
+                                <h4 class="card-title">{{ (!empty($customer->id))?'Update':'Add' }} Customer</h4>
                             </div>
                         </div>
 
@@ -58,17 +58,19 @@
                                                                         <label for="projectinput1">Name</label>
 
                                                                         <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->name))?$customer->name:old('name') }}" >
+                                                                        @if ($errors->has('name'))
+                                                                            <div class="error">{{ $errors->first('name') }}</div>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput2">Email</label>
-
                                                                         <input type="email" name="email" class="{{($errors->has('email')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->email))?$customer->email:old('email') }}"
-                                                                        @if(!empty($customer->id))
-                                                                            {{ 'readonly="readonly"'  }}
-                                                                                @endif
-                                                                        >
+                                                                        @if(!empty($customer->id)) {{ 'readonly="readonly"'  }} @endif >
+                                                                        @if ($errors->has('email'))
+                                                                            <div class="error">{{ $errors->first('email') }}</div>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -77,18 +79,17 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput3">COMPANY WEB</label>
-
                                                                         <input type="text" name="url" class="{{($errors->has('url')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->url))?$customer->url:old('url') }}">
-
 
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput4">CELL NUMBER</label>
-
                                                                         <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" maxlength = "11"  value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
-
+                                                                        @if ($errors->has('phone'))
+                                                                            <div class="error">{{ $errors->first('phone') }}</div>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -97,9 +98,10 @@
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="projectinput4">ADDRESS</label>
-
                                                                         <input type="text" name="address" class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->address))?$customer->address:old('address') }}">
-
+                                                                        @if ($errors->has('address'))
+                                                                            <div class="error">{{ $errors->first('address') }}</div>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
 

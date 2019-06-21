@@ -8,7 +8,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-8">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Tour Details</h4>
+								<h4 class="card-title">{{ (!empty($tour->id))?'Update':'Add' }}  Tour</h4>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-4 text-right">
@@ -52,6 +52,7 @@
 																		<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
 
 																		>
+																			<option value="">- - - Select One - - -</option>
 																			@foreach($tour_statuses as $status)
 																				<option value="{{ $status->id  }}"
 																				@if(!empty($tour->status) && $tour->status==$status->id)
@@ -66,6 +67,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">Customer</label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
+																			<option value="">- - - Select One - - -</option>
 																			@foreach($customers as $customer)
 																				<option value="{{ $customer->id  }}"
 																				@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id)
@@ -80,7 +82,9 @@
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label>Vehicle</label>
-																		<select name="vehicle_id" class="form-control" onchange="getVehicleSeats(this.value);">
+																		<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}"
+																				onchange="getVehicleSeats(this.value);">
+																			<option value="">- - - Select One - - -</option>
 																			@foreach($vehicles as $vehicle)
 																				<option value="{{ $vehicle->id  }}"
 																				@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id)
@@ -97,35 +101,30 @@
 																<div class="col-md-3">
 																	<div class="form-group">
 																		<label for="fromDate">From Date</label>
-
 																		<div class='input-group date'>
 																			<input type='text' name="from_date"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
 																				   value="{{ (!empty($tour->from_date))?$tour->from_date:old('from_date') }}"
 																			/>
 																		</div>
-
-
 																	</div>
 																</div>
 																<div class="col-md-3">
 																	<div class="form-group">
 																		<label for="toDate">To Date</label>
-
 																		<div class='input-group date'>
 																			<input type='text' name="to_date"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
 																				   value="{{ (!empty($tour->to_date))?$tour->to_date:old('to_date') }}"
 																			/>
 																		</div>
-
-
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="customSelect">Driver</label>
-																		<select name="driver_id" class="form-control">
+																		<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
+																			<option value="">- - - Select One - - -</option>
 																			@foreach($drivers as $driver)
 																				<option value="{{ $driver->id  }}"
 																				@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id)
@@ -142,23 +141,26 @@
 																	<div class="form-group">
 																		<label for="projectinput3"># of Passengers</label>
 																		<input type="number" name="passengers" id="passengers"
-
-																			   onkeyup='if(!passengersCheck(this.value)) this.value="";'
-																			   class="form-control"
+																			   onkeyup='if(!passengersCheck()) this.value="";'
+																			   class="{{($errors->has('passengers')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 																	</div>
 																</div>
 																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="projectinput3">Guide Name</label>
-																		<input type="text" name="guide" class="form-control" value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
+																		<input type="text" name="guide"
+																			   class="{{($errors->has('guide')) ?'form-control error_input':'form-control'}}"
+																			   value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
 																	</div>
 																</div>
 
 																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="projectinput3">Price</label>
-																		<input type="number" name="price" class="form-control" value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
+																		<input type="number" name="price"
+																			   class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}"
+																			   value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
 																	</div>
 																</div>
 
@@ -200,9 +202,6 @@
 										</div>
 									</div>
 					@endif
-
-
-
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -216,13 +215,13 @@
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> Update</button>
 						@else
-						<a href="{{route('tours.index')}}" class="btn btn-danger mr-1"><b>
-								<i class="icon-trash"></i></b> Cancel</a>
-						<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
-								<i class="icon-note"></i></b> Save</button>
-						<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">
-							<i class="icon-note"></i> Save & add another
-						</button>
+							<a href="{{route('tours.index')}}" class="btn btn-danger mr-1"><b>
+									<i class="icon-trash"></i></b> Cancel</a>
+							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
+									<i class="icon-note"></i></b> Save</button>
+							<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">
+								<i class="icon-note"></i> Save & add another
+							</button>
 						@endif
 					</div>
 				</div>
@@ -239,11 +238,14 @@
 
 			const passengers = $('#passengers').val();
 			const seatsAllowed = $('#seatsAllowed').val();
+			if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
 
-			if(passengers>0 && passengers <= seatsAllowed)
+				console.log('passengers count is fine.');
 				return true;
-			else
+			}else{
+				console.log('vehicle overloaded.');
 				return false;
+			}
 		}
 		function getVehicleSeats(id){
 
@@ -254,7 +256,8 @@
 				success: function (v) {
 
 					$('#seatsAllowed').val(v.seats);
-					console.log(v.seats);
+					passengersCheck();
+					console.log('seats allowed: '+v.seats);
 				}
 			});
 		}
@@ -266,6 +269,7 @@
 		// Start jQuery stuff
 		$(function() {
 
+			passengersCheck();
 			/* DateTime Picker */
 			$('.datetimepicker1').datetimepicker();
 			$('.datetimepicker2').datetimepicker({

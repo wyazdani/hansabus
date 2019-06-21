@@ -94,7 +94,7 @@
 												<thead>
 													<tr>
 														<th class="border-top-0">ID</th>
-														<th class="border-top-0">{{__('messages.trip_name')}}</th>
+{{--														//<th class="border-top-0">{{__('messages.trip_name')}}</th>--}}
 														<th class="border-top-0">{{__('messages.vehicle')}}</th>
 														<th class="border-top-0">{{__('messages.drivers')}}</th>
 														<th class="border-top-0">{{__('messages.time_date')}}</th>
@@ -107,7 +107,7 @@
 													<tr>
 														@foreach($recentTours as $tour)
 														<td class="text-truncate">{!! $tour->id !!}</td>
-														<td class="text-truncate">Lorem ipsum</td>
+														{{--<td class="text-truncate">Lorem ipsum</td>--}}
 														<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
 														<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
 														<td class="text-truncate">{!! \Carbon\Carbon::parse($tour->from_date) !!}</td>

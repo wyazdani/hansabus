@@ -28,13 +28,13 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="7%">ID</th>
-                                        <th class="border-top-0" width="20%">Vehicle Name</th>
-                                        <th class="border-top-0" width="10%">Make</th>
-                                        <th class="border-top-0" width="10%">Year</th>
-                                        <th class="border-top-0" width="20%">License Plate</th>
-                                        <th class="border-top-0" width="20%">Engine #</th>
-                                        <th class="border-top-0" width="15%">Registration #</th>
-                                        <th class="border-top-0" width="10%">Action</th>
+                                        <th class="border-top-0" width="20%">{{__('messages.vehicle_name')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('messages.make')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('messages.year')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('messages.license_plate')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('messages.engine')}} #</th>
+                                        <th class="border-top-0" width="15%">{{__('messages.registration')}} #</th>
+                                        <th class="border-top-0" width="10%">{{__('messages.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>

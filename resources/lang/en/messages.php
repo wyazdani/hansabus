@@ -2,6 +2,8 @@
 
     return [
         //'name'       => 'Welcome to our application',
+        'my_profile'       => 'My Profile',
+        'logout'       => 'Logout',
         'coach'       => 'coach',
         'management'    =>  'Management',
         'vehicle'    => 'Vehicle',

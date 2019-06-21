@@ -4,6 +4,8 @@
     return [
         //'name'       => 'Willkommen auf der Seite',
         'coach'       => 'Reisebus',
+        'my_profile'       => 'mein Profil',
+        'logout'    =>  'Ausloggen',
         'management'    =>  'Verwaltung',
         'vehicle'    => 'Fahrzeuge',
         'companies'     =>  'Firmen',
@@ -23,5 +25,12 @@
         'time_date'               =>  'Zeit & Datum',
         'project_tasks'               =>  'Projektaufgaben',
         'project_statistics'               =>  'Projektstatistik',
+        'vehicle_name'               =>  'Fahrzeugname',
+        'make'               =>  'Machen',
+        'year'               =>  'Jahr',
+        'license_plate'               =>  'Nummernschild',
+        'engine'               =>  'Motor',
+        'registration'         =>   'Anmeldung',
+        'action'         =>   'Aktion',
     ];
 

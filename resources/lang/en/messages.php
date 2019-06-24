@@ -1,0 +1,27 @@
+<?php
+
+    return [
+        //'name'       => 'Welcome to our application',
+        'my_profile'       => 'My Profile',
+        'logout'       => 'Logout',
+        'coach'       => 'coach',
+        'management'    =>  'Management',
+        'vehicle'    => 'Vehicle',
+        'companies'     =>  'Companies',
+        'drivers'       =>  'Drivers',
+        'vehicle_maintenance'   =>  'Vehicle Maintenance',
+        'Recent_Add_trip'       =>  'Recent Add Trip',
+        'dashboard'             =>  'Dashboard',
+        'vehicles'              =>  'Vehicles',
+        'vehicle_type'              =>  'Vehicle Type',
+        'maintenance'              =>  'Maintenance',
+        'customers'              =>  'Customers',
+        'tours'              =>  'Tours',
+        'calendar'              =>  'Calendar',
+        'settings'              =>  'Settings',
+        'reports'               =>  'Reports',
+        'trip_name'               =>  'Trip Name',
+        'time_date'               =>  'TIme & Date',
+        'project_tasks'               =>  'Project Tasks',
+        'project_statistics'               =>  'Project Statistics',
+    ];

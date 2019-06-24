@@ -64,8 +64,7 @@ class VehicleTypeController extends Controller
     public function index()
     {
         $pageTitle = 'Vehicle Types';
-        $vehicle_type = VehicleType::all();
-        return view('vehicle_type.index',compact('vehicle_type','pageTitle'));
+        return view('vehicle_type.index',compact('pageTitle'));
     }
 
     public function create()
@@ -77,10 +76,11 @@ class VehicleTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  =>'required|unique:vehicle_types|regex:/^[a-zA-Z]+$/u|'
+            'name'  =>'required|unique:vehicle_types,name,NULL,id,deleted_at,NULL|regex:/^[a-zA-Z]+$/u|'
         ]);
+
         $vehicle_type = new VehicleType([
-            'name'  => $request->get('name')
+            'name'  => $request->get('name'),
         ]);
         $vehicle_type->save();
         return redirect('/vehicle-type')->with('success', 'New vehicle type has been added.');

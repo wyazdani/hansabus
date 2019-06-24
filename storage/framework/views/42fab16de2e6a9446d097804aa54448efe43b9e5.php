@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('page_title') {{ $pageTitle }} @endsection
-@section('content')
+<?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row match-height">
         <div class="col-md-12" id="recent-sales">
             <div class="card">
@@ -14,11 +13,11 @@
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                 <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
-                                <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
+                                <a href="<?php echo e(url('/vehicles/create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
                             </div>
                         </div>
                     </div>
-                    <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+                    <div class="row"><div class="col-12"><?php echo $__env->make('layouts.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></div></div>
                 </div>
                 <div class="card-content mt-1">
                     <div class="card-body">
@@ -28,13 +27,13 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="7%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.vehicle_name')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('messages.make')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('messages.year')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.license_plate')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.engine')}} #</th>
-                                        <th class="border-top-0" width="15%">{{__('messages.registration')}} #</th>
-                                        <th class="border-top-0" width="10%">{{__('messages.action')}}</th>
+                                        <th class="border-top-0" width="20%"><?php echo e(__('messages.vehicle_name')); ?></th>
+                                        <th class="border-top-0" width="10%"><?php echo e(__('messages.make')); ?></th>
+                                        <th class="border-top-0" width="10%"><?php echo e(__('messages.year')); ?></th>
+                                        <th class="border-top-0" width="20%"><?php echo e(__('messages.license_plate')); ?></th>
+                                        <th class="border-top-0" width="20%"><?php echo e(__('messages.engine')); ?> #</th>
+                                        <th class="border-top-0" width="15%"><?php echo e(__('messages.registration')); ?> #</th>
+                                        <th class="border-top-0" width="10%"><?php echo e(__('messages.action')); ?></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -49,9 +48,9 @@
         </div>
     </div>
 
-@endsection
-@section('pagejs')
-    @include('vehicle.view')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pagejs'); ?>
+    <?php echo $__env->make('vehicle.view', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script>
         var deleteMe = function(id){
             // console.log('here');
@@ -60,7 +59,7 @@
 
                 $.ajax({
                     url: '/vehicles/'+id,
-                    data: "_token={{ csrf_token() }}",
+                    data: "_token=<?php echo e(csrf_token()); ?>",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {
                         // console.log(result);
@@ -73,7 +72,7 @@
         var viewVehicle = function(id){
             // console.log(id);
             $.ajax({
-                url: "{{ url('/vehicles') }}/"+id,
+                url: "<?php echo e(url('/vehicles')); ?>/"+id,
                 cache: false,
                 success: function(vehicle){
 
@@ -124,11 +123,11 @@
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
                         }
 
-                        status += 'href="{!! url("/vehicles/change-status/'+row.id+'") !!}">';
+                        status += 'href="<?php echo url("/vehicles/change-status/'+row.id+'"); ?>">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
                         edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-                        edit += 'href="{!! url("/vehicles/'+row.id+'/edit") !!}">';
+                        edit += 'href="<?php echo url("/vehicles/'+row.id+'/edit"); ?>">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                         trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
@@ -147,7 +146,7 @@
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],
-                "ajax": "{{ url('/vehicle-list') }}",
+                "ajax": "<?php echo e(url('/vehicle-list')); ?>",
                 'rowId': 'id',
                 "columns": [
                     { "data": "id" },
@@ -171,4 +170,5 @@
         } );
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\new_ecoach\ecoach\resources\views/vehicle/index.blade.php ENDPATH**/ ?>

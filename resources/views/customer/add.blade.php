@@ -144,7 +144,7 @@
                                         <div class="col-md-12 text-center">
                                             <div class="form-actions">
                                                 <a href="{{ url('/customers') }}" class="btn btn-danger mr-1">
-                                                    <i class="icon-trash"></i> {{__('messages.cancel')}}
+                                                    <i class="fa fa-times"></i> {{__('messages.cancel')}}
                                                 </a>
                                                 <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
                                                     <i class="icon-note"></i> {{__('messages.save')}}

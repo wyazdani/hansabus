@@ -100,14 +100,16 @@ class ToursController extends Controller
 
         $recordsTotal = $query->count();
         $rows = $query->offset($start)->limit($limit)->get([
-            'id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
         $data=[];
         foreach($rows as $row){
             $row->vehicle;
             $row->driver;
             $row->customer;
-            $row['action']='';
+            $row->from_date = date('m/d/Y h:i',strtotime($row->from_date));
+            $row->to_date = date('m/d/Y h:i',strtotime($row->to_date));
+//            $row['action']='';
             $data[] = $row;
         }
         $recordsFiltered = $query->offset($start)->limit($limit)->count();
@@ -177,8 +179,8 @@ class ToursController extends Controller
         $tour->customer_id = (int)$request->customer_id;
         $tour->vehicle_id = (int)$request->vehicle_id;
         $tour->driver_id = (int)$request->driver_id;
-        $tour->from_date = $request->from_date;
-        $tour->to_date = $request->to_date;
+        $tour->from_date = date('Y-m-d h:i',strtotime($request->from_date));
+        $tour->to_date = date('Y-m-d h:i',strtotime($request->to_date));
         $tour->passengers = (int)$request->passengers;
         $tour->price = (int)$request->price;
         $tour->guide = $request->guide;
@@ -286,8 +288,8 @@ class ToursController extends Controller
         $tour->customer_id = (int)$request->customer_id;
         $tour->vehicle_id = (int)$request->vehicle_id;
         $tour->driver_id = (int)$request->driver_id;
-        $tour->from_date = $request->from_date;
-        $tour->to_date = $request->to_date;
+        $tour->from_date = date('Y-m-d h:i',strtotime($request->from_date));
+        $tour->to_date = date('Y-m-d h:i',strtotime($request->to_date));
         $tour->passengers = (int)$request->passengers;
         $tour->price = (int)$request->price;
         $tour->guide = $request->guide;

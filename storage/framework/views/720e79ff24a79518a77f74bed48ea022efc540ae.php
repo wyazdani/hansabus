@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('page_title') {{ $pageTitle }} @endsection
-@section('content')
+<?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 	<div class="row match-height">
 		<div class="col-md-12" id="recent-sales">
 			<div class="card">
@@ -8,17 +7,17 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">{{__('messages.drivers')}}</h4>
+								<h4 class="card-title">Drivers</h4>
 							</div>
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('v-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_driver')}}</a>
+								<a href="<?php echo e(route('v-drivers.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Driver</a>
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+					<div class="row"><div class="col-12"><?php echo $__env->make('layouts.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></div></div>
 				</div>
 
 				<div class="card-content mt-1">
@@ -31,11 +30,11 @@
 										<tr>
 											<th class="border-top-0" width="5%">ID</th>
 											<th class="border-top-0" width="20%">Name</th>
-											<th class="border-top-0" width="15%">{{__('messages.mobile_no')}}</th>
-											<th class="border-top-0" width="15%">{{__('messages.license')}}</th>
+											<th class="border-top-0" width="15%">Mobile No.</th>
+											<th class="border-top-0" width="15%">License</th>
 											<th class="border-top-0" width="10%">NIN No.</th>
-											<th class="border-top-0" width="10%">{{__('messages.phone')}}</th>
-											<th class="border-top-0" width="10%">{{__('messages.action')}}</th>
+											<th class="border-top-0" width="10%">Phone</th>
+											<th class="border-top-0" width="10%">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -49,9 +48,9 @@
 			</div>
 		</div>
 	</div>
-@endsection
-@section('pagejs')
-	@include('drivers.view')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pagejs'); ?>
+	<?php echo $__env->make('drivers.view', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 	<script>
 		var deleteMe = function(id){
 
@@ -59,7 +58,7 @@
 
 				$.ajax({
 					url: '/v-drivers/'+id,
-					data: "_token={{ csrf_token() }}",
+					data: "_token=<?php echo e(csrf_token()); ?>",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
 						// console.log(result);
@@ -71,10 +70,11 @@
 		var viewDriver = function(id){
 
 			$.ajax({
-				url: "{{ route('v-drivers.index') }}/"+id,
+				url: "<?php echo e(route('v-drivers.index')); ?>/"+id,
 				cache: false,
 				success: function(d){
 
+					console.log(d);
 					$('#v_driver_name').html(d.driver_name);
 					$('#v_mobile_number').html(d.mobile_number);
 					$('#v_driver_license').html(d.driver_license);
@@ -135,7 +135,7 @@
 						// return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
 					}
 				}],
-				"ajax": "{{ route('drivers-list') }}",
+				"ajax": "<?php echo e(route('drivers-list')); ?>",
 				'rowId': 'id',
 				"columns": [
 					{ "data": "id" },
@@ -158,4 +158,5 @@
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
 		} );
 	</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/ecoach/resources/views/drivers/index.blade.php ENDPATH**/ ?>

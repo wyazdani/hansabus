@@ -67,9 +67,9 @@ class DriverController extends Controller
 
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
-    public function show(Driver $Driver)
+    public function show(Driver $v_driver)
     {
-        return $Driver;
+        return $v_driver;
     }
     public function status(Driver $Driver)
     {

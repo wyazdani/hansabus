@@ -53,7 +53,7 @@
 							</dl>
 						</div>
 					</div>
-					@if(!empty($Tour->attachments))
+					@if(count($Tour->attachments))
 						<div class="col-sm-12"><h5>Attachments:</h5></div>
 						<div class="row">
 							<div class="col-lg-12">

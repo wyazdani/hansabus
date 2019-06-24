@@ -103,7 +103,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="from_date"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
-																				   value="{{ (!empty($tour->from_date))?$tour->from_date:old('from_date') }}"
+																				   value="{{ (!empty($tour->from_date))?date('m/d/Y h:i A',strtotime($tour->from_date)):old('from_date') }}"
 																			/>
 																		</div>
 																	</div>
@@ -114,7 +114,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="to_date"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
-																				   value="{{ (!empty($tour->to_date))?$tour->to_date:old('to_date') }}"
+																				   value="{{ (!empty($tour->to_date))?date('m/d/Y h:i A',strtotime($tour->to_date)):old('to_date') }}"
 																			/>
 																		</div>
 																	</div>
@@ -236,8 +236,8 @@
 	<script type="text/javascript">
 		function passengersCheck(){
 
-			const passengers = $('#passengers').val();
-			const seatsAllowed = $('#seatsAllowed').val();
+			const passengers = parseInt($('#passengers').val());
+			const seatsAllowed = parseInt($('#seatsAllowed').val());
 			if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
 
 				console.log('passengers count is fine.');
@@ -255,7 +255,7 @@
 				cache: false,
 				success: function (v) {
 
-					$('#seatsAllowed').val(v.seats);
+					$('#seatsAllowed').val(parseInt(v.seats));
 					passengersCheck();
 					console.log('seats allowed: '+v.seats);
 				}
@@ -268,6 +268,10 @@
 		}
 		// Start jQuery stuff
 		$(function() {
+
+			@if(!empty($tour->id))
+				getVehicleSeats('{{ $tour->vehicle_id }}');
+			@endif
 
 			passengersCheck();
 			/* DateTime Picker */

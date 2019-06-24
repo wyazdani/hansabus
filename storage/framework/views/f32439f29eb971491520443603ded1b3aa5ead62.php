@@ -1,6 +1,6 @@
-@extends('layouts.app')
-@section('page_title') {{ $pageTitle }} @endsection
-@section('content')
+
+<?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row match-height">
         <div class="col-md-12" id="recent-sales">
             <div class="card">
@@ -8,12 +8,12 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">{{__('messages.tours')}}</h4>
+                                <h4 class="card-title"><?php echo e(__('messages.tours')); ?></h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_tour')}}</a>
+                                <a href="<?php echo e(url('/tours/create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i><?php echo e(__('messages.add_tour')); ?></a>
                             </div>
                         </div>
 
@@ -23,41 +23,41 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('messages.select_customer')}}</option>
-                                    @foreach($customers as $customer)
-                                        <option value="{{$customer->id}}">{{$customer->name}}</option>
-                                    @endforeach
+                                    <option value=""><?php echo e(__('messages.select_customer')); ?></option>
+                                    <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($customer->id); ?>"><?php echo e($customer->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="driver_id" class="form-control filterBox">
-                                    <option value="">{{__('messages.select_driver')}}</option>
-                                    @foreach($drivers as $driver)
-                                        <option value="{{$driver->id}}">{{$driver->driver_name}}</option>
-                                    @endforeach
+                                    <option value=""><?php echo e(__('messages.select_driver')); ?></option>
+                                    <?php $__currentLoopData = $drivers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $driver): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($driver->id); ?>"><?php echo e($driver->driver_name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="vehicle_id" class="form-control filterBox">
-                                    <option value="">{{__('messages.select_vehicle')}}</option>
-                                    @foreach($vehicles as $vehicle)
-                                        <option value="{{$vehicle->id}}">{{$vehicle->name}}</option>
-                                    @endforeach
+                                    <option value=""><?php echo e(__('messages.select_vehicle')); ?></option>
+                                    <?php $__currentLoopData = $vehicles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vehicle): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($vehicle->id); ?>"><?php echo e($vehicle->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="from_date" placeholder="{{__('messages.start_date')}}" class="form-control datetimepicker1" />
+                                <input type='text' id="from_date" placeholder="<?php echo e(__('messages.start_date')); ?>" class="form-control datetimepicker1" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="{{__('messages.start_date')}}" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" placeholder="<?php echo e(__('messages.start_date')); ?>" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> <?php echo e(__('messages.search')); ?></a>
                             </div>
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.customers')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('messages.vehicles')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('messages.from')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('messages.to')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('messages.drivers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('messages.passengers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('messages.price')}}</th>
+                                        <th class="border-top-0" width="20%"><?php echo e(__('messages.customers')); ?></th>
+                                        <th class="border-top-0" width="15%"><?php echo e(__('messages.vehicles')); ?></th>
+                                        <th class="border-top-0" width="11%"><?php echo e(__('messages.from')); ?></th>
+                                        <th class="border-top-0" width="11%"><?php echo e(__('messages.to')); ?></th>
+                                        <th class="border-top-0" width="15%"><?php echo e(__('messages.drivers')); ?></th>
+                                        <th class="border-top-0" width="8%"><?php echo e(__('messages.passengers')); ?></th>
+                                        <th class="border-top-0" width="8%"><?php echo e(__('messages.price')); ?></th>
                                         <th class="border-top-0" width="5%">Status</th>
                                         <th class="border-top-0" width="8%">&nbsp;</th>
                                     </tr>
@@ -103,9 +103,9 @@
         </div>
     </div>
 
-@endsection
-@section('pagejs')
-    @include('tours.view')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pagejs'); ?>
+    <?php echo $__env->make('tours.view', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script>
         var deleteMe = function(id){
 
@@ -113,7 +113,7 @@
 
                 $.ajax({
                     url: '/tours/'+id,
-                    data: "_token={{ csrf_token() }}",
+                    data: "_token=<?php echo e(csrf_token()); ?>",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {
                         // console.log(result);
@@ -125,7 +125,7 @@
         var viewTour = function(id){
 
             $.ajax({
-                url: "{{ url('/tours') }}/"+id,
+                url: "<?php echo e(url('/tours')); ?>/"+id,
                 cache: false,
                 success: function(t){
 
@@ -209,7 +209,7 @@
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
                         }
 
-                        status += 'href="{!! url("/tours/change-status/'+row.id+'") !!}">';
+                        status += 'href="<?php echo url("/tours/change-status/'+row.id+'"); ?>">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
@@ -231,7 +231,7 @@
                     }
                 }],
                 "ajax": {
-                    "url": "{{ url('/tours-list') }}",
+                    "url": "<?php echo e(url('/tours-list')); ?>",
                     "type": "GET",
                     "data": function () {
 
@@ -288,4 +288,5 @@
         });
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/ecoach/resources/views/tours/index.blade.php ENDPATH**/ ?>

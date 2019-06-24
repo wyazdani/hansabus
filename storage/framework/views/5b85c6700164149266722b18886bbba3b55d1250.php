@@ -7,13 +7,13 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Drivers</h4>
+								<h4 class="card-title"><?php echo e(__('messages.drivers')); ?></h4>
 							</div>
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="<?php echo e(route('drivers.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Driver</a>
+								<a href="<?php echo e(route('v-drivers.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i><?php echo e(__('messages.add_driver')); ?></a>
 							</div>
 						</div>
 					</div>
@@ -30,11 +30,11 @@
 										<tr>
 											<th class="border-top-0" width="5%">ID</th>
 											<th class="border-top-0" width="20%">Name</th>
-											<th class="border-top-0" width="15%">Mobile No.</th>
-											<th class="border-top-0" width="15%">License</th>
-											<th class="border-top-0" width="10%">NIC No.</th>
-											<th class="border-top-0" width="10%">Phone</th>
-											<th class="border-top-0" width="10%">Action</th>
+											<th class="border-top-0" width="15%"><?php echo e(__('messages.mobile_no')); ?></th>
+											<th class="border-top-0" width="15%"><?php echo e(__('messages.license')); ?></th>
+											<th class="border-top-0" width="10%">NIN No.</th>
+											<th class="border-top-0" width="10%"><?php echo e(__('messages.phone')); ?></th>
+											<th class="border-top-0" width="10%"><?php echo e(__('messages.action')); ?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -57,7 +57,7 @@
 			if(confirm('Are you sure you want to delete?')){
 
 				$.ajax({
-					url: 'drivers/'+id,
+					url: '/v-drivers/'+id,
 					data: "_token=<?php echo e(csrf_token()); ?>",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
@@ -70,7 +70,7 @@
 		var viewDriver = function(id){
 
 			$.ajax({
-				url: "<?php echo e(url('/drivers')); ?>/"+id,
+				url: "<?php echo e(route('v-drivers.index')); ?>/"+id,
 				cache: false,
 				success: function(d){
 
@@ -113,12 +113,12 @@
 							status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
 						}
 
-						status += 'href="drivers/change-status/'+row.id+'">';
+						status += 'href="/v-drivers/change-status/'+row.id+'">';
 						status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-						edit += 'href="drivers/'+row.id+'/edit">';
+						edit += 'href="v-drivers/'+row.id+'/edit">';
 						edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
 						trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
@@ -134,7 +134,7 @@
 						// return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
 					}
 				}],
-				"ajax": "<?php echo e(url('/drivers-list')); ?>",
+				"ajax": "<?php echo e(route('drivers-list')); ?>",
 				'rowId': 'id',
 				"columns": [
 					{ "data": "id" },

@@ -8,13 +8,13 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Vehicle Types</h4>
+								<h4 class="card-title">{{__('messages.vehicle_type')}}</h4>
 							</div>
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle Type</a>
+								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_vehicle_type')}}</a>
 							</div>
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 									<tr>
 										<th class="border-top-0" width="10%">ID</th>
 										<th class="border-top-0" width="80%">Name</th>
-										<th class="border-top-0" width="10%">Action</th>
+										<th class="border-top-0" width="10%">{{__('messages.action')}}</th>
 									</tr>
 									</thead>
 									<tbody>

@@ -8,12 +8,13 @@
 
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Add Vehicle Type</h4>
+								<h4 class="card-title"><?php echo e(__('messages.add_vehicle_type')); ?></h4>
 							</div>
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="<?php echo e(route('vehicle-type.index')); ?>" class="btn btn-info ml-2 mt-2">Vehicle Type List
+							<div class="dataTables_filter"><a href="<?php echo e(route('vehicle-type.index')); ?>" class="btn btn-info ml-2 mt-2"><?php echo e(__('messages.vehicle_type_list')); ?>
+
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -45,7 +46,7 @@
 
 													<div class="col-md-6">
 														<div class="form-group">
-															<label for="projectinput1">Vehicle Type Name</label>
+															<label for="projectinput1"><?php echo e(__('messages.vehicle_type_name')); ?></label>
 
 															<input type="text" name="name"  class="<?php echo e(($errors->has('name')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle_types->name))?$vehicle_types->name:old('name')); ?>">
 														</div>
@@ -61,9 +62,9 @@
 							<div class="col-md-12 text-center">
 								<div class="form-actions">
 								<a href="<?php echo e(route('vehicle-type.index')); ?>" class="btn btn-danger mr-1"><b>
-										<i class="icon-trash"></i></b> Cancel</a>
+										<i class="icon-trash"></i></b> <?php echo e(__('messages.cancel')); ?></a>
 							<button type="submit" class="btn btn-success"><b>
-									<i class="icon-note"></i></b> Save</button>
+									<i class="icon-note"></i></b> <?php echo e(__('messages.save')); ?></button>
 						</div>
 							</div>
 						</div>

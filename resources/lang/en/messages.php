@@ -95,5 +95,6 @@
         'driver_name'               =>      'Driver Name',
         'driver_license'               =>      'Driver License',
         'other_details'               =>      'Other Details',
+        'recent_tours'               =>      'Recent Tours',
 
     ];

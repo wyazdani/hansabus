@@ -95,6 +95,7 @@
         'driver_name'               =>      'Fahrername',
         'driver_license'               =>      'Führerschein',
         'other_details'               =>      'Andere Details',
+        'recent_tours'               =>      'Letzte Touren',
 
 
     ];

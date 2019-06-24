@@ -96,8 +96,8 @@
 
 				"processing": true,
 				"serverSide": true,
-				
-				"pageLength": 4,
+				"searchable" : true,
+				"pageLength": 10,
 				"bLengthChange" : false,
 				"aoColumnDefs": [{
 
@@ -113,7 +113,7 @@
 							status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
 						}
 
-						status += 'href="/v-drivers/change-status/'+row.id+'">';
+						status += 'href="v-drivers/change-status/'+row.id+'">';
 						status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 

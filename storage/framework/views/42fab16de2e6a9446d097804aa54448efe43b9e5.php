@@ -106,6 +106,7 @@
             var tableDiv = $('#listingTable').DataTable( {
                 "processing": true,
                 "serverSide": true,
+                "searchable" : true,
                 "pageLength": 10,
                 "bLengthChange" : false,
                 "aoColumnDefs": [{

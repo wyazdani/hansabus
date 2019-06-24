@@ -14,7 +14,7 @@
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="{{ route('v-drivers.index') }}" class="btn btn-info ml-2 mt-2">Drivers List
+							<div class="dataTables_filter"><a href="{{ route('v-drivers.index') }}" class="btn btn-info ml-2 mt-2">{{__('messages.driver_list')}}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -47,7 +47,7 @@
 															<div class="row">
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput1">Driver Name</label>
+																		<label for="projectinput1">{{__('messages.driver_name')}}</label>
 																		<input type="text" name="driver_name"
 																			   class="{{($errors->has('driver_name')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->driver_name))?$driver->driver_name:old('driver_name') }}" >
@@ -55,8 +55,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput2">Mobile
-																			No.</label>
+																		<label for="projectinput2">{{__('messages.mobile_no')}}.</label>
 																		<input type="number" name="mobile_number"
 																			   class="{{($errors->has('mobile_number')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->mobile_number))?$driver->mobile_number:old('mobile_number') }}" >
@@ -67,8 +66,7 @@
 															<div class="row">
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput3">Driver
-																			License</label>
+																		<label for="projectinput3">{{__('messages.driver_license')}}</label>
 																		<input type="text" name="driver_license"
 																			   class="{{($errors->has('driver_license')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->driver_license))?$driver->driver_license:old('driver_license') }}">
@@ -88,7 +86,7 @@
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label
-																				for="projectinput3">Address</label>
+																				for="projectinput3">{{__('messages.address')}}</label>
 																		<input type="text" name="address"
 																			   class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->address))?$driver->address:old('address') }}" >
@@ -96,8 +94,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput4">Phone
-																			Number</label>
+																		<label for="projectinput4">{{__('messages.phone')}}</label>
 																		<input type="number"  name="phone"
 																			   class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->phone))?$driver->phone:old('phone') }}">
@@ -106,7 +103,7 @@
 															</div>
 
 															<div class="form-group">
-																<label for="projectinput8">Other Details</label>
+																<label for="projectinput8">{{__('messages.other_details')}}</label>
 																<textarea rows="5" name="other_details"
 																		  class="{{($errors->has('other_details')) ?'form-control error_input':'form-control'}}"
 																>{{ (!empty($driver->other_details))?$driver->other_details:old('other_details') }}</textarea>
@@ -135,14 +132,14 @@
 										<div class="col-md-12 text-center">
 											<div class="form-actions">
 												<a href="{{route('v-drivers.index')}}" class="btn btn-danger mr-1"><b>
-														<i class="icon-trash"></i></b> Cancel</a>
+														<i class="fa fa-times"></i></b> {{__('messages.cancel')}}</a>
 
 												@if(!empty($driver->id))
 												<button type="submit" class="btn btn-success"><b>
-														<i class="icon-note"></i></b> Update</button>
+														<i class="icon-note"></i></b> {{__('messages.update')}}</button>
 												@else
 													<button type="submit" class="btn btn-success"><b>
-															<i class="icon-note"></i></b> Save</button>
+															<i class="icon-note"></i></b> {{__('messages.save')}}</button>
 												@endif
 											</div>
 										</div>

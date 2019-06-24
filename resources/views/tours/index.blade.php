@@ -8,12 +8,12 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Tours</h4>
+                                <h4 class="card-title">{{__('messages.tours')}}</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Tour</a>
+                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_tour')}}</a>
                             </div>
                         </div>
 
@@ -23,7 +23,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
-                                    <option value="">Select Customer</option>
+                                    <option value="">{{__('messages.select_customer')}}</option>
                                     @foreach($customers as $customer)
                                         <option value="{{$customer->id}}">{{$customer->name}}</option>
                                     @endforeach
@@ -33,7 +33,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="driver_id" class="form-control filterBox">
-                                    <option value="">Select Driver</option>
+                                    <option value="">{{__('messages.select_driver')}}</option>
                                     @foreach($drivers as $driver)
                                         <option value="{{$driver->id}}">{{$driver->driver_name}}</option>
                                     @endforeach
@@ -43,7 +43,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="vehicle_id" class="form-control filterBox">
-                                    <option value="">Select Vehicle</option>
+                                    <option value="">{{__('messages.select_vehicle')}}</option>
                                     @foreach($vehicles as $vehicle)
                                         <option value="{{$vehicle->id}}">{{$vehicle->name}}</option>
                                     @endforeach
@@ -52,12 +52,12 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="from_date" placeholder="Start date from" class="form-control datetimepicker1" />
+                                <input type='text' id="from_date" placeholder="{{__('messages.start_date')}}" class="form-control datetimepicker1" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="Start date to" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" placeholder="{{__('messages.end_date')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> Search</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
                     </div>
@@ -81,14 +81,14 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
-                                        <th class="border-top-0" width="15%">Vehicle</th>
-                                        <th class="border-top-0" width="8%">Passengers</th>
-                                        <th class="border-top-0" width="15%">Driver</th>
-                                        <th class="border-top-0" width="12%">From</th>
-                                        <th class="border-top-0" width="12%">To</th>
+                                        <th class="border-top-0" width="15%">{{__('messages.vehicles')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('messages.passengers')}}</th>
+                                        <th class="border-top-0" width="15%">{{__('messages.drivers')}}</th>
+                                        <th class="border-top-0" width="12%">{{__('messages.from')}}</th>
+                                        <th class="border-top-0" width="12%">{{__('messages.to')}}</th>
 
-                                        <th class="border-top-0" width="10%">Guide</th>
-                                        <th class="border-top-0" width="8%">Price</th>
+                                        <th class="border-top-0" width="10%">{{__('messages.guide')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('messages.price')}}</th>
                                         <th class="border-top-0" width="10%">&nbsp;</th>
                                     </tr>
                                     </thead>

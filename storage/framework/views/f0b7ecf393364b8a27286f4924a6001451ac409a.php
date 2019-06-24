@@ -9,12 +9,13 @@
 
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Customer Details</h4>
+                                <h4 class="card-title"><?php echo e((!empty($customer->id))?'Update':'Add'); ?> <?php echo e(__('messages.customers')); ?></h4>
                             </div>
                         </div>
 
                         <div class="col-sm-6 col-md-6 text-right">
-                            <div class="dataTables_filter"><a href="<?php echo e(route('customers.index')); ?>" class="btn btn-info ml-2 mt-2">Customers List
+                            <div class="dataTables_filter"><a href="<?php echo e(route('customers.index')); ?>" class="btn btn-info ml-2 mt-2"><?php echo e(__('messages.customer_list')); ?>
+
                                     <i class="ft-arrow-right mt-3"></i></a>
                             </div>
                         </div>
@@ -57,18 +58,19 @@
                                                                         <label for="projectinput1">Name</label>
 
                                                                         <input type="text" name="name" class="<?php echo e(($errors->has('name')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($customer->name))?$customer->name:old('name')); ?>" >
+                                                                        <?php if($errors->has('name')): ?>
+                                                                            <div class="error"><?php echo e($errors->first('name')); ?></div>
+                                                                        <?php endif; ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput2">Email</label>
-
                                                                         <input type="email" name="email" class="<?php echo e(($errors->has('email')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($customer->email))?$customer->email:old('email')); ?>"
-                                                                        <?php if(!empty($customer->id)): ?>
-                                                                            <?php echo e('readonly="readonly"'); ?>
-
-                                                                                <?php endif; ?>
-                                                                        >
+                                                                        <?php if(!empty($customer->id)): ?> <?php echo e('readonly="readonly"'); ?> <?php endif; ?> >
+                                                                        <?php if($errors->has('email')): ?>
+                                                                            <div class="error"><?php echo e($errors->first('email')); ?></div>
+                                                                        <?php endif; ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -76,19 +78,18 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput3">COMPANY WEB</label>
-
+                                                                        <label for="projectinput3"><?php echo e(__('messages.company_web')); ?></label>
                                                                         <input type="text" name="url" class="<?php echo e(($errors->has('url')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($customer->url))?$customer->url:old('url')); ?>">
-
 
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput4">CELL NUMBER</label>
-
+                                                                        <label for="projectinput4"><?php echo e(__('messages.cell_number')); ?></label>
                                                                         <input type="text" name="phone" class="<?php echo e(($errors->has('phone')) ?'form-control error_input':'form-control'); ?>" maxlength = "11"  value="<?php echo e((!empty($customer->phone))?$customer->phone:old('phone')); ?>">
-
+                                                                        <?php if($errors->has('phone')): ?>
+                                                                            <div class="error"><?php echo e($errors->first('phone')); ?></div>
+                                                                        <?php endif; ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -96,10 +97,11 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput4">ADDRESS</label>
-
+                                                                        <label for="projectinput4"><?php echo e(__('messages.address')); ?></label>
                                                                         <input type="text" name="address" class="<?php echo e(($errors->has('address')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($customer->address))?$customer->address:old('address')); ?>">
-
+                                                                        <?php if($errors->has('address')): ?>
+                                                                            <div class="error"><?php echo e($errors->first('address')); ?></div>
+                                                                        <?php endif; ?>
                                                                     </div>
                                                                 </div>
 
@@ -115,7 +117,7 @@
                                         <div class="col-md-4">
 
                                             <div class="form-group">
-                                                <label>IS ACTIVE</label>
+                                                <label><?php echo e(__('messages.is_active')); ?></label>
                                                 <div class="form-group">
                                                     <div class="display-inline-block">
                                                         <label class="switch">
@@ -145,13 +147,16 @@
                                         <div class="col-md-12 text-center">
                                             <div class="form-actions">
                                                 <a href="<?php echo e(url('/customers')); ?>" class="btn btn-danger mr-1">
-                                                    <i class="icon-trash"></i> Cancel
+                                                    <i class="icon-trash"></i> <?php echo e(__('messages.cancel')); ?>
+
                                                 </a>
                                                 <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
-                                                    <i class="icon-note"></i> Save
+                                                    <i class="icon-note"></i> <?php echo e(__('messages.save')); ?>
+
                                                 </button>
                                                 <button type="button" onclick="$('#returnFlag').val('0'); $('#theForm').submit();" class="btn btn-info">
-                                                    <i class="icon-note"></i> Save & add another
+                                                    <i class="icon-note"></i> <?php echo e(__('messages.save_add_another')); ?>
+
                                                 </button>
                                             </div>
                                         </div>

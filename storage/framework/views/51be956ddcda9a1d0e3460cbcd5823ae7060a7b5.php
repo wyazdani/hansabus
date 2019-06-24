@@ -9,12 +9,14 @@
 
                     <div class="col-sm-6 col-md-6">
                         <div class="card-title-wrap bar-primary">
-                            <h4 class="card-title">Vehicle Details</h4>
+                            <h4 class="card-title"><?php echo e(__('messages.vehicle_details')); ?></h4>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-md-6 text-right">
-                        <div class="dataTables_filter"><a href="<?php echo e(url('/vehicles')); ?>" class="btn btn-info ml-2 mt-2">Vehicle List
+                        <div class="dataTables_filter"><a href="<?php echo e(url('/vehicles')); ?>" class="btn btn-info ml-2 mt-2">
+                                <?php echo e(__('messages.vehicle_list')); ?>
+
                                 <i class="ft-arrow-right mt-3"></i></a>
                         </div>
                     </div>
@@ -51,14 +53,14 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput1">Vehicle Name</label>
+                                                        <label for="projectinput1"><?php echo e(__('messages.vehicle_name')); ?></label>
 
                                                         <input type="text" name="name" class="<?php echo e(($errors->has('name')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle->name))?$vehicle->name:old('name')); ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput2">Year of Manufacture</label>
+                                                        <label for="projectinput2"><?php echo e(__('messages.year_of_manufacture')); ?></label>
 
                                                         <select name="year" class="<?php echo e(($errors->has('year')) ?'form-control error_input':'form-control'); ?>">
                                                             <?php for($year=date('Y'); $year>(date('Y')-50); $year--): ?>
@@ -79,7 +81,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput3">Make/Model</label>
+                                                        <label for="projectinput3"><?php echo e(__('messages.make_model')); ?></label>
 
                                                         <input type="text" name="make" class="<?php echo e(($errors->has('make')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle->make))?$vehicle->make:old('make')); ?>">
 
@@ -88,7 +90,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">Engine Number</label>
+                                                        <label for="projectinput4"><?php echo e(__('messages.engine_number')); ?></label>
 
                                                         <input type="text" name="engineNumber" class="<?php echo e(($errors->has('engineNumber')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle->engineNumber))?$vehicle->engineNumber:old('engineNumber')); ?>">
 
@@ -100,7 +102,7 @@
 
                                                 <div class="col-md-6">
                                                     <fieldset class="form-group">
-                                                        <label for="customSelect">Type of Vehicle</label>
+                                                        <label for="customSelect"><?php echo e(__('messages.type_of_vehicle')); ?></label>
 
                                                         <select class="<?php echo e(($errors->has('vehicle_type')) ?'custom-select d-block w-100 error_input':'custom-select d-block w-100'); ?>"
                                                         id="customSelect" name="vehicle_type">
@@ -119,21 +121,21 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">Number of Seats</label>
+                                                        <label for="projectinput4"><?php echo e(__('messages.number_of_seats')); ?></label>
                                                         <input type="number" name="seats" class="<?php echo e(($errors->has('seats')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle->seats))?$vehicle->seats:old('seats')); ?>">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">License Plate</label>
+                                                        <label for="projectinput4"><?php echo e(__('messages.license_plate')); ?></label>
                                                         <input type="text" name="licensePlate" class="<?php echo e(($errors->has('licensePlate')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle->licensePlate))?$vehicle->licensePlate:old('licensePlate')); ?>">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">Vehicle Color</label>
+                                                        <label for="projectinput4"><?php echo e(__('messages.vehicle_color')); ?></label>
 
                                                         <input type="text" name="color" class="<?php echo e(($errors->has('color')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle->color))?$vehicle->color:old('color')); ?>">
 
@@ -143,7 +145,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">Vehicle Reg Number</label>
+                                                        <label for="projectinput4"><?php echo e(__('messages.vehicle_reg_number')); ?></label>
 
                                                         <input type="text" name="registrationNumber" class="<?php echo e(($errors->has('registrationNumber')) ?'form-control error_input':'form-control'); ?>" value="<?php echo e((!empty($vehicle->registrationNumber))?$vehicle->registrationNumber:old('registrationNumber')); ?>">
 
@@ -158,7 +160,7 @@
                                                     <?php if($errors->has('transmission')): ?>
                                                         <span class="label label-danger"><?php echo $errors->first('transmission'); ?></span><?php endif; ?>
                                                     <div class="form-group">
-                                                        <label>Transmission</label>
+                                                        <label><?php echo e(__('messages.transmission')); ?></label>
                                                         <div class="input-group">
                                                             <div class="custom-control custom-radio display-inline-block mr-2">
                                                                 <input type="radio" name="transmission" class="custom-control-input"
@@ -171,7 +173,7 @@
 
                                                                 <?php endif; ?> 
                                                                 >
-                                                                <label class="custom-control-label" for="customRadioInline4">Automatic</label>
+                                                                <label class="custom-control-label" for="customRadioInline4"><?php echo e(__('messages.automatic')); ?></label>
                                                             </div>
                                                             <div class="custom-control custom-radio display-inline-block">
                                                                 <input type="radio" name="transmission" class="custom-control-input"
@@ -184,7 +186,7 @@
 
                                                                 <?php endif; ?> 
                                                                 >
-                                                                <label class="custom-control-label" for="customRadioInline3">Manual</label>
+                                                                <label class="custom-control-label" for="customRadioInline3"><?php echo e(__('messages.manual')); ?></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -214,7 +216,7 @@
 
                                             <?php endif; ?> >
                                             <span class="slider round"></span>
-                                            <p>Yes / No</p>
+                                            <p><?php echo e(__('messages.yes/no')); ?></p>
                                         </label>
                                     </div>
                                 </div>
@@ -231,14 +233,14 @@
 
                                             <?php endif; ?> >
                                             <span class="slider round"></span>
-                                            <p>Yes / No</p>
+                                            <p><?php echo e(__('messages.yes/no')); ?></p>
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Sunroof</label>
+                                <label><?php echo e(__('messages.sunroof')); ?></label>
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">
@@ -247,7 +249,7 @@
 
                                             <?php endif; ?> >
                                             <span class="slider round"></span>
-                                            <p>Yes / No</p>
+                                            <p><?php echo e(__('messages.yes/no')); ?></p>
                                         </label>
                                     </div>
                                 </div>
@@ -255,7 +257,7 @@
 
 
                             <div class="form-group">
-                                <label>Phone Charging Jack</label>
+                                <label><?php echo e(__('messages.Phone_Charging_Jack')); ?></label>
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">
@@ -264,7 +266,7 @@
 
                                             <?php endif; ?> >
                                             <span class="slider round"></span>
-                                            <p>Yes / No</p>
+                                            <p><?php echo e(__('messages.yes/no')); ?></p>
                                         </label>
                                     </div>
                                 </div>
@@ -279,17 +281,21 @@
                             <div class="form-actions">
                                 <?php if(!empty($vehicle->id)): ?>
                                     <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
-                                        <i class="icon-note"></i> Update
+                                        <i class="icon-note"></i> <?php echo e(__('messages.update')); ?>
+
                                     </button>
                                 <?php else: ?>
                                     <a href="<?php echo e(url('/vehicles')); ?>" class="btn btn-danger mr-1">
-                                        <i class="icon-trash"></i> Cancel
+                                        <i class="fa fa-times"></i> <?php echo e(__('messages.cancel')); ?>
+
                                     </a>
                                     <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
-                                        <i class="icon-note"></i> Save
+                                        <i class="icon-note"></i> <?php echo e(__('messages.save')); ?>
+
                                     </button>
                                     <button type="button" onclick="$('#returnFlag').val('0'); $('#theForm').submit();" class="btn btn-info">
-                                        <i class="icon-note"></i> Save & add another
+                                        <i class="icon-note"></i> <?php echo e(__('messages.save_add_another')); ?>
+
                                     </button>
                                 <?php endif; ?>
                             </div>

@@ -36,7 +36,7 @@
 					</ul>
 				</li>
 				<li @if(in_array(Request::route()->getName(),['drivers.index','drivers.create','drivers.edit']))
-					{{ ' class=open' }} @endif ><a href="{{ url('/drivers') }}" class="menu-item">{{ __('messages.drivers') }}</a></li>
+					{{ ' class=open' }} @endif ><a href="{{ url('/v-drivers') }}" class="menu-item">{{ __('messages.drivers') }}</a></li>
 
 				<li @if(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit']))
 					{{ ' class=open' }} @endif ><a href="{{ url('/customers') }}" class="menu-item">{{ __('messages.customers') }}</a></li>

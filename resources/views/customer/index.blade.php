@@ -9,12 +9,12 @@
 
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Customers</h4>
+                                <h4 class="card-title">{{__('messages.customers')}}</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ route('customers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Customer</a>
+                                <a href="{{ route('customers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_customers')}}</a>
                             </div>
                         </div>
                     </div>
@@ -31,10 +31,10 @@
                                     <th class="border-top-0" width="5%">ID</th>
                                     <th class="border-top-0" width="20%">Name</th>
                                     <th class="border-top-0" width="20%">Email</th>
-                                    <th class="border-top-0" width="10%">Phone</th>
-                                    <th class="border-top-0" width="20%">Address</th>
-                                    <th class="border-top-0" width="15%">Web</th>
-                                    <th class="border-top-0" width="10%">Action</th>
+                                    <th class="border-top-0" width="10%">{{__('messages.phone')}}</th>
+                                    <th class="border-top-0" width="20%">{{__('messages.address')}}</th>
+                                    <th class="border-top-0" width="15%">{{__('messages.web')}}</th>
+                                    <th class="border-top-0" width="10%">{{__('messages.action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>

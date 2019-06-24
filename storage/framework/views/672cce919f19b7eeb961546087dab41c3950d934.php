@@ -132,7 +132,7 @@
 										<div class="col-md-12 text-center">
 											<div class="form-actions">
 												<a href="<?php echo e(route('v-drivers.index')); ?>" class="btn btn-danger mr-1"><b>
-														<i class="icon-trash"></i></b> <?php echo e(__('messages.cancel')); ?></a>
+														<i class="fa fa-times"></i></b> <?php echo e(__('messages.cancel')); ?></a>
 
 												<?php if(!empty($driver->id)): ?>
 												<button type="submit" class="btn btn-success"><b>

@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="<?php echo e(__('messages.start_date')); ?>" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" placeholder="<?php echo e(__('messages.end_date')); ?>" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">

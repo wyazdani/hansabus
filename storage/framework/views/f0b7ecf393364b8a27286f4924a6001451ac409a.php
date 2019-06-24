@@ -147,7 +147,7 @@
                                         <div class="col-md-12 text-center">
                                             <div class="form-actions">
                                                 <a href="<?php echo e(url('/customers')); ?>" class="btn btn-danger mr-1">
-                                                    <i class="icon-trash"></i> <?php echo e(__('messages.cancel')); ?>
+                                                    <i class="fa fa-times"></i> <?php echo e(__('messages.cancel')); ?>
 
                                                 </a>
                                                 <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">

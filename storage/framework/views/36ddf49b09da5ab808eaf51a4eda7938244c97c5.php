@@ -62,7 +62,7 @@
 							<div class="col-md-12 text-center">
 								<div class="form-actions">
 								<a href="<?php echo e(route('vehicle-type.index')); ?>" class="btn btn-danger mr-1"><b>
-										<i class="icon-trash"></i></b> <?php echo e(__('messages.cancel')); ?></a>
+										<i class="fa fa-times"></i></b> <?php echo e(__('messages.cancel')); ?></a>
 							<button type="submit" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> <?php echo e(__('messages.save')); ?></button>
 						</div>

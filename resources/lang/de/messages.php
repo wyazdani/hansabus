@@ -36,7 +36,6 @@
         'vehicle_list'         =>   'Fahrzeugliste',
         'vehicle_details'         =>   'Fahrzeugangaben',
         'vehicle_add'         =>   'Fahrzeug hinzufügen',
-        'vehicle_name'         =>   'Fahrzeugname',
         'year_of_manufacture'         =>   'Herstellungsjahr',
         'make_model'                =>      'Machen/Modell',
         'engine_number'                =>      'MOTORNUMMER',

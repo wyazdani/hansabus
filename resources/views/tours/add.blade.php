@@ -209,7 +209,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-12 text-left">
+				<div class="col-md-12 text-center">
 					<div class="form-actions">
 						@if(!empty($tour->id))
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>

@@ -27,35 +27,33 @@
 							<dl>
 								<dt>Status:</dt>
 								<dd><?php echo e(($Tour->status)?'Yes':'No'); ?></dd>
-								<dt>Customer:</dt>
+								<dt><?php echo e(__('messages.customers')); ?>:</dt>
 								<dd><?php echo e($Tour->customer->name); ?></dd>
-								<dt>Vehicle:</dt>
+								<dt><?php echo e(__('messages.vehicle')); ?>:</dt>
 								<dd><?php echo e($Tour->vehicle->name); ?></dd>
-								<dt>Driver:</dt>
+								<dt><?php echo e(__('messages.drivers')); ?>:</dt>
 								<dd><?php echo e($Tour->driver->driver_name); ?></dd>
-								<dt>Passengers:</dt>
+								<dt><?php echo e(__('messages.passengers')); ?>:</dt>
 								<dd><?php echo e($Tour->passengers); ?></dd>
-
-
 							</dl>
 						</div>
 						<div class="col-md-6">
 							<dl>
-								<dt>From:</dt>
+								<dt><?php echo e(__('messages.from')); ?>:</dt>
 								<dd><?php echo e(date('m/d/Y h:i A',strtotime($Tour->from_date))); ?></dd>
-								<dt>To:</dt>
+								<dt><?php echo e(__('messages.to')); ?>:</dt>
 								<dd><?php echo e(date('m/d/Y h:i A',strtotime($Tour->to_date))); ?></dd>
 
-								<dt>Guide:</dt>
+								<dt><?php echo e(__('messages.guide')); ?>:</dt>
 								<dd><?php echo e($Tour->guide); ?></dd>
 
-								<dt>Price:</dt>
+								<dt><?php echo e(__('messages.price')); ?>:</dt>
 								<dd><?php echo e($Tour->price); ?></dd>
 							</dl>
 						</div>
 					</div>
-					<?php if(!empty($Tour->attachments)): ?>
-						<div class="col-sm-12"><h5>Attachments:</h5></div>
+					<?php if(count($Tour->attachments)): ?>
+						<div class="col-sm-12"><h5><?php echo e(__('messages.attachments')); ?>:</h5></div>
 						<div class="row">
 							<div class="col-lg-12">
 								<ul class="upload-list">

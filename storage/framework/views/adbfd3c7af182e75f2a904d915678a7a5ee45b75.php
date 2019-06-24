@@ -26,13 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 
-
-
-
-
-
-
-	<?php if(Request::route()->getName() == 'tour-calendar'): ?>
+	<?php if(Request::route()->getName() == 'tour-calendar' || Request::route()->getName() == 'home'): ?>
 	
 	<link href="<?php echo e(asset('calendar/core/main.css')); ?>" rel='stylesheet' />
 	<link href="<?php echo e(asset('calendar/daygrid/main.css')); ?>" rel='stylesheet' />

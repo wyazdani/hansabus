@@ -96,8 +96,8 @@
 
 				"processing": true,
 				"serverSide": true,
-				"searchable" : true,
-				"pageLength": 10,
+				
+				"pageLength": 4,
 				"bLengthChange" : false,
 				"aoColumnDefs": [{
 

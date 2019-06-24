@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="<?php echo e(__('messages.end_date')); ?>" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" placeholder="<?php echo e(__('messages.start_date')); ?>" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -80,15 +80,15 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
+                                        <th class="border-top-0" width="20%"><?php echo e(__('messages.customers')); ?></th>
                                         <th class="border-top-0" width="15%"><?php echo e(__('messages.vehicles')); ?></th>
-                                        <th class="border-top-0" width="8%"><?php echo e(__('messages.passengers')); ?></th>
+                                        <th class="border-top-0" width="11%"><?php echo e(__('messages.from')); ?></th>
+                                        <th class="border-top-0" width="11%"><?php echo e(__('messages.to')); ?></th>
                                         <th class="border-top-0" width="15%"><?php echo e(__('messages.drivers')); ?></th>
-                                        <th class="border-top-0" width="12%"><?php echo e(__('messages.from')); ?></th>
-                                        <th class="border-top-0" width="12%"><?php echo e(__('messages.to')); ?></th>
-
-                                        <th class="border-top-0" width="10%"><?php echo e(__('messages.guide')); ?></th>
+                                        <th class="border-top-0" width="8%"><?php echo e(__('messages.passengers')); ?></th>
                                         <th class="border-top-0" width="8%"><?php echo e(__('messages.price')); ?></th>
-                                        <th class="border-top-0" width="10%">&nbsp;</th>
+                                        <th class="border-top-0" width="5%">Status</th>
+                                        <th class="border-top-0" width="8%">&nbsp;</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -138,7 +138,7 @@
                     $('#v_price').html(t.price);
 
 
-                    if(t.status == 1) $('#v_status').html('Draft');
+                         if(t.status == 1) $('#v_status').html('Draft');
                     else if(t.status == 2) $('#v_status').html('Confirmed');
                     else if(t.status == 3) $('#v_status').html('Invoiced');
                     else if(t.status == 4) $('#v_status').html('Paid');
@@ -175,9 +175,28 @@
                 'searching':false,
                 "pageLength": 10,
                 "bLengthChange" : false,
-                "aoColumnDefs": [{
-
-                    "aTargets": [8],
+                "aoColumnDefs": [
+                    {
+                        "aTargets": [8],
+                        "mData": "",
+                        "mRender": function (data, type, row) {
+                            var status = '';
+                            if(row.status == '1'){
+                                status = 'Draft';
+                            }else if(row.status == '2'){
+                                status = 'Confirmed';
+                            }else if(row.status == '3'){
+                                status = 'Invoiced';
+                            }else if(row.status == '4'){
+                                status = 'Paid';
+                            }else if(row.status == '5'){
+                                status = 'Canceled';
+                            }
+                            return status;
+                        }
+                    },
+                    {
+                    "aTargets": [9],
                     "mData": "",
                     "mRender": function (data, type, row) {
 
@@ -228,12 +247,12 @@
                 'rowId': 'id',
                 "columns": [
                     { "data": "id" },
+                    { "data": "customer.name" },
                     { "data": "vehicle.name" },
-                    { "data": "passengers" },
-                    { "data": "driver.driver_name" },
                     { "data": "from_date" },
                     { "data": "to_date" },
-                    { "data": "guide" },
+                    { "data": "driver.driver_name" },
+                    { "data": "passengers" },
                     { "data": "price" }
                 ],
                 drawCallback: deleteMe|viewTour,

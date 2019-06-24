@@ -104,7 +104,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="from_date"
 																				   class="<?php echo e(($errors->has('from_date')) ?'form-control error_input':'form-control'); ?> datetimepicker1"
-																				   value="<?php echo e((!empty($tour->from_date))?$tour->from_date:old('from_date')); ?>"
+																				   value="<?php echo e((!empty($tour->from_date))?date('m/d/Y h:i A',strtotime($tour->from_date)):old('from_date')); ?>"
 																			/>
 																		</div>
 																	</div>
@@ -115,7 +115,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="to_date"
 																				   class="<?php echo e(($errors->has('to_date')) ?'form-control error_input':'form-control'); ?> datetimepicker2"
-																				   value="<?php echo e((!empty($tour->to_date))?$tour->to_date:old('to_date')); ?>"
+																				   value="<?php echo e((!empty($tour->to_date))?date('m/d/Y h:i A',strtotime($tour->to_date)):old('to_date')); ?>"
 																			/>
 																		</div>
 																	</div>
@@ -217,7 +217,7 @@
 									<i class="icon-note"></i></b> <?php echo e(__('messages.update')); ?></button>
 						<?php else: ?>
 							<a href="<?php echo e(route('tours.index')); ?>" class="btn btn-danger mr-1"><b>
-									<i class="icon-trash"></i></b> <?php echo e(__('messages.cancel')); ?></a>
+									<i class="fa fa-times"></i></b> <?php echo e(__('messages.cancel')); ?></a>
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> <?php echo e(__('messages.save')); ?></button>
 							<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">
@@ -238,8 +238,8 @@
 	<script type="text/javascript">
 		function passengersCheck(){
 
-			const passengers = $('#passengers').val();
-			const seatsAllowed = $('#seatsAllowed').val();
+			const passengers = parseInt($('#passengers').val());
+			const seatsAllowed = parseInt($('#seatsAllowed').val());
 			if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
 
 				console.log('passengers count is fine.');
@@ -257,7 +257,7 @@
 				cache: false,
 				success: function (v) {
 
-					$('#seatsAllowed').val(v.seats);
+					$('#seatsAllowed').val(parseInt(v.seats));
 					passengersCheck();
 					console.log('seats allowed: '+v.seats);
 				}
@@ -270,6 +270,10 @@
 		}
 		// Start jQuery stuff
 		$(function() {
+
+			<?php if(!empty($tour->id)): ?>
+				getVehicleSeats('<?php echo e($tour->vehicle_id); ?>');
+			<?php endif; ?>
 
 			passengersCheck();
 			/* DateTime Picker */

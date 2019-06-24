@@ -28,33 +28,33 @@
 							<dl>
 								<dt>Status:</dt>
 								<dd>{{ ($Tour->status)?'Yes':'No' }}</dd>
-								<dt>Customer:</dt>
+								<dt>{{__('messages.customers')}}:</dt>
 								<dd>{{ $Tour->customer->name }}</dd>
-								<dt>Vehicle:</dt>
+								<dt>{{__('messages.vehicle')}}:</dt>
 								<dd>{{ $Tour->vehicle->name }}</dd>
-								<dt>Driver:</dt>
+								<dt>{{__('messages.drivers')}}:</dt>
 								<dd>{{ $Tour->driver->driver_name }}</dd>
-								<dt>Passengers:</dt>
+								<dt>{{__('messages.passengers')}}:</dt>
 								<dd>{{ $Tour->passengers }}</dd>
 							</dl>
 						</div>
 						<div class="col-md-6">
 							<dl>
-								<dt>From:</dt>
+								<dt>{{__('messages.from')}}:</dt>
 								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->from_date)) }}</dd>
-								<dt>To:</dt>
+								<dt>{{__('messages.to')}}:</dt>
 								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->to_date)) }}</dd>
 
-								<dt>Guide:</dt>
+								<dt>{{__('messages.guide')}}:</dt>
 								<dd>{{ $Tour->guide }}</dd>
 
-								<dt>Price:</dt>
+								<dt>{{__('messages.price')}}:</dt>
 								<dd>{{ $Tour->price }}</dd>
 							</dl>
 						</div>
 					</div>
 					@if(count($Tour->attachments))
-						<div class="col-sm-12"><h5>Attachments:</h5></div>
+						<div class="col-sm-12"><h5>{{__('messages.attachments')}}:</h5></div>
 						<div class="row">
 							<div class="col-lg-12">
 								<ul class="upload-list">

@@ -16,7 +16,7 @@
 							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">Tours List
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
-							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">Back to Calendar
+							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">Calendar
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -53,7 +53,7 @@
 							</dl>
 						</div>
 					</div>
-					@if(!empty($Tour->attachments))
+					@if(count($Tour->attachments))
 						<div class="col-sm-12"><h5>Attachments:</h5></div>
 						<div class="row">
 							<div class="col-lg-12">

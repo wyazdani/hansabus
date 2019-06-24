@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeColumnInToursTable extends Migration
+class DropColumnsFromToursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class ChangeColumnInToursTable extends Migration
     public function up()
     {
         Schema::table('tours', function (Blueprint $table) {
-            //
+            $table->dropColumn('from_date');
+            $table->dropColumn('to_date');
         });
     }
 
@@ -26,7 +27,8 @@ class ChangeColumnInToursTable extends Migration
     public function down()
     {
         Schema::table('tours', function (Blueprint $table) {
-            //
+            $table->string('from_date');
+            $table->string('to_date');
         });
     }
 }

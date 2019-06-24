@@ -221,8 +221,11 @@ th {
 }
 
 label {
-  display : inline-block;
-  margin-bottom : 0.5rem;
+    color: #75787D;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
 }
 
 button {
@@ -53655,7 +53658,7 @@ dl {
   color: #000;
 }
 dt{
-	width: 50%;
+	width: 60%;
   float: left;
 }
 dd{

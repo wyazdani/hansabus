@@ -34,11 +34,15 @@
 
 					<li class="dropdown nav-item mt-1"><a id="dropdownBasic" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-flag blue-grey darken-4"></i><span class="selected-language d-none"></span></a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<div class="arrow_box_right"><a href="javascript:;" class="dropdown-item py-1"><img src="{{asset('images/us.png')}}" alt="English Flag" class="langimg" /><span>
-										English</span></a><a href="javascript:;" class="dropdown-item py-1"><img src="{{asset('images/es.png')}}" alt="Spanish Flag" class="langimg" /><span>
-										Spanish</span></a><a href="javascript:;" class="dropdown-item py-1"><img src="{{asset('images/br.png')}}" alt="Portuguese Flag" class="langimg" /><span>
-										Portuguese</span></a><a href="javascript:;" class="dropdown-item"><img src="{{asset('images/de.png')}}" alt="French Flag" class="langimg" /><span>
-										French</span></a></div>
+							<div class="arrow_box_right">
+								<a href="{{ url('locale/en') }}" class="dropdown-item py-1"><img src="{{asset('images/us.png')}}" alt="English Flag" class="langimg" /><span>
+										English</span></a>
+								<a href="{{ url('locale/de') }}" class="dropdown-item py-1"><img src="{{asset('images/es.png')}}" alt="Spanish Flag" class="langimg" /><span>
+										German</span></a>
+								{{--<a href="javascript:;" class="dropdown-item py-1"><img src="{{asset('images/br.png')}}" alt="Portuguese Flag" class="langimg" /><span>
+										Portuguese</span></a>
+								<a href="javascript:;" class="dropdown-item"><img src="{{asset('images/de.png')}}" alt="French Flag" class="langimg" /><span>
+										French</span></a></div>--}}
 						</div>
 					</li>
 
@@ -48,13 +52,13 @@
 						</a>
 						<div aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-right">
 							<div class="arrow_box_right">
-								<a href="user-profile-page.html" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>My Profile</span></a>
-								<a href="javascript:;" class="dropdown-item py-1"><i class="ft-settings mr-2"></i><span>Settings</span></a>
+								<a href="user-profile-page.html" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>{{__('messages.my_profile')}}</span></a>
+								<a href="javascript:;" class="dropdown-item py-1"><i class="ft-settings mr-2"></i><span>{{__('messages.settings')}}</span></a>
 								<div class="dropdown-divider"></div>
 								
 								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
              document.getElementById('logout-form').submit();" role="menuitem">
-									<i class="ft-power mr-2"></i> Logout</a>
+									<i class="ft-power mr-2"></i> {{__('messages.logout')}}</a>
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 									@csrf
 								</form>

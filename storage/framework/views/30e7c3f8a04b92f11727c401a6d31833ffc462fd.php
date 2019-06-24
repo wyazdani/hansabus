@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="de" class="loading">
 <?php echo $__env->make('layouts.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php if(Auth::check()): ?>

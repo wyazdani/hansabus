@@ -81,10 +81,11 @@ class ToursController extends Controller
 
         $from =''; $to ='';
         if(!empty($request->from_date)){
-            $from = $request->from_date;
+
+            $from = date('Y-m-d h:i',strtotime($request->from_date));
         }
         if(!empty($request->to_date)){
-            $to = $request->to_date;
+            $to = date('Y-m-d h:i',strtotime($request->to_date));
         }
         if(!empty($from) && !empty($to)){
 
@@ -107,8 +108,8 @@ class ToursController extends Controller
             $row->vehicle;
             $row->driver;
             $row->customer;
-            $row->from_date = date('m/d/Y h:i',strtotime($row->from_date));
-            $row->to_date = date('m/d/Y h:i',strtotime($row->to_date));
+            $row->from_date = date('d/m/Y h:i',strtotime($row->from_date));
+            $row->to_date = date('d/m/Y h:i',strtotime($row->to_date));
 //            $row['action']='';
             $data[] = $row;
         }

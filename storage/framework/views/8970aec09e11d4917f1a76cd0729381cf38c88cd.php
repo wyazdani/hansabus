@@ -12,28 +12,28 @@
             <div class="modal-body row">
                 <div class="col-md-12">
                     <dl>
-                        <dt style="width:25%">Mobile No.:</dt>
+                        <dt style="width:25%"><?php echo e(__('messages.mobile_no')); ?>.:</dt>
                         <dd id="v_mobile_number"></dd>
 
-                        <dt style="width:25%">License:</dt>
+                        <dt style="width:25%"><?php echo e(__('messages.license')); ?>:</dt>
                         <dd id="v_driver_license"></dd>
 
                         <dt style="width:25%">NIN No.</dt>
                         <dd id="v_nic"></dd>
 
-                        <dt style="width:25%">Address:</dt>
+                        <dt style="width:25%"><?php echo e(__('messages.address')); ?>:</dt>
                         <dd id="v_address"></dd>
 
 
-                        <dt style="width:25%">Phone:</dt>
+                        <dt style="width:25%"><?php echo e(__('messages.phone')); ?>:</dt>
                         <dd id="v_phone"></dd>
 
-                        <dt style="width:25%">Other Details:</dt>
+                        <dt style="width:25%"><?php echo e(__('messages.other_details')); ?>:</dt>
                         <dd id="v_other_details"></dd>
 
 
 
-                        <dt style="width:25%">Is Active:</dt>
+                        <dt style="width:25%"><?php echo e(__('messages.is_active')); ?>:</dt>
                         <dd id="v_status"></dd>
 
                     </dl>

@@ -7,13 +7,13 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Vehicle Types</h4>
+								<h4 class="card-title"><?php echo e(__('messages.vehicle_type')); ?></h4>
 							</div>
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="<?php echo e(route('vehicle-type.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle Type</a>
+								<a href="<?php echo e(route('vehicle-type.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i><?php echo e(__('messages.add_vehicle_type')); ?></a>
 							</div>
 						</div>
 					</div>
@@ -30,7 +30,7 @@
 									<tr>
 										<th class="border-top-0" width="10%">ID</th>
 										<th class="border-top-0" width="80%">Name</th>
-										<th class="border-top-0" width="10%">Action</th>
+										<th class="border-top-0" width="10%"><?php echo e(__('messages.action')); ?></th>
 									</tr>
 									</thead>
 									<tbody>
@@ -91,7 +91,7 @@
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-						edit += 'href="/vehicle-type/'+row.id+'/edit">';
+						edit += 'href="vehicle-type/'+row.id+'/edit">';
 						edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
 						trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';

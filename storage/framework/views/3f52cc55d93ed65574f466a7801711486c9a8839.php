@@ -12,16 +12,16 @@
 			<div class="modal-body row">
 				<div class="col-md-6">
 					<dl>
-						<dt>Driver:</dt>
+						<dt><?php echo e(__('messages.drivers')); ?>:</dt>
 						<dd id="v_driver"></dd>
-						<dt>Passengers:</dt>
+						<dt><?php echo e(__('messages.passengers')); ?>:</dt>
 						<dd id="v_passengers"></dd>
 
-						<dt>Vehicle:</dt>
+						<dt><?php echo e(__('messages.vehicles')); ?>:</dt>
 						<dd id="v_vehicle"></dd>
-						<dt>Guide:</dt>
+						<dt><?php echo e(__('messages.guide')); ?>:</dt>
 						<dd id="v_guide"></dd>
-						<dt>Price:</dt>
+						<dt><?php echo e(__('messages.price')); ?>:</dt>
 						<dd id="v_price"></dd>
 						<dt>Status:</dt>
 						<dd id="v_status"></dd>

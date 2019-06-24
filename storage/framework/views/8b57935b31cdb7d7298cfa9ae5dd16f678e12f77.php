@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
@@ -83,7 +82,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title"><?php echo e(__('messages.Recent_Add_trip')); ?></h4>
+						<h4 class="card-title"><?php echo e(__('messages.recent_trips')); ?></h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>
@@ -93,21 +92,42 @@
 						<table class="table table-hover table-xl mb-0" id="recent-orders">
 							<thead>
 							<tr>
-								<th class="border-top-0">ID</th>
-								<th class="border-top-0"><?php echo e(__('messages.vehicle')); ?></th>
-								<th class="border-top-0"><?php echo e(__('messages.drivers')); ?></th>
-								<th class="border-top-0"><?php echo e(__('messages.from_date')); ?></th>
-								<th class="border-top-0"><?php echo e(__('messages.to_date')); ?></th>
+								<th class="border-top-0" width="5%">ID</th>
+								<th class="border-top-0" width="15%"><?php echo e(__('messages.customers')); ?></th>
+								<th class="border-top-0" width="15%"><?php echo e(__('messages.vehicle')); ?></th>
+								<th class="border-top-0" width="12%"><?php echo e(__('messages.from_date')); ?></th>
+								<th class="border-top-0" width="12%"><?php echo e(__('messages.to_date')); ?></th>
+								<th class="border-top-0" width="15%"><?php echo e(__('messages.drivers')); ?></th>
+								<th class="border-top-0" width="8%"><?php echo e(__('messages.passengers')); ?></th>
+								<th class="border-top-0" width="8%"><?php echo e(__('messages.price')); ?></th>
+								<th class="border-top-0" width="8%">Status</th>
 							</tr>
 							</thead>
 							<tbody>
 							<?php $__currentLoopData = $recentTours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 								<tr>
 									<td class="text-truncate"><?php echo $tour->id; ?></td>
+									<td class="text-truncate"><?php echo !empty($tour->customer_id)?$tour->customer->name:''; ?></td>
 									<td class="text-truncate"><?php echo !empty($tour->vehicle_id)?$tour->vehicle->name:''; ?></td>
-									<td class="text-truncate"><?php echo !empty($tour->driver_id)?$tour->driver->driver_name:''; ?></td>
 									<td class="text-truncate"><?php echo $tour->from_date; ?></td>
 									<td class="text-truncate"><?php echo $tour->to_date; ?></td>
+									<td class="text-truncate"><?php echo !empty($tour->driver_id)?$tour->driver->driver_name:''; ?></td>
+									<td class="text-truncate"><?php echo $tour->passengers; ?></td>
+									<td class="text-truncate"><?php echo $tour->price; ?></td>
+									<td class="text-truncate">
+											<?php if($tour->status == 1): ?> <?php echo e('Draft'); ?>
+
+										<?php elseif($tour->status == 2): ?> <?php echo e('Confirmed'); ?>
+
+										<?php elseif($tour->status == 3): ?> <?php echo e('Invoiced'); ?>
+
+										<?php elseif($tour->status == 3): ?> <?php echo e('Paid'); ?>
+
+										<?php elseif($tour->status == 3): ?> <?php echo e('Canceled'); ?>
+
+										<?php endif; ?>
+									</td>
+
 								</tr>
 							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</tbody>
@@ -125,18 +145,19 @@
 
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title"><?php echo e(__('messages.Recent_Add_trip')); ?></h4>
+						<h4 class="card-title"><?php echo e(__('messages.calendars')); ?></h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>
 
 				<div class="card-content mt-1">
-					<div class="table-responsive">
+					<div class="table-responsive pr-2 pl-2">
 
 						<div id='calendar-container'>
 							<div id='calendar'></div>
 						</div>
 					</div>
+					<p>&nbsp;</p>
 				</div>
 
 

@@ -95,7 +95,9 @@
         'driver_name'               =>      'Fahrername',
         'driver_license'               =>      'Führerschein',
         'other_details'               =>      'Andere Details',
-
+        'invoices' => 'Rechnungen',
+        'calendars' => 'Kalender',
+        'recent_trips' => 'Letzte Reisen',
 
     ];
 

@@ -36,7 +36,7 @@
 					</ul>
 				</li>
 				<li <?php if(in_array(Request::route()->getName(),['drivers.index','drivers.create','drivers.edit'])): ?>
-					<?php echo e(' class=open'); ?> <?php endif; ?> ><a href="<?php echo e(url('/drivers')); ?>" class="menu-item"><?php echo e(__('messages.drivers')); ?></a></li>
+					<?php echo e(' class=open'); ?> <?php endif; ?> ><a href="<?php echo e(url('/v-drivers')); ?>" class="menu-item"><?php echo e(__('messages.drivers')); ?></a></li>
 
 				<li <?php if(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit'])): ?>
 					<?php echo e(' class=open'); ?> <?php endif; ?> ><a href="<?php echo e(url('/customers')); ?>" class="menu-item"><?php echo e(__('messages.customers')); ?></a></li>

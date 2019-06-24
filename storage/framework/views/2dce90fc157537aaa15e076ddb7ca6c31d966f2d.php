@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card-body collapse show">
         <div class="card-block">
-            <label for="Attachments">Attachments</label>
+            <label for="Attachments"><?php echo e(__('messages.attachments')); ?></label>
             <form action="<?php echo e(url('file-upload')); ?>" class="dropzone dropzone-area dropzone_multiple" id="dpz-multiple-files"
-                  method="POST" enctype="multipart/form-data">
+                  method="POST" enctype="multipart/form-data" style="height: 100px;">
                 <div class="form-group">
 
 
@@ -11,7 +11,7 @@
                     <input name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
                     
                     <div class="dz-message vcenter" data-dz-message><span>
-		drag or <a href="javascript:;" style="color: #00C763">upload</a>
+		<?php echo e(__('messages.drag_or')); ?> <a href="javascript:;" style="color: #00C763"><?php echo e(__('messages.upload')); ?></a>
 	</span>
                     </div>
                 </div>

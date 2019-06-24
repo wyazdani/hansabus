@@ -8,12 +8,12 @@
 
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Customers</h4>
+                                <h4 class="card-title"><?php echo e(__('messages.customers')); ?></h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="<?php echo e(route('customers.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Customer</a>
+                                <a href="<?php echo e(route('customers.create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i><?php echo e(__('messages.add_customers')); ?></a>
                             </div>
                         </div>
                     </div>
@@ -30,10 +30,10 @@
                                     <th class="border-top-0" width="5%">ID</th>
                                     <th class="border-top-0" width="20%">Name</th>
                                     <th class="border-top-0" width="20%">Email</th>
-                                    <th class="border-top-0" width="10%">Phone</th>
-                                    <th class="border-top-0" width="20%">Address</th>
-                                    <th class="border-top-0" width="15%">Web</th>
-                                    <th class="border-top-0" width="10%">Action</th>
+                                    <th class="border-top-0" width="10%"><?php echo e(__('messages.phone')); ?></th>
+                                    <th class="border-top-0" width="20%"><?php echo e(__('messages.address')); ?></th>
+                                    <th class="border-top-0" width="15%"><?php echo e(__('messages.web')); ?></th>
+                                    <th class="border-top-0" width="10%"><?php echo e(__('messages.action')); ?></th>
                                 </tr>
                             </thead>
                             <tbody>

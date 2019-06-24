@@ -7,13 +7,13 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Vehicles</h4>
+                                <h4 class="card-title"><?php echo e(__('messages.vehicles')); ?></h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                 <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
-                                <a href="<?php echo e(url('/vehicles/create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
+                                <a href="<?php echo e(url('/vehicles/create')); ?>" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i><?php echo e(__('messages.vehicle_add')); ?></a>
                             </div>
                         </div>
                     </div>

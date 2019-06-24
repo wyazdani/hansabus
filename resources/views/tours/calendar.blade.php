@@ -9,7 +9,7 @@
 
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Tours Calendar</h4>
+								<h4 class="card-title">{{__('messages.tour_calendar')}}</h4>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-6 text-right">

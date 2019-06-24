@@ -8,13 +8,13 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">Drivers</h4>
+								<h4 class="card-title">{{__('messages.drivers')}}</h4>
 							</div>
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('v-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Driver</a>
+								<a href="{{ route('v-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_driver')}}</a>
 							</div>
 						</div>
 					</div>
@@ -31,11 +31,11 @@
 										<tr>
 											<th class="border-top-0" width="5%">ID</th>
 											<th class="border-top-0" width="20%">Name</th>
-											<th class="border-top-0" width="15%">Mobile No.</th>
-											<th class="border-top-0" width="15%">License</th>
+											<th class="border-top-0" width="15%">{{__('messages.mobile_no')}}</th>
+											<th class="border-top-0" width="15%">{{__('messages.license')}}</th>
 											<th class="border-top-0" width="10%">NIN No.</th>
-											<th class="border-top-0" width="10%">Phone</th>
-											<th class="border-top-0" width="10%">Action</th>
+											<th class="border-top-0" width="10%">{{__('messages.phone')}}</th>
+											<th class="border-top-0" width="10%">{{__('messages.action')}}</th>
 										</tr>
 									</thead>
 									<tbody>

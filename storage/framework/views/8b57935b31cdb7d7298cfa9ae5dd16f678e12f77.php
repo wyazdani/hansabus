@@ -1,6 +1,6 @@
-@extends('layouts.app')
-@section('page_title') {{ $pageTitle }} @endsection
-@section('content')
+
+<?php $__env->startSection('page_title'); ?> <?php echo e($pageTitle); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
 	<!--Statistics cards Starts-->
 
@@ -15,8 +15,8 @@
 
 							</div>
 							<div class="media-body text-right">
-								<h3>{{ $totalVehicles }}</h3>
-								<span>{{ __('messages.vehicle') }}</span>
+								<h3><?php echo e($totalVehicles); ?></h3>
+								<span><?php echo e(__('messages.vehicle')); ?></span>
 							</div>
 						</div>
 					</div>
@@ -32,8 +32,8 @@
 								<i class="icon-users warning font-large-2 float-left"></i>
 							</div>
 							<div class="media-body text-right">
-								<h3>{{ $totalDrivers  }}</h3>
-								<span>{{ __('messages.drivers') }}</span>
+								<h3><?php echo e($totalDrivers); ?></h3>
+								<span><?php echo e(__('messages.drivers')); ?></span>
 							</div>
 						</div>
 					</div>
@@ -49,8 +49,8 @@
 								<i class="fa fa-university success font-large-2 float-left"></i>
 							</div>
 							<div class="media-body text-right">
-								<h3>{{ $totalCustomers  }}</h3>
-								<span>{{ __('messages.companies') }}</span>
+								<h3><?php echo e($totalCustomers); ?></h3>
+								<span><?php echo e(__('messages.companies')); ?></span>
 							</div>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>423</h3>
-								<span>{{ __('messages.vehicle_maintenance') }}</span>
+								<span><?php echo e(__('messages.vehicle_maintenance')); ?></span>
 							</div>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title">{{ __('messages.Recent_Add_trip') }}</h4>
+						<h4 class="card-title"><?php echo e(__('messages.Recent_Add_trip')); ?></h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>
@@ -94,22 +94,22 @@
 							<thead>
 							<tr>
 								<th class="border-top-0">ID</th>
-								<th class="border-top-0">{{__('messages.vehicle')}}</th>
-								<th class="border-top-0">{{__('messages.drivers')}}</th>
-								<th class="border-top-0">{{__('messages.from_date')}}</th>
-								<th class="border-top-0">{{__('messages.to_date')}}</th>
+								<th class="border-top-0"><?php echo e(__('messages.vehicle')); ?></th>
+								<th class="border-top-0"><?php echo e(__('messages.drivers')); ?></th>
+								<th class="border-top-0"><?php echo e(__('messages.from_date')); ?></th>
+								<th class="border-top-0"><?php echo e(__('messages.to_date')); ?></th>
 							</tr>
 							</thead>
 							<tbody>
-							@foreach($recentTours as $tour)
+							<?php $__currentLoopData = $recentTours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 								<tr>
-									<td class="text-truncate">{!! $tour->id !!}</td>
-									<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
-									<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
-									<td class="text-truncate">{!! $tour->from_date !!}</td>
-									<td class="text-truncate">{!! $tour->to_date !!}</td>
+									<td class="text-truncate"><?php echo $tour->id; ?></td>
+									<td class="text-truncate"><?php echo !empty($tour->vehicle_id)?$tour->vehicle->name:''; ?></td>
+									<td class="text-truncate"><?php echo !empty($tour->driver_id)?$tour->driver->driver_name:''; ?></td>
+									<td class="text-truncate"><?php echo $tour->from_date; ?></td>
+									<td class="text-truncate"><?php echo $tour->to_date; ?></td>
 								</tr>
-							@endforeach
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</tbody>
 
 						</table>
@@ -125,7 +125,7 @@
 
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title">{{ __('messages.Recent_Add_trip') }}</h4>
+						<h4 class="card-title"><?php echo e(__('messages.Recent_Add_trip')); ?></h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>
@@ -146,8 +146,8 @@
 
 
 	</div>
-@endsection
-@section('pagejs')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pagejs'); ?>
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			var calendarEl = document.getElementById('calendar');
@@ -165,10 +165,12 @@
 				navLinks: true, // can click day/week names to navigate views
 				editable: true,
 				eventLimit: true, // allow "more" link when too many events
-				events: {!! json_encode($calendarTours) !!}
+				events: <?php echo json_encode($calendarTours); ?>
+
 			});
 
 			calendar.render();
 		});
 	</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/ecoach/resources/views/home.blade.php ENDPATH**/ ?>

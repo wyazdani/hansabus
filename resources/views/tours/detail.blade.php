@@ -13,10 +13,10 @@
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">Tours List
+							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">{{__('messages.tour_list')}}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
-							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">Calendar
+							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">{{__('messages.calendar')}}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -27,7 +27,14 @@
 						<div class="col-md-6">
 							<dl>
 								<dt>Status:</dt>
-								<dd>{{ ($Tour->status)?'Yes':'No' }}</dd>
+								{{--<dd>{{ ($Tour->status)?'Yes':'No' }}</dd>--}}
+								<dd>
+									@if(!empty($Tour->status))
+										<span>{{__('messages.yes')}}</span>
+										@else
+										<span>{{__('messges.no')}}</span>
+										@endif
+								</dd>
 								<dt>{{__('messages.customers')}}:</dt>
 								<dd>{{ $Tour->customer->name }}</dd>
 								<dt>{{__('messages.vehicle')}}:</dt>

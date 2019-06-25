@@ -90,11 +90,11 @@
                     $('#v_transmission').html(vehicle.transmission);
                     $('#v_color').html(vehicle.color);
 
-                    if(vehicle.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
-                    if(vehicle.AC == 1) $('#v_AC').html('Yes'); else $('#v_AC').html('No');
-                    if(vehicle.radio == 1) $('#v_radio').html('Yes'); else $('#v_radio').html('No');
-                    if(vehicle.sunroof == 1) $('#v_sunroof').html('Yes'); else $('#v_sunroof').html('No');
-                    if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('Yes'); else $('#v_phoneCharging').html('No');
+                    if(vehicle.status == 1) $('#v_status').html('{{__('messages.yes')}}'); else $('#v_status').html('{{__('messages.no')}}');
+                    if(vehicle.AC == 1) $('#v_AC').html('{{__('messages.yes')}}'); else $('#v_AC').html('{{__('messages.no')}}');
+                    if(vehicle.radio == 1) $('#v_radio').html('{{__('messages.yes')}}'); else $('#v_radio').html('{{__('messages.no')}}');
+                    if(vehicle.sunroof == 1) $('#v_sunroof').html('{{__('messages.yes')}}'); else $('#v_sunroof').html('{{__('messages.no')}}');
+                    if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('{{__('messages.yes')}}'); else $('#v_phoneCharging').html('{{__('messages.no')}}');
 
                     $('#viewModel').modal('show');
 

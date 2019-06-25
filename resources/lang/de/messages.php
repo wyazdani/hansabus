@@ -55,6 +55,7 @@
         'update'                =>      'Aktualisieren',
         'color'                =>      'Farbe',
         'yes'               =>      'Ja',
+        'no'               =>      'Nein',
         'is_active'               =>      'Ist aktiv',
         'add_vehicle_type'               =>      'Fahrzeugtyp hinzufügen',
         'vehicle_type_name'               =>      'Fahrzeugtypname',

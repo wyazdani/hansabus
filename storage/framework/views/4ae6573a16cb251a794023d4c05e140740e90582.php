@@ -12,10 +12,12 @@
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="<?php echo e(route('tours.index')); ?>" class="btn btn-info ml-2 mt-2">Tours List
+							<div class="dataTables_filter"><a href="<?php echo e(route('tours.index')); ?>" class="btn btn-info ml-2 mt-2"><?php echo e(__('messages.tour_list')); ?>
+
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
-							<div class="dataTables_filter"><a href="<?php echo e(route('tour-calendar')); ?>" class="btn btn-info ml-2 mt-2">Calendar
+							<div class="dataTables_filter"><a href="<?php echo e(route('tour-calendar')); ?>" class="btn btn-info ml-2 mt-2"><?php echo e(__('messages.calendar')); ?>
+
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -26,7 +28,14 @@
 						<div class="col-md-6">
 							<dl>
 								<dt>Status:</dt>
-								<dd><?php echo e(($Tour->status)?'Yes':'No'); ?></dd>
+								
+								<dd>
+									<?php if(!empty($Tour->status)): ?>
+										<span><?php echo e(__('messages.yes')); ?></span>
+										<?php else: ?>
+										<span><?php echo e(__('messges.no')); ?></span>
+										<?php endif; ?>
+								</dd>
 								<dt><?php echo e(__('messages.customers')); ?>:</dt>
 								<dd><?php echo e($Tour->customer->name); ?></dd>
 								<dt><?php echo e(__('messages.vehicle')); ?>:</dt>

@@ -56,6 +56,7 @@
         'update'                =>      'Update',
         'color'                =>      'Color',
         'yes'               =>      'Yes',
+        'no'               =>      'No',
         'is_active'               =>      'Is Active',
         'add_vehicle_type'               =>      'Add Vehicle Type',
         'vehicle_type_name'               =>      'Vehicle Type Name',

@@ -71,7 +71,12 @@ class InvoiceController extends Controller
             $total += $row->price;
         }
 
-        $pdf = PDF::loadView('invoices.pdf', compact('customer','tours','total'));
+//        return view('invoices.pdf_design',compact('customer','tours','total'));
+
+
+        $pdf = PDF::loadView('invoices.pdf_design', compact('customer','tours','total'));
         return $pdf->download('invoice.pdf');
+
+
     }
 }

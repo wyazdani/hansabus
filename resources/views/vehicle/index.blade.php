@@ -28,13 +28,13 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="7%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.vehicle_name')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('messages.make')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('messages.year')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.license_plate')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.engine')}} #</th>
-                                        <th class="border-top-0" width="15%">{{__('messages.registration')}} #</th>
-                                        <th class="border-top-0" width="10%">{{__('messages.action')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('vehicle.name')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('vehicle.make')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('vehicle.year')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('vehicle.license_plate')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('vehicle.engine_number')}}</th>
+                                        <th class="border-top-0" width="15%">{{__('vehicle.reg_number')}}</th>
+                                        <th class="border-top-0" width="10%">&nbsp;</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -56,7 +56,7 @@
         var deleteMe = function(id){
             // console.log('here');
 
-            if(confirm('Are you sure you want to delete?')){
+            if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
                     url: '/vehicles/'+id,

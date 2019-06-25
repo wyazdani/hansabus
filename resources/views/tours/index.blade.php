@@ -8,12 +8,12 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">{{__('messages.tours')}}</h4>
+                                <h4 class="card-title">{{__('tour.heading.index')}}</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_tour')}}</a>
+                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('tour.heading.add')}}</a>
                             </div>
                         </div>
 
@@ -23,7 +23,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('messages.select_customer')}}</option>
+                                    <option value="">{{__('tour.select_customer')}}</option>
                                     @foreach($customers as $customer)
                                         <option value="{{$customer->id}}">{{$customer->name}}</option>
                                     @endforeach
@@ -33,7 +33,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="driver_id" class="form-control filterBox">
-                                    <option value="">{{__('messages.select_driver')}}</option>
+                                    <option value="">{{__('tour.select_driver')}}</option>
                                     @foreach($drivers as $driver)
                                         <option value="{{$driver->id}}">{{$driver->driver_name}}</option>
                                     @endforeach
@@ -43,7 +43,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="vehicle_id" class="form-control filterBox">
-                                    <option value="">{{__('messages.select_vehicle')}}</option>
+                                    <option value="">{{__('tour.select_vehicle')}}</option>
                                     @foreach($vehicles as $vehicle)
                                         <option value="{{$vehicle->id}}">{{$vehicle->name}}</option>
                                     @endforeach
@@ -52,12 +52,12 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="from_date" placeholder="{{__('messages.start_date')}}" class="form-control datetimepicker1" />
+                                <input type='text' id="from_date" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="{{__('messages.start_date')}}" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -81,13 +81,13 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.customers')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('messages.vehicles')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('messages.from')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('messages.to')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('messages.drivers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('messages.passengers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('messages.price')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('tour.customer')}}</th>
+                                        <th class="border-top-0" width="15%">{{__('tour.vehicle')}}</th>
+                                        <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
+                                        <th class="border-top-0" width="11%">{{__('tour.to')}}</th>
+                                        <th class="border-top-0" width="15%">{{__('tour.driver')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
                                         <th class="border-top-0" width="5%">Status</th>
                                         <th class="border-top-0" width="8%">&nbsp;</th>
                                     </tr>
@@ -109,7 +109,7 @@
     <script>
         var deleteMe = function(id){
 
-            if(confirm('Are you sure you want to delete?')){
+            if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
                     url: '/tours/'+id,

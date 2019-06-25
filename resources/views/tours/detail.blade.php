@@ -13,10 +13,10 @@
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">Tours List
+							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.tours') }}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
-							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">Calendar
+							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.calendars') }}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -26,35 +26,35 @@
 					<div class="modal-body row">
 						<div class="col-md-6">
 							<dl>
-								<dt>Status:</dt>
+								<dt width="30%">Status:</dt>
 								<dd>{{ ($Tour->status)?'Yes':'No' }}</dd>
-								<dt>Customer:</dt>
+								<dt>{{ __('tour.customer') }}:</dt>
 								<dd>{{ $Tour->customer->name }}</dd>
-								<dt>Vehicle:</dt>
+								<dt>{{ __('tour.vehicle') }}:</dt>
 								<dd>{{ $Tour->vehicle->name }}</dd>
-								<dt>Driver:</dt>
+								<dt>{{ __('tour.driver') }}:</dt>
 								<dd>{{ $Tour->driver->driver_name }}</dd>
-								<dt>Passengers:</dt>
+								<dt>{{ __('tour.passengers') }}:</dt>
 								<dd>{{ $Tour->passengers }}</dd>
 							</dl>
 						</div>
 						<div class="col-md-6">
 							<dl>
-								<dt>From:</dt>
+								<dt>{{ __('tour.from') }}:</dt>
 								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->from_date)) }}</dd>
-								<dt>To:</dt>
+								<dt>{{ __('tour.to') }}:</dt>
 								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->to_date)) }}</dd>
 
-								<dt>Guide:</dt>
+								<dt>{{ __('tour.guide') }}:</dt>
 								<dd>{{ $Tour->guide }}</dd>
 
-								<dt>Price:</dt>
+								<dt>{{ __('tour.price') }}:</dt>
 								<dd>{{ $Tour->price }}</dd>
 							</dl>
 						</div>
 					</div>
 					@if(count($Tour->attachments))
-						<div class="col-sm-12"><h5>Attachments:</h5></div>
+						<div class="col-sm-12"><h5>{{ __('tour.attachments') }}:</h5></div>
 						<div class="row">
 							<div class="col-lg-12">
 								<ul class="upload-list">

@@ -76,7 +76,7 @@ class VehicleTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  =>'required|unique:vehicle_types,name,NULL,id,deleted_at,NULL|regex:/^[a-zA-Z]+$/u|'
+            'name'  =>'required|string|unique:vehicle_types'
         ]);
 
         $vehicle_type = new VehicleType([
@@ -105,7 +105,7 @@ class VehicleTypeController extends Controller
         $pageTitle= 'Edit Vehicle';
         $vehicleType = VehicleType::find($id);
 
-        return view('vehicle_type.edit', compact('vehicleType','pageTitle'));
+        return view('vehicle_type.add', compact('vehicleType','pageTitle'));
     }
 
 
@@ -113,7 +113,7 @@ class VehicleTypeController extends Controller
     {
 
         $request->validate([
-            'name'=>'required'
+            'name'  =>'required|string'
             ]);
         $vehicleType = VehicleType::find($id);
 

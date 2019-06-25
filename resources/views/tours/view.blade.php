@@ -12,16 +12,16 @@
 			<div class="modal-body row">
 				<div class="col-md-6">
 					<dl>
-						<dt>{{__('messages.drivers')}}:</dt>
+						<dt>{{__('tour.driver')}}:</dt>
 						<dd id="v_driver"></dd>
-						<dt>{{__('messages.passengers')}}:</dt>
+						<dt>{{__('tour.passengers')}}:</dt>
 						<dd id="v_passengers"></dd>
 
-						<dt>{{__('messages.vehicles')}}:</dt>
+						<dt>{{__('tour.vehicle')}}:</dt>
 						<dd id="v_vehicle"></dd>
-						<dt>{{__('messages.guide')}}:</dt>
+						<dt>{{__('tour.guide')}}:</dt>
 						<dd id="v_guide"></dd>
-						<dt>{{__('messages.price')}}:</dt>
+						<dt>{{__('tour.price')}}:</dt>
 						<dd id="v_price"></dd>
 						<dt>Status:</dt>
 						<dd id="v_status"></dd>

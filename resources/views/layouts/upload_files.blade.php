@@ -11,8 +11,8 @@
                     <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     {{--    <input name="allowedExtensions" type="hidden" value="pdf">--}}
                     <div class="dz-message vcenter" data-dz-message><span>
-		{{__('messages.drag_or')}} <a href="javascript:;" style="color: #00C763">{{__('messages.upload')}}</a>
-	</span>
+                        {{__('tour.drag')}} <a href="javascript:;" style="color: #00C763">{{__('tour.upload')}}</a>
+                    </span>
                     </div>
                 </div>
             </form>

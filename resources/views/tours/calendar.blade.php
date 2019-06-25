@@ -9,7 +9,7 @@
 
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">{{__('messages.tour_calendar')}}</h4>
+								<h4 class="card-title">{{__('tour.heading.calendar')}}</h4>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-6 text-right">
@@ -46,6 +46,12 @@
 					left: 'prev,next today',
 					center: 'title',
 					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+				},
+				buttonText: {
+					today: '{{__("tour.today")}}',
+					month: '{{__("tour.month")}}',
+					week: '{{__("tour.week")}}',
+					day: '{{__("tour.day")}}'
 				},
 				defaultView: 'dayGridMonth',
 				defaultDate: '2019-06-12',

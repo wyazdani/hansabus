@@ -8,29 +8,26 @@
 				<p class="d-none">fullscreen</p>
 			</a>--}}
 			@endif
-
-
 		</div>
-
 		<div class="navbar-container">
 			<div id="navbarSupportedContent" class="collapse navbar-collapse">
 
 				@if(Auth::check())
 				<ul class="navbar-nav">
 
-					<li class="nav-item mt-1 navbar-search text-left dropdown"><a id="search" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle"><i class="ft-search blue-grey darken-4"></i></a>
-						<div aria-labelledby="search" class="search dropdown-menu dropdown-menu-right">
-							<div class="arrow_box_right">
-								<form role="search" class="navbar-form navbar-right">
-									<div class="position-relative has-icon-right mb-0">
-										<input id="navbar-search" type="text" placeholder="Search" class="form-control" />
-										<div class="form-control-position navbar-search-close"><i class="ft-x"></i>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</li>
+{{--					<li class="nav-item mt-1 navbar-search text-left dropdown"><a id="search" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle"><i class="ft-search blue-grey darken-4"></i></a>--}}
+{{--						<div aria-labelledby="search" class="search dropdown-menu dropdown-menu-right">--}}
+{{--							<div class="arrow_box_right">--}}
+{{--								<form role="search" class="navbar-form navbar-right">--}}
+{{--									<div class="position-relative has-icon-right mb-0">--}}
+{{--										<input id="navbar-search" type="text" placeholder="Search" class="form-control" />--}}
+{{--										<div class="form-control-position navbar-search-close"><i class="ft-x"></i>--}}
+{{--										</div>--}}
+{{--									</div>--}}
+{{--								</form>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</li>--}}
 
 					<li class="dropdown nav-item mt-1"><a id="dropdownBasic" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-flag blue-grey darken-4"></i><span class="selected-language d-none"></span></a>
 						<div class="dropdown-menu dropdown-menu-right">
@@ -52,9 +49,9 @@
 						</a>
 						<div aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-right">
 							<div class="arrow_box_right">
-								<a href="user-profile-page.html" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>{{__('messages.my_profile')}}</span></a>
-								<a href="javascript:;" class="dropdown-item py-1"><i class="ft-settings mr-2"></i><span>{{__('messages.settings')}}</span></a>
-								<div class="dropdown-divider"></div>
+{{--								<a href="user-profile-page.html" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>{{__('messages.my_profile')}}</span></a>--}}
+{{--								<a href="javascript:;" class="dropdown-item py-1"><i class="ft-settings mr-2"></i><span>{{__('messages.settings')}}</span></a>--}}
+{{--								<div class="dropdown-divider"></div>--}}
 								
 								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
              document.getElementById('logout-form').submit();" role="menuitem">

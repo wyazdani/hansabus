@@ -10,7 +10,7 @@
 
                     <div class="col-sm-6 col-md-6">
                         <div class="card-title-wrap bar-primary">
-                            <h4 class="card-title">{{__('messages.vehicle_details')}}</h4>
+                            <h4 class="card-title">{{ (!empty($vehicle->id))?__('vehicle.heading.edit'):__('vehicle.heading.add') }}</h4>
                         </div>
                     </div>
 
@@ -37,7 +37,6 @@
                     @csrf
                     <input type="hidden" id="returnFlag" name="returnFlag" value="">
 
-
                     <div class="row">
 
                         <div class="col-md-8">
@@ -53,14 +52,14 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput1">{{__('messages.vehicle_name')}}</label>
+                                                        <label for="projectinput1">{{__('vehicle.name')}}</label>
 
                                                         <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->name))?$vehicle->name:old('name') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput2">{{__('messages.year_of_manufacture')}}</label>
+                                                        <label for="projectinput2">{{__('vehicle.year')}}</label>
 
                                                         <select name="year" class="{{($errors->has('year')) ?'form-control error_input':'form-control'}}">
                                                             @for($year=date('Y'); $year>(date('Y')-50); $year--)
@@ -80,7 +79,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput3">{{__('messages.make_model')}}</label>
+                                                        <label for="projectinput3">{{__('vehicle.make')}}</label>
 
                                                         <input type="text" name="make" class="{{($errors->has('make')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->make))?$vehicle->make:old('make') }}">
 
@@ -89,7 +88,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('messages.engine_number')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.engine_number')}}</label>
 
                                                         <input type="text" name="engineNumber" class="{{($errors->has('engineNumber')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->engineNumber))?$vehicle->engineNumber:old('engineNumber') }}">
 
@@ -101,7 +100,7 @@
 
                                                 <div class="col-md-6">
                                                     <fieldset class="form-group">
-                                                        <label for="customSelect">{{__('messages.type_of_vehicle')}}</label>
+                                                        <label for="customSelect">{{__('vehicle.vehicle_type')}}</label>
 
                                                         <select class="{{($errors->has('vehicle_type')) ?'custom-select d-block w-100 error_input':'custom-select d-block w-100'}}"
                                                         id="customSelect" name="vehicle_type">
@@ -119,21 +118,21 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('messages.number_of_seats')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.seats')}}</label>
                                                         <input type="number" name="seats" class="{{($errors->has('seats')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->seats))?$vehicle->seats:old('seats') }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('messages.license_plate')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.license_plate')}}</label>
                                                         <input type="text" name="licensePlate" class="{{($errors->has('licensePlate')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->licensePlate))?$vehicle->licensePlate:old('licensePlate') }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('messages.vehicle_color')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.color')}}</label>
 
                                                         <input type="text" name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->color))?$vehicle->color:old('color') }}">
 
@@ -143,7 +142,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('messages.vehicle_reg_number')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.reg_number')}}</label>
 
                                                         <input type="text" name="registrationNumber" class="{{($errors->has('registrationNumber')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->registrationNumber))?$vehicle->registrationNumber:old('registrationNumber') }}">
 
@@ -158,7 +157,7 @@
                                                     @if ($errors->has('transmission'))
                                                         <span class="label label-danger">{!! $errors->first('transmission') !!}</span>@endif
                                                     <div class="form-group">
-                                                        <label>{{__('messages.transmission')}}</label>
+                                                        <label>{{__('vehicle.transmission')}}</label>
                                                         <div class="input-group">
                                                             <div class="custom-control custom-radio display-inline-block mr-2">
                                                                 <input type="radio" name="transmission" class="custom-control-input"
@@ -170,7 +169,7 @@
                                                                     {{ 'checked' }}
                                                                 @endif 
                                                                 >
-                                                                <label class="custom-control-label" for="customRadioInline4">{{__('messages.automatic')}}</label>
+                                                                <label class="custom-control-label" for="customRadioInline4">{{__('vehicle.automatic')}}</label>
                                                             </div>
                                                             <div class="custom-control custom-radio display-inline-block">
                                                                 <input type="radio" name="transmission" class="custom-control-input"
@@ -182,7 +181,7 @@
                                                                     {{ 'checked' }}
                                                                 @endif 
                                                                 >
-                                                                <label class="custom-control-label" for="customRadioInline3">{{__('messages.manual')}}</label>
+                                                                <label class="custom-control-label" for="customRadioInline3">{{__('vehicle.manual')}}</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -202,7 +201,7 @@
                         <div class="col-md-4">
 
                             <div class="form-group">
-                                <label>AC</label>
+                                <label>{{__('vehicle.ac')}}</label>
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">
@@ -218,7 +217,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Radio</label>
+                                <label>{{__('vehicle.radio')}}</label>
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">
@@ -234,7 +233,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>{{__('messages.sunroof')}}</label>
+                                <label>{{__('vehicle.sunroof')}}</label>
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">
@@ -250,7 +249,7 @@
 
 
                             <div class="form-group">
-                                <label>{{__('messages.Phone_Charging_Jack')}}</label>
+                                <label>{{__('vehicle.phone_charging')}}</label>
                                 <div class="form-group">
                                     <div class="display-inline-block">
                                         <label class="switch">

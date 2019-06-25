@@ -12,45 +12,45 @@
 </head>
 <body>
 
-                        <h2>Customer</h2>
-                        <p>{{$customer->name}}</p>
-                        <small>
-                            <p>Address: {{$customer->address}}</p>
-                            <p>Phone: {{$customer->phone }}</p>
-                            <p>Email: {{$customer->email}}</p>
-                        </small>
-                        <table width="100%">
-                            <thead>
-                            <tr>
-                                <th class="border-top-0" width="5%">ID</th>
-                                <th class="border-top-0" width="20%">{{__('messages.vehicles')}}</th>
-                                <th class="border-top-0" width="11%">{{__('messages.from')}}</th>
-                                <th class="border-top-0" width="11%">{{__('messages.to')}}</th>
-                                <th class="border-top-0" width="20%">{{__('messages.drivers')}}</th>
-                                <th class="border-top-0" width="8%">{{__('messages.passengers')}}</th>
-                                <th class="border-top-0" width="8%">{{__('messages.price')}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+<h2>{{__('messages.customer')}}</h2>
+<p>{{$customer->name}}</p>
+<small>
+    <p>{{__('messages.address')}}: {{$customer->address}}</p>
+    <p>Phone: {{$customer->phone }}</p>
+    <p>Email: {{$customer->email}}</p>
+</small>
+<table width="100%">
+    <thead>
+    <tr>
+        <th class="border-top-0" width="5%">ID</th>
+        <th class="border-top-0" width="20%">{{__('messages.vehicles')}}</th>
+        <th class="border-top-0" width="11%">{{__('messages.from')}}</th>
+        <th class="border-top-0" width="11%">{{__('messages.to')}}</th>
+        <th class="border-top-0" width="20%">{{__('messages.drivers')}}</th>
+        <th class="border-top-0" width="8%">{{__('messages.passengers')}}</th>
+        <th class="border-top-0" width="8%">{{__('messages.price')}}</th>
+    </tr>
+    </thead>
+    <tbody>
 
-                            @foreach($tours as $tour)
-                                <tr>
-                                    <td>{{ $tour->id }}</td>
-                                    <td>{{ $tour->vehicle->name }}</td>
-                                    <td>{{ $tour->from_date }}</td>
-                                    <td>{{ $tour->to_date }}</td>
-                                    <td>{{ $tour->driver->driver_name }}</td>
-                                    <td>{{ $tour->passengers }}</td>
-                                    <td>{{ number_format($tour->price) }}</td>
-                                </tr>
+    @foreach($tours as $tour)
+        <tr>
+            <td>{{ $tour->id }}</td>
+            <td>{{ $tour->vehicle->name }}</td>
+            <td>{{ $tour->from_date }}</td>
+            <td>{{ $tour->to_date }}</td>
+            <td>{{ $tour->driver->driver_name }}</td>
+            <td>{{ $tour->passengers }}</td>
+            <td>{{ number_format($tour->price) }}</td>
+        </tr>
 
-                            @endforeach
-                            <tr>
-                                <td colspan="6" style="text-align: right">Invoice Total:</td>
-                                <td>{{ number_format($total) }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+    @endforeach
+    <tr>
+        <td colspan="6" style="text-align: right">Invoice Total:</td>
+        <td>{{ number_format($total) }}</td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

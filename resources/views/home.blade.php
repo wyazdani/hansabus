@@ -16,7 +16,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalVehicles }}</h3>
-								<span>{{ __('messages.vehicle') }}</span>
+								<span>{{ __('messages.vehicles') }}</span>
 							</div>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalCustomers  }}</h3>
-								<span>{{ __('messages.companies') }}</span>
+								<span>{{ __('messages.customers') }}</span>
 							</div>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title">{{ __('messages.recent_trips') }}</h4>
+						<h4 class="card-title">{{ __('tour.recent_trips') }}</h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>
@@ -94,13 +94,13 @@
 							<thead>
 							<tr>
 								<th class="border-top-0" width="5%">ID</th>
-								<th class="border-top-0" width="15%">{{__('messages.customers')}}</th>
-								<th class="border-top-0" width="15%">{{__('messages.vehicle')}}</th>
-								<th class="border-top-0" width="12%">{{__('messages.from_date')}}</th>
-								<th class="border-top-0" width="12%">{{__('messages.to_date')}}</th>
-								<th class="border-top-0" width="15%">{{__('messages.drivers')}}</th>
-								<th class="border-top-0" width="8%">{{__('messages.passengers')}}</th>
-								<th class="border-top-0" width="8%">{{__('messages.price')}}</th>
+								<th class="border-top-0" width="15%">{{__('tour.customer')}}</th>
+								<th class="border-top-0" width="15%">{{__('tour.vehicle')}}</th>
+								<th class="border-top-0" width="12%">{{__('tour.from')}}</th>
+								<th class="border-top-0" width="12%">{{__('tour.to')}}</th>
+								<th class="border-top-0" width="15%">{{__('tour.driver')}}</th>
+								<th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
+								<th class="border-top-0" width="8%">{{__('tour.price')}}</th>
 								<th class="border-top-0" width="8%">Status</th>
 							</tr>
 							</thead>
@@ -176,6 +176,12 @@
 					left: 'prev,next today',
 					center: 'title',
 					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+				},
+				buttonText: {
+					today: '{{__("tour.today")}}',
+					month: '{{__("tour.month")}}',
+					week: '{{__("tour.week")}}',
+					day: '{{__("tour.day")}}'
 				},
 				defaultView: 'dayGridMonth',
 				defaultDate: '2019-06-12',

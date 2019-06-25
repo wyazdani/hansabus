@@ -17,7 +17,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('messages.select_customer')}}</option>
+                                    <option value="">{{__('tour.select_customer')}}</option>
                                     @foreach($customers as $customer)
                                         <option value="{{$customer->id}}">{{$customer->name}}</option>
                                     @endforeach
@@ -26,12 +26,12 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="from_date" placeholder="{{__('messages.start_date')}}" class="form-control datetimepicker1" />
+                                <input type='text' id="from_date" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="{{__('messages.start_date')}}" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -55,12 +55,12 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.vehicles')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('messages.from')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('messages.to')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('messages.drivers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('messages.passengers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('messages.price')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('tour.vehicle')}}</th>
+                                        <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
+                                        <th class="border-top-0" width="11%">{{__('tour.to')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('tour.driver')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody id="toursDiv">

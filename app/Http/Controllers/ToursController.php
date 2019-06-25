@@ -26,7 +26,7 @@ class ToursController extends Controller
 
     public function calendar(Request $request)
     {
-        $pageTitle = 'Tour Canlendar';
+        $pageTitle = __('messages.tour_calendar');
         $rows = Tour::where('status','>',1)->get(
             ['id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
@@ -119,7 +119,7 @@ class ToursController extends Controller
     }
     public function index()
     {
-        $pageTitle = 'Tours';
+        $pageTitle = __('messages.tours');
 //        $tours = Tour::all();
 
         $vehicles = Vehicle::where('status','1')->get(['name','id']);
@@ -131,7 +131,7 @@ class ToursController extends Controller
 
     public function create()
     {
-        $pageTitle = 'Add Tour';
+        $pageTitle = __('messages.add_tour');
         $general = new General();
         $randomKey = $general->randomKey();
         //$vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
@@ -234,7 +234,7 @@ class ToursController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Edit Tour';
+        $pageTitle = __('messages.edit_tour');
         $tour = Tour::find($id);
 
         $general = new General();

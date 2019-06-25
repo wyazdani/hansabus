@@ -5,7 +5,7 @@
 	<div class="sidebar-header">
 		<div class="logo clearfix"><a href="{{ route('home') }}" class="logo-text float-left">
 				<div class="logo-img"><img src="{{ asset('images/logo.png') }}" alt="Convex Logo" /></div>
-				<span class="text align-middle">E-{{__('messages.coach')}}<br>{{__('messages.management')}}</span>
+				<span class="text align-middle">E-Coach</span>
 			</a>
 		</div>
 	</div>
@@ -22,12 +22,12 @@
 					{{ ' class=open' }} @endif
 					class="has-sub nav-item">
 					<a href="javascript:;">
-						<span data-i18n="" class="menu-title">{{ __('messages.vehicle') }}</span>
+						<span data-i18n="" class="menu-title">{{ __('messages.vehicles') }}</span>
 					</a>
 					<ul class="menu-content">
-						<li><a href="{{ route('vehicles.index') }}" class="menu-item">{{ __('messages.vehicle') }}</a>
+						<li><a href="{{ route('vehicles.index') }}" class="menu-item">{{ __('messages.vehicles') }}</a>
 						</li>
-						<li><a href="{{ route('vehicle-type.index') }}" class="menu-item">{{ __('messages.vehicle_type') }}</a>
+						<li><a href="{{ route('vehicle-type.index') }}" class="menu-item">{{ __('messages.vehicle_types') }}</a>
 						</li>
 						<li><a href="javascript:;" class="menu-item">{{ __('messages.maintenance') }}</a>
 						</li>

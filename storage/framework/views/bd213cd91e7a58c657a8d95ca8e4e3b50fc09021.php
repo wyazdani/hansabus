@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> <?php echo e(__('messages.search')); ?></a>
+                                <a href="javascript:" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> <?php echo e(__('messages.search')); ?></a>
                             </div>
                         </div>
                     </div>

@@ -96,5 +96,7 @@
         'driver_license'               =>      'Driver License',
         'other_details'               =>      'Other Details',
         'recent_tours'               =>      'Recent Tours',
+        'copyright'               =>      'Copyright ©',
+        'all_rights_reserved'               =>      'All Rights Reserved',
 
     ];

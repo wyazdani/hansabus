@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="translation">
+    <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/de/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/messages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tours/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/1OrRQ1CyC5yYa6uMgR1KWK0vydK4DOSKdGV8eksg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/rqIZ0xl0mMrzmP2EFdweSzTUCxfOgPvQulPETZWc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/36ddf49b09da5ab808eaf51a4eda7938244c97c5.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/36ddf49b09da5ab808eaf51a4eda7938244c97c5.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/672cce919f19b7eeb961546087dab41c3950d934.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/672cce919f19b7eeb961546087dab41c3950d934.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/f0b7ecf393364b8a27286f4924a6001451ac409a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f0b7ecf393364b8a27286f4924a6001451ac409a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/XcC4k2skQrZ6gmMixnf9kgGTWKCRfbyXU18Hb0Z0" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/XcC4k2skQrZ6gmMixnf9kgGTWKCRfbyXU18Hb0Z0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/9566cfe605cc06b06ae18c0a46018fde8e5eccff.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9566cfe605cc06b06ae18c0a46018fde8e5eccff.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/bd213cd91e7a58c657a8d95ca8e4e3b50fc09021.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/bd213cd91e7a58c657a8d95ca8e4e3b50fc09021.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e70081fa8ffbd4b7986e0de30c98236658687d0d.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e70081fa8ffbd4b7986e0de30c98236658687d0d.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,50 +26,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/lang/de/messages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="73" column="17" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="17" />
+            <state relative-caret-position="512">
+              <caret line="98" column="78" lean-forward="true" selection-start-line="97" selection-start-column="7" selection-end-line="98" selection-end-column="78" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/lang/en/messages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="211" column="49" selection-start-line="211" selection-start-column="49" selection-end-line="211" selection-end-column="49" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/drivers/add.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="134" column="79" selection-start-line="134" selection-start-column="79" selection-end-line="134" selection-end-column="79" />
+            <state relative-caret-position="487">
+              <caret line="99" column="72" selection-start-line="99" selection-start-column="72" selection-end-line="99" selection-end-column="72" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/footer.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="59" column="100" selection-start-line="59" selection-start-column="100" selection-end-line="59" selection-end-column="100" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#li#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="32">
+              <caret line="2" column="139" selection-start-line="2" selection-start-column="139" selection-end-line="2" selection-end-column="139" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/vehicle_type/add.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="65" column="57" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="57" />
+            <state relative-caret-position="432">
+              <caret line="117" column="38" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -95,8 +81,8 @@
       <find>customers</find>
       <find>cus</find>
       <find>&lt;input type=&quot;search&quot; class=&quot;&quot; placeholder=&quot;&quot; aria-controls=&quot;listingTable&quot;&gt;</find>
-      <find>icon-trash</find>
       <find>vehicle_name</find>
+      <find>icon-trash</find>
     </findStrings>
     <replaceStrings>
       <replace>{{__('messages.yes/no')}}</replace>
@@ -111,8 +97,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Models/Attachment.php" />
         <option value="$PROJECT_DIR$/app/Models/TourAttachment.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
         <option value="$PROJECT_DIR$/app/Models/Tour.php" />
@@ -146,7 +130,6 @@
         <option value="$PROJECT_DIR$/resources/views/tours/detail.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vehicle/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/drivers/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/messages.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_29_060206_vehicle_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_29_060201_vehicle_types_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_14_063143_customer_table.php" />
@@ -160,8 +143,11 @@
         <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vehicle_type/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/drivers/add.blade.php" />
-        <option value="$PROJECT_DIR$/resources/lang/de/messages.php" />
         <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/messages.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/messages.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" />
       </list>
     </option>
   </component>
@@ -283,14 +269,14 @@
               <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="tours" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -339,10 +325,18 @@
       <workItem from="1560764821225" duration="13678000" />
       <workItem from="1560835636433" duration="9442000" />
     </task>
+    <task id="LOCAL-00001" summary="translation">
+      <created>1561382257516</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1561382257516</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58105000" />
+    <option name="totallyTimeSpent" value="60614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -351,6 +345,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18456884" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.3289689" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -398,13 +393,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="translation" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/vehicle_type/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/drivers/edit.blade.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverController.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -445,13 +433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1760">
-          <caret line="18" column="81" selection-end-line="173" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -586,13 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/messages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="97" column="58" selection-start-line="97" selection-start-column="58" selection-end-line="97" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_29_060206_vehicle_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
@@ -605,13 +579,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/drivers/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="126" selection-start-line="126" selection-end-line="127" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_29_060201_vehicle_types_table.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -702,12 +669,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/drivers/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="211" column="49" selection-start-line="211" selection-start-column="49" selection-end-line="211" selection-end-column="49" />
+        <state relative-caret-position="658">
+          <caret line="134" column="79" selection-start-line="134" selection-start-column="79" selection-end-line="134" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/drivers/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="154" column="17" selection-start-line="154" selection-start-column="17" selection-end-line="154" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="203" column="28" selection-start-line="203" selection-start-column="28" selection-end-line="203" selection-end-column="28" />
           <folding>
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#li#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -719,27 +700,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/drivers/add.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="134" column="79" selection-start-line="134" selection-start-column="79" selection-end-line="134" selection-end-column="79" />
+        <state relative-caret-position="432">
+          <caret line="117" column="38" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/messages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="99" column="72" selection-start-line="99" selection-start-column="72" selection-end-line="99" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/lang/de/messages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="73" column="17" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="17" />
+        <state relative-caret-position="512">
+          <caret line="98" column="78" lean-forward="true" selection-start-line="97" selection-start-column="7" selection-end-line="98" selection-end-column="78" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/footer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="59" column="100" selection-start-line="59" selection-start-column="100" selection-end-line="59" selection-end-column="100" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="32">
+          <caret line="2" column="139" selection-start-line="2" selection-start-column="139" selection-end-line="2" selection-end-column="139" />
         </state>
       </provider>
     </entry>

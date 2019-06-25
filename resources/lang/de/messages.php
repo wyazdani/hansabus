@@ -95,6 +95,8 @@
         'driver_license'               =>      'Führerschein',
         'other_details'               =>      'Andere Details',
         'recent_tours'               =>      'Letzte Touren',
+        'copyright'               =>      'Urheberrechte ©',
+        'all_rights_reserved'               =>      'Alle Rechte vorbehalten',
 
 
     ];

@@ -102,6 +102,11 @@
 							</thead>
 							<tbody>
 							@foreach($recentTours as $tour)
+								@if(!$tour)
+									{
+										<span>No data is avaialable</span>
+									}
+									@else{
 								<tr>
 									<td class="text-truncate">{!! $tour->id !!}</td>
 									<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
@@ -109,6 +114,8 @@
 									<td class="text-truncate">{!! $tour->from_date !!}</td>
 									<td class="text-truncate">{!! $tour->to_date !!}</td>
 								</tr>
+								}
+								@endif
 							@endforeach
 							</tbody>
 

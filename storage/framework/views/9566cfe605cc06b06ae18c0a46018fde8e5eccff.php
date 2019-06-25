@@ -101,6 +101,11 @@
 							</thead>
 							<tbody>
 							<?php $__currentLoopData = $recentTours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+								<?php if(!$tour): ?>
+									{
+										<span>No data is avaialable</span>
+									}
+									<?php else: ?>{
 								<tr>
 									<td class="text-truncate"><?php echo $tour->id; ?></td>
 									<td class="text-truncate"><?php echo !empty($tour->vehicle_id)?$tour->vehicle->name:''; ?></td>
@@ -108,6 +113,8 @@
 									<td class="text-truncate"><?php echo $tour->from_date; ?></td>
 									<td class="text-truncate"><?php echo $tour->to_date; ?></td>
 								</tr>
+								}
+								<?php endif; ?>
 							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</tbody>
 

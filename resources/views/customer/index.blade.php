@@ -9,15 +9,14 @@
 
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Customers</h4>
+                                <h4 class="card-title">{{__('customer.heading.index')}}</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ url('/customers/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Customer</a>
+                                <a href="{{ route('customers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> {{__('customer.heading.add')}}</a>
                             </div>
                         </div>
-
                     </div>
                     <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
                 </div>
@@ -30,12 +29,12 @@
                             <thead>
                                 <tr>
                                     <th class="border-top-0" width="5%">ID</th>
-                                    <th class="border-top-0" width="20%">Name</th>
-                                    <th class="border-top-0" width="20%">Email</th>
-                                    <th class="border-top-0" width="10%">Phone</th>
-                                    <th class="border-top-0" width="20%">Address</th>
-                                    <th class="border-top-0" width="15%">Web</th>
-                                    <th class="border-top-0" width="10%">Action</th>
+                                    <th class="border-top-0" width="20%">{{__('customer.name')}}</th>
+                                    <th class="border-top-0" width="20%">{{__('customer.email')}}</th>
+                                    <th class="border-top-0" width="10%">{{__('customer.mobile')}}</th>
+                                    <th class="border-top-0" width="20%">{{__('customer.address')}}</th>
+                                    <th class="border-top-0" width="15%">{{__('customer.web')}}</th>
+                                    <th class="border-top-0" width="10%">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +54,7 @@
     <script>
         var deleteMe = function(id){
 
-            if(confirm('Are you sure you want to delete?')){
+            if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
                     url: "{{ url('/customers') }}/"+id,
@@ -92,10 +91,16 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
+
+                "language": {
+                    "search": "{{__('messages.search')}}"
+                },
+                "bInfo": false,
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,
                 "pageLength": 10,
+                "bLengthChange" : false,
                 "aoColumnDefs": [{
 
                     "aTargets": [6],
@@ -144,6 +149,11 @@
                     // { "data": "actions" }
                 ],
                 drawCallback: deleteMe|viewCustomer,
+                "fnDrawCallback": function(oSettings) {
+                    if ($('#listingTable tr').length < 11) {
+                        $('.dataTables_paginate').hide();
+                    }
+                }
 
             });
 

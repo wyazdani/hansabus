@@ -149,9 +149,9 @@
                     $.each(t.attachments, function(index, item) {
 
                         if(item.file.includes('.pdf') || item.file.includes('.txt') || item.file.includes('.doc')){
-                            attachments += '<li><a href="/attachments/'+item.file+'" target="_blank">'+item.file+'</a></li>';
+                            attachments += '<li><a href="{{ url('/attachments') }}/'+item.file+'" target="_blank">'+item.file+'</a></li>';
                         }else{
-                            attachments += '<li><img src="/attachments/'+item.file+'" style="display:block; width: 100%; height:auto;"></li>';
+                            attachments += '<li><img src="{{ url('/attachments') }}/'+item.file+'" style="display:block; width: 100%; height:auto;"></li>';
                         }
 
                     });

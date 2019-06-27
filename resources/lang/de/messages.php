@@ -26,7 +26,13 @@
         'download'=>'Herunterladen',
         'all_rights_reserved'=>'Alle Rechte vorbehalten',
         'yes/no'=>'Ja / Nein',
-        'hire_a_driver'=>'Mieten Sie einen Fahrer'
+        'hire_a_driver'=>'Mieten Sie einen Fahrer',
+
+        'copyright'=>'Urheberrechte ©',
+        'coach'=>'Reisebus',
+        'management'=>'Verwaltung',
+        'search'=>'Suche',
+        'no_records'=>'Keine Aufzeichnungen gefunden.',
 
     ];
 

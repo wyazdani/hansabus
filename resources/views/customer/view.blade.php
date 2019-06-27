@@ -15,16 +15,16 @@
                         <dt style="width:25%">Email:</dt>
                         <dd id="v_email"></dd>
 
-                        <dt style="width:25%">{{__('messages.cell_number')}}:</dt>
+                        <dt style="width:25%">{{__('customer.mobile')}}:</dt>
                         <dd id="v_phone"></dd>
 
-                        <dt style="width:25%">{{__('messages.address')}}:</dt>
+                        <dt style="width:25%">{{__('customer.address')}}:</dt>
                         <dd id="v_address"></dd>
 
-                        <dt style="width:25%">{{__('messages.company_web')}}:</dt>
+                        <dt style="width:25%">{{__('customer.web')}}:</dt>
                         <dd id="v_url"></dd>
 
-                        <dt style="width:25%">{{__('messages.is_active')}}:</dt>
+                        <dt style="width:25%">{{__('customer.is_active')}}:</dt>
                         <dd id="v_status"></dd>
 
                     </dl>

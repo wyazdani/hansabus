@@ -16,7 +16,7 @@
 
                     <div class="col-sm-6 col-md-6 text-right">
                         <div class="dataTables_filter"><a href="{{ url('/vehicles') }}" class="btn btn-info ml-2 mt-2">
-                                {{__('messages.vehicle_list')}}
+                                {{__('vehicle.heading.index')}}
                                 <i class="ft-arrow-right mt-3"></i></a>
                         </div>
                     </div>
@@ -268,7 +268,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12 text-center">
+                        <div class="col-md-12 text-left">
                             <div class="form-actions">
                                 @if(!empty($vehicle->id))
                                     <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">

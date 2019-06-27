@@ -14,7 +14,7 @@
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('messages.add_vehicle_type')}}</a>
+								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('vehicle_type.heading.add')}}</a>
 							</div>
 						</div>
 					</div>
@@ -69,9 +69,10 @@
 
 			var tableDiv = $('#listingTable').DataTable({
 
+				"bInfo": false,
 				"processing": true,
 				"serverSide": true,
-				"searchable" : true,
+				"searchable": true,
 				"pageLength": 10,
 				"bLengthChange" : false,
 				"aoColumnDefs": [{

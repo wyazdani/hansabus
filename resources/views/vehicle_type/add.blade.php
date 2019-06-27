@@ -14,7 +14,7 @@
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="{{ route('vehicle-type.index') }}" class="btn btn-info ml-2 mt-2">{{__('messages.vehicle_type_list')}}
+							<div class="dataTables_filter"><a href="{{ route('vehicle-type.index') }}" class="btn btn-info ml-2 mt-2">{{__('vehicle_type.heading.index')}}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>

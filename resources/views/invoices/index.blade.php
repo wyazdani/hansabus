@@ -73,7 +73,7 @@
                                         <input type="hidden" name="from_date" id="fromDate" value="">
                                         <input type="hidden" name="to_date" id="toDate" value="">
                                         <input type="hidden" name="id" id="ID" value="">
-                                        <input type="submit" value="Download" class="btn btn-info ml-2">
+                                        <input type="submit" value="{{__('messages.download')}}" class="btn btn-info ml-2">
                                     </form>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                 '<td>'+r.data[i].vehicle.name+'</td>' +
                                 '<td>'+r.data[i].from_date+'</td>' +
                                 '<td>'+r.data[i].to_date+'</td>' +
-                                '<td>'+r.data[i].driver.name+'</td>' +
+                                '<td>'+r.data[i].driver.driver_name+'</td>' +
                                 '<td>'+r.data[i].passengers+'</td>' +
                                 '<td>'+r.data[i].price+'</td>' +
                             '</tr>';

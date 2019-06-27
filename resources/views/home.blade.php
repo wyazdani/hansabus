@@ -124,11 +124,12 @@
 										@elseif($tour->status == 3) {{ 'Canceled' }}
 										@endif
 									</td>
+
 								</tr>
 							@endforeach
 							@else
-								<tr><td colspan="9" style="text-align: center">{{__('messages.no_records')}}</td></tr>
-							@endif
+								<tr><td colspan="9" style="text-align: center">{{__('messages.no_record')}}</td></tr>
+								@endif
 							</tbody>
 
 						</table>

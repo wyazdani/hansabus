@@ -91,10 +91,6 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
-
-                "language": {
-                    "search": "{{__('messages.search')}}"
-                },
                 "bInfo": false,
                 "processing": true,
                 "serverSide": true,

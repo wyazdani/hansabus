@@ -19,16 +19,41 @@ use Illuminate\Support\Facades\DB;
 class ToursController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
+    public function calendar(Request $request)
+    {
+        $pageTitle = __('messages.tour_calendar');
+        $rows = Tour::where('status','>',1)->get(
+            ['id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+
+        $data=[]; $i=0;
+        foreach($rows as $row){
+            $row->vehicle;
+            $row->driver;
+            $row->customer;
+            // ' passengers on '.$row->vehicle->name.'. driver: '.$row->driver->driver_name
+            $data[$i]['title'] = 'Tour # '.$row->id;
+            $data[$i]['start'] = $row->from_date;
+            $data[$i]['end'] = $row->to_date;
+            $data[$i]['url'] = url('/tour/'.$row->id);
+            $i++;
+        }
+
+        return view('tours.calendar',compact('data','pageTitle'));
+    }
     public function getList(Request $request)
     {
-
+//        dd($request->all());
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
         }
 
-        $query = Tour::where('id','>',0);
+        $query = Tour::where('status','>',0);
         $start =0;
         if(!empty($request->input('start'))){
 
@@ -40,33 +65,52 @@ class ToursController extends Controller
         if(!empty($request->input('length'))){
             $limit = $request->input('length');
         }
-        $search = '';
-        if(!empty($request->input('q'))){
 
-            $search = $request->input('q');
-        }else if(!empty($request->input('search.value'))){
-
-            $search = $request->input('search.value');
+        if(!empty($request->id)){
+            $query = $query->where('id',(int)$request->id);
+        }
+        if(!empty($request->customer_id)){
+            $query = $query->where('customer_id',$request->customer_id);
+        }
+        if(!empty($request->driver_id)){
+            $query = $query->where('driver_id',$request->driver_id);
+        }
+        if(!empty($request->vehicle_id)){
+            $query = $query->where('vehicle_id',$request->vehicle_id);
         }
 
-        if(!empty($search)){
+        $from =''; $to ='';
+        if(!empty($request->from_date)){
 
-            $query = Tour::where('name', 'LIKE','%'.$search.'%')
-                ->orWhere('email', 'LIKE','%'.$search.'%')
-                ->orWhere('phone', 'LIKE','%'.$search.'%')
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('url', 'LIKE',"%{$search}%");
+            $from = date('Y-m-d h:i',strtotime($request->from_date));
         }
+        if(!empty($request->to_date)){
+            $to = date('Y-m-d h:i',strtotime($request->to_date));
+        }
+        if(!empty($from) && !empty($to)){
+
+            $query = $query->whereBetween('from_date', [$from, $to]);
+
+        }elseif(!empty($from)){
+
+            $query = $query->where('from_date','>=',$from);
+        }elseif(!empty($to)){
+
+            $query = $query->where('from_date','<=',$to);
+        }
+
         $recordsTotal = $query->count();
         $rows = $query->offset($start)->limit($limit)->get([
-            'id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
         $data=[];
         foreach($rows as $row){
             $row->vehicle;
             $row->driver;
             $row->customer;
-            $row['action']='';
+            $row->from_date = date('d/m/Y h:i',strtotime($row->from_date));
+            $row->to_date = date('d/m/Y h:i',strtotime($row->to_date));
+//            $row['action']='';
             $data[] = $row;
         }
         $recordsFiltered = $query->offset($start)->limit($limit)->count();
@@ -75,20 +119,26 @@ class ToursController extends Controller
     }
     public function index()
     {
-        $pageTitle = 'Tours';
-        $tours = Tour::all();
-        return view('tours.index',compact('tours','pageTitle'));
+        $pageTitle = __('messages.tours');
+//        $tours = Tour::all();
+
+        $vehicles = Vehicle::where('status','1')->get(['name','id']);
+        $customers = Customer::where('status','1')->get(['name','id']);
+        $drivers = Driver::where('status','1')->get(['driver_name','id']);
+
+        return view('tours.index',compact('drivers','customers','vehicles','pageTitle'));
     }
 
     public function create()
     {
-        $pageTitle = 'Add Tour';
+        $pageTitle = __('messages.add_tour');
         $general = new General();
         $randomKey = $general->randomKey();
-        $vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
+        //$vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
         $tour_statuses = TourStatus::get(['id','name']);
         $customers = Customer::get(['name','id']);
         $drivers = Driver::get(['driver_name','id']);
+        $vehicles = Vehicle::where('status','=',1)->get();
 
 
         return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));
@@ -103,17 +153,25 @@ class ToursController extends Controller
     public function store(Request $request)
     {
         $rules = [
+            'status' => 'required|integer',
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
             'driver_id' => 'required|integer',
-            'price' => 'required|integer',
+            'price' => 'required|numeric|digits_between:1,20',
             'passengers' => 'required|integer',
             'guide' => 'required',
         ];
         $messages = [
-            // 'title.required' => 'Title is required',
+            'customer_id.required' => 'Please select customer.',
+            'vehicle_id.required' => 'Please select vehicle.',
+            'from_date.required' => 'Please provide tour starting date/time.',
+            'to_date.required' => 'Please provide tour end date/time.',
+            'driver_id.required' => 'Please select driver.',
+            'price.required' => 'Please provide tour price.',
+            'passengers.required' => 'Please provide number of passengers.',
+            'guide.required' => 'Please provide guide name.',
         ];
         $this->validate(request(), $rules, $messages);
 
@@ -122,8 +180,8 @@ class ToursController extends Controller
         $tour->customer_id = (int)$request->customer_id;
         $tour->vehicle_id = (int)$request->vehicle_id;
         $tour->driver_id = (int)$request->driver_id;
-        $tour->from_date = $request->from_date;
-        $tour->to_date = $request->to_date;
+        $tour->from_date = date('Y-m-d h:i',strtotime($request->from_date));
+        $tour->to_date = date('Y-m-d h:i',strtotime($request->to_date));
         $tour->passengers = (int)$request->passengers;
         $tour->price = (int)$request->price;
         $tour->guide = $request->guide;
@@ -149,18 +207,24 @@ class ToursController extends Controller
         return redirect('/tours')->with('success', 'Tour successfully created.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function detail(Tour $Tour)
+    {
+        $pageTitle = 'Tour # '.$Tour->id;
+        $Tour->vehicle;
+        $Tour->driver;
+        $Tour->customer;
+        $Tour->attachments;
+
+        return view('tours.detail',compact('pageTitle','Tour'));
+    }
     public function show(Tour $Tour)
     {
         $Tour->vehicle;
         $Tour->driver;
         $Tour->customer;
         $Tour->attachments;
+        $Tour->from_date = date('d/m/Y h:i A',strtotime($Tour->from_date));
+        $Tour->to_date = date('d/m/Y h:i A',strtotime($Tour->to_date));
         return $Tour;
     }
 
@@ -172,7 +236,7 @@ class ToursController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Edit Tour';
+        $pageTitle = __('messages.edit_tour');
         $tour = Tour::find($id);
 
         $general = new General();
@@ -199,17 +263,25 @@ class ToursController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
+            'status' => 'required|integer',
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
             'driver_id' => 'required|integer',
-            'price' => 'required|integer',
+            'price' => 'required|numeric|digits_between:1,20',
             'passengers' => 'required|integer',
             'guide' => 'required',
         ];
         $messages = [
-            // 'title.required' => 'Title is required',
+            'customer_id.required' => 'Please select customer.',
+            'vehicle_id.required' => 'Please select vehicle.',
+            'from_date.required' => 'Please provide tour starting date/time.',
+            'to_date.required' => 'Please provide tour end date/time.',
+            'driver_id.required' => 'Please select driver.',
+            'price.required' => 'Please provide tour price.',
+            'passengers.required' => 'Please provide number of passengers.',
+            'guide.required' => 'Please provide guide name.',
         ];
         $this->validate(request(), $rules, $messages);
 
@@ -219,8 +291,8 @@ class ToursController extends Controller
         $tour->customer_id = (int)$request->customer_id;
         $tour->vehicle_id = (int)$request->vehicle_id;
         $tour->driver_id = (int)$request->driver_id;
-        $tour->from_date = $request->from_date;
-        $tour->to_date = $request->to_date;
+        $tour->from_date = date('Y-m-d h:i',strtotime($request->from_date));
+        $tour->to_date = date('Y-m-d h:i',strtotime($request->to_date));
         $tour->passengers = (int)$request->passengers;
         $tour->price = (int)$request->price;
         $tour->guide = $request->guide;

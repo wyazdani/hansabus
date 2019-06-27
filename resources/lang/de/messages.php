@@ -17,22 +17,15 @@
         'reports' =>  'Berichte',
         'search'  =>  'Suche',
         'want_to_delete'=>'Sind Sie sicher, dass Sie löschen möchten?',
-
-        'save_add_another'=>'Weitere speichern und hinzufügen',
-        'update'=>'Aktualisieren',
         'save'=>'Sparen',
+        'save_add_another'=>'Sparen & neue hinzufügen',
         'cancel'=>'Stornieren',
-
         'download'=>'Herunterladen',
         'all_rights_reserved'=>'Alle Rechte vorbehalten',
         'yes/no'=>'Ja / Nein',
-        'hire_a_driver'=>'Mieten Sie einen Fahrer',
-
+        'no_record'=>'Keine Daten in der Tabelle verfügbar',
         'copyright'=>'Urheberrechte ©',
         'coach'=>'Reisebus',
         'management'=>'Verwaltung',
-        'search'=>'Suche',
-        'no_records'=>'Keine Aufzeichnungen gefunden.',
-
     ];
 

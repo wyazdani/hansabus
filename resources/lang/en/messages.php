@@ -16,6 +16,8 @@
         'reports' =>  'Reports',
         'search' =>      'Search',
         'want_to_delete'=>'Are you sure you want to delete?',
+        'save_add_another'=>'Save & add Another',
+        'update'=>'Update',
         'save'=>'Save',
         'cancel'=>'Cancel',
         'download'=>'Download',

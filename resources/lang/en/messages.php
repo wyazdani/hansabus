@@ -26,4 +26,7 @@
         'copyright'=>'Copyright',
         'coach'=>'Coach',
         'management'=>'Management',
+        'update'=>'Update',
+        'yes'=>'Yes',
+        'no'=>'No'
     ];

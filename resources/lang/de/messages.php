@@ -27,5 +27,8 @@
         'copyright'=>'Urheberrechte ©',
         'coach'=>'Reisebus',
         'management'=>'Verwaltung',
+        'update'=>'Aktualisieren',
+        'yes'=>'Ja',
+        'no'=>'Nein'
     ];
 

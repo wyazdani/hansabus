@@ -12,27 +12,24 @@
 			<div class="modal-body row">
 				<div class="col-md-6">
 					<dl>
-						<dt>Driver:</dt>
+						<dt>{{__('tour.driver')}}:</dt>
 						<dd id="v_driver"></dd>
-						<dt>Passengers:</dt>
+						<dt>{{__('tour.passengers')}}:</dt>
 						<dd id="v_passengers"></dd>
 
-						<dt>Vehicle:</dt>
+						<dt>{{__('tour.vehicle')}}:</dt>
 						<dd id="v_vehicle"></dd>
-						<dt>Guide:</dt>
+						<dt>{{__('tour.guide')}}:</dt>
 						<dd id="v_guide"></dd>
-						<dt>Price:</dt>
+						<dt>{{__('tour.price')}}:</dt>
 						<dd id="v_price"></dd>
 						<dt>Status:</dt>
 						<dd id="v_status"></dd>
 					</dl>
 				</div>
 				<div class="col-md-6">
-
 				</div>
 				<div class="col-md-12" id="v_attachments">
-
-
 				</div>
 			</div>
 		</div>

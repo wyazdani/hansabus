@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Validator;
 class VehicleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function getList(Request $request)
     {
-
 
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -75,36 +78,15 @@ class VehicleController extends Controller
     {
         $pageTitle = 'Vehicles';
 
-        $query = Vehicle::where('id', '>',0);
-
-        $search =  '';
-        if(!empty($request->input('q'))){
-
-            $search = $request->input('q');
-        }
-
-        if(!empty($search)){
-
-            $query = Vehicle::where('name', 'LIKE','%'.$search.'%')
-                ->orWhere('make', 'LIKE','%'.$search.'%')
-                ->orWhere('year', 'LIKE','%'.$search.'%')
-                ->orWhere('registrationNumber', 'LIKE',"%{$search}%")
-                ->orWhere('engineNumber', 'LIKE',"%{$search}%")
-                ->orWhere('licensePlate', 'LIKE',"%{$search}%")
-                ->orWhere('transmission', 'LIKE',"%{$search}%");
-        }
-
-        $vehicles = $query->paginate(4);
-
-        return view('vehicle.index', compact('vehicles', 'pageTitle'));
+        return view('vehicle.index', compact('pageTitle'));
     }
 
-    public function status(Vehicle $vehicle)
+    public function status(Vehicle $Vehicle)
     {
         // dd($vehicle);
-        $vehicle->status = !$vehicle->status;
-        $vehicle->save();
-        return redirect()->back()->with('info','Vehicle # '.$vehicle->id.' status updated!');
+        $Vehicle->status = !$Vehicle->status;
+        $Vehicle->save();
+        return redirect()->back()->with('info','Vehicle # '.$Vehicle->id.' status updated!');
     }
 
     /**
@@ -237,7 +219,7 @@ class VehicleController extends Controller
         $this->validate(request(), $rules, $messages);
 
         $msg = 'Vehicle updated successfully.';
-        // $vehicle = Vehicle::find($id);
+         $vehicle = Vehicle::find($request->id);
         $vehicle->name = $request->name;
         $vehicle->year = $request->year;
         $vehicle->make = $request->make;
@@ -252,12 +234,12 @@ class VehicleController extends Controller
         $status = true;
         $ac = $sunroof = $radio = $phoneCharging = false;
 
-        if ($request->ac) $ac = true;
+        if ($request->AC) $ac = true;
         if ($request->sunroof) $sunroof = true;
         if ($request->radio) $radio = true;
         if ($request->phoneCharging) $phoneCharging = true;
 
-        $vehicle->ac = $ac;
+        $vehicle->AC = $ac;
         $vehicle->radio = $radio;
         $vehicle->sunroof = $sunroof;
         $vehicle->phoneCharging = $phoneCharging;

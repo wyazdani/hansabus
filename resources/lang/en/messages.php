@@ -23,4 +23,5 @@
         'download'=>'Download',
         'all_rights_reserved'=>'All Rights Reserved',
         'yes/no'=>'Yes / No',
+        'hire_a_driver'=>'Hire a Driver'
     ];

@@ -26,6 +26,7 @@
         'download'=>'Herunterladen',
         'all_rights_reserved'=>'Alle Rechte vorbehalten',
         'yes/no'=>'Ja / Nein',
+        'hire_a_driver'=>'Mieten Sie einen Fahrer'
 
     ];
 

@@ -268,7 +268,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12 text-center">
+                        <div class="col-md-12 text-left">
                             <div class="form-actions">
                                 @if(!empty($vehicle->id))
                                     <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">

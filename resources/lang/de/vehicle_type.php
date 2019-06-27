@@ -7,6 +7,7 @@ return [
     ],
     /* form / listing */
     'name'=>'Name',
-    'is_active'=>'ist aktiv'
+    'is_active'=>'ist aktiv',
+    'add_new_type_message'=>'Neuer Fahrzeugtyp wurde hinzugefügt.',
 
 ];

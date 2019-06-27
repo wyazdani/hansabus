@@ -29,6 +29,13 @@
         'management'=>'Verwaltung',
         'update'=>'Aktualisieren',
         'yes'=>'Ja',
-        'no'=>'Nein'
+        'no'=>'Nein',
+        'updated'=>'Aktualisierte',
+        'record'=>'Aufzeichnung',
+        'record_created'=>'Datensatz erfolgreich erstellt.',
+        'driver_created'=>'Neuer Treiber wurde hinzugefügt.',
+        'tour_created'=>'Tour successfully created.',
+        'driver_updated'=>'Treiber wurde aktualisiert.',
+        'tour_updated'=>'Tour erfolgreich aktualisiert.',
     ];
 

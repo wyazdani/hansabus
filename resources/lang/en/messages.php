@@ -29,5 +29,12 @@
         'management'=>'Management',
         'update'=>'Update',
         'yes'=>'Yes',
-        'no'=>'No'
+        'no'=>'No',
+        'updated'=>'Updated',
+        'record'=>'Record',
+        'record_created'=>'Record created successfully.',
+        'driver_created'=>'Driver created successfully.',
+        'tour_created'=>'Tour successfully created.',
+        'driver_updated'=>'Driver has been updated.',
+        'tour_updated'=>'Tour successfully updated.',
     ];

@@ -95,7 +95,7 @@ class VehicleTypeController extends Controller
     {
         $VehicleType->status = !$VehicleType->status;
         $VehicleType->save();
-        return redirect()->back()->with('info','Vehicle type # '.$VehicleType->id.' status updated!');
+        return redirect()->back()->with('info','Vehicle type # '.$VehicleType->id.trans('messages.updated'));
     }
 
 

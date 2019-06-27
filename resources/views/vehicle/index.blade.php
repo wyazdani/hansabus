@@ -59,7 +59,7 @@
             if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
-                    url: '/vehicles/'+id,
+                    url: 'vehicles/'+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {

@@ -129,9 +129,9 @@ class CustomerController extends Controller
         if ($customer->save()) {
 
             if ($request->returnFlag == 1) {
-                return redirect('/customers')->with('success','Record created successfully.');
+                return redirect('/customers')->with('success', trans('messages.record_created'));
             } else {
-                return redirect('/customers/create')->with('success','Record created successfully.');
+                return redirect('/customers/create')->with('success',trans('messages.record_created'));
             }
 
         }
@@ -202,12 +202,12 @@ class CustomerController extends Controller
         if ($customer->save()) {
 
             if ($request->returnFlag == 1) {
-                return redirect('/customers')->with('success','Record # '.$customer->id.' updated!');
+                return redirect('/customers')->with('success',trans('messages.customers').' # '.$customer->id.' '. trans('messages.record'));
             } else {
-                return redirect('/customers/create')->with('success','Record # '.$customer->id.' updated!');
+                return redirect('/customers/create')->with('success',trans('messages.customers').' # '.$customer->id.' '. trans('messages.record'));
             }
         }
-        return redirect()->back()->with('success','Customer # '.$customer->id.' updated!');
+        return redirect()->back()->with('success',trans('messages.customers').' # '.$customer->id.' '. trans('messages.record'));
 
     }
 

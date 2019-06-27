@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" class="loading">
+<html lang="en" class="loading">
 @include('layouts.head')
 
 @if(Auth::check())

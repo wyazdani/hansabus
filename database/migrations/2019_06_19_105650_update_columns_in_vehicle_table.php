@@ -23,14 +23,14 @@ class UpdateColumnsInVehicleTable extends Migration
             $table->string('make',100)->nullable()->change();
             $table->string('engineNumber',100)->nullable()->change();
             $table->string('licensePlate',50)->nullable()->change();
-            $table->integer('seats')->nullable()->change();
+            $table->integer('seats')->default(0)->change();
             $table->string('color')->nullable()->change();
             $table->string('registrationNumber',100)->nullable()->change();
-            $table->boolean('AC')->default(0)->change()->nullable();
-            $table->boolean('radio')->default(0)->change()->nullable();
-            $table->boolean('sunroof')->default(0)->change()->nullable();
-            $table->boolean('phoneCharging')->default(0)->change()->nullable();
-            $table->boolean('status')->default(0)->change()->nullable();
+            $table->boolean('AC')->default(0)->change();
+            $table->boolean('radio')->default(0)->change();
+            $table->boolean('sunroof')->default(0)->change();
+            $table->boolean('phoneCharging')->default(0)->change();
+            $table->boolean('status')->default(0)->change();
         });
     }
 

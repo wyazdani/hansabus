@@ -10,7 +10,5 @@
 <script src="{{ asset('js/dropzone.min.js') }}"></script>
 <script src="{{ asset('js/app-sidebar.js') }}"></script>
 <script src="{{ asset('js/notification-sidebar.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>

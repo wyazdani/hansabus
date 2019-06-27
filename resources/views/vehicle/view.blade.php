@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade text-left" tabindex="-1" id="viewModel"
-     role="dialog" aria-labelledby="myModalLabel17"  aria-hidden="true">
+role="dialog" aria-labelledby="myModalLabel17"  aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,44 +12,44 @@
             <div class="modal-body row">
                 <div class="col-md-6">
                     <dl>
-                        <dt>{{__('vehicle.make')}}</dt>
+                        <dt>Make / Model:</dt>
                         <dd id="v_make"></dd>
-
-                        <dt>{{__('vehicle.year')}}</dt>
+                        
+                        <dt>Year of Menufacture:</dt>
                         <dd id="v_year"></dd>
 
-                        <dt>{{__('vehicle.color')}}:</dt>
+                        <dt>Color:</dt>
                         <dd id="v_color"></dd>
 
 
-                        <dt>{{__('vehicle.vehicle_type')}}:</dt>
+                        <dt>Type Of Vehicle:</dt>
                         <dd id="v_vehicle_type"></dd>
-                        <dt>{{__('vehicle.license_plate')}}:</dt>
+                        <dt>License Plate:</dt>
                         <dd id="v_licensePlate"></dd>
-                        <dt>{{__('vehicle.reg_number')}}:</dt>
+                        <dt>Vehicle Reg Number:</dt>
                         <dd id="v_registrationNumber"></dd>
-
-                        <dt>{{__('vehicle.engine_number')}}:</dt>
+                        
+                        <dt>Engine Number:</dt>
                         <dd id="v_engineNumber"></dd>
-                        <dt>{{__('vehicle.seats')}}:</dt>
+                        <dt>No. of Seat:</dt>
                         <dd id="v_seats"></dd>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     <dl>
-                        <dt>{{__('vehicle.transmission')}}:</dt>
+                        <dt>Transmission:</dt>
                         <dd id="v_transmission"></dd>
 
                         <dt>AC:</dt>
                         <dd id="v_AC"></dd>
                         <dt>Radio:</dt>
                         <dd id="v_radio"></dd>
-                        <dt>{{__('vehicle.sunroof')}}:</dt>
+                        <dt>Sunroof:</dt>
                         <dd id="v_sunroof"></dd>
-                        <dt>{{__('vehicle.phone_charging')}}:</dt>
-                        <dd id="v_phoneCharging">{{__('messages.yes')}}</dd>
+                        <dt>Phone Charging Jack:</dt>
+                        <dd id="v_phoneCharging">Yes</dd>
 
-                        <dt>{{__('vehicle.is_active')}}:</dt>
+                        <dt>Is Active:</dt>
                         <dd id="v_status"></dd>
                     </dl>
                 </div>

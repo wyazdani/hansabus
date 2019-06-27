@@ -16,9 +16,9 @@ class AttachmentsTable extends Migration
         Schema::create('attachments', function ($table) {
 
             $table->increments('id');
-            $table->string('file')->default('')->nullable();
-            $table->string('ext',10)->default('')->nullable();
-            $table->string('temp_key')->default('')->nullable();
+            $table->string('file')->default('');
+            $table->string('ext',10)->default('');
+            $table->string('temp_key')->default('');
             $table->timestamps();
         });
     }

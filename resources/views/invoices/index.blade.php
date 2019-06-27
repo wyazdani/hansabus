@@ -73,7 +73,7 @@
                                         <input type="hidden" name="from_date" id="fromDate" value="">
                                         <input type="hidden" name="to_date" id="toDate" value="">
                                         <input type="hidden" name="id" id="ID" value="">
-                                        <input type="submit" value="{{__('messages.download')}}" class="btn btn-info ml-2" id="download">
+                                        <input type="submit" value="{{__('messages.download')}}" class="btn btn-info ml-2">
                                     </form>
                                 </div>
                             </div>
@@ -107,25 +107,29 @@
                 success: function(r) {
                     var html = '';
 
-                    var i; var total=0;
-                    for (i=0; i < r.data.length; ++i) {
+                    var i;
+                    var total = 0;
+
+                    if (r.data.length) {
+
+                    for (i = 0; i < r.data.length; ++i) {
 
                         total += parseInt(r.data[i].price);
                         html +=
                             '<tr>' +
-                                '<td>'+r.data[i].id+'</td>' +
-                                '<td>'+r.data[i].vehicle.name+'</td>' +
-                                '<td>'+r.data[i].from_date+'</td>' +
-                                '<td>'+r.data[i].to_date+'</td>' +
-                                '<td>'+r.data[i].driver.driver_name+'</td>' +
-                                '<td>'+r.data[i].passengers+'</td>' +
-                                '<td>'+r.data[i].price+'</td>' +
+                            '<td>' + r.data[i].id + '</td>' +
+                            '<td>' + r.data[i].vehicle.name + '</td>' +
+                            '<td>' + r.data[i].from_date + '</td>' +
+                            '<td>' + r.data[i].to_date + '</td>' +
+                            '<td>' + r.data[i].driver.driver_name + '</td>' +
+                            '<td>' + r.data[i].passengers + '</td>' +
+                            '<td>' + r.data[i].price + '</td>' +
                             '</tr>';
                     }
                     html +=
                         '<tr>' +
                         '<td colspan="6" style="text-align: right;">Total:</td>' +
-                        '<td>'+total+'</td>' +
+                        '<td>' + total + '</td>' +
                         '</tr>';
 
                     $('#toursDiv').html(html);
@@ -135,6 +139,8 @@
                     $('#toDate').val($('#to_date').val());
                     $('#ID').val($('#id').val());
                     $('.downloadForm').show();
+
+                }
 
                     // console.log(html);
                 }
@@ -167,15 +173,5 @@
 
         });
 
-        function myFunction() {
-            var x = document.getElementById("customer_id").rows.length;
-            if (x == 0) {
-
-                document.getElementById("download").disabled = true;
-            } else {
-
-                document.getElementById("download").disabled = false;
-            }
-        }
     </script>
 @endsection

@@ -81,12 +81,12 @@ class VehicleController extends Controller
         return view('vehicle.index', compact('pageTitle'));
     }
 
-    public function status(Vehicle $vehicle)
+    public function status(Vehicle $Vehicle)
     {
         // dd($vehicle);
-        $vehicle->status = !$vehicle->status;
-        $vehicle->save();
-        return redirect()->back()->with('info','Vehicle # '.$vehicle->id.' status updated!');
+        $Vehicle->status = !$Vehicle->status;
+        $Vehicle->save();
+        return redirect()->back()->with('info','Vehicle # '.$Vehicle->id.' status updated!');
     }
 
     /**

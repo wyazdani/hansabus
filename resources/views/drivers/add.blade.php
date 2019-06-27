@@ -9,12 +9,13 @@
 
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">@if(!empty($driver->id)) {{ 'Update' }} @endif  Driver</h4>
+								<h4 class="card-title">{{ (!empty($driver->id))?__('driver.heading.edit'):__('driver.heading.add') }}
+								</h4>
 							</div>
 						</div>
 
 						<div class="col-sm-6 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="{{ route('v-drivers.index') }}" class="btn btn-info ml-2 mt-2">{{__('messages.driver_list')}}
+							<div class="dataTables_filter"><a href="{{ route('v-drivers.index') }}" class="btn btn-info ml-2 mt-2">{{__('driver.heading.index')}}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -47,7 +48,7 @@
 															<div class="row">
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput1">{{__('messages.driver_name')}}</label>
+																		<label for="projectinput1">{{__('driver.name') }}</label>
 																		<input type="text" name="driver_name"
 																			   class="{{($errors->has('driver_name')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->driver_name))?$driver->driver_name:old('driver_name') }}" >
@@ -55,7 +56,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput2">{{__('messages.mobile_no')}}.</label>
+																		<label for="projectinput2">{{__('driver.mobile') }}</label>
 																		<input type="number" name="mobile_number"
 																			   class="{{($errors->has('mobile_number')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->mobile_number))?$driver->mobile_number:old('mobile_number') }}" >
@@ -66,7 +67,7 @@
 															<div class="row">
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput3">{{__('messages.driver_license')}}</label>
+																		<label for="projectinput3">{{__('driver.license') }}</label>
 																		<input type="text" name="driver_license"
 																			   class="{{($errors->has('driver_license')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->driver_license))?$driver->driver_license:old('driver_license') }}">
@@ -74,7 +75,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput4">NIN No.</label>
+																		<label for="projectinput4">{{__('driver.nin') }}</label>
 																		<input type="number" name="nic"
 																			   class="{{($errors->has('nic')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->nic))?$driver->nic:old('nic') }}" >
@@ -86,7 +87,7 @@
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label
-																				for="projectinput3">{{__('messages.address')}}</label>
+																				for="projectinput3">{{__('driver.address') }}</label>
 																		<input type="text" name="address"
 																			   class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->address))?$driver->address:old('address') }}" >
@@ -94,7 +95,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="projectinput4">{{__('messages.phone')}}</label>
+																		<label for="projectinput4">{{__('driver.phone') }}</label>
 																		<input type="number"  name="phone"
 																			   class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($driver->phone))?$driver->phone:old('phone') }}">
@@ -103,7 +104,7 @@
 															</div>
 
 															<div class="form-group">
-																<label for="projectinput8">{{__('messages.other_details')}}</label>
+																<label for="projectinput8">{{__('driver.other_details') }}</label>
 																<textarea rows="5" name="other_details"
 																		  class="{{($errors->has('other_details')) ?'form-control error_input':'form-control'}}"
 																>{{ (!empty($driver->other_details))?$driver->other_details:old('other_details') }}</textarea>

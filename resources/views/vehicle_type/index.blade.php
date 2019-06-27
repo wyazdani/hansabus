@@ -8,7 +8,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">{{__('messages.vehicle_type')}}</h4>
+								<h4 class="card-title">{{__('vehicle_type.heading.index')}}</h4>
 							</div>
 						</div>
 
@@ -30,8 +30,8 @@
 									<thead>
 									<tr>
 										<th class="border-top-0" width="10%">ID</th>
-										<th class="border-top-0" width="80%">Name</th>
-										<th class="border-top-0" width="10%">{{__('messages.action')}}</th>
+										<th class="border-top-0" width="80%">{{__('vehicle_type.name')}}</th>
+										<th class="border-top-0" width="10%">&nbsp;</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -50,7 +50,7 @@
 	<script>
 		var deleteMe = function(id){
 
-			if(confirm('Are you sure you want to delete?')){
+			if(confirm('{{__("messages.want_to_delete")}}')){
 
 				$.ajax({
 					url: 'vehicle-type/'+id,

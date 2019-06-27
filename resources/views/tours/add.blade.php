@@ -8,11 +8,11 @@
 					<div class="row">
 						<div class="col-sm-6 col-md-8">
 							<div class="card-title-wrap bar-primary">
-								<h4 class="card-title">{{ (!empty($tour->id))?'Update':'Add' }}  Tour</h4>
+								<h4 class="card-title">{{ (!empty($tour->id))?__('tour.heading.edit'):__('tour.heading.add') }}</h4>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-4 text-right">
-							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">{{__('messages.tour_list')}}
+							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">{{__('tour.heading.index')}}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 																		<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
 
 																		>
-																			<option value="">- - - {{__('messages.select_one')}} - - -</option>
+																			<option value="">- - - {{__('tour.select_status')}} - - -</option>
 																			@foreach($tour_statuses as $status)
 																				<option value="{{ $status->id  }}"
 																				@if(!empty($tour->status) && $tour->status==$status->id)
@@ -65,7 +65,7 @@
 																</div>
 																<div class="col-md-4">
 																	<div class="form-group">
-																		<label for="customSelect">{{__('messages.customers')}}</label>
+																		<label for="customSelect">{{__('tour.customer')}}</label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
 																			<option value="">- - - {{__('messages.select_customer')}} - - -</option>
 																			@foreach($customers as $customer)
@@ -81,7 +81,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label>{{__('messages.vehicles')}}</label>
+																		<label>{{__('tour.vehicle')}}</label>
 																		<select name="vehicle_id" class="form-control" onchange="getVehicleSeats(this.value);">
 																			<option value="">- - - {{__('messages.select_vehicle')}} - - -</option>
 																			@foreach($vehicles as $vehicle)
@@ -99,7 +99,7 @@
 																</div>
 																<div class="col-md-3">
 																	<div class="form-group">
-																		<label for="fromDate">{{__('messages.from_date')}}</label>
+																		<label for="fromDate">{{__('tour.from')}}</label>
 																		<div class='input-group date'>
 																			<input type='text' name="from_date"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
@@ -110,7 +110,7 @@
 																</div>
 																<div class="col-md-3">
 																	<div class="form-group">
-																		<label for="toDate">{{__('messages.to_date')}}</label>
+																		<label for="toDate">{{__('tour.to')}}</label>
 																		<div class='input-group date'>
 																			<input type='text' name="to_date"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
@@ -121,7 +121,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="customSelect">{{__('messages.drivers')}}</label>
+																		<label for="customSelect">{{__('tour.driver')}}</label>
 																		<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
 																			<option value="">- - - {{__('messages.select_one')}} - - -</option>
 																			@foreach($drivers as $driver)
@@ -138,7 +138,7 @@
 																</div>
 																<div class="col-md-4">
 																	<div class="form-group">
-																		<label for="projectinput3"># {{__('messages.of_passenger')}}</label>
+																		<label for="projectinput3"># {{__('tour.passengers')}}</label>
 																		<input type="number" name="passengers" id="passengers"
 
 																			   onkeyup='if(!passengersCheck(this.value)) this.value="";'
@@ -148,7 +148,7 @@
 																</div>
 																<div class="col-md-4">
 																	<div class="form-group">
-																		<label for="projectinput3">{{__('messages.guide_name')}}</label>
+																		<label for="projectinput3">{{__('tour.guide')}}</label>
 																		<input type="text" name="guide"
 																			   class="{{($errors->has('guide')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
@@ -157,7 +157,7 @@
 
 																<div class="col-md-4">
 																	<div class="form-group">
-																		<label for="projectinput3">{{__('messages.price')}}</label>
+																		<label for="projectinput3">{{__('tour.price')}}</label>
 																		<input type="number" name="price"
 																			   class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
@@ -176,7 +176,7 @@
 
 
 								@if(!empty($attachments))
-									<div class="col-sm-12"><h5>{{__('messages.attachments')}}:</h5></div>
+									<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
 									<div class="row">
 										<div class="col-lg-12">
 											<ul class="upload-list">

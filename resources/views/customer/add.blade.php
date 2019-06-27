@@ -10,12 +10,13 @@
 
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">{{ (!empty($customer->id))?'Update':'Add' }} {{__('messages.customers')}}</h4>
+                                <h4 class="card-title">
+                                    {{ (!empty($customer->id))?__('customer.heading.edit'):__('customer.heading.add') }}</h4>
                             </div>
                         </div>
 
                         <div class="col-sm-6 col-md-6 text-right">
-                            <div class="dataTables_filter"><a href="{{ route('customers.index') }}" class="btn btn-info ml-2 mt-2">{{__('messages.customer_list')}}
+                            <div class="dataTables_filter"><a href="{{ route('customers.index') }}" class="btn btn-info ml-2 mt-2">{{__('customer.heading.index')}}
                                     <i class="ft-arrow-right mt-3"></i></a>
                             </div>
                         </div>
@@ -55,7 +56,7 @@
 
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput1">Name</label>
+                                                                        <label for="projectinput1">{{__('customer.name')}}</label>
 
                                                                         <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->name))?$customer->name:old('name') }}" >
                                                                         @if ($errors->has('name'))
@@ -65,7 +66,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput2">Email</label>
+                                                                        <label for="projectinput2">{{__('customer.email')}}</label>
                                                                         <input type="email" name="email" class="{{($errors->has('email')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->email))?$customer->email:old('email') }}"
                                                                         @if(!empty($customer->id)) {{ 'readonly="readonly"'  }} @endif >
                                                                         @if ($errors->has('email'))
@@ -78,14 +79,14 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput3">{{__('messages.company_web')}}</label>
+                                                                        <label for="projectinput3">{{__('customer.web')}}</label>
                                                                         <input type="text" name="url" class="{{($errors->has('url')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->url))?$customer->url:old('url') }}">
 
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput4">{{__('messages.cell_number')}}</label>
+                                                                        <label for="projectinput4">{{__('customer.mobile')}}</label>
                                                                         <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" maxlength = "11"  value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
                                                                         @if ($errors->has('phone'))
                                                                             <div class="error">{{ $errors->first('phone') }}</div>
@@ -97,7 +98,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput4">{{__('messages.address')}}</label>
+                                                                        <label for="projectinput4">{{__('customer.address')}}</label>
                                                                         <input type="text" name="address" class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->address))?$customer->address:old('address') }}">
                                                                         @if ($errors->has('address'))
                                                                             <div class="error">{{ $errors->first('address') }}</div>
@@ -117,7 +118,7 @@
                                         <div class="col-md-4">
 
                                             <div class="form-group">
-                                                <label>{{__('messages.is_active')}}</label>
+                                                <label>{{__('customer.is_active')}}</label>
                                                 <div class="form-group">
                                                     <div class="display-inline-block">
                                                         <label class="switch">
@@ -161,6 +162,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

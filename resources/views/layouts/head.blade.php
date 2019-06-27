@@ -10,7 +10,8 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ config('app.name', 'E-Coach Managment') }}</title>
+	<title>{{ config('app.name', 'E-Coach') }} @if(!empty($pageTitle)) {{ ' - '.$pageTitle }} @endif</title>
+
 	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
 	<link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon-32.png') }}">
 	<meta name="apple-mobile-web-app-capable" content="yes">

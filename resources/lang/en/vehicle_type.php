@@ -1,0 +1,12 @@
+<?php
+return [
+    'heading'=>[
+            'index'=>'Vehicle Types',
+            'add'=>'Add Vehicle Type',
+            'edit'=>'Edit Vehicle Type'
+    ],
+    /* form / listing */
+    'name'=>'Name',
+    'is_active'=>'Is Active'
+
+    ];

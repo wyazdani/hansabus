@@ -16,7 +16,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalVehicles }}</h3>
-								<span>{{ __('messages.vehicle') }}</span>
+								<span>{{ __('messages.vehicles') }}</span>
 							</div>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalCustomers  }}</h3>
-								<span>{{ __('messages.companies') }}</span>
+								<span>{{ __('messages.customers') }}</span>
 							</div>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title">{{ __('messages.Recent_Add_trip') }}</h4>
+						<h4 class="card-title">{{ __('tour.recent_trips') }}</h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>
@@ -93,11 +93,15 @@
 						<table class="table table-hover table-xl mb-0" id="recent-orders">
 							<thead>
 							<tr>
-								<th class="border-top-0">ID</th>
-								<th class="border-top-0">{{__('messages.vehicle')}}</th>
-								<th class="border-top-0">{{__('messages.drivers')}}</th>
-								<th class="border-top-0">{{__('messages.from_date')}}</th>
-								<th class="border-top-0">{{__('messages.to_date')}}</th>
+								<th class="border-top-0" width="5%">ID</th>
+								<th class="border-top-0" width="15%">{{__('tour.customer')}}</th>
+								<th class="border-top-0" width="15%">{{__('tour.vehicle')}}</th>
+								<th class="border-top-0" width="12%">{{__('tour.from')}}</th>
+								<th class="border-top-0" width="12%">{{__('tour.to')}}</th>
+								<th class="border-top-0" width="15%">{{__('tour.driver')}}</th>
+								<th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
+								<th class="border-top-0" width="8%">{{__('tour.price')}}</th>
+								<th class="border-top-0" width="8%">Status</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -109,10 +113,22 @@
 									@else{
 								<tr>
 									<td class="text-truncate">{!! $tour->id !!}</td>
+									<td class="text-truncate">{!! !empty($tour->customer_id)?$tour->customer->name:'' !!}</td>
 									<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
-									<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
 									<td class="text-truncate">{!! $tour->from_date !!}</td>
 									<td class="text-truncate">{!! $tour->to_date !!}</td>
+									<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
+									<td class="text-truncate">{!! $tour->passengers !!}</td>
+									<td class="text-truncate">{!! $tour->price !!}</td>
+									<td class="text-truncate">
+											@if($tour->status == 1) {{ 'Draft' }}
+										@elseif($tour->status == 2) {{ 'Confirmed' }}
+										@elseif($tour->status == 3) {{ 'Invoiced' }}
+										@elseif($tour->status == 3) {{ 'Paid' }}
+										@elseif($tour->status == 3) {{ 'Canceled' }}
+										@endif
+									</td>
+
 								</tr>
 								}
 								@endif
@@ -132,18 +148,19 @@
 
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title">{{ __('messages.Recent_Add_trip') }}</h4>
+						<h4 class="card-title">{{ __('messages.calendars') }}</h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>
 
 				<div class="card-content mt-1">
-					<div class="table-responsive">
+					<div class="table-responsive pr-2 pl-2">
 
 						<div id='calendar-container'>
 							<div id='calendar'></div>
 						</div>
 					</div>
+					<p>&nbsp;</p>
 				</div>
 
 
@@ -166,6 +183,12 @@
 					left: 'prev,next today',
 					center: 'title',
 					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+				},
+				buttonText: {
+					today: '{{__("tour.today")}}',
+					month: '{{__("tour.month")}}',
+					week: '{{__("tour.week")}}',
+					day: '{{__("tour.day")}}'
 				},
 				defaultView: 'dayGridMonth',
 				defaultDate: '2019-06-12',

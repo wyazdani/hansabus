@@ -6,6 +6,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function (){
 
+    /*invoices*/
+    Route::get('/invoices', 'InvoiceController@index')->name('invoices');
+    Route::get('/download-invoice', 'InvoiceController@downloadInvoice')->name('download-invoice');
+
 
     /* drivers */
     Route::resource('v-drivers', 'DriverController');

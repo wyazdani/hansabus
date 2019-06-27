@@ -12,28 +12,28 @@
             <div class="modal-body row">
                 <div class="col-md-12">
                     <dl>
-                        <dt style="width:25%">{{__('messages.mobile_no')}}.:</dt>
+                        <dt style="width:25%">{{__('driver.mobile')}}.:</dt>
                         <dd id="v_mobile_number"></dd>
 
-                        <dt style="width:25%">{{__('messages.license')}}:</dt>
+                        <dt style="width:25%">{{__('driver.license')}}:</dt>
                         <dd id="v_driver_license"></dd>
 
                         <dt style="width:25%">NIN No.</dt>
                         <dd id="v_nic"></dd>
 
-                        <dt style="width:25%">{{__('messages.address')}}:</dt>
+                        <dt style="width:25%">{{__('driver.address')}}:</dt>
                         <dd id="v_address"></dd>
 
 
-                        <dt style="width:25%">{{__('messages.phone')}}:</dt>
+                        <dt style="width:25%">{{__('driver.phone')}}:</dt>
                         <dd id="v_phone"></dd>
 
-                        <dt style="width:25%">{{__('messages.other_details')}}:</dt>
+                        <dt style="width:25%">{{__('driver.other_details')}}:</dt>
                         <dd id="v_other_details"></dd>
 
 
 
-                        <dt style="width:25%">{{__('messages.is_active')}}:</dt>
+                        <dt style="width:25%">{{__('driver.is_active')}}:</dt>
                         <dd id="v_status"></dd>
 
                     </dl>

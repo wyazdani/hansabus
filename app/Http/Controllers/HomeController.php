@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         /* tours calendar */
         $rows = Tour::where('status','>',1)->orderby('id','desc')->limit(50)->get(
-            ['id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+            ['id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
         $calendarTours =[]; $i=0; $recentTours=[];
         foreach($rows as $row){

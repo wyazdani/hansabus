@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tour;
 use App\Models\TourStatus;
 use App\Models\TourAttachment;
 use App\Models\Customer;
@@ -10,9 +11,9 @@ use App\Models\HireADriver;
 use App\Models\Attachment;
 use App\Models\Driver;
 
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Helpers\General;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 

@@ -33,9 +33,9 @@ return [
 
     'recent_trips'=>'Letzte Reisen',
     'total_amount'=>'Gesamtnettobetrag:',
-    'invoice_number'=>'Rechnungsnummer',
-    'invoice_date'=>'Rechnungsdatum',
-    'customer_information'=>'Kundeninformation',
+    'invoice_number'=>'Invoice Number',
+    'invoice_date'=>'Invoice Date',
+    'customer_information'=>'Customer Information',
 
     'is_active'=>'Ist aktiv'
 

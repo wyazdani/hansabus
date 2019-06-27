@@ -2,48 +2,47 @@
 @section('page_title') {{ $pageTitle }} @endsection
 @section('content')
     <div class="row match-height">
-
         <div class="col-md-12" id="recent-sales">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">Vehicles</h4>
+                                <h4 class="card-title">{{__('messages.vehicles')}}</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                 <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
-                                <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> Add Vehicle</a>
+                                <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('vehicle.heading.add')}}</a>
                             </div>
                         </div>
-
                     </div>
                     <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
                 </div>
-
                 <div class="card-content mt-1">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-xl mb-0" id="listingTable">
+                    <div class="card-body">
+                        <div class="px-3 mb-4">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-xl mb-0" id="listingTable">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-top-0" width="7%">ID</th>
+                                        <th class="border-top-0" width="20%">{{__('vehicle.name')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('vehicle.make')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('vehicle.year')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('vehicle.license_plate')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('vehicle.engine_number')}}</th>
+                                        <th class="border-top-0" width="15%">{{__('vehicle.reg_number')}}</th>
+                                        <th class="border-top-0" width="10%">&nbsp;</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                            <thead>
-                            <tr>
-                                <th class="border-top-0">ID</th>
-                                <th class="border-top-0">Vehicle Name</th>
-                                <th class="border-top-0">Make</th>
-                                <th class="border-top-0">Year</th>
-                                <th class="border-top-0">License Plate</th>
-                                <th class="border-top-0">Engine Number</th>
-                                <th class="border-top-0">Registration Number</th>
-                                <th class="border-top-0">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,7 +56,7 @@
         var deleteMe = function(id){
             // console.log('here');
 
-            if(confirm('Are you sure you want to delete?')){
+            if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
                     url: '/vehicles/'+id,
@@ -91,11 +90,11 @@
                     $('#v_transmission').html(vehicle.transmission);
                     $('#v_color').html(vehicle.color);
 
-                    if(vehicle.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
-                    if(vehicle.AC == 1) $('#v_AC').html('Yes'); else $('#v_AC').html('No');
-                    if(vehicle.radio == 1) $('#v_radio').html('Yes'); else $('#v_radio').html('No');
-                    if(vehicle.sunroof == 1) $('#v_sunroof').html('Yes'); else $('#v_sunroof').html('No');
-                    if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('Yes'); else $('#v_phoneCharging').html('No');
+                    if(vehicle.status == 1) $('#v_status').html('{{__('messages.yes')}}'); else $('#v_status').html('{{__('messages.no')}}');
+                    if(vehicle.AC == 1) $('#v_AC').html('{{__('messages.yes')}}'); else $('#v_AC').html('{{__('messages.no')}}');
+                    if(vehicle.radio == 1) $('#v_radio').html('{{__('messages.yes')}}'); else $('#v_radio').html('{{__('messages.no')}}');
+                    if(vehicle.sunroof == 1) $('#v_sunroof').html('{{__('messages.yes')}}'); else $('#v_sunroof').html('{{__('messages.no')}}');
+                    if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('{{__('messages.yes')}}'); else $('#v_phoneCharging').html('{{__('messages.no')}}');
 
                     $('#viewModel').modal('show');
 
@@ -106,10 +105,16 @@
 
 
             var tableDiv = $('#listingTable').DataTable( {
+
+                "language": {
+                    "search": "{{__('messages.search')}}"
+                },
+                "bInfo": false,
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,
-                "pageLength": 2,
+                "pageLength": 10,
+                "bLengthChange" : false,
                 "aoColumnDefs": [{
 
                     "aTargets": [7],
@@ -124,12 +129,11 @@
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
                         }
 
-                        status += 'href="/vehicles/change-status/'+row.id+'">';
+                        status += 'href="{!! url("/vehicles/change-status/'+row.id+'") !!}">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
-
                         edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-                        edit += 'href="/vehicles/'+row.id+'/edit">';
+                        edit += 'href="{!! url("/vehicles/'+row.id+'/edit") !!}">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                         trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
@@ -161,6 +165,11 @@
                     // { "data": "actions" }
                 ],
                 drawCallback: deleteMe|viewVehicle,
+                "fnDrawCallback": function(oSettings) {
+                    if ($('#listingTable tr').length < 11) {
+                        $('.dataTables_paginate').hide();
+                    }
+                }
 
             });
 

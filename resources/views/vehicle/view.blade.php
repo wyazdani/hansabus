@@ -1,7 +1,6 @@
 <!-- Modal -->
 <div class="modal fade text-left" tabindex="-1" id="viewModel"
-role="dialog" aria-labelledby="myModalLabel17" 
-aria-hidden="true">
+role="dialog" aria-labelledby="myModalLabel17"  aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,15 +38,19 @@ aria-hidden="true">
                 <div class="col-md-6">
                     <dl>
                         <dt>Transmission:</dt>
-                        <dd id="v_transmission">Automatic</dd>
+                        <dd id="v_transmission"></dd>
+
                         <dt>AC:</dt>
-                        <dd id="v_AC">Yes</dd>
+                        <dd id="v_AC"></dd>
                         <dt>Radio:</dt>
-                        <dd id="v_radio">Yes</dd>
+                        <dd id="v_radio"></dd>
                         <dt>Sunroof:</dt>
-                        <dd id="v_sunroof">Yes</dd>
+                        <dd id="v_sunroof"></dd>
                         <dt>Phone Charging Jack:</dt>
                         <dd id="v_phoneCharging">Yes</dd>
+
+                        <dt>Is Active:</dt>
+                        <dd id="v_status"></dd>
                     </dl>
                 </div>
             </div>

@@ -47,7 +47,7 @@
 														<div class="form-group">
 															<label for="projectinput1">Vehicle Type Name</label>
 
-															<input type="text" name="name"  class="form-control" value="{{ (!empty($vehicle_types->name))?$vehicle_types->name:old('name') }}">
+															<input type="text" name="name"  class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle_types->name))?$vehicle_types->name:old('name') }}">
 														</div>
 													</div>
 												</div>

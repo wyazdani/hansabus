@@ -2,28 +2,96 @@
 
 namespace App\Http\Controllers;
 
-use App\Driver;
+use App\Models\TourStatus;
+use App\Models\TourAttachment;
+use App\Models\Customer;
 use App\Models\Vehicle;
-use App\tours;
+use App\Models\Tour;
+use App\Models\Attachment;
+use App\Models\Driver;
+
 use Illuminate\Http\Request;
+use App\Helpers\General;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class ToursController extends Controller
 {
+
+
+    public function getList(Request $request)
+    {
+
+        $draw = 0;
+        if(!empty($request->input('draw')) ) {
+            $draw = $request->input('draw');
+        }
+
+        $query = Tour::where('id','>',0);
+        $start =0;
+        if(!empty($request->input('start'))){
+
+//            if($request->input('start')>0){
+            $start = ($request->input('start')-1);
+//            }
+        }
+        $limit = 10;
+        if(!empty($request->input('length'))){
+            $limit = $request->input('length');
+        }
+        $search = '';
+        if(!empty($request->input('q'))){
+
+            $search = $request->input('q');
+        }else if(!empty($request->input('search.value'))){
+
+            $search = $request->input('search.value');
+        }
+
+        if(!empty($search)){
+
+            $query = Tour::where('name', 'LIKE','%'.$search.'%')
+                ->orWhere('email', 'LIKE','%'.$search.'%')
+                ->orWhere('phone', 'LIKE','%'.$search.'%')
+                ->orWhere('address', 'LIKE',"%{$search}%")
+                ->orWhere('url', 'LIKE',"%{$search}%");
+        }
+        $recordsTotal = $query->count();
+        $rows = $query->offset($start)->limit($limit)->get([
+            'id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+
+        $data=[];
+        foreach($rows as $row){
+            $row->vehicle;
+            $row->driver;
+            $row->customer;
+            $row['action']='';
+            $data[] = $row;
+        }
+        $recordsFiltered = $query->offset($start)->limit($limit)->count();
+
+        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
+    }
     public function index()
     {
         $pageTitle = 'Tours';
-        $tours = tours::all();
+        $tours = Tour::all();
         return view('tours.index',compact('tours','pageTitle'));
     }
 
     public function create()
     {
         $pageTitle = 'Add Tour';
-        $vehicle_name = Vehicle::pluck('name','id');
-        $vehicle_reg = Vehicle::pluck('registrationNumber','id');
-        $driver = Driver::pluck('driver_name','id');
-        return view('tours.add',compact('pageTitle','vehicle_name','vehicle_reg','driver'));
+        $general = new General();
+        $randomKey = $general->randomKey();
+        $vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
+        $tour_statuses = TourStatus::get(['id','name']);
+        $customers = Customer::get(['name','id']);
+        $drivers = Driver::get(['driver_name','id']);
+
+
+        return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));
     }
 
     /**
@@ -34,22 +102,51 @@ class ToursController extends Controller
      */
     public function store(Request $request)
     {
-        $tour = new tours([
-            'tour_name'  => $request->get('tour_name'),
-            'price'  => $request->get('price'),
-            'location'  => $request->get('location'),
-            'destination'  => $request->get('destination'),
-            'departure_date'  => $request->get('departure_date'),
-            'vehicle_id'        => $request->get('vehicle_id'),
-            'tour_id'  => $request->get('tour_id'),
-            'customer_id'   => 0,
-            'driver_id'    =>  !empty($request['driver_id'])?$request['driver_id']:0,
+        $rules = [
+            'customer_id' => 'required|integer',
+            'vehicle_id' => 'required|integer',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'driver_id' => 'required|integer',
+            'price' => 'required|integer',
+            'passengers' => 'required|integer',
+            'guide' => 'required',
+        ];
+        $messages = [
+            // 'title.required' => 'Title is required',
+        ];
+        $this->validate(request(), $rules, $messages);
 
-        ]);
-
+        $tour = new Tour;
+        $tour->status = (int)$request->status;
+        $tour->customer_id = (int)$request->customer_id;
+        $tour->vehicle_id = (int)$request->vehicle_id;
+        $tour->driver_id = (int)$request->driver_id;
+        $tour->from_date = $request->from_date;
+        $tour->to_date = $request->to_date;
+        $tour->passengers = (int)$request->passengers;
+        $tour->price = (int)$request->price;
+        $tour->guide = $request->guide;
         $tour->save();
-        return redirect('/tours')->with('success', 'New Tour has been added');
 
+
+        $attachments=[];
+        if(!empty($request->temp_key)){
+            $attachments = Attachment::where('temp_key',$request->temp_key)->get();
+        }
+        $files=[];
+        foreach($attachments as $attachment){
+            $files [] = ['tour_id'=>$tour->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
+
+            /* delete attachment */
+            Attachment::find($attachment->id)->delete();
+        }
+        if(count($files)){
+            TourAttachment::insert($files);
+        }
+
+        unset($files); unset($attachments);
+        return redirect('/tours')->with('success', 'Tour successfully created.');
     }
 
     /**
@@ -58,12 +155,13 @@ class ToursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tour $Tour)
     {
-        $pageTitle = 'Show Tour';
-        $tour = tours::find($id);
-
-        return view('tours.show',compact('tour','pageTitle'));
+        $Tour->vehicle;
+        $Tour->driver;
+        $Tour->customer;
+        $Tour->attachments;
+        return $Tour;
     }
 
     /**
@@ -75,9 +173,20 @@ class ToursController extends Controller
     public function edit($id)
     {
         $pageTitle = 'Edit Tour';
-        $tour = tours::find($id);
+        $tour = Tour::find($id);
 
-        return view('tours.edit', compact('tour','pageTitle'));
+        $general = new General();
+        $randomKey = $general->randomKey();
+        $vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
+        $tour_statuses = TourStatus::get(['id','name']);
+        $customers = Customer::get(['name','id']);
+        $drivers = Driver::get(['driver_name','id']);
+
+        $attachments = TourAttachment::where('tour_id',$id)->get();
+
+//        dd($attachments);
+
+        return view('tours.add',compact('tour','pageTitle','vehicles','customers','drivers','tour_statuses','randomKey','attachments'));
     }
 
     /**
@@ -89,29 +198,66 @@ class ToursController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'tour_name'=>'required',
-            'departure_date'=> 'required',
-            'price' => 'required',
-            'location' => 'required',
-            'destination' => 'required',
-        ]);
+        $rules = [
+            'customer_id' => 'required|integer',
+            'vehicle_id' => 'required|integer',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'driver_id' => 'required|integer',
+            'price' => 'required|integer',
+            'passengers' => 'required|integer',
+            'guide' => 'required',
+        ];
+        $messages = [
+            // 'title.required' => 'Title is required',
+        ];
+        $this->validate(request(), $rules, $messages);
 
-        $tour = tours::find($id);
 
-        $tour->tour_name = $request->get('tour_name');
-        $tour->departure_date = $request->get('departure_date');
-        $tour->tour_id  = $request->get('tour_id');
-        $tour->price = $request->get('price');
-        $tour->location = $request->get('location');
-        $tour->destination = $request->get('destination');
-        $tour->vehicle_id = $request->get('vehicle_id');
-        $tour->driver_id = $request->get('driver_id');
-        $tour->customer_id = $request->get('customer_id');
-
+        $tour = Tour::find($request->id);
+        $tour->status = (int)$request->status;
+        $tour->customer_id = (int)$request->customer_id;
+        $tour->vehicle_id = (int)$request->vehicle_id;
+        $tour->driver_id = (int)$request->driver_id;
+        $tour->from_date = $request->from_date;
+        $tour->to_date = $request->to_date;
+        $tour->passengers = (int)$request->passengers;
+        $tour->price = (int)$request->price;
+        $tour->guide = $request->guide;
         $tour->save();
 
-        return redirect('/tours')->with('success', 'Tour has been updated');
+        /* if files uploaded */
+        $attachments=[];
+        if(!empty($request->temp_key)){
+            $attachments = Attachment::where('temp_key',$request->temp_key)->get();
+        }
+        $files=[];
+
+        if(!empty($request->old_attachments)){
+
+            foreach($request->old_attachments as $attachment){
+
+
+                $a = explode('.',$attachment);
+                $ext = $a[count($a)-1];
+
+                $files [] = ['tour_id'=>$tour->id,'file'=>$attachment,'ext'=>$ext];
+            }
+        }
+        foreach($attachments as $attachment){
+            $files [] = ['tour_id'=>$tour->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
+
+            Attachment::find($attachment->id)->delete();
+        }
+        if(count($files)){
+            TourAttachment::insert($files);
+        }
+
+//        dd('OK');
+
+        unset($files); unset($attachments);
+
+        return redirect('/tours')->with('success', 'Tour successfully updated');
     }
 
     /**
@@ -122,10 +268,8 @@ class ToursController extends Controller
      */
     public function destroy($id)
     {
-        $tour = tours::find($id);
+        $tour = Tour::find($id);
         $tour->delete();
-
-        return redirect('/tours')->with('success', 'tour has been deleted Successfully');
     }
 
 }

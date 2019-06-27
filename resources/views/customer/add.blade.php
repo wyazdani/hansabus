@@ -131,7 +131,7 @@
                                                                 {{ 'checked' }}
                                                                     @endif >
                                                             <span class="slider round"></span>
-                                                            <p>Yes / No</p>
+                                                            <p>{{__('messages.yes/no')}}</p>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -144,6 +144,14 @@
                                     <div class="row">
                                         <div class="col-md-12 text-center">
                                             <div class="form-actions">
+                                                @if(!empty($customer->id))
+                                                    <a href="{{ url('/customers') }}" class="btn btn-danger mr-1">
+                                                        <i class="fa fa-times"></i> {{__('messages.cancel')}}
+                                                    </a>
+                                                    <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
+                                                        <i class="icon-note"></i> {{__('messages.update')}}
+                                                    </button>
+                                                @else
                                                 <a href="{{ url('/customers') }}" class="btn btn-danger mr-1">
                                                     <i class="fa fa-times"></i> {{__('messages.cancel')}}
                                                 </a>
@@ -153,6 +161,7 @@
                                                 <button type="button" onclick="$('#returnFlag').val('0'); $('#theForm').submit();" class="btn btn-info">
                                                     <i class="icon-note"></i> {{__('messages.save_add_another')}}
                                                 </button>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

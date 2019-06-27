@@ -14,7 +14,7 @@ class AddVehicleIdToToursTable extends Migration
     public function up()
     {
         Schema::table('tours', function (Blueprint $table) {
-            $table->bigInteger('vehicle_id')->nullable();
+            $table->bigInteger('vehicle_id')->default(0);
         });
     }
 

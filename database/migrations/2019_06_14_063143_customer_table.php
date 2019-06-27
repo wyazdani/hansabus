@@ -16,12 +16,12 @@ class CustomerTable extends Migration
     Schema::create('customer', function ($table) {
 
         $table->increments('id')->unsigned();
-        $table->string('name',200)->nullable();
-        $table->string('email')->unique()->nullable();
-        $table->string('url',200)->nullable();
-        $table->string('phone',15)->nullable();
-        $table->string('address',200)->nullable();
-        $table->boolean('status')->nullable();
+        $table->string('name',200);
+        $table->string('email')->unique();
+        $table->string('url',200);
+        $table->string('phone',15);
+        $table->string('address',200);
+        $table->boolean('status');
         $table->timestamps();
         $table->softdeletes();
 

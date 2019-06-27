@@ -10,8 +10,7 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ config('app.name', 'E-Coach') }} @if(!empty($pageTitle)) {{ ' - '.$pageTitle }} @endif</title>
-
+	<title>{{ config('app.name', 'E-Coach Managment') }}</title>
 	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
 	<link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon-32.png') }}">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,17 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/simple-line-icons/style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" rel="stylesheet">
 
-
-	@if(Request::route()->getName() == 'tour-calendar' || Request::route()->getName() == 'home')
-	{{-- Canlender --}}
-	<link href="{{ asset('calendar/core/main.css') }}" rel='stylesheet' />
-	<link href="{{ asset('calendar/daygrid/main.css') }}" rel='stylesheet' />
-	<link href="{{ asset('calendar/timegrid/main.css') }}" rel='stylesheet' />
-	<script src="{{ asset('calendar/core/main.js') }}"></script>
-	<script src="{{ asset('calendar/daygrid/main.js') }}"></script>
-	<script src="{{ asset('calendar/timegrid/main.js') }}"></script>
-	@endif
 </head>

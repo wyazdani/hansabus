@@ -2,81 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\General;
-use App\Models\Driver;
 use Illuminate\Http\Request;
-
+use App\Models\Driver;
 
 class DriverController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    public function getList(Request $request)
-    {
-
-        $draw = 0;
-        if(!empty($request->input('draw')) ) {
-            $draw = $request->input('draw');
-        }
-
-        $query = Driver::where('id','>',0);
-        $start =0;
-        if(!empty($request->input('start'))){
-
-//            if($request->input('start')>0){
-            $start = ($request->input('start')-1);
-//            }
-        }
-        $limit = 10;
-        if(!empty($request->input('length'))){
-            $limit = $request->input('length');
-        }
-        $search = '';
-        if(!empty($request->input('q'))){
-
-            $search = $request->input('q');
-        }else if(!empty($request->input('search.value'))){
-
-            $search = $request->input('search.value');
-        }
-
-        if(!empty($search)){
-
-            $query = Driver::where('driver_name', 'LIKE','%'.$search.'%')
-                ->orWhere('mobile_number', 'LIKE','%'.$search.'%')
-                ->orWhere('driver_license', 'LIKE','%'.$search.'%')
-                ->orWhere('nic', 'LIKE',"%{$search}%")
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('phone', 'LIKE',"%{$search}%")
-                ->orWhere('other_details', 'LIKE',"%{$search}%")
-            ;
-        }
-        $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get();
-
-        $data=[];
-        foreach($rows as $row){
-            $row['action']='';
-            $data[] = $row;
-        }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
-
-        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
-    }
-    public function show(Driver $v_driver)
-    {
-        return $v_driver;
-    }
-    public function status(Driver $Driver)
-    {
-        $Driver->status = !$Driver->status;
-        $Driver->save();
-        return redirect()->back()->with('info','Driver # '.$Driver->id.' status updated!');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -85,7 +15,8 @@ class DriverController extends Controller
     public function index()
     {
         $pageTitle = 'Drivers';
-        return view('drivers.index',compact('pageTitle'));
+        $drivers = Driver::all();
+        return view('drivers.index',compact('drivers','pageTitle'));
     }
     /**
      * Show the form for creating a new resource.
@@ -108,43 +39,43 @@ class DriverController extends Controller
     {
         $rules = [
             'driver_name' => 'required|string|max:150',
-            'mobile_number' => 'required|numeric|digits_between:1,16',
+            'mobile_number' => 'required',
             'driver_license' => 'required|string|max:100',
-            'nic' => 'required|numeric|digits_between:1,30',
+            'nic' => 'required|string|max:100',
             'address' => 'required|string',
-            'phone' => 'required|numeric|digits_between:1,16',
+            'phone' => 'required',
             'other_details' => 'required|string'
         ];
 
         $this->validate(request(), $rules);
+        $driver = new Driver([
+            'driver_name'  => $request->get('driver_name'),
+            'mobile_number'  => $request->get('mobile_number'),
+            'driver_license'  => $request->get('driver_license'),
+            'nic'  => $request->get('nic'),
+            'address'  => $request->get('address'),
+            'phone'  => $request->get('phone'),
+            'other_details'  => $request->get('other_details'),
 
+        ]);
 
-        /* Profile picture upload */
-        $profilePic = '';
-        if(!empty($request->profile_pic)){
-
-            $general = new General;
-            $ext = $request->file('profile_pic')->getClientOriginalExtension();
-            $profilePic = $general->randomKey().'.'.$ext;
-
-            $request->file('profile_pic')->move(
-                base_path() . '/public/images/drivers/', $profilePic
-            );
-        }
-        /* save data into database */
-        $driver = new Driver;
-        $driver->driver_name = $request->get('driver_name');
-        $driver->mobile_number = $request->get('mobile_number');
-        $driver->driver_license = $request->get('driver_name');
-        $driver->nic = $request->get('nic');
-        $driver->address = $request->get('address');
-        $driver->phone = $request->get('phone');
-        $driver->other_details = $request->get('other_details');
-        $driver->profile_pic = $profilePic;
         $driver->save();
+        return redirect('/drivers')->with('success', 'New Driver has been added');
 
-        return redirect('/v-drivers')->with('success', 'New Driver has been added');
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $driver = Driver::find($id);
+        $driver->delete();
+
+        return redirect('/drivers')->with('success', 'Driver has been deleted Successfully');
     }
 
     /**
@@ -158,7 +89,7 @@ class DriverController extends Controller
         $pageTitle = 'Edit Driver';
         $driver = Driver::find($id);
 
-        return view('drivers.add', compact('driver','pageTitle'));
+        return view('drivers.edit', compact('driver','pageTitle'));
     }
 
     /**
@@ -172,33 +103,18 @@ class DriverController extends Controller
     {
         $rules = [
             'driver_name' => 'required|string|max:150',
-            'mobile_number' => 'required|numeric|digits_between:1,16',
+            'mobile_number' => 'required',
             'driver_license' => 'required|string|max:100',
-            'nic' => 'required|numeric|digits_between:1,30',
+            'nic' => 'required|string|max:100',
             'address' => 'required|string',
-            'phone' => 'required|numeric|digits_between:1,16',
+            'phone' => 'required',
             'other_details' => 'required|string'
         ];
 
         $this->validate(request(), $rules);
 
-        /* Profile picture upload */
-        $profilePic = '';
-        if(!empty($request->old_profile_pic)){
-            $profilePic = $request->old_profile_pic;
-        }
-        if(!empty($request->profile_pic)){
-
-            $general = new General;
-            $ext = $request->file('profile_pic')->getClientOriginalExtension();
-            $profilePic = $general->randomKey().'.'.$ext;
-
-            $request->file('profile_pic')->move(
-                base_path() . '/public/images/drivers/', $profilePic
-            );
-        }
-        /* save data into database */
         $driver = Driver::find($id);
+
         $driver->driver_name = $request->get('driver_name');
         $driver->mobile_number = $request->get('mobile_number');
         $driver->driver_license = $request->get('driver_name');
@@ -206,16 +122,23 @@ class DriverController extends Controller
         $driver->address = $request->get('address');
         $driver->phone = $request->get('phone');
         $driver->other_details = $request->get('other_details');
-        $driver->profile_pic = $profilePic;
+
         $driver->save();
 
-        return redirect('/v-drivers')->with('success', 'Driver has been updated');
+        return redirect('/drivers')->with('success', 'Driver has been updated');
     }
 
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $driver = Driver::find($id);
         $driver->delete();
+
+        return redirect('/drivers')->with('success', 'Driver has been deleted Successfully');
     }
 }

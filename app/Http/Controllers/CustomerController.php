@@ -12,10 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function getList(Request $request)
     {
@@ -69,7 +66,23 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $pageTitle = 'Customers';
-        return view('customer.index', compact( 'pageTitle'));
+
+        $query = Customer::where('id', '>',0);
+
+        $search =  '';
+        if(!empty($request->input('q'))){
+
+            $search = $request->input('q');
+        }
+
+        if(!empty($search)){
+
+            $query = Customer::where('name', 'LIKE','%'.$search.'%')
+                ->orWhere('email', 'LIKE','%'.$search.'%');
+        }
+
+        $customers = $query->paginate(3);
+        return view('customer.index', compact('customers', 'pageTitle'));
     }
 
     public function status(Customer $Customer)
@@ -102,14 +115,11 @@ class CustomerController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|email|unique:customer',
 //            'url' => 'required|url|max:200',
-            'phone' => 'required|numeric',
+            'phone' => 'required|max:15',
             'address' => 'required|string|max:200',
         ];
         $messages = [
-            'name.required' => 'Please provide your name.',
-            'email.required' => 'Please provide your email address.',
-            'phone.required' => 'Please provide your phone number.',
-            'address.required' => 'Please provide your address..',
+            // 'title.required' => 'Title is required',
         ];
         $this->validate(request(), $rules, $messages);
 
@@ -175,16 +185,15 @@ class CustomerController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|email',
 //            'url' => 'required|url|max:200',
-            'phone' => 'required|numeric',
+            'phone' => 'required|max:15',
             'address' => 'required|string|max:200',
         ];
         $messages = [
-            'name.required' => 'Please provide your name.',
-            'email.required' => 'Please provide your email address.',
-            'phone.required' => 'Please provide your phone number.',
-            'address.required' => 'Please provide your address..',
+            // 'title.required' => 'Title is required',
         ];
+
         $this->validate(request(), $rules, $messages);
+
 
         $msg = 'Customer updated successfully.';
 

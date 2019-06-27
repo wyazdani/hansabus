@@ -73,7 +73,7 @@
                                         <input type="hidden" name="from_date" id="fromDate" value="">
                                         <input type="hidden" name="to_date" id="toDate" value="">
                                         <input type="hidden" name="id" id="ID" value="">
-                                        <input type="submit" value="{{__('messages.download')}}" class="btn btn-info ml-2">
+                                        <input type="submit" value="{{__('messages.download')}}" class="btn btn-info ml-2" id="download">
                                     </form>
                                 </div>
                             </div>
@@ -167,5 +167,15 @@
 
         });
 
+        function myFunction() {
+            var x = document.getElementById("customer_id").rows.length;
+            if (x == 0) {
+
+                document.getElementById("download").disabled = true;
+            } else {
+
+                document.getElementById("download").disabled = false;
+            }
+        }
     </script>
 @endsection

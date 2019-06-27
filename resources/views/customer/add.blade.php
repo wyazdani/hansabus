@@ -131,7 +131,7 @@
                                                                 {{ 'checked' }}
                                                                     @endif >
                                                             <span class="slider round"></span>
-                                                            <p>Yes / No</p>
+                                                            <p>{{__('messages.yes/no')}}</p>
                                                         </label>
                                                     </div>
                                                 </div>

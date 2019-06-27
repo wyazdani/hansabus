@@ -37,6 +37,8 @@ return [
     'invoice_date'=>'Invoice Date',
     'customer_information'=>'Customer Information',
 
-    'is_active'=>'Ist aktiv'
+    'is_active'=>'Ist aktiv',
+    'select_one'=>'Wähle eins',
+
 
 ];

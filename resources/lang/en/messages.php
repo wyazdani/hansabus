@@ -23,4 +23,11 @@
         'download'=>'Download',
         'all_rights_reserved'=>'All Rights Reserved',
         'yes/no'=>'Yes / No',
+        'no_record'=>'No data available in table',
+        'copyright'=>'Copyright',
+        'coach'=>'Coach',
+        'management'=>'Management',
+        'update'=>'Update',
+        'yes'=>'Yes',
+        'no'=>'No'
     ];

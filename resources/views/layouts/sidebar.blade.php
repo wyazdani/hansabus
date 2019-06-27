@@ -29,10 +29,8 @@
 						</li>
 						<li><a href="{{ url('/vehicle-type') }}" class="menu-item">Vehicle Types</a>
 						</li>
-						<li><a href="javascript:;" class="menu-item">Maintinance</a>
+						<li><a href="{{ url('/vehicle-maintinance') }}" class="menu-item">Maintinance</a>
 						</li>
-{{--						<li><a href="{{ url('/vehicle-maintinance') }}" class="menu-item">Maintinance</a>--}}
-{{--						</li>--}}
 					</ul>
 				</li>
 				<li @if(in_array(Request::route()->getName(),['drivers.index','drivers.create','drivers.edit']))
@@ -40,19 +38,10 @@
 
 				<li @if(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit']))
 					{{ ' class=open' }} @endif ><a href="{{ url('/customers') }}" class="menu-item">Customers</a></li>
-
-				<li @if(in_array(Request::route()->getName(),['tours.index','tours.create','tours.edit','tour-detail']))
+				<li @if(in_array(Request::route()->getName(),['tours.index','tours.create','tours.edit']))
 					{{ ' class=open' }} @endif ><a href="{{ url('/tours') }}" class="menu-item">Tours</a></li>
-
-				<li @if(in_array(Request::route()->getName(),['tour-calendar']))
-					{{ ' class=open' }} @endif ><a href="{{ url('/tour-calendar') }}" class="menu-item">Calendar</a></li>
-
-{{--				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="{{ url('/settings') }}" class="menu-item">Settings</a></li>--}}
-{{--				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="{{ url('/reports') }}" class="menu-item">Reports</a></li>--}}
-
-				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">Settings</a></li>
-				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">Reports</a></li>
-
+				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="{{ url('/settings') }}" class="menu-item">Settings</a></li>
+				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="{{ url('/reports') }}" class="menu-item">Reports</a></li>
 			</ul>
 		</div>
 	</div>

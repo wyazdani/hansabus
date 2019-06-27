@@ -2,80 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Models\Driver;
 
 class DriverController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    public function getList(Request $request)
-    {
-
-        $draw = 0;
-        if(!empty($request->input('draw')) ) {
-            $draw = $request->input('draw');
-        }
-
-        $query = Driver::where('id','>',0);
-        $start =0;
-        if(!empty($request->input('start'))){
-
-//            if($request->input('start')>0){
-            $start = ($request->input('start')-1);
-//            }
-        }
-        $limit = 10;
-        if(!empty($request->input('length'))){
-            $limit = $request->input('length');
-        }
-        $search = '';
-        if(!empty($request->input('q'))){
-
-            $search = $request->input('q');
-        }else if(!empty($request->input('search.value'))){
-
-            $search = $request->input('search.value');
-        }
-
-        if(!empty($search)){
-
-            $query = Driver::where('driver_name', 'LIKE','%'.$search.'%')
-                ->orWhere('mobile_number', 'LIKE','%'.$search.'%')
-                ->orWhere('driver_license', 'LIKE','%'.$search.'%')
-                ->orWhere('nic', 'LIKE',"%{$search}%")
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('phone', 'LIKE',"%{$search}%")
-                ->orWhere('other_details', 'LIKE',"%{$search}%")
-            ;
-        }
-        $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get();
-
-        $data=[];
-        foreach($rows as $row){
-            $row['action']='';
-            $data[] = $row;
-        }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
-
-        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
-    }
-    public function show(Driver $Driver)
-    {
-        return $Driver;
-    }
-    public function status(Driver $Driver)
-    {
-        $Driver->status = !$Driver->status;
-        $Driver->save();
-        return redirect()->back()->with('info','Driver # '.$Driver->id.' status updated!');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -134,6 +65,20 @@ class DriverController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $driver = Driver::find($id);
+        $driver->delete();
+
+        return redirect('/drivers')->with('success', 'Driver has been deleted Successfully');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -183,10 +128,17 @@ class DriverController extends Controller
         return redirect('/drivers')->with('success', 'Driver has been updated');
     }
 
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $driver = Driver::find($id);
         $driver->delete();
+
+        return redirect('/drivers')->with('success', 'Driver has been deleted Successfully');
     }
 }

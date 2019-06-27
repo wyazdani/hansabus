@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Driver;
 use App\Models\VehicleType;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
@@ -10,57 +9,6 @@ use App\Http\Controllers\Controller;
 
 class VehicleTypeController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function getList(Request $request)
-    {
-
-        $draw = 0;
-        if(!empty($request->input('draw')) ) {
-            $draw = $request->input('draw');
-        }
-
-        $query = VehicleType::where('id','>',0);
-        $start =0;
-        if(!empty($request->input('start'))){
-
-//            if($request->input('start')>0){
-            $start = ($request->input('start')-1);
-//            }
-        }
-        $limit = 10;
-        if(!empty($request->input('length'))){
-            $limit = $request->input('length');
-        }
-        $search = '';
-        if(!empty($request->input('q'))){
-
-            $search = $request->input('q');
-        }else if(!empty($request->input('search.value'))){
-
-            $search = $request->input('search.value');
-        }
-
-        if(!empty($search)){
-
-            $query = VehicleType::where('name', 'LIKE','%'.$search.'%');
-        }
-        $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get();
-
-        $data=[];
-        foreach($rows as $row){
-            $row['action']='';
-            $data[] = $row;
-        }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
-
-        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
-    }
     public function index()
     {
         $pageTitle = 'Vehicle Types';
@@ -83,19 +31,16 @@ class VehicleTypeController extends Controller
             'name'  => $request->get('name')
         ]);
         $vehicle_type->save();
-        return redirect('/vehicle-type')->with('success', 'New vehicle type has been added.');
+        return redirect('/vehicle-type')->with('success', 'New Vehicle Type has been added');
 
     }
 
-    public function show(VehicleType $VehicleType)
+    public function show($id)
     {
-        return $VehicleType;
-    }
-    public function status(VehicleType $VehicleType)
-    {
-        $VehicleType->status = !$VehicleType->status;
-        $VehicleType->save();
-        return redirect()->back()->with('info','Vehicle type # '.$VehicleType->id.' status updated!');
+        $vehicleType = VehicleType::find($id);
+        $vehicleType->delete();
+
+        return redirect('/vehicle-type')->with('success', 'Vehicle Type has been deleted Successfully');
     }
 
 
@@ -121,7 +66,7 @@ class VehicleTypeController extends Controller
 
         $vehicleType->save();
 
-        return redirect('/vehicle-type')->with('success', 'Vehicle type has been updated');
+        return redirect('/vehicle-type')->with('success', 'Vehicle Type has been updated');
     }
 
 
@@ -129,6 +74,7 @@ class VehicleTypeController extends Controller
     {
         $vehicleType = VehicleType::find($id);
         $vehicleType->delete();
-//        return redirect('/vehicle-type')->with('success', 'Vehicle type has been deleted Successfully');
+
+        return redirect('/vehicle-type')->with('success', 'Vehicle Type has been deleted Successfully');
     }
 }

@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="col-sm-6 col-md-6 text-right">
-                            <div class="dataTables_filter"><a href="{{ route('customers.index') }}" class="btn btn-info ml-2 mt-2">Customers List
+                            <div class="dataTables_filter"><a href="{{ url('/customers') }}" class="btn btn-info ml-2 mt-2">Customers List
                                     <i class="ft-arrow-right mt-3"></i></a>
                             </div>
                         </div>

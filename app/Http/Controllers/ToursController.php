@@ -19,32 +19,7 @@ use Illuminate\Support\Facades\DB;
 class ToursController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    public function calendar(Request $request)
-    {
-        $pageTitle = 'Tour Canlendar';
-        $rows = Tour::where('status','>',1)->get(
-            ['id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
-
-        $data=[]; $i=0;
-        foreach($rows as $row){
-            $row->vehicle;
-            $row->driver;
-            $row->customer;
-            // ' passengers on '.$row->vehicle->name.'. driver: '.$row->driver->driver_name
-            $data[$i]['title'] = 'Tour # '.$row->id;
-            $data[$i]['start'] = $row->from_date;
-            $data[$i]['end'] = $row->to_date;
-            $data[$i]['url'] = url('/tour/'.$row->id);
-            $i++;
-        }
-
-        return view('tours.calendar',compact('data','pageTitle'));
-    }
     public function getList(Request $request)
     {
 
@@ -77,7 +52,10 @@ class ToursController extends Controller
         if(!empty($search)){
 
             $query = Tour::where('name', 'LIKE','%'.$search.'%')
-                ->orWhere('email', 'LIKE','%'.$search.'%');
+                ->orWhere('email', 'LIKE','%'.$search.'%')
+                ->orWhere('phone', 'LIKE','%'.$search.'%')
+                ->orWhere('address', 'LIKE',"%{$search}%")
+                ->orWhere('url', 'LIKE',"%{$search}%");
         }
         $recordsTotal = $query->count();
         $rows = $query->offset($start)->limit($limit)->get([
@@ -171,16 +149,12 @@ class ToursController extends Controller
         return redirect('/tours')->with('success', 'Tour successfully created.');
     }
 
-    public function detail(Tour $Tour)
-    {
-        $pageTitle = 'Tour # '.$Tour->id;
-        $Tour->vehicle;
-        $Tour->driver;
-        $Tour->customer;
-        $Tour->attachments;
-
-        return view('tours.detail',compact('pageTitle','Tour'));
-    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Tour $Tour)
     {
         $Tour->vehicle;

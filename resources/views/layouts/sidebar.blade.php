@@ -29,12 +29,27 @@
 						</li>
 						<li><a href="{{ route('vehicle-type.index') }}" class="menu-item">{{ __('messages.vehicle_types') }}</a>
 						</li>
-						<li><a href="javascript:;" class="menu-item">{{ __('messages.maintenance') }}</a>
-						</li>
-{{--						<li><a href="{{ url('/vehicle-maintinance') }}" class="menu-item">Maintinance</a>--}}
+{{--						<li><a href="javascript:;" class="menu-item">{{ __('messages.maintenance') }}</a>--}}
 {{--						</li>--}}
 					</ul>
 				</li>
+
+{{--				<li @if(in_array(Request::route()->getName(),[--}}
+{{--				'v-drivers.index','v-drivers.create','v-drivers.edit',--}}
+{{--				'hire-a-driver.index','hire-a-driver.create','hire-a-driver.edit'--}}
+{{--				]))--}}
+{{--					{{ ' class=open' }} @endif--}}
+{{--					class="has-sub nav-item">--}}
+{{--					<a href="javascript:;">--}}
+{{--						<span data-i18n="" class="menu-title">{{ __('messages.hire_a_driver') }}</span>--}}
+{{--					</a>--}}
+{{--					<ul class="menu-content">--}}
+{{--						<li><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a>--}}
+{{--						</li>--}}
+
+{{--					</ul>--}}
+{{--				</li>--}}
+
 				<li @if(in_array(Request::route()->getName(),['drivers.index','drivers.create','drivers.edit']))
 					{{ ' class=open' }} @endif ><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a></li>
 

@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Tour;
-use Dompdf\Adapter\PDFLib;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 
 
 class InvoiceController extends Controller
@@ -77,7 +76,7 @@ class InvoiceController extends Controller
 //        return view('invoices.pdf_design',compact('customer','tours','total'));
 
 //        dd($tours);
-        $pdf = PDF::loadview('invoices.pdf_design', compact('customer','tours','total'));
+        $pdf = PDF::loadView('invoices.pdf_design', compact('customer','tours','total'));
         return $pdf->download('invoice.pdf');
 
 

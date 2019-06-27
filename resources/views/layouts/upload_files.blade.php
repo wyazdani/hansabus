@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body collapse show">
         <div class="card-block">
-            <label for="Attachments">{{__('tour.attachments')}}</label>
+            <label for="Attachments">{{__('messages.attachments')}}</label>
             <form action="{{ url('file-upload') }}" class="dropzone dropzone-area dropzone_multiple" id="dpz-multiple-files"
                   method="POST" enctype="multipart/form-data" style="height: 100px;">
                 <div class="form-group">

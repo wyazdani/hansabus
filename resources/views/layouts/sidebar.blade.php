@@ -13,7 +13,6 @@
 	<div class="sidebar-content">
 		<div class="nav-container">
 			<ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-
 				<li @if(Request::route()->getName() == 'home') {{ ' class=open' }} @endif ><a href="{{ route('home') }}" class="menu-item">{{ __('messages.dashboard') }}</a></li>
 
 				<li @if(in_array(Request::route()->getName(),[
@@ -32,27 +31,12 @@
 						</li>
 						<li><a href="javascript:;" class="menu-item">{{ __('messages.maintenance') }}</a>
 						</li>
+{{--						<li><a href="{{ url('/vehicle-maintinance') }}" class="menu-item">Maintinance</a>--}}
+{{--						</li>--}}
 					</ul>
 				</li>
-
-				<li @if(in_array(Request::route()->getName(),[
-				'v-drivers.index','v-drivers.create','v-drivers.edit',
-				'hire-a-driver.index','hire-a-driver.create','hire-a-driver.edit'
-				]))
-					{{ ' class=open' }} @endif
-					class="has-sub nav-item">
-					<a href="javascript:;">
-						<span data-i18n="" class="menu-title">{{ __('messages.drivers') }}</span>
-					</a>
-					<ul class="menu-content">
-						<li><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a>
-						</li>
-						<li><a href="{{ route('hire-a-driver.index') }}" class="menu-item">{{ __('messages.hire_a_driver') }}</a>
-						</li>
-					</ul>
-				</li>
-				{{--<li @if(in_array(Request::route()->getName(),['drivers.index','drivers.create','drivers.edit']))
-					{{ ' class=open' }} @endif ><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a></li>--}}
+				<li @if(in_array(Request::route()->getName(),['drivers.index','drivers.create','drivers.edit']))
+					{{ ' class=open' }} @endif ><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a></li>
 
 				<li @if(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit']))
 					{{ ' class=open' }} @endif ><a href="{{ route('customers.index') }}" class="menu-item">{{ __('messages.customers') }}</a></li>

@@ -105,8 +105,12 @@
 							</tr>
 							</thead>
 							<tbody>
-							@if(count($recentTours))
 							@foreach($recentTours as $tour)
+								@if(!$tour)
+									{
+										<span>No data is avaialable</span>
+									}
+									@else{
 								<tr>
 									<td class="text-truncate">{!! $tour->id !!}</td>
 									<td class="text-truncate">{!! !empty($tour->customer_id)?$tour->customer->name:'' !!}</td>
@@ -124,11 +128,11 @@
 										@elseif($tour->status == 3) {{ 'Canceled' }}
 										@endif
 									</td>
+
 								</tr>
+								}
+								@endif
 							@endforeach
-							@else
-								<tr><td colspan="9" style="text-align: center">{{__('messages.no_records')}}</td></tr>
-							@endif
 							</tbody>
 
 						</table>

@@ -204,7 +204,7 @@ class ToursController extends Controller
         }
 
         unset($files); unset($attachments);
-        return redirect('/tours')->with('success', 'Tour successfully created.');
+        return redirect('/tours')->with('success', trans('messages.tour_created'));
     }
 
     public function detail(Tour $Tour)
@@ -329,7 +329,7 @@ class ToursController extends Controller
 
         unset($files); unset($attachments);
 
-        return redirect('/tours')->with('success', 'Tour successfully updated');
+        return redirect('/tours')->with('success', trans('messages.tour_updated'));
     }
 
     /**

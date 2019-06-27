@@ -141,7 +141,7 @@
 
 				<div class="card-header">
 					<div class="card-title-wrap bar-primary">
-						<h4 class="card-title">{{ __('messages.calendars') }}</h4>
+						<h4 class="card-title">{{ __('tour.heading.calendar') }}</h4>
 					</div>
 					<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				</div>

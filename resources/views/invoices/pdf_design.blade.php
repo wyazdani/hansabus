@@ -12,7 +12,7 @@
 
                         </td>
                         <td class="right">
-                            <strong style="font-size: 10px;"><span>Customer Information</span></strong>
+                            <strong style="font-size: 10px;"><span>{{__('tour.customer_information')}}</span></strong>
 
                             <p>{{ $customer->name }}</p>
                             @if(!empty($customer->phone))<p>{{ $customer->phone }}</p>@endif
@@ -20,7 +20,7 @@
                             @if(!empty($customer->address))<p>{{ $customer->address }}</p>@endif
 
                             <p><strong>Invoice Date :  </strong>{{ date('d-m-Y') }}</p>
-                            <p><strong>Invoice Number:  </strong>{{ date('d-m-Y') }}</p>
+                            <p><strong>Invoice Number:  </strong>000002323</p>
                         </td>
                     </tr>
                 </table>
@@ -63,5 +63,8 @@
             </tr>
             </tfoot>
         </table>
+    </div>
+    <div class="footer">
+        <p style="background:#f1f1f1;display:block;text-align:center;padding:8px 0;margin:50px 0 0">© ecoach. {{__('messages.all_rights_reserved')}}</p>
     </div>
 @endsection

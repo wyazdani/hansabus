@@ -63,8 +63,10 @@ class InvoiceController extends Controller
         $total=0;
         $tours=[];
         foreach($rows as $row){
+
             $row->vehicle;
             $row->driver;
+
             $row->from_date = date('d/m/Y h:i',strtotime($row->from_date));
             $row->to_date = date('d/m/Y h:i',strtotime($row->to_date));
             $tours[] = $row;
@@ -73,7 +75,7 @@ class InvoiceController extends Controller
 
 //        return view('invoices.pdf_design',compact('customer','tours','total'));
 
-
+//        dd($tours);
         $pdf = PDF::loadView('invoices.pdf_design', compact('customer','tours','total'));
         return $pdf->download('invoice.pdf');
 

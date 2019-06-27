@@ -170,6 +170,11 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
+                // "bPaginate": false,
+                // "bFilter": true,
+                "bInfo": false,
+                // "bAutoWidth": false,
+
                 "processing": true,
                 "serverSide": true,
                 // "searchable" : true,

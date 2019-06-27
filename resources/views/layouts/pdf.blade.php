@@ -192,7 +192,4 @@
 </head>
 <body>
 @yield('content')
-<div class="footer">
-    <p style="background:#f1f1f1;display:block;text-align:center;padding:8px 0;margin:50px 0 0">© ecoach. All Rights Reserved</p>
-</div>
 </body>

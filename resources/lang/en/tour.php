@@ -32,6 +32,9 @@ return [
 
     'recent_trips'=>'Recent Trips',
     'total_amount'=>'Total net amount:',
+    'invoice_number'=>'Invoice Number',
+    'invoice_date'=>'Invoice Date',
+    'customer_information'=>'Customer Information',
 
     'is_active'=>'Is Active'
 

@@ -17,5 +17,10 @@
         'reports' =>  'Berichte',
         'search'  =>  'Suche',
         'want_to_delete'=>'Sind Sie sicher, dass Sie löschen möchten?',
+        'save'=>'Sparen',
+        'cancel'=>'Stornieren',
+        'download'=>'Herunterladen',
+        'all_rights_reserved'=>'Alle Rechte vorbehalten',
+        'yes/no'=>'Yes / No',
     ];
 

@@ -223,6 +223,8 @@ class ToursController extends Controller
         $Tour->driver;
         $Tour->customer;
         $Tour->attachments;
+        $Tour->from_date = date('d/m/Y h:i A',strtotime($Tour->from_date));
+        $Tour->to_date = date('d/m/Y h:i A',strtotime($Tour->to_date));
         return $Tour;
     }
 

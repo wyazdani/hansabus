@@ -68,7 +68,7 @@ class CustomerController extends Controller
     }
     public function index(Request $request)
     {
-        $pageTitle = 'Customers';
+        $pageTitle = trans('messages.customers');
         return view('customer.index', compact( 'pageTitle'));
     }
 
@@ -76,7 +76,7 @@ class CustomerController extends Controller
     {
         $Customer->status = !$Customer->status;
         $Customer->save();
-        return redirect()->back()->with('info','Customer # '.$Customer->id.' status updated!');
+        return redirect()->back()->with('info',trans('messages.customers').' # '.$Customer->id.' status '. trans('messages.updated'));
     }
 
     /**

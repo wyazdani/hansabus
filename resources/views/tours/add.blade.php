@@ -25,6 +25,7 @@
 						<form class="form" method="POST" action="{{ route('tours.update',$tour->id) }}" id="tourForm" enctype="multipart/form-data" >
 							@method('PUT')
 							<input type="hidden" id="id" name="id" value="{{ $tour->id }}">
+
 							@else
 								<form class="form" method="POST" action="{{ route('tours.store') }}" id="tourForm" enctype="multipart/form-data" >
 									@endif
@@ -45,8 +46,9 @@
 												<div class="card-body">
 													<div class="px-3">
 														<div class="form-body">
+															@if(count($customers) >= 1 && count($vehicles) >= 1 && count($drivers) >= 1)
 															<div class="row">
-																<div class="col-md-3">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="projectinput3">Status</label>
 																		<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
@@ -63,7 +65,7 @@
 																		</select>
 																	</div>
 																</div>
-																<div class="col-md-3">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="customSelect">{{__('tour.customer')}}</label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
@@ -79,7 +81,7 @@
 
 																	</div>
 																</div>
-																<div class="col-md-6">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label>{{__('tour.vehicle')}}</label>
 																		<select name="vehicle_id" class="form-control" onchange="getVehicleSeats(this.value);">
@@ -97,7 +99,7 @@
 																		</select>
 																	</div>
 																</div>
-																<div class="col-md-3">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="fromDate">{{__('tour.from')}}</label>
 																		<div class='input-group date'>
@@ -108,7 +110,7 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-3">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="toDate">{{__('tour.to')}}</label>
 																		<div class='input-group date'>
@@ -119,7 +121,7 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-6">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="customSelect">{{__('tour.driver')}}</label>
 																		<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
@@ -171,8 +173,9 @@
 											</div>
 										</div>
 									</div>
-								</form>
 
+								</form>
+						</form>
 
 
 								@if(!empty($attachments))
@@ -226,6 +229,16 @@
 					</div>
 				</div>
 			</div>
+
+			@else
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="alert alert-danger" style="color: #454545 !important">
+							{{__('messages.add_tour_msg')}}
+						</div>
+					</div>
+				</div>
+			@endif
 		</div>
 	</div>
 	<input type="hidden" id="seatsAllowed" value="">
@@ -234,57 +247,57 @@
 	@include('tours.img_view')
 
 	<script type="text/javascript">
-		function passengersCheck(){
+        function passengersCheck(){
 
-			const passengers = parseInt($('#passengers').val());
-			const seatsAllowed = parseInt($('#seatsAllowed').val());
-			if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
+            const passengers = parseInt($('#passengers').val());
+            const seatsAllowed = parseInt($('#seatsAllowed').val());
+            if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
 
-				console.log('passengers count is fine.');
-				return true;
-			}else{
-				console.log('vehicle overloaded.');
-				return false;
-			}
-		}
-		function getVehicleSeats(id){
+                console.log('passengers count is fine.');
+                return true;
+            }else{
+                console.log('vehicle overloaded.');
+                return false;
+            }
+        }
+        function getVehicleSeats(id){
 
-			// console.log(id);
-			$.ajax({
-				url: "{{ url('/vehicles') }}/" + id,
-				cache: false,
-				success: function (v) {
+            // console.log(id);
+            $.ajax({
+                url: "{{ url('/vehicles') }}/" + id,
+                cache: false,
+                success: function (v) {
 
-					$('#seatsAllowed').val(parseInt(v.seats));
-					passengersCheck();
-					console.log('seats allowed: '+v.seats);
-				}
-			});
-		}
-		function showImg(url){
+                    $('#seatsAllowed').val(parseInt(v.seats));
+                    passengersCheck();
+                    console.log('seats allowed: '+v.seats);
+                }
+            });
+        }
+        function showImg(url){
 
-			$('#imgDiv').html('<img src="'+url+'" style="display:block; width: 100%; height:auto;">');
-			$('#viewModel').modal('show');
-		}
-		// Start jQuery stuff
-		$(function() {
+            $('#imgDiv').html('<img src="'+url+'" style="display:block; width: 100%; height:auto;">');
+            $('#viewModel').modal('show');
+        }
+        // Start jQuery stuff
+        $(function() {
 
 			@if(!empty($tour->id))
-				getVehicleSeats('{{ $tour->vehicle_id }}');
+            getVehicleSeats('{{ $tour->vehicle_id }}');
 			@endif
 
-			passengersCheck();
-			/* DateTime Picker */
-			$('.datetimepicker1').datetimepicker();
-			$('.datetimepicker2').datetimepicker({
-				useCurrent: false //Important! See issue #1075
-			});
-			$(".datetimepicker1").on("dp.change", function (e) {
-				$('.datetimepicker2').data("DateTimePicker").minDate(e.date);
-			});
-			$(".datetimepicker2").on("dp.change", function (e) {
-				$('.datetimepicker1').data("DateTimePicker").maxDate(e.date);
-			});
-		});
+            passengersCheck();
+            /* DateTime Picker */
+            $('.datetimepicker1').datetimepicker();
+            $('.datetimepicker2').datetimepicker({
+                useCurrent: false //Important! See issue #1075
+            });
+            $(".datetimepicker1").on("dp.change", function (e) {
+                $('.datetimepicker2').data("DateTimePicker").minDate(e.date);
+            });
+            $(".datetimepicker2").on("dp.change", function (e) {
+                $('.datetimepicker1').data("DateTimePicker").maxDate(e.date);
+            });
+        });
 	</script>
 @endsection

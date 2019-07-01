@@ -13,7 +13,7 @@
         'dashboard' =>'Instrumententafel',
         'invoices'=>'Rechnungen',
         'calendar' =>  'Kalender',
-        'settings' =>  'die Einstellungen',
+        'settings' =>  'Einstellungen',
         'reports' =>  'Berichte',
         'search'  =>  'Suche',
         'want_to_delete'=>'Sind Sie sicher, dass Sie löschen möchten?',
@@ -37,5 +37,10 @@
         'tour_created'=>'Tour successfully created.',
         'driver_updated'=>'Treiber wurde aktualisiert.',
         'tour_updated'=>'Tour erfolgreich aktualisiert.',
+        'add_vehicle_type'=>'Fügen Sie mindestens einen Fahrzeugtyp hinzu.',
+        'add_tour_msg'=>'Fügen Sie mindestens einen Kunden, Fahrer und Fahrzeug hinzu.',
+        'logout'=>'Ausloggen',
+        'tour_calendar '=>'Tourkalender',
+        'select_vehicle'=>'Fahrzeug auswählen',
     ];
 

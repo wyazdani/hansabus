@@ -97,7 +97,7 @@
         public function create()
         {
             $pageTitle = 'Vehicle Create';
-            $vehicleTypes = VehicleType::all();
+            $vehicleTypes = VehicleType::whereNull('deleted_at')->get();
             return view('vehicle.add', compact('pageTitle', 'vehicleTypes'));
         }
 
@@ -141,12 +141,12 @@
             $status = true;
             $ac = $sunroof = $radio = $phoneCharging = false;
 
-            if ($request->ac) $ac = true;
+            if ($request->AC) $ac = true;
             if ($request->sunroof) $sunroof = true;
             if ($request->radio) $radio = true;
             if ($request->phoneCharging) $phoneCharging = true;
 
-            $vehicle->ac = $ac;
+            $vehicle->AC = $ac;
             $vehicle->radio = $radio;
             $vehicle->sunroof = $sunroof;
             $vehicle->phoneCharging = $phoneCharging;

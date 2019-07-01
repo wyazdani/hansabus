@@ -12873,9 +12873,9 @@ input:focus ~ .bg-success {
 }
 
 .alert-success {
-  border-color : #1e9ff2 !important;
-  background-color : #1e9ff2 !important;
-  color : #0B3A29 !important;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 }
 .alert-success .alert-link {
   color : #051811 !important;

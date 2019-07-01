@@ -48,6 +48,8 @@
                                         <div class="form-body">
 
 
+                                            @if(count($vehicleTypes) >= 1)
+
                                             <div class="row">
 
                                                 <div class="col-md-6">
@@ -104,6 +106,7 @@
 
                                                         <select class="{{($errors->has('vehicle_type')) ?'custom-select d-block w-100 error_input':'custom-select d-block w-100'}}"
                                                         id="customSelect" name="vehicle_type">
+                                                            <option>{{__('messages.select_vehicle')}}</option>
                                                             @foreach($vehicleTypes as $vehicleType)
                                                             
                                                             <option value="{{ $vehicleType->id }}"
@@ -290,6 +293,15 @@
                     </div>
 
                 </form>
+                        @else
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-danger" style="color: #454545 !important">
+                                            {{__('messages.add_vehicle_type')}}
+                                        </div>
+                                    </div>
+                                </div>
+                @endif
             </div>
         </div>
     </div>

@@ -32,6 +32,33 @@
 					</ul>
 				</li>
 
+				<li @if(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit']))
+					{{ ' class=open' }} @endif ><a href="{{ route('customers.index') }}" class="menu-item">{{ __('messages.customers') }}</a></li>
+
+
+
+				<li @if(in_array(Request::route()->getName(),[
+				'tours.index','tours.create','tours.edit',
+				'hire-drivers.index','hire-drivers.create','hire-drivers.edit','hire-driver-calendar'
+				]))
+					{{ ' class=open' }} @endif
+					class="has-sub nav-item">
+					<a href="javascript:;">
+						<span data-i18n="" class="menu-title">{{ __('messages.drivers') }}</span>
+					</a>
+					<ul class="menu-content">
+						<li><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a>
+						</li>
+						<li><a href="{{ route('hire-drivers.index') }}" class="menu-item">{{ __('messages.hire_drivers') }}</a>
+						</li>
+						<li><a href="{{ route('hire-driver-calendar') }}" class="menu-item">{{ __('messages.drivers_calendar') }}</a>
+						</li>
+
+					</ul>
+				</li>
+
+
+
 				<li @if(in_array(Request::route()->getName(),[
 				'v-drivers.index','v-drivers.create','v-drivers.edit',
 				'hire-drivers.index','hire-drivers.create','hire-drivers.edit','hire-driver-calendar'
@@ -52,8 +79,6 @@
 					</ul>
 				</li>
 
-				<li @if(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit']))
-					{{ ' class=open' }} @endif ><a href="{{ route('customers.index') }}" class="menu-item">{{ __('messages.customers') }}</a></li>
 
 				<li @if(in_array(Request::route()->getName(),['tours.index','tours.create','tours.edit','tour-detail']))
 					{{ ' class=open' }} @endif ><a href="{{ route('tours.index') }}" class="menu-item">{{ __('messages.tours') }}</a></li>

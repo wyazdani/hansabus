@@ -1,10 +1,10 @@
 
 @if(session()->has('message'))
-    <div class="alert alert-info" role="info">
+    <div class="alert alert-success"  role="info">
         {{ session()->get('message') }}
     </div>
 @elseif(session()->has('success'))
-    <div class="alert alert-info" role="success">
+    <div class="alert alert-success" role="success" id="success">
         {{ session()->get('success') }}
     </div>
 @elseif(session()->has('info'))

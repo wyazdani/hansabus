@@ -76,7 +76,7 @@ class VehicleTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  =>'required|string|unique:vehicle_types'
+            'name'  =>'required|string'
         ]);
 
         $vehicle_type = new VehicleType([
@@ -95,7 +95,7 @@ class VehicleTypeController extends Controller
     {
         $VehicleType->status = !$VehicleType->status;
         $VehicleType->save();
-        return redirect()->back()->with('info','Vehicle type # '.$VehicleType->id.' status updated!');
+        return redirect()->back()->with('info','Vehicle type # '.$VehicleType->id.trans('messages.updated'));
     }
 
 
@@ -128,7 +128,8 @@ class VehicleTypeController extends Controller
     public function destroy($id)
     {
         $vehicleType = VehicleType::find($id);
+        dd($id);
         $vehicleType->delete();
-//        return redirect('/vehicle-type')->with('success', 'Vehicle type has been deleted Successfully');
+        return redirect('/vehicle-type')->with('success', 'Vehicle type has been deleted Successfully');
     }
 }

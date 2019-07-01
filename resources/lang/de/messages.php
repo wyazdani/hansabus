@@ -13,7 +13,7 @@
         'dashboard' =>'Instrumententafel',
         'invoices'=>'Rechnungen',
         'calendar' =>  'Kalender',
-        'settings' =>  'die Einstellungen',
+        'settings' =>  'Einstellungen',
         'reports' =>  'Berichte',
         'search'  =>  'Suche',
         'emptyTable'=>'Keine Aufzeichnungen gefunden.',
@@ -36,5 +36,18 @@
         'hire_drivers'=>'Mieten Sie Treiber',
         'drivers_calendar'=>'Treiber-Kalender',
 
+        'no'=>'Nein',
+        'updated'=>'Aktualisierte',
+        'record'=>'Aufzeichnung',
+        'record_created'=>'Datensatz erfolgreich erstellt.',
+        'driver_created'=>'Neuer Treiber wurde hinzugefügt.',
+        'tour_created'=>'Tour successfully created.',
+        'driver_updated'=>'Treiber wurde aktualisiert.',
+        'tour_updated'=>'Tour erfolgreich aktualisiert.',
+        'add_vehicle_type'=>'Fügen Sie mindestens einen Fahrzeugtyp hinzu.',
+        'add_tour_msg'=>'Fügen Sie mindestens einen Kunden, Fahrer und Fahrzeug hinzu.',
+        'logout'=>'Ausloggen',
+        'tour_calendar '=>'Tourkalender',
+        'select_vehicle'=>'Fahrzeug auswählen',
     ];
 

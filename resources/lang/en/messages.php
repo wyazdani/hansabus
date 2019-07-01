@@ -15,7 +15,6 @@
         'settings' =>  'Settings',
         'reports' =>  'Reports',
         'search' =>      'Search',
-        'emptyTable'=>'No records found.',
         'want_to_delete'=>'Are you sure you want to delete?',
         'save_add_another'=>'Save & add Another',
         'update'=>'Update',
@@ -32,9 +31,18 @@
         'yes'=>'Yes',
         'no'=>'No',
         'logout'=>'Logout',
-
         'hire_drivers'=>'Hire Drivers',
         'drivers_calendar'=>'Drivers Calendar',
-
-
+        'updated'=>'Updated',
+        'record'=>'Record',
+        'record_created'=>'Record created successfully.',
+        'driver_created'=>'Driver created successfully.',
+        'tour_created'=>'Tour successfully created.',
+        'driver_updated'=>'Driver has been updated.',
+        'tour_updated'=>'Tour successfully updated.',
+        'add_vehicle_type'=>'Add at least One Vehicle Type.',
+        'add_tour_msg'=>'Add at least One Customer, Driver and Vehicle.',
+        'logout'=>'Logout',
+        'tour_calendar '=>'Tour Clalender',
+        'select_vehicle'=>'Select Vehicle',
     ];

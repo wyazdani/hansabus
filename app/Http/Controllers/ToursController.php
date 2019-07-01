@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HireAttachment;
 use App\Models\TourStatus;
 use App\Models\TourAttachment;
 use App\Models\Customer;
@@ -27,7 +26,7 @@ class ToursController extends Controller
 
     public function calendar(Request $request)
     {
-        $pageTitle = __('messages.tour_calendar');
+        $pageTitle = __('messages.calendar');
         $rows = Tour::where('status','>',1)->get(
             ['id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
@@ -106,7 +105,6 @@ class ToursController extends Controller
 
         $data=[];
         foreach($rows as $row){
-
             $row->vehicle;
             $row->driver;
             $row->customer;
@@ -132,13 +130,13 @@ class ToursController extends Controller
 
     public function create()
     {
-        $pageTitle = __('messages.add_tour');
+        $pageTitle = __('tour.heading.add');
         $general = new General();
         $randomKey = $general->randomKey();
         //$vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
         $tour_statuses = TourStatus::get(['id','name']);
-        $customers = Customer::get(['name','id']);
-        $drivers = Driver::get(['driver_name','id']);
+        $customers = Customer::where('status','=',1)->get();
+        $drivers = Driver::where('status','=',1)->get();
         $vehicles = Vehicle::where('status','=',1)->get();
 
 
@@ -199,10 +197,10 @@ class ToursController extends Controller
                 Attachment::find($attachment->id)->delete();
             }
         }
-
         if(count($files)){
             TourAttachment::insert($files);
         }
+
         unset($files); unset($attachments);
 
         return redirect('/tours')->with('success', 'Tour successfully created.');
@@ -328,7 +326,7 @@ class ToursController extends Controller
         }
         unset($files); unset($attachments);
 
-        return redirect('/tours')->with('success', 'Tour successfully updated');
+        return redirect('/tours')->with('success', trans('messages.tour_updated'));
     }
 
     /**

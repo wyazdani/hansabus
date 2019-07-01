@@ -12,19 +12,18 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
-                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <!-- <label><input type="search" class="form-control form-control-sm" placeholder="Search:" aria-controls="DataTables_Table_0"></label> -->
+                            <div id="DataTables_Table_0_filter" class="">
+                              {{--  <label><input type="search" class="form-control form-control-sm" placeholder="{{__('messages.search')}}" aria-controls="DataTables_Table_0"></label>--}}
                                 <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('vehicle.heading.add')}}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
                 </div>
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-xl mb-0" id="listingTable">
+                            <div class="">
+                                <table class=" table-hover table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="7%">ID</th>
@@ -59,7 +58,7 @@
             if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
-                    url: '/vehicles/'+id,
+                    url: 'vehicles/'+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {

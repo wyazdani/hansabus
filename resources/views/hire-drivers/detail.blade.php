@@ -13,10 +13,10 @@
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.tours') }}
+							<div class="dataTables_filter"><a href="{{ route('hire-drivers.index') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.hire_drivers') }}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
-							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.calendars') }}
+							<div class="dataTables_filter"><a href="{{ route('hire-driver-calendar') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.drivers_calendar') }}
 									<i class="ft-arrow-right mt-3"></i></a>
 							</div>
 						</div>
@@ -27,38 +27,31 @@
 						<div class="col-md-6">
 							<dl>
 								<dt width="30%">Status:</dt>
-								<dd>{{ ($Tour->status)?'Yes':'No' }}</dd>
+								<dd>{{ ($HireDriver->status)?'Yes':'No' }}</dd>
 								<dt>{{ __('tour.customer') }}:</dt>
-								<dd>{{ $Tour->customer->name }}</dd>
-								<dt>{{ __('tour.vehicle') }}:</dt>
-								<dd>{{ $Tour->vehicle->name }}</dd>
+								<dd>{{ $HireDriver->customer->name }}</dd>
 								<dt>{{ __('tour.driver') }}:</dt>
-								<dd>{{ $Tour->driver->driver_name }}</dd>
-								<dt>{{ __('tour.passengers') }}:</dt>
-								<dd>{{ $Tour->passengers }}</dd>
+								<dd>{{ $HireDriver->driver->driver_name }}</dd>
 							</dl>
 						</div>
 						<div class="col-md-6">
 							<dl>
 								<dt>{{ __('tour.from') }}:</dt>
-								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->from_date)) }}</dd>
+								<dd>{{ date('m/d/Y h:i A',strtotime($HireDriver->from_date)) }}</dd>
 								<dt>{{ __('tour.to') }}:</dt>
-								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->to_date)) }}</dd>
-
-								<dt>{{ __('tour.guide') }}:</dt>
-								<dd>{{ $Tour->guide }}</dd>
+								<dd>{{ date('m/d/Y h:i A',strtotime($HireDriver->to_date)) }}</dd>
 
 								<dt>{{ __('tour.price') }}:</dt>
-								<dd>{{ $Tour->price }}</dd>
+								<dd>{{ $HireDriver->price }}</dd>
 							</dl>
 						</div>
 					</div>
-					@if(count($Tour->attachments))
-						<div class="col-sm-12"><h5>{{ __('tour.attachments') }}:</h5></div>
+					@if(count($HireDriver->attachments))
+						<div class="col-sm-12"><h5>{{ __('hire.attachments') }}:</h5></div>
 						<div class="row">
 							<div class="col-lg-12">
 								<ul class="upload-list">
-									@foreach($Tour->attachments as $attachment)
+									@foreach($HireDriver->attachments as $attachment)
 										@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 										@if(in_array($ext,['png','jpg','jpeg','gif']))
 										<li>
@@ -69,7 +62,7 @@
 										@endif
 									@endforeach
 								</ul>
-								@foreach($Tour->attachments as $attachment)
+								@foreach($HireDriver->attachments as $attachment)
 									@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 										@if(!in_array($ext,['png','jpg','jpeg','gif']))
 											<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">

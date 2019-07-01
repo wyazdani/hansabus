@@ -1,10 +1,10 @@
 <?php
 return [
     'heading'=>[
-        'index'=>'Touren',
-        'add'=>'Tour hinzufügen',
-        'edit'=>'Tour aktualisieren',
-        'calendar'=>'Tourkalender'
+        'index'=>'Mieten Sie Treiber',
+        'add'=>'Mieten Sie einen Fahrer',
+        'edit'=>'Einstellung bearbeiten',
+        'calendar'=>'Fahrer mieten Kalender'
     ],
     /* form / listing */
     'status'=>'Status',
@@ -20,10 +20,9 @@ return [
     'drag'=>'Ziehen oder',
     'upload'=>'hochladen',
 
-    'select_one'=>'Select One',
+    'select_one'=>'Wähle eins',
     'select_status'=>'Wählen Sie Status',
     'select_customer'=>'Wählen Sie Kunde',
-    'select_vehicle'=>'Fahrzeug auswählen',
     'select_driver'=>'Treiber auswählen',
 
 

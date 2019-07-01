@@ -16,6 +16,7 @@
         'settings' =>  'die Einstellungen',
         'reports' =>  'Berichte',
         'search'  =>  'Suche',
+        'emptyTable'=>'Keine Aufzeichnungen gefunden.',
         'want_to_delete'=>'Sind Sie sicher, dass Sie löschen möchten?',
         'save'=>'Sparen',
         'save_add_another'=>'Sparen & neue hinzufügen',
@@ -29,6 +30,11 @@
         'management'=>'Verwaltung',
         'update'=>'Aktualisieren',
         'yes'=>'Ja',
-        'no'=>'Nein'
+        'no'=>'Nein',
+        'logout'=>'Ausloggen',
+
+        'hire_drivers'=>'Mieten Sie Treiber',
+        'drivers_calendar'=>'Treiber-Kalender',
+
     ];
 

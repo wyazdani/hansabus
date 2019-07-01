@@ -1,10 +1,10 @@
 <?php
 return [
     'heading'=>[
-            'index'=>'Tours',
-            'add'=>'Add Tour',
-            'edit'=>'Edit Tour',
-            'calendar'=>'Tours Calendar'
+            'index'=>'Hire Drivers',
+            'add'=>'Hire a driver',
+            'edit'=>'Edit hiring',
+            'calendar'=>'Driver hiring Calendar'
     ],
     /* form / listing */
     'status'=>'Status',
@@ -23,7 +23,6 @@ return [
     'select_one'=>'Select One',
     'select_status'=>'Select Status',
     'select_customer'=>'Select Customer',
-    'select_vehicle'=>'Select Vehicle',
     'select_driver'=>'Select driver',
 
     'today'=>'Today',

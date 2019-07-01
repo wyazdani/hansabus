@@ -8,12 +8,12 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">{{__('tour.heading.index')}}</h4>
+                                <h4 class="card-title">{{__('hire.heading.index')}}</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('tour.heading.add')}}</a>
+                                <a href="{{ route('hire-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('hire.heading.add')}}</a>
                             </div>
                         </div>
 
@@ -23,7 +23,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_customer')}}</option>
+                                    <option value="">{{__('hire.select_customer')}}</option>
                                     @foreach($customers as $customer)
                                         <option value="{{$customer->id}}">{{$customer->name}}</option>
                                     @endforeach
@@ -33,19 +33,9 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="driver_id" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_driver')}}</option>
+                                    <option value="">{{__('hire.select_driver')}}</option>
                                     @foreach($drivers as $driver)
                                         <option value="{{$driver->id}}">{{$driver->driver_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <select id="vehicle_id" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_vehicle')}}</option>
-                                    @foreach($vehicles as $vehicle)
-                                        <option value="{{$vehicle->id}}">{{$vehicle->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -62,7 +52,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="tourID" placeholder="Tour ID" class="form-control" />
+                                <input type='text' id="hireID" placeholder="Hire ID" class="form-control" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -81,13 +71,11 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('tour.customer')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('tour.vehicle')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('tour.to')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('tour.driver')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('hire.customer')}}</th>
+                                        <th class="border-top-0" width="15%">{{__('hire.driver')}}</th>
+                                        <th class="border-top-0" width="11%">{{__('hire.from')}}</th>
+                                        <th class="border-top-0" width="11%">{{__('hire.to')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('hire.price')}}</th>
                                         <th class="border-top-0" width="5%">Status</th>
                                         <th class="border-top-0" width="8%">&nbsp;</th>
                                     </tr>
@@ -105,14 +93,15 @@
 
 @endsection
 @section('pagejs')
-    @include('tours.view')
+    @include('hire-drivers.view')
     <script>
+
         var deleteMe = function(id){
 
             if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
-                    url: '/tours/'+id,
+                    url: '/hire-drivers/'+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {
@@ -125,19 +114,13 @@
         var viewTour = function(id){
 
             $.ajax({
-                url: "{{ url('/tours') }}/"+id,
+                url: "{{ url('/hire-drivers') }}/"+id,
                 cache: false,
                 success: function(t){
 
-                    $('#v_name').html(t.customer.name+  ': <small>'+ t.from_date+ ' - '+ t.to_date +'</small>');
-
-                    $('#v_driver').html(t.driver.driver_name);
-                    $('#v_vehicle').html(t.vehicle.name);
-
-                    $('#v_passengers').html(t.passengers);
-                    $('#v_guide').html(t.guide);
+                    $('#v_name').html(t.driver.driver_name+  ': <small>'+ t.from_date+ ' - '+ t.to_date +'</small>');
+                    $('#v_customer').html(t.customer.name);
                     $('#v_price').html(t.price);
-
 
                          if(t.status == 1) $('#v_status').html('Draft');
                     else if(t.status == 2) $('#v_status').html('Confirmed');
@@ -164,8 +147,6 @@
                 }
             });
         };
-        //
-
 
         $(document).ready(function() {
 
@@ -183,7 +164,7 @@
                 "bLengthChange" : false,
                 "aoColumnDefs": [
                     {
-                        "aTargets": [8],
+                        "aTargets": [6],
                         "mData": "",
                         "mRender": function (data, type, row) {
                             var status = '';
@@ -202,7 +183,7 @@
                         }
                     },
                     {
-                    "aTargets": [9],
+                    "aTargets": [7],
                     "mData": "",
                     "mRender": function (data, type, row) {
 
@@ -214,12 +195,12 @@
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
                         }
 
-                        status += 'href="{!! url("/tours/change-status/'+row.id+'") !!}">';
+                        status += 'href="{!! url("/hire-driver/change-status/'+row.id+'") !!}">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
                         edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
-                        edit += 'href="tours/'+row.id+'/edit")">';
+                        edit += 'href="hire-drivers/'+row.id+'/edit")">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                         trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
@@ -236,17 +217,16 @@
                     }
                 }],
                 "ajax": {
-                    "url": "{{ url('/tours-list') }}",
+                    "url": "{{ url('/hire-driver-list') }}",
                     "type": "GET",
                     "data": function () {
 
                         return {
-                            'vehicle_id' : $('#vehicle_id').val(),
                             'customer_id' : $('#customer_id').val(),
                             'driver_id' : $('#driver_id').val(),
                             'from_date' : $('#from_date').val(),
                             'to_date' : $('#to_date').val(),
-                            'id' : $('#tourID').val(),
+                            'id' : $('#hireID').val(),
                         }
                     }
                 },
@@ -254,11 +234,9 @@
                 "columns": [
                     { "data": "id" },
                     { "data": "customer.name" },
-                    { "data": "vehicle.name" },
+                    { "data": "driver.driver_name" },
                     { "data": "from_date" },
                     { "data": "to_date" },
-                    { "data": "driver.driver_name" },
-                    { "data": "passengers" },
                     { "data": "price" }
                 ],
                 drawCallback: deleteMe|viewTour,

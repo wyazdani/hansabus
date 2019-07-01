@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HireAttachment;
-use App\Models\TourStatus;
-use App\Models\TourAttachment;
-use App\Models\Customer;
-use App\Models\Vehicle;
-use App\Models\Tour;
-use App\Models\Attachment;
+use App\Http\Controllers\Controller;
 use App\Models\Driver;
+use App\Models\HireDriver;
+use App\Models\HireAttachment;
+use App\Models\TourAttachment;
+use App\Models\TourStatus;
+use App\Models\Customer;
+use App\Models\Attachment;
 
 use Illuminate\Http\Request;
 use App\Helpers\General;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
 
-class ToursController extends Controller
+class HireDriverController extends Controller
 {
 
     public function __construct()
@@ -27,34 +25,32 @@ class ToursController extends Controller
 
     public function calendar(Request $request)
     {
-        $pageTitle = __('messages.tour_calendar');
-        $rows = Tour::where('status','>',1)->get(
-            ['id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+        $pageTitle = __('hire.heading.calendar');
+        $rows = HireDriver::where('status','>',1)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
 
         $data=[]; $i=0;
         foreach($rows as $row){
-            $row->vehicle;
+
             $row->driver;
             $row->customer;
-            // ' passengers on '.$row->vehicle->name.'. driver: '.$row->driver->driver_name
-            $data[$i]['title'] = 'Tour # '.$row->id;
+
+            $data[$i]['title'] = 'Hire # '.$row->id;
             $data[$i]['start'] = $row->from_date;
             $data[$i]['end'] = $row->to_date;
-            $data[$i]['url'] = url('/tour/'.$row->id);
+            $data[$i]['url'] = url('/hire-driver/'.$row->id);
             $i++;
         }
-
-        return view('tours.calendar',compact('data','pageTitle'));
+//        dd($data);
+        return view('hire-drivers.calendar',compact('data','pageTitle'));
     }
     public function getList(Request $request)
     {
-//        dd($request->all());
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
         }
 
-        $query = Tour::where('status','>',0);
+        $query = HireDriver::where('status','>',0);
         $start =0;
         if(!empty($request->input('start'))){
 
@@ -76,9 +72,7 @@ class ToursController extends Controller
         if(!empty($request->driver_id)){
             $query = $query->where('driver_id',$request->driver_id);
         }
-        if(!empty($request->vehicle_id)){
-            $query = $query->where('vehicle_id',$request->vehicle_id);
-        }
+
 
         $from =''; $to ='';
         if(!empty($request->from_date)){
@@ -102,47 +96,39 @@ class ToursController extends Controller
 
         $recordsTotal = $query->count();
         $rows = $query->offset($start)->limit($limit)->get([
-            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+            'id','customer_id','driver_id','status','price','from_date','to_date']);
 
         $data=[];
         foreach($rows as $row){
 
-            $row->vehicle;
             $row->driver;
             $row->customer;
             $row->from_date = date('d/m/Y h:i',strtotime($row->from_date));
             $row->to_date = date('d/m/Y h:i',strtotime($row->to_date));
             $data[] = $row;
         }
-//        $recordsFiltered = $query->offset($start)->limit($limit)->count();
-
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
     public function index()
     {
-        $pageTitle = __('messages.tours');
-//        $tours = Tour::all();
-
-        $vehicles = Vehicle::where('status','1')->get(['name','id']);
+        $pageTitle = __('hire.heading.index');
         $customers = Customer::where('status','1')->get(['name','id']);
         $drivers = Driver::where('status','1')->get(['driver_name','id']);
 
-        return view('tours.index',compact('drivers','customers','vehicles','pageTitle'));
+        return view('hire-drivers.index',compact('drivers','customers','pageTitle'));
     }
 
     public function create()
     {
-        $pageTitle = __('messages.add_tour');
+        $pageTitle = __('hire.heading.add');
         $general = new General();
         $randomKey = $general->randomKey();
-        //$vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
+
         $tour_statuses = TourStatus::get(['id','name']);
         $customers = Customer::get(['name','id']);
         $drivers = Driver::get(['driver_name','id']);
-        $vehicles = Vehicle::where('status','=',1)->get();
 
-
-        return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));
+        return view('hire-drivers.add',compact('pageTitle','customers','drivers','tour_statuses','randomKey'));
     }
 
     /**
@@ -155,38 +141,29 @@ class ToursController extends Controller
     {
         $rules = [
             'status' => 'required|integer',
+            'driver_id' => 'required|integer',
             'customer_id' => 'required|integer',
-            'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            'driver_id' => 'required|integer',
-            'price' => 'required|numeric|digits_between:1,20',
-            'passengers' => 'required|integer',
-            'guide' => 'required',
+            'price' => 'required|numeric|digits_between:1,20'
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
-            'vehicle_id.required' => 'Please select vehicle.',
             'from_date.required' => 'Please provide tour starting date/time.',
             'to_date.required' => 'Please provide tour end date/time.',
             'driver_id.required' => 'Please select driver.',
-            'price.required' => 'Please provide tour price.',
-            'passengers.required' => 'Please provide number of passengers.',
-            'guide.required' => 'Please provide guide name.',
+            'price.required' => 'Please provide tour price.'
         ];
         $this->validate(request(), $rules, $messages);
 
-        $tour = new Tour;
-        $tour->status = (int)$request->status;
-        $tour->customer_id = (int)$request->customer_id;
-        $tour->vehicle_id = (int)$request->vehicle_id;
-        $tour->driver_id = (int)$request->driver_id;
-        $tour->from_date = date('Y-m-d h:i',strtotime($request->from_date));
-        $tour->to_date = date('Y-m-d h:i',strtotime($request->to_date));
-        $tour->passengers = (int)$request->passengers;
-        $tour->price = (int)$request->price;
-        $tour->guide = $request->guide;
-        $tour->save();
+        $HireDriver = new HireDriver;
+        $HireDriver->status = (int)$request->status;
+        $HireDriver->customer_id = (int)$request->customer_id;
+        $HireDriver->driver_id = (int)$request->driver_id;
+        $HireDriver->from_date = date('Y-m-d h:i',strtotime($request->from_date));
+        $HireDriver->to_date = date('Y-m-d h:i',strtotime($request->to_date));
+        $HireDriver->price = (int)$request->price;
+        $HireDriver->save();
 
 
         $files=[]; $attachments=[];
@@ -194,39 +171,37 @@ class ToursController extends Controller
             $attachments = Attachment::where('temp_key',$request->temp_key)->get();
 
             foreach($attachments as $attachment){
-                $files [] = ['tour_id'=>$HireDriver->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
+                $files [] = ['hire_id'=>$HireDriver->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
                 /* delete attachment */
                 Attachment::find($attachment->id)->delete();
             }
         }
 
         if(count($files)){
-            TourAttachment::insert($files);
+            HireAttachment::insert($files);
         }
         unset($files); unset($attachments);
-
-        return redirect('/tours')->with('success', 'Tour successfully created.');
+        return redirect('/hire-drivers')->with('success', 'Hire driver successfully created.');
     }
 
-    public function detail(Tour $Tour)
+    public function detail(HireDriver $HireDriver)
     {
-        $pageTitle = 'Tour # '.$Tour->id;
-        $Tour->vehicle;
-        $Tour->driver;
-        $Tour->customer;
-        $Tour->attachments;
+        $pageTitle = 'Hire # '.$HireDriver->id;
 
-        return view('tours.detail',compact('pageTitle','Tour'));
+        $HireDriver->driver;
+        $HireDriver->customer;
+        $HireDriver->attachments;
+
+        return view('hire-drivers.detail',compact('pageTitle','HireDriver'));
     }
-    public function show(Tour $Tour)
+    public function show(HireDriver $HireDriver)
     {
-        $Tour->vehicle;
-        $Tour->driver;
-        $Tour->customer;
-        $Tour->attachments;
-        $Tour->from_date = date('d/m/Y h:i A',strtotime($Tour->from_date));
-        $Tour->to_date = date('d/m/Y h:i A',strtotime($Tour->to_date));
-        return $Tour;
+        $HireDriver->driver;
+        $HireDriver->customer;
+        $HireDriver->attachments;
+        $HireDriver->from_date = date('d/m/Y h:i A',strtotime($HireDriver->from_date));
+        $HireDriver->to_date = date('d/m/Y h:i A',strtotime($HireDriver->to_date));
+        return $HireDriver;
     }
 
     /**
@@ -237,21 +212,19 @@ class ToursController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = __('messages.edit_tour');
-        $tour = Tour::find($id);
+        $pageTitle = __('hire.heading.edit');
+        $hire = HireDriver::find($id);
 
         $general = new General();
         $randomKey = $general->randomKey();
-        $vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
+
         $tour_statuses = TourStatus::get(['id','name']);
         $customers = Customer::get(['name','id']);
         $drivers = Driver::get(['driver_name','id']);
 
-        $attachments = TourAttachment::where('tour_id',$id)->get();
-
+        $attachments = HireAttachment::where('hire_id',$id)->get();
 //        dd($attachments);
-
-        return view('tours.add',compact('tour','pageTitle','vehicles','customers','drivers','tour_statuses','randomKey','attachments'));
+        return view('hire-drivers.add',compact('hire','pageTitle','customers','drivers','tour_statuses','randomKey','attachments'));
     }
 
     /**
@@ -266,44 +239,35 @@ class ToursController extends Controller
         $rules = [
             'status' => 'required|integer',
             'customer_id' => 'required|integer',
-            'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
             'driver_id' => 'required|integer',
-            'price' => 'required|numeric|digits_between:1,20',
-            'passengers' => 'required|integer',
-            'guide' => 'required',
+            'price' => 'required|numeric|digits_between:1,20'
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
-            'vehicle_id.required' => 'Please select vehicle.',
             'from_date.required' => 'Please provide tour starting date/time.',
             'to_date.required' => 'Please provide tour end date/time.',
             'driver_id.required' => 'Please select driver.',
-            'price.required' => 'Please provide tour price.',
-            'passengers.required' => 'Please provide number of passengers.',
-            'guide.required' => 'Please provide guide name.',
+            'price.required' => 'Please provide tour price.'
         ];
         $this->validate(request(), $rules, $messages);
 
 
-        $tour = Tour::find($request->id);
-        $tour->status = (int)$request->status;
-        $tour->customer_id = (int)$request->customer_id;
-        $tour->vehicle_id = (int)$request->vehicle_id;
-        $tour->driver_id = (int)$request->driver_id;
-        $tour->from_date = date('Y-m-d h:i',strtotime($request->from_date));
-        $tour->to_date = date('Y-m-d h:i',strtotime($request->to_date));
-        $tour->passengers = (int)$request->passengers;
-        $tour->price = (int)$request->price;
-        $tour->guide = $request->guide;
-        $tour->save();
+        $hire = HireDriver::find($request->id);
+        $hire->status = (int)$request->status;
+        $hire->customer_id = (int)$request->customer_id;
+        $hire->driver_id = (int)$request->driver_id;
+        $hire->from_date = date('Y-m-d h:i',strtotime($request->from_date));
+        $hire->to_date = date('Y-m-d h:i',strtotime($request->to_date));
+        $hire->price = (int)$request->price;
+        $hire->save();
 
         /* if files uploaded */
         $files=[]; $attachments=[];
 
         /* delete old tour attachments */
-        TourAttachment::where('tour_id',$tour->id)->delete();
+        HireAttachment::where('hire_id',$hire->id)->delete();
 
         /* already uploaded files */
         if(!empty($request->old_attachments)){
@@ -312,7 +276,7 @@ class ToursController extends Controller
 
                 $a = explode('.',$attachment);
                 $ext = $a[count($a)-1];
-                $files [] = ['tour_id'=>$tour->id,'file'=>$attachment,'ext'=>$ext];
+                $files [] = ['hire_id'=>$hire->id,'file'=>$attachment,'ext'=>$ext];
             }
         }
         /* new uploaded files */
@@ -321,14 +285,14 @@ class ToursController extends Controller
         }
 
         foreach($attachments as $attachment){
-            $files [] = ['tour_id'=>$tour->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
+            $files [] = ['hire_id'=>$hire->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
         }
         if(count($files)){
-            TourAttachment::insert($files);
+            HireAttachment::insert($files);
         }
         unset($files); unset($attachments);
 
-        return redirect('/tours')->with('success', 'Tour successfully updated');
+        return redirect('/hire-drivers')->with('success', 'Hiring successfully updated');
     }
 
     /**
@@ -339,8 +303,7 @@ class ToursController extends Controller
      */
     public function destroy($id)
     {
-        $tour = Tour::find($id);
-        $tour->delete();
+        HireDriver::find($id)->delete();
     }
 
 }

@@ -27,7 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 
-	@if(Request::route()->getName() == 'tour-calendar' || Request::route()->getName() == 'home')
+	@if(Request::route()->getName() == 'tour-calendar' || Request::route()->getName() == 'hire-driver-calendar' || Request::route()->getName() == 'home')
 	{{-- Canlender --}}
 	<link href="{{ asset('calendar/core/main.css') }}" rel='stylesheet' />
 	<link href="{{ asset('calendar/daygrid/main.css') }}" rel='stylesheet' />

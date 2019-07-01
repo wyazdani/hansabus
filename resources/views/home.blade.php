@@ -108,11 +108,11 @@
 							@foreach($recentTours as $tour)
 								<tr>
 									<td class="text-truncate">{!! $tour->id !!}</td>
-									<td class="text-truncate">{!! !empty($tour->customer_id)?$tour->customer->name:'' !!}</td>
-									<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
+									<td class="text-truncate">{!! !empty($tour->customer->name)?$tour->customer->name:'' !!}</td>
+									<td class="text-truncate">{!! !empty($tour->vehicle->name)?$tour->vehicle->name:'' !!}</td>
 									<td class="text-truncate">{!! $tour->from_date !!}</td>
 									<td class="text-truncate">{!! $tour->to_date !!}</td>
-									<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
+									<td class="text-truncate">{!! !empty($tour->driver->driver_name)?$tour->driver->driver_name:'' !!}</td>
 									<td class="text-truncate">{!! $tour->passengers !!}</td>
 									<td class="text-truncate">{!! $tour->price !!}</td>
 									<td class="text-truncate">

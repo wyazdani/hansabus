@@ -99,6 +99,10 @@
 				"processing": true,
 				"serverSide": true,
 				"searchable" : true,
+				"language": {
+					"search": "{{__('messages.search')}}",
+					"emptyTable": "{{__('messages.emptyTable')}}"
+				},
 				"pageLength": 10,
 				"bLengthChange" : false,
 				"aoColumnDefs": [{

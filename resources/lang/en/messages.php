@@ -15,6 +15,7 @@
         'settings' =>  'Settings',
         'reports' =>  'Reports',
         'search' =>      'Search',
+        'emptyTable'=>'No records found.',
         'want_to_delete'=>'Are you sure you want to delete?',
         'save_add_another'=>'Save & add Another',
         'update'=>'Update',
@@ -29,5 +30,11 @@
         'management'=>'Management',
         'update'=>'Update',
         'yes'=>'Yes',
-        'no'=>'No'
+        'no'=>'No',
+        'logout'=>'Logout',
+
+        'hire_drivers'=>'Hire Drivers',
+        'drivers_calendar'=>'Drivers Calendar',
+
+
     ];

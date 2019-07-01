@@ -37,4 +37,9 @@
         'tour_created'=>'Tour successfully created.',
         'driver_updated'=>'Driver has been updated.',
         'tour_updated'=>'Tour successfully updated.',
+        'add_vehicle_type'=>'Add at least One Vehicle Type.',
+        'add_tour_msg'=>'Add at least One Customer, Driver and Vehicle.',
+        'logout'=>'Logout',
+        'tour_calendar '=>'Tour Clalender',
+        'select_vehicle'=>'Select Vehicle',
     ];

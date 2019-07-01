@@ -75,7 +75,7 @@ class DriverController extends Controller
     {
         $Driver->status = !$Driver->status;
         $Driver->save();
-        return redirect()->back()->with('info','Driver # '.$Driver->id.' status'. ' '. trans('messages.updated'));
+        return redirect()->back()->with('info',trans('messages.drivers').' # '.$Driver->id.' status'. ' '. trans('messages.updated'));
     }
     /**
      * Display a listing of the resource.
@@ -84,7 +84,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Drivers';
+        $pageTitle = trans('messages.drivers');
         return view('drivers.index',compact('pageTitle'));
     }
     /**
@@ -94,7 +94,7 @@ class DriverController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Add Driver';
+        $pageTitle = trans('messages.drivers');
         return view('drivers.add',compact('pageTitle'));
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TourAttachmentsTable extends Migration
+class CreateTourInvoiceDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class TourAttachmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tour_attachments', function ($table) {
+        Schema::create('tour_invoice_details', function (Blueprint $table) {
+            $table->bigIncrements('id');
 
-            $table->increments('id');
-            $table->integer('tour_id')->unsigned()->nullable();
-            $table->string('file')->default('')->nullable();
-            $table->string('ext',10)->default('')->nullable();
+
+            $table->integer('invoice_id')->unsigned();
+            $table->integer('tour_id')->unsigned();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class TourAttachmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tour_attachments');
+        Schema::dropIfExists('tour_invoice_details');
     }
 }

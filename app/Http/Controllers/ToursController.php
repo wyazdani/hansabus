@@ -53,7 +53,15 @@ class ToursController extends Controller
             $draw = $request->input('draw');
         }
 
-        $query = Tour::where('status','>',0);
+
+
+
+        if(!empty($request->input('status'))){
+            $query = Tour::where('status',$request->input('status'));
+        }else{
+            $query = Tour::where('status','>',0);
+        }
+
         $start =0;
         if(!empty($request->input('start'))){
 

@@ -11,7 +11,7 @@
         'tours' =>  'Touren',
         'vehicle_maintenance'=>'Instandhaltung',
         'dashboard' =>'Instrumententafel',
-        'invoices'=>'Rechnungen',
+        'tour_invoices'=>'Reiserechnungen',
         'calendar' =>  'Kalender',
         'settings' =>  'Einstellungen',
         'reports' =>  'Berichte',
@@ -49,5 +49,6 @@
         'logout'=>'Ausloggen',
         'tour_calendar '=>'Tourkalender',
         'select_vehicle'=>'Fahrzeug auswählen',
+        'generate_invoice'=>'Rechnung Erstellen'
     ];
 

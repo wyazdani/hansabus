@@ -7,8 +7,14 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function (){
 
     /*invoices*/
-    Route::get('/invoices', 'InvoiceController@index')->name('invoices');
-    Route::get('/download-invoice', 'InvoiceController@downloadInvoice')->name('download-invoice');
+    Route::get('/tour-invoices', 'InvoiceController@index')->name('tour-invoices');
+    Route::get('/tour-invoices/create', 'InvoiceController@create')->name('tour-invoice-create');
+    Route::get('/tour-invoices-list', 'InvoiceController@getList')->name('tour-invoices-list');
+    Route::post('/generate-tour-invoice', 'InvoiceController@generateInvoice')->name('generate-tour-invoice');
+    Route::get('/mark-as-paid', 'InvoiceController@markAsPaid')->name('mark-as-paid');
+    Route::get('/download-tours-invoice', 'InvoiceController@downloadInvoice')->name('download-tours-invoice');
+
+
 
 
     /* drivers */

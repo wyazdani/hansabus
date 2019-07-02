@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TourStatusTable extends Migration
+class CreateTourInvoiceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class TourStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('tour_status', function ($table) {
+        Schema::create('tour_invoice', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned();
-            $table->string('name',200)->nullable();
+            $table->bigIncrements('id');
+
+            $table->integer('customer_id')->unsigned();
+            $table->integer('total')->unsigned();
+            $table->enum('status', [1,2]); // 1=un-paid, 2=paid
 
             $table->softDeletes();
             $table->timestamps();
@@ -31,6 +34,6 @@ class TourStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tour_status');
+        Schema::dropIfExists('tour_invoice');
     }
 }

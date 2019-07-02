@@ -10,7 +10,7 @@
         'tours' =>  'Tours',
         'vehicle_maintenance'=>'Vehicle Maintenance',
         'dashboard' =>'Dashboard',
-        'invoices'=>'Invoices',
+        'tour_invoices'=>'Tour Invoices',
         'calendar' =>  'Calendar',
         'settings' =>  'Settings',
         'reports' =>  'Reports',
@@ -45,4 +45,5 @@
         'logout'=>'Logout',
         'tour_calendar '=>'Tour Clalender',
         'select_vehicle'=>'Select Vehicle',
+        'generate_invoice'=>'Generate Invoice'
     ];

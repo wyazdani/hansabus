@@ -20,6 +20,7 @@ return [
     'drag'=>'Drag or',
     'upload'=>'upload',
 
+    'select_one'=>'Select One',
     'select_status'=>'Select Status',
     'select_customer'=>'Select Customer',
     'select_vehicle'=>'Select Vehicle',

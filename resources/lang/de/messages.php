@@ -11,11 +11,12 @@
         'tours' =>  'Touren',
         'vehicle_maintenance'=>'Instandhaltung',
         'dashboard' =>'Instrumententafel',
-        'invoices'=>'Rechnungen',
+        'tour_invoices'=>'Reiserechnungen',
         'calendar' =>  'Kalender',
         'settings' =>  'Einstellungen',
         'reports' =>  'Berichte',
         'search'  =>  'Suche',
+        'emptyTable'=>'Keine Aufzeichnungen gefunden.',
         'want_to_delete'=>'Sind Sie sicher, dass Sie löschen möchten?',
         'save'=>'Sparen',
         'save_add_another'=>'Sparen & neue hinzufügen',
@@ -30,6 +31,12 @@
         'update'=>'Aktualisieren',
         'yes'=>'Ja',
         'no'=>'Nein',
+        'logout'=>'Ausloggen',
+
+        'hire_drivers'=>'Mieten Sie Treiber',
+        'drivers_calendar'=>'Treiber-Kalender',
+
+        'no'=>'Nein',
         'updated'=>'Aktualisierte',
         'record'=>'Aufzeichnung',
         'record_created'=>'Datensatz erfolgreich erstellt.',
@@ -42,5 +49,6 @@
         'logout'=>'Ausloggen',
         'tour_calendar '=>'Tourkalender',
         'select_vehicle'=>'Fahrzeug auswählen',
+        'generate_invoice'=>'Rechnung Erstellen'
     ];
 

@@ -16,15 +16,12 @@ class CreateHireADriverTable extends Migration
         Schema::create('hire_a_driver', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->enum('status', [1,2,3,4,5,6,7]);
+            $table->enum('status', [1,2,3,4,5]);
             $table->bigInteger('customer_id')->default(0)->nullable();
+            $table->bigInteger('driver_id')->default(0)->nullable();
 
             $table->string('from_date')->nullable();
             $table->string('to_date')->nullable();
-            $table->bigInteger('driver_id')->default(0)->nullable();
-
-            $table->string('passengers')->nullable();
-            $table->string('guide')->nullable();
             $table->integer('price')->default(0)->nullable();
 
             $table->softDeletes();

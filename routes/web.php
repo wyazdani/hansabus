@@ -7,14 +7,27 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function (){
 
     /*invoices*/
-    Route::get('/invoices', 'InvoiceController@index')->name('invoices');
-    Route::get('/download-invoice', 'InvoiceController@downloadInvoice')->name('download-invoice');
+    Route::get('/tour-invoices', 'InvoiceController@index')->name('tour-invoices');
+    Route::get('/tour-invoices/create', 'InvoiceController@create')->name('tour-invoice-create');
+    Route::get('/tour-invoices-list', 'InvoiceController@getList')->name('tour-invoices-list');
+    Route::post('/generate-tour-invoice', 'InvoiceController@generateInvoice')->name('generate-tour-invoice');
+    Route::get('/mark-as-paid', 'InvoiceController@markAsPaid')->name('mark-as-paid');
+    Route::get('/download-tours-invoice', 'InvoiceController@downloadInvoice')->name('download-tours-invoice');
+
+
 
 
     /* drivers */
     Route::resource('v-drivers', 'DriverController');
     Route::get('/drivers-list', 'DriverController@getList')->name('drivers-list');
     Route::get('/v-drivers/change-status/{Driver}', 'DriverController@status')->name('driver.status-change');
+
+    /* hire drivers */
+    Route::resource('hire-drivers', 'HireDriverController');
+    Route::get('/hire-driver-list', 'HireDriverController@getList')->name('hire-driver-list');
+    Route::get('/hire-driver/{HireDriver}', 'HireDriverController@detail')->name('hire-driver-detail');
+    Route::get('/hire-driver-calendar', 'HireDriverController@calendar')->name('hire-driver-calendar');
+
 
 
     /* vehicle types */

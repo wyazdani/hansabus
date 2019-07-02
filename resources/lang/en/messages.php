@@ -10,7 +10,7 @@
         'tours' =>  'Tours',
         'vehicle_maintenance'=>'Vehicle Maintenance',
         'dashboard' =>'Dashboard',
-        'invoices'=>'Invoices',
+        'tour_invoices'=>'Tour Invoices',
         'calendar' =>  'Calendar',
         'settings' =>  'Settings',
         'reports' =>  'Reports',
@@ -30,6 +30,9 @@
         'update'=>'Update',
         'yes'=>'Yes',
         'no'=>'No',
+        'logout'=>'Logout',
+        'hire_drivers'=>'Hire Drivers',
+        'drivers_calendar'=>'Drivers Calendar',
         'updated'=>'Updated',
         'record'=>'Record',
         'record_created'=>'Record created successfully.',
@@ -42,4 +45,5 @@
         'logout'=>'Logout',
         'tour_calendar '=>'Tour Clalender',
         'select_vehicle'=>'Select Vehicle',
+        'generate_invoice'=>'Generate Invoice'
     ];

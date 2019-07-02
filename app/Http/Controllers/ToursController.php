@@ -53,7 +53,15 @@ class ToursController extends Controller
             $draw = $request->input('draw');
         }
 
-        $query = Tour::where('status','>',0);
+
+
+
+        if(!empty($request->input('status'))){
+            $query = Tour::where('status',$request->input('status'));
+        }else{
+            $query = Tour::where('status','>',0);
+        }
+
         $start =0;
         if(!empty($request->input('start'))){
 
@@ -110,10 +118,9 @@ class ToursController extends Controller
             $row->customer;
             $row->from_date = date('d/m/Y h:i',strtotime($row->from_date));
             $row->to_date = date('d/m/Y h:i',strtotime($row->to_date));
-//            $row['action']='';
             $data[] = $row;
         }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
+//        $recordsFiltered = $query->offset($start)->limit($limit)->count();
 
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
@@ -188,23 +195,23 @@ class ToursController extends Controller
         $tour->save();
 
 
-        $attachments=[];
+        $files=[]; $attachments=[];
         if(!empty($request->temp_key)){
             $attachments = Attachment::where('temp_key',$request->temp_key)->get();
-        }
-        $files=[];
-        foreach($attachments as $attachment){
-            $files [] = ['tour_id'=>$tour->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
 
-            /* delete attachment */
-            Attachment::find($attachment->id)->delete();
+            foreach($attachments as $attachment){
+                $files [] = ['tour_id'=>$HireDriver->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
+                /* delete attachment */
+                Attachment::find($attachment->id)->delete();
+            }
         }
         if(count($files)){
             TourAttachment::insert($files);
         }
 
         unset($files); unset($attachments);
-        return redirect('/tours')->with('success', trans('messages.tour_created'));
+
+        return redirect('/tours')->with('success', 'Tour successfully created.');
     }
 
     public function detail(Tour $Tour)
@@ -299,34 +306,32 @@ class ToursController extends Controller
         $tour->save();
 
         /* if files uploaded */
-        $attachments=[];
-        if(!empty($request->temp_key)){
-            $attachments = Attachment::where('temp_key',$request->temp_key)->get();
-        }
-        $files=[];
+        $files=[]; $attachments=[];
 
+        /* delete old tour attachments */
+        TourAttachment::where('tour_id',$tour->id)->delete();
+
+        /* already uploaded files */
         if(!empty($request->old_attachments)){
 
             foreach($request->old_attachments as $attachment){
 
-
                 $a = explode('.',$attachment);
                 $ext = $a[count($a)-1];
-
                 $files [] = ['tour_id'=>$tour->id,'file'=>$attachment,'ext'=>$ext];
             }
         }
+        /* new uploaded files */
+        if(!empty($request->temp_key)){
+            $attachments = Attachment::where('temp_key',$request->temp_key)->get();
+        }
+
         foreach($attachments as $attachment){
             $files [] = ['tour_id'=>$tour->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
-
-            Attachment::find($attachment->id)->delete();
         }
         if(count($files)){
             TourAttachment::insert($files);
         }
-
-//        dd('OK');
-
         unset($files); unset($attachments);
 
         return redirect('/tours')->with('success', trans('messages.tour_updated'));

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\General;
 use App\Models\Customer;
 use App\Models\Tour;
+use App\Models\TourInvoice;
+use App\Models\TourInvoiceDetail;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -17,23 +20,49 @@ class InvoiceController extends Controller
 
     public function index(){
 
-        $pageTitle = 'Invoices';
+        $pageTitle = __('tour_invoice.heading.index');
         $customers = Customer::where('status','1')->get(['name','id']);
-        return view('invoices.index',compact('pageTitle','customers'));
+        return view('invoices.tour.index',compact('pageTitle','customers'));
     }
 
-    public function downloadInvoice(Request $request){
+    public function create(){
 
+        $pageTitle = __('tour_invoice.heading.add');
+        $customers = Customer::where('status','1')->get(['name','id']);
+        return view('invoices.tour.create',compact('pageTitle','customers'));
+    }
 
-        $customer='';
+    public function getList(Request $request)
+    {
 //        dd($request->all());
-        $query = Tour::where('status','>',1);
+        $draw = 0;
+        if(!empty($request->input('draw')) ) {
+            $draw = $request->input('draw');
+        }
+
+
+        if(!empty($request->input('status'))){
+            $query = TourInvoice::where('status',$request->input('status'));
+        }else{
+            $query = TourInvoice::where('status','>',0);
+        }
+
+        $start =0;
+        if(!empty($request->input('start'))){
+
+//            if($request->input('start')>0){
+            $start = ($request->input('start')-1);
+//            }
+        }
+        $limit = 10;
+        if(!empty($request->input('length'))){
+            $limit = $request->input('length');
+        }
 
         if(!empty($request->id)){
             $query = $query->where('id',(int)$request->id);
         }
         if(!empty($request->customer_id)){
-            $customer = Customer::find($request->customer_id);
             $query = $query->where('customer_id',$request->customer_id);
         }
 
@@ -47,38 +76,104 @@ class InvoiceController extends Controller
         }
         if(!empty($from) && !empty($to)){
 
-            $query = $query->whereBetween('from_date', [$from, $to]);
+            $query = $query->whereBetween('created_at', [$from, $to]);
 
         }elseif(!empty($from)){
 
-            $query = $query->where('from_date','>=',$from);
+            $query = $query->where('created_at','>=',$from);
         }elseif(!empty($to)){
 
-            $query = $query->where('from_date','<=',$to);
+            $query = $query->where('created_at','<=',$to);
         }
 
-        $rows = $query->get([
-            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+        $recordsTotal = $query->count();
+        $rows = $query->offset($start)->limit($limit)->get([
+            'id','customer_id','status','total','created_at']);
 
-        $total=0;
-        $tours=[];
+        $data=[];
+
+
         foreach($rows as $row){
 
-            $row->vehicle;
-            $row->driver;
+            $row->customer;
+            $row->status = ($row->status == 1)?'Unpaid':'Paid';
+//            $row['created_at'] = date('d/m/Y h:i A',strtotime($row['created_at']));
+            $data[] = $row;
+        }
+//        dd($data);
+        unset($rows);
+        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
+    }
 
-            $row->from_date = date('d/m/Y h:i',strtotime($row->from_date));
-            $row->to_date = date('d/m/Y h:i',strtotime($row->to_date));
-            $tours[] = $row;
-            $total += $row->price;
+
+    public function markAsPaid(Request $request){
+
+        if(!empty($request->ids)){
+
+            foreach($request->ids as $id) {
+
+                $invoice = TourInvoice::find($id);
+                $invoice->status = 2;
+                $invoice->save();
+            }
+        }
+        return redirect('/tour-invoices')->with('success', 'Invoice(s) status changed.');
+    }
+    public function generateInvoice(Request $request){
+
+
+        /* save invoice */
+        $invoice  = new TourInvoice;
+        $invoice->customer_id = (int)$request->customer_id;
+        $invoice->total = (int)$request->total;
+        $invoice->status = 1;
+        $invoice->save();
+
+
+        /* save invoice details */
+        foreach($request->ids as $id){
+
+            $invoice_detail = new TourInvoiceDetail;
+            $invoice_detail->invoice_id = $invoice->id;
+            $invoice_detail->tour_id = $id;
+            $invoice_detail->save();
         }
 
-//        return view('invoices.pdf_design',compact('customer','tours','total'));
+        /* change Tours status to invoiced */
+        if(!empty($request->ids)){
 
-//        dd($tours);
-        $pdf = PDF::loadView('invoices.pdf_design', compact('customer','tours','total'));
-        return $pdf->download('invoice.pdf');
+            Tour::whereIn('id',$request->ids)->update(['status'=>3]);
+        }
+
+        return redirect('/tour-invoices')->with('success', 'Invoice successfully created.');
+    }
+    public function downloadInvoice(Request $request){
 
 
+
+        $total=0;
+        $invoice = TourInvoice::find((int)$request->id);
+
+        // Invoice Number
+        $general = new General();
+        $invoice->id = $general->invoiceNumber($invoice->id);
+
+        $customer = $invoice->customer;
+        $invoice_details = TourInvoiceDetail::where('invoice_id',$invoice->id)->get();
+        $tours =[];
+        foreach($invoice_details as $inv){
+            $inv->tour;
+            $inv->tour->driver;
+            $inv->tour->customer;
+            $inv->tour->vehicle;
+            $total += $inv->tour->price;
+
+            $tours[] = $inv->tour;
+        }
+
+        $vat = ($total/100)*19;
+
+        $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tours','total','vat'));
+        return $pdf->download('tours_invoice.pdf');
     }
 }

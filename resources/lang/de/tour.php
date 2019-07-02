@@ -20,6 +20,7 @@ return [
     'drag'=>'Ziehen oder',
     'upload'=>'hochladen',
 
+    'select_one'=>'Select One',
     'select_status'=>'Wählen Sie Status',
     'select_customer'=>'Wählen Sie Kunde',
     'select_vehicle'=>'Fahrzeug auswählen',
@@ -33,9 +34,9 @@ return [
 
     'recent_trips'=>'Letzte Reisen',
     'total_amount'=>'Gesamtnettobetrag:',
-    'invoice_number'=>'Invoice Number',
-    'invoice_date'=>'Invoice Date',
-    'customer_information'=>'Customer Information',
+    'invoice_number'=>'Rechnungsnummer',
+    'invoice_date'=>'Rechnungsdatum',
+    'customer_information'=>'Kundeninformation',
 
     'is_active'=>'Ist aktiv',
     'select_one'=>'Wähle eins',

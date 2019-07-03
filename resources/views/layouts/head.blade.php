@@ -26,6 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
+	@toastr_css
 
 	@if(Request::route()->getName() == 'tour-calendar' || Request::route()->getName() == 'hire-driver-calendar' || Request::route()->getName() == 'home')
 	{{-- Canlender --}}

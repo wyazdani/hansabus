@@ -14,6 +14,10 @@ return [
     'address'=>'Address',
     'phone'=>'Phone',
     'other_details'=>'Other Details',
-    'is_active'=>'Is Active'
+    'is_active'=>'Is Active',
+
+    'created'=>'Driver created.',
+    'updated'=>'Driver updated.',
+    'status_changed'=>'Driver status changed.'
 
     ];

@@ -13,4 +13,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
-
+@toastr_js
+@toastr_render
+<script>
+    toastr.options: {
+        "positionClass": "your-newly-created-div-class"
+    }
+</script>

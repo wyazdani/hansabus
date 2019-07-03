@@ -11,6 +11,10 @@ return [
     'mobile'=>'Handynummer',
     'web'=>'Firmenweb',
     'address'=>'Adresse',
-    'is_active'=>'ist aktiv'
+    'is_active'=>'ist aktiv',
+
+    'created'=>'Kunde erstellt.',
+    'updated'=>'Kunde aktualisiert.',
+    'status_changed'=>'Kundenstatus geändert.'
 
     ];

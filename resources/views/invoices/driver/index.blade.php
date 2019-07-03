@@ -8,13 +8,13 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
-                                <h4 class="card-title">{{__('messages.tour_invoices')}}</h4>
+                                <h4 class="card-title">{{__('driver_invoice.heading.index')}}</h4>
                             </div>
                         </div>
                     </div>
                     <div>&nbsp;</div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_customer')}}</option>
@@ -24,26 +24,48 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1.5">
                             <div class="form-group">
-                                <input type='text' id="from_date" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
+                                <input type='text' id="from_date" autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="tourID" placeholder="Tour ID" class="form-control" />
+                                <input type='text' id="invoiceID" placeholder="Invoice ID" class="form-control" />
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1.5">
+                            <div class="form-group">
+                                <select id="status" class="form-control filterBox">
+                                    <option value="">{{__('tour.select_status')}}</option>
+                                    <option value="1">Unpaid</option>
+                                    <option value="2">Paid</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
                             <div class="form-group">
                                 <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
+                        <div class="col-md-6" >
+                            <div class="form-group text-left">
+                                <a href="javascript:;" onclick="$('#theForm').submit()"
+                                   class="btn btn-info disabled"
+                                   id="mark_as_paidDiv">{{ __('driver_invoice.mark_as_paid') }}</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-6 text-right">
+                            <div class="dataTables_filter"><a href="{{ route('driver-invoice-create') }}" class="btn btn-success ml-2 mt-2">
+                                    <i class="ft-plus"></i>{{ __('driver_invoice.heading.add') }}</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="card-content mt-1">
@@ -51,33 +73,32 @@
                         <div class="px-3 mb-4">
 
                             <div class="table-responsive">
-                                <form class="form" method="POST" action="{{ route('generate-invoice') }}" >
+                                <form class="form" method="GET" action="{{ route('driver-mark-as-paid') }}" id="theForm">
                                     @csrf
-
                                 <table class="table table-hover table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">
-
-                                            <div class="form-check">
-                                                <input class="form-check-input"
-                                                       type="checkbox"
-                                                       id="isSelected">
+                                            <div class="custom-control custom-checkbox" style="top: -5px;">
+                                                <input type="checkbox" class="custom-control-input" id="isSelected" name="example1">
+                                                <label class="custom-control-label" for="isSelected">&nbsp;</label>
                                             </div>
 
+{{--                                            <div class="form-check">--}}
+{{--                                                <input class="form-check-input" type="checkbox" id="isSelected">--}}
+{{--                                            </div>--}}
                                         </th>
-                                        <th class="border-top-0" width="5%">Tour #</th>
-                                        <th class="border-top-0" width="20%">{{__('tour.vehicle')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('tour.to')}}</th>
-                                        <th class="border-top-0" width="19%">{{__('tour.driver')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
-                                        <th class="border-top-0" width="8%">&nbsp;</th>
+                                        <th class="border-top-0" width="10%">{{__('driver_invoice.invoice')}} #</th>
+                                        <th class="border-top-0" width="35%">{{__('driver_invoice.customer')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('driver_invoice.total')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('driver_invoice.status')}}</th>
+                                        <th class="border-top-0" width="20%">{{__('driver_invoice.date')}}</th>
+                                        <th class="border-top-0" width="7.5%">&nbsp;</th>
+                                        <th class="border-top-0" width="7.5%">&nbsp;</th>
                                     </tr>
                                     </thead>
                                     <tbody id="toursDiv">
                                     </tbody>
-                                    <tr id="generate_invoice" style="display: none"><td colspan="7" class="text-left"><input type="submit" value="{{__('messages.generate_invoice')}}" class="btn btn-success ml-2"></td></tr>
                                 </table>
                                 </form>
                             </div>
@@ -90,9 +111,8 @@
 
 @endsection
 @section('pagejs')
-    @include('tours.view')
     <script>
-        function addTours()
+        function showButton()
         {
             var checkboxs= document.getElementsByName("ids[]");
             var okay=false;
@@ -105,28 +125,28 @@
                 }
             }
             if(okay){
-                $('#generate_invoice').show();
+                $('#mark_as_paidDiv').removeClass('disabled');
             }
             else {
-                $('#generate_invoice').hide();
+                $('#mark_as_paidDiv').addClass('disabled');
             }
         }
 
-        function getTours(){
+        function getInvoices(){
 
             if($('#customer_id').val() == ''){
                 $('#toursDiv').html('');
             }
 
             var data =  {
-                'status':2,
+                'status':$('#status').val(),
                 'customer_id' : $('#customer_id').val(),
                 'from_date' : $('#from_date').val(),
                 'to_date' : $('#to_date').val(),
                 'id' : $('#tourID').val(),
             };
             $.ajax({
-                url: '{{ url('/tours-list') }}',
+                url: '{{ url('/driver-invoices-list') }}',
                 data: data,
                 type: 'GET',  // user.destroy
                 success: function(r) {
@@ -141,16 +161,27 @@
 
                         total += parseInt(r.data[i].price);
                         html +=
-                            '<tr>' +
-                            '<td><div class="form-check"><input class="form-check-input ids" type="checkbox" ' +
-                            ' onclick="addTours();" value="' + r.data[i].id + '" name="ids[]"></div></td>' +
-                            '<td>' + r.data[i].id + '</td>' +
-                            '<td>' + r.data[i].vehicle.name + '</td>' +
-                            '<td>' + r.data[i].from_date + '</td>' +
-                            '<td>' + r.data[i].to_date + '</td>' +
-                            '<td>' + r.data[i].driver.driver_name + '</td>' +
-                            '<td>' + r.data[i].price + '</td>' +
-                            '<td><a href="javascript:;" class="btn-info btn-sm btn">{{__("messages.generate_invoice")}}</a></td>' +
+                            '<tr>';
+
+                        if(r.data[i].status == 'Unpaid'){
+                            html += '<td><div class="custom-control custom-checkbox" style="top: -5px;">' +
+                                '<input type="checkbox" id="a' + r.data[i].id + '" class="custom-control-input form-check-input ids" onclick="showButton();" value="' + r.data[i].id + '" name="ids[]">' +
+                                '<label class="custom-control-label" for="a' + r.data[i].id + '">&nbsp;</label></div></td>';
+                        }else{
+                            html+= '<td>&nbsp;</td>';
+                        }
+
+                        html+= '<td>' + r.data[i].invoice_id + '</td>' +
+                            '<td>' + r.data[i].customer.name + '</td>' +
+                            '<td>' + r.data[i].total + '</td>' +
+                            '<td>' + r.data[i].status+ '</td>' +
+                            '<td>' + r.data[i].created_at + '</td>';
+                        if(r.data[i].status == 'Unpaid'){
+                            html+= '<td><a href="{{ route('driver-mark-as-paid')}}?ids[]='+ r.data[i].id + '" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a></td>';
+                        }else{
+                            html+= '<td>&nbsp;</td>';
+                        }
+                        html+= '<td><a href="{{ route('download-driver-invoice') }}?id=' + r.data[i].id + '" class="btn btn-sm btn-outline-primary">Download</a></td>' +
                             '</tr>';
                     }
                    /* html +=
@@ -189,13 +220,13 @@
                         checkboxs[i].checked = false;
                     }
                 }
-                addTours();
+                showButton();
             });
 
 
             /* filter by customer, from/to dates change */
             $('.filterBox ').on('change', function(){
-                getTours();
+                getInvoices();
             });
             /* filter by search button click */
             $('#searchBtn').on('click', function(){
@@ -214,8 +245,7 @@
                 $('.datetimepicker1').data("DateTimePicker").maxDate(e.date);
             });
 
-            getTours();
-
+            getInvoices();
         });
 
     </script>

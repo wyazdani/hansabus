@@ -2,27 +2,25 @@
 
 @section('content')
 
-<table id="table" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="color: #333;font-size: 8px;">
+<table id="table" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="color: #333;font-size: 12px;">
     <tbody>
     <tr>
         <td>
             <table style="font-size: 12px; padding: 10px 0 10px!important; margin-top: -20px;" width="100%">
                 <tr>
-                    <td class="left">
+                    <td class="left" width="300px">
                         <img width="300px" src="images/hansa_logo.png" >
-
-                        <p><strong>{{__('tour.invoice_date')}}:  </strong>{{ date('d-m-Y') }}</p>
-                        <p><strong>{{__('tour.invoice_number')}}:  </strong>{{  str_pad($invoice->id, 9, "0", STR_PAD_LEFT) }}</p>
+                        <div class="right" style="padding-right: 10px;">
+                            <p><strong>{{__('tour.invoice_date')}}:  </strong>{{ date('d-m-Y') }}</p>
+                            <p><strong>{{__('tour.invoice_number')}}:  </strong>{{  str_pad($invoice->id, 9, "0", STR_PAD_LEFT) }}</p>
+                        </div>
                     </td>
                     <td class="right">
                         <strong style="font-size: 10px;"><span>{{__('tour.customer_information')}}</span></strong>
-
                         <p>{{ $customer->name }}</p>
                         @if(!empty($customer->phone))<p>{{ $customer->phone }}</p>@endif
                         @if(!empty($customer->email))<p>{{ $customer->email }}</p>@endif
                         @if(!empty($customer->address))<p>{{ $customer->address }}</p>@endif
-
-
                     </td>
                 </tr>
             </table>
@@ -125,9 +123,42 @@
                 </table>
             </td>
         </tr>
+        <tr>
+            <td class="left">
+                <table style="padding: 50px 0 0;" width="100%">
+                    <tr>
+                        <td>
+                            <table style="padding: 10px 0 0;border-top: 1px solid #ccc;" width="100%">
+                                <tr>
+                                    <td class="left">
+                                        <strong>Hansa Bustouristik</strong> <br>
+                                        Omnibusbetrieb <br>
+                                        Inhaber , Alizada Timor <br>
+                                        Hoisbütteler Dorfstr. 1, 22949 Ammersbek <br>
+                                        <strong>Ust-IdNr.:</strong> DE256517113/
+                                    </td>
+                                    <td class="left">
+                                        www. hansebus.com<br>
+                                        info@ hansebus.com<br>
+                                        <strong>Tel :</strong>  040/521 580 81<br>
+                                        <strong>Fax :</strong>  040/ 521 580 82<br>
+                                        <strong>Steuer.- Nr. :</strong>  30/001/06020
+                                    </td>
+                                    <td class="left">
+                                        <strong>Bank :</strong>  DAB Bank<br>
+                                        <strong>BLZ :</strong>  701 204 00<br>
+                                        <strong>Konto Nr. :</strong>  8540743005<br>
+                                        <strong>IBAN :</strong>  DE72 7012 0400 8540 7430 05<br>
+                                        <strong>BIC :</strong>  DABBDEMMXXX
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
     </table>
-</div>
-<div class="footer">
-    <p style="background:#f1f1f1;display:block;text-align:center;padding:10px 0;margin:50px 0 0">&copy; ecoach. {{__('messages.all_rights_reserved')}}</p>
 </div>
 @endsection

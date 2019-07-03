@@ -76,7 +76,8 @@ class CustomerController extends Controller
     {
         $Customer->status = !$Customer->status;
         $Customer->save();
-        return redirect()->back()->with('info',trans('messages.customers').' # '.$Customer->id.' status '. trans('messages.updated'));
+        toastr()->success(__('customer.status_changed'));
+        return redirect()->back();
     }
 
     /**
@@ -114,7 +115,6 @@ class CustomerController extends Controller
         $this->validate(request(), $rules, $messages);
 
 
-        $msg = 'Customer created successfully.';
         $customer = new Customer;
         $customer->name = $request->name;
         $customer->email = $request->email;
@@ -127,15 +127,14 @@ class CustomerController extends Controller
         $customer->status = $status;
 
         if ($customer->save()) {
-
+            toastr()->success(__('customer.created'));
             if ($request->returnFlag == 1) {
-                return redirect('/customers')->with('success', trans('messages.record_created'));
+                return redirect('/customers');
             } else {
-                return redirect('/customers/create')->with('success',trans('messages.record_created'));
+                return redirect('/customers/create');
             }
-
         }
-        return redirect()->back()->with('info', $msg);
+        return redirect()->back();
     }
 
     /**
@@ -186,8 +185,6 @@ class CustomerController extends Controller
         ];
         $this->validate(request(), $rules, $messages);
 
-        $msg = 'Customer updated successfully.';
-
         $customer = Customer::find($id);
         $customer->name = $request->name;
         $customer->email = $request->email;
@@ -201,14 +198,14 @@ class CustomerController extends Controller
 
         if ($customer->save()) {
 
+            toastr()->success(__('customer.updated'));
             if ($request->returnFlag == 1) {
-                return redirect('/customers')->with('success',trans('messages.customers').' # '.$customer->id.' '. trans('messages.record'));
+                return redirect('/customers');
             } else {
-                return redirect('/customers/create')->with('success',trans('messages.customers').' # '.$customer->id.' '. trans('messages.record'));
+                return redirect('/customers/create');
             }
         }
-        return redirect()->back()->with('success',trans('messages.customers').' # '.$customer->id.' '. trans('messages.record'));
-
+        return redirect()->back();
     }
 
     /**

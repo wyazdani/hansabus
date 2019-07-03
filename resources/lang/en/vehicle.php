@@ -22,6 +22,10 @@ return [
     'radio'=>'Radio',
     'sunroof'=>'Sunroof',
     'phone_charging'=>'Phone Charging Jack',
-    'is_active'=>'Is Active'
+    'is_active'=>'Is Active',
+
+    'created'=>'Vehicle created.',
+    'updated'=>'Vehicle updated.',
+    'status_changed'=>'Vehicle status changed.',
 
     ];

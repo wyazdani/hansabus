@@ -75,7 +75,9 @@ class DriverController extends Controller
     {
         $Driver->status = !$Driver->status;
         $Driver->save();
-        return redirect()->back()->with('info',trans('messages.drivers').' # '.$Driver->id.' status'. ' '. trans('messages.updated'));
+
+        toastr()->success(__('driver.status_changed'));
+        return redirect('/v-drivers');
     }
     /**
      * Display a listing of the resource.
@@ -143,7 +145,8 @@ class DriverController extends Controller
         $driver->profile_pic = $profilePic;
         $driver->save();
 
-        return redirect('/v-drivers')->with('success', trans('messages.driver_created'));
+        toastr()->success(__('driver.created'));
+        return redirect('/v-drivers');
 
     }
 
@@ -209,7 +212,8 @@ class DriverController extends Controller
         $driver->profile_pic = $profilePic;
         $driver->save();
 
-        return redirect('/v-drivers')->with('success', 'Driver has been updated');
+        toastr()->success(__('driver.updated'));
+        return redirect('/v-drivers');
     }
 
 

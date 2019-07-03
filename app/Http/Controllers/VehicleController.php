@@ -86,7 +86,8 @@
             // dd($vehicle);
             $Vehicle->status = !$Vehicle->status;
             $Vehicle->save();
-            return redirect()->back()->with('info',trans('messages.vehicles').' # '.$Vehicle->id.' status'.' '. trans('messages.updated'));
+            toastr()->success(__('vehicle.status_changed'));
+            return redirect()->back();
         }
 
         /**
@@ -125,7 +126,7 @@
                 // 'title.required' => 'Title is required',
             ];
             $this->validate(request(), $rules, $messages);
-            $msg = 'Vehicle created successfully.';
+
             $vehicle = new Vehicle;
             $vehicle->name = $request->name;
             $vehicle->year = $request->year;
@@ -153,17 +154,17 @@
             $vehicle->status = $status;
 
             if ($vehicle->save()) {
-
+                toastr()->success(__('vehicle.created'));
                 if ($request->returnFlag == 1) {
-                    return redirect('/vehicles')->with('success',trans('messages.record_created'));
+                    return redirect('/vehicles');
                 } else {
-                    return redirect('/vehicles/create')->with('success',trans('message.record_created'));
+                    return redirect('/vehicles/create');
                 }
             }else{
                 dd('error');
             }
 
-            return redirect()->back()->with('info', $msg);
+            return redirect()->back();
         }
 
         /**
@@ -218,7 +219,6 @@
             ];
             $this->validate(request(), $rules, $messages);
 
-            $msg = 'Vehicle updated successfully.';
             $vehicle = Vehicle::find($request->id);
             $vehicle->name = $request->name;
             $vehicle->year = $request->year;
@@ -246,15 +246,15 @@
             $vehicle->status = $status;
 
             if ($vehicle->save()) {
-
+                toastr()->success(__('vehicle.updated'));
                 if ($request->returnFlag == 1) {
-                    return redirect('/vehicles')->with('info',trans('messages.record') .' # '.$vehicle->id.' '. trans('messages.updated'));
+                    return redirect('/vehicles');
                 } else {
-                    return redirect('/vehicles/create')->with('info',trans('messages.record') .' # '.$vehicle->id.' '. trans('messages.updated'));
+                    return redirect('/vehicles/create');
                 }
 
             }
-            return redirect()->back()->with('info', $msg);
+            return redirect()->back();
         }
 
         /**

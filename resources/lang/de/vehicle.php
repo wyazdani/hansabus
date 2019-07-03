@@ -22,6 +22,9 @@ return [
     'radio'=>'Radio',
     'sunroof'=>'Schiebedach',
     'phone_charging'=>'Telefon Ladebuchse',
-    'is_active'=>'Ist aktiv'
+    'is_active'=>'Ist aktiv',
 
+    'created'=>'Fahrzeug angelegt.',
+    'updated'=>'Fahrzeug aktualisiert.',
+    'status_changed'=>'Fahrzeugstatus geändert.',
 ];

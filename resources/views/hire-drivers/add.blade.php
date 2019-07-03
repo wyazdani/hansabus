@@ -19,8 +19,6 @@
 					</div>
 				</div>
 				<div class="card-content mt-1">
-
-
 					@if(!empty($hire->id))
 						<form class="form" method="POST" action="{{ route('hire-drivers.update',$hire->id) }}" id="tourForm" enctype="multipart/form-data" >
 							@method('PUT')
@@ -55,7 +53,7 @@
 																			<option value="">- - - {{__('hire.select_status')}}- - -</option>
 																			@foreach($tour_statuses as $status)
 																				<option value="{{ $status->id  }}"
-																				@if(!empty($hire->status) && $hire->status==$status->id)
+																				@if(!empty($hire->status) && $hire->status==$status->id || old('status') == $status->id)
 																					{{ 'Selected' }}
 																						@endif
 																				>{{ $status->name }}</option>
@@ -68,7 +66,7 @@
 																	<div class="form-group">
 																		<label for="fromDate">{{__('tour.from')}}</label>
 																		<div class='input-group date'>
-																			<input type='text' name="from_date"
+																			<input type='text' name="from_date" autocomplete="off"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
 																				   value="{{ (!empty($hire->from_date))?date('m/d/Y h:i A',strtotime($hire->from_date)):old('from_date') }}"
 																			/>
@@ -79,7 +77,7 @@
 																	<div class="form-group">
 																		<label for="toDate">{{__('tour.to')}}</label>
 																		<div class='input-group date'>
-																			<input type='text' name="to_date"
+																			<input type='text' name="to_date" autocomplete="off"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
 																				   value="{{ (!empty($hire->to_date))?date('m/d/Y h:i A',strtotime($hire->to_date)):old('to_date') }}"
 																			/>
@@ -101,7 +99,7 @@
 																			<option value="">- - - {{__('hire.select_customer')}} - - -</option>
 																			@foreach($customers as $customer)
 																				<option value="{{ $customer->id  }}"
-																				@if(!empty($hire->customer_id) && $hire->customer_id==$customer->id)
+																				@if(!empty($hire->customer_id) && $hire->customer_id==$customer->id || old('customer_id') == $customer->id)
 																					{{ 'Selected' }}
 																						@endif
 																				>{{ $customer->name }}</option>
@@ -117,7 +115,7 @@
 																			<option value="">- - - {{__('hire.select_one')}} - - -</option>
 																			@foreach($drivers as $driver)
 																				<option value="{{ $driver->id  }}"
-																				@if(!empty($hire->driver_id) && $hire->driver_id==$driver->id)
+																				@if(!empty($hire->driver_id) && $hire->driver_id==$driver->id || old('driver_id') == $driver->id)
 																					{{ 'Selected' }}
 																						@endif
 																				>{{

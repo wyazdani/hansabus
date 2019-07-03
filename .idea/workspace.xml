@@ -2,46 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ecoach.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ecoach.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Helpers/General.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/General.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Attachment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Attachment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Driver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Driver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/HireAttachment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/HireAttachment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/HireDriver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/HireDriver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tour.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TourAttachment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TourAttachment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TourStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TourStatus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_12_130007_create_drivers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_12_130007_create_drivers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_14_063143_customer_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_14_063143_customer_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_14_071503_create_tours_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_14_071503_create_tours_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_14_101340_add_vehicle_id_to_tours_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_14_101340_add_vehicle_id_to_tours_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_14_103914_add_status_to_drivers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_14_103914_add_status_to_drivers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_17_120325_tour_status_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_17_120325_tour_status_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_18_055746_attachments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_18_055746_attachments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_18_062713_tour_attachments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_18_062713_tour_attachments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_19_105650_update_columns_in_vehicle_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_19_105650_update_columns_in_vehicle_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_21_075300_add_image_column_to_drivers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_21_075300_add_image_column_to_drivers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_24_081108_drop_columns_from_tours_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_24_081108_drop_columns_from_tours_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_24_081231_add_columns_to_tours_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_24_081231_add_columns_to_tours_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_27_064533_create_hire_a_driver_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_27_064533_create_hire_a_driver_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_28_063822_hire_a_driver_attachments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_28_063822_hire_a_driver_attachments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_28_104702_update_deleted_at_to_vehicle_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_28_104702_update_deleted_at_to_vehicle_types_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/TourStatusTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/TourStatusTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/avatar-s-3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/avatar-s-3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Localization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Localization.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/hansa_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/hansa_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/de/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/driver.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/driver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/hire.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/hire.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/de/tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/tour.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/messages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customer/_index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customer/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/pdf.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/pdf_design.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/vehicle.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/vehicle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/vehicle_type.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/vehicle_type.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/driver.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/driver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/hire.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/hire.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/tour.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/vehicle.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/vehicle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/vehicle_type.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/vehicle_type.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/pdf.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,30 +63,25 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="224" column="15" lean-forward="true" selection-start-line="204" selection-start-column="12" selection-end-line="224" selection-end-column="15" />
+            <state relative-caret-position="293">
+              <caret line="195" column="50" lean-forward="true" selection-start-line="195" selection-start-column="12" selection-end-line="195" selection-end-column="50" />
               <folding>
-                <element signature="e#4597#4619#0#HTML" expanded="true" />
-                <element signature="e#4748#4754#1#HTML" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="e#239#245#1" expanded="true" />
-                <element signature="e#4#10#1" expanded="true" />
-                <element signature="e#4#10#1" expanded="true" />
+                <element signature="e#40#66#0#PHP" expanded="true" />
+                <element signature="e#1268#3762#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverInvoiceController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="153" column="33" selection-start-line="153" selection-start-column="23" selection-end-line="153" selection-end-column="33" />
+            <state relative-caret-position="551">
+              <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
               <folding>
-                <element signature="e#3899#3917#0#HTML" expanded="true" />
-                <element signature="e#4153#4159#1#HTML" expanded="true" />
+                <element signature="e#40#64#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,8 +90,56 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="266">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="89" column="44" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="44" />
+              <folding>
+                <element signature="e#40#64#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lang/en/driver_invoice.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="689">
+              <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="54" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lang/en/tour_invoice.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="632">
+              <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lang/de/driver_invoice.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="708">
+              <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="52" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lang/de/tour_invoice.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="727">
+              <caret line="52" column="61" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -101,36 +148,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>new</find>
-      <find>getTour</find>
-      <find>downloadInvoice</find>
-      <find>&lt;form</find>
-      <find>generate</find>
-      <find>error</find>
-      <find>down</find>
-      <find>$tour</find>
-      <find>getList</find>
-      <find>general</find>
-      <find>inde</find>
-      <find>gene</find>
-      <find>invoiceN</find>
-      <find>download-tours-invoice</find>
-      <find>theForm</find>
-      <find>mark_as_paidDiv</find>
-      <find>mark-as</find>
-      <find>total</find>
-      <find>Tour</find>
-      <find>cal</find>
-      <find>isSelec</find>
-      <find>generate_inv</find>
-      <find>mark_as_paid</find>
-      <find>mark_as_paidD</find>
       <find>console</find>
-      <find>addTours</find>
       <find>n addTours</find>
       <find>price_</find>
       <find>generate_invoice</find>
       <find>customerID</find>
+      <find>getLis</find>
+      <find>genera</find>
+      <find>InvoiceController</find>
+      <find>tour_id</find>
+      <find>tour_invoice.</find>
+      <find>tour_invoice</find>
+      <find>toursDiv</find>
+      <find>addTours</find>
+      <find>getTours</find>
+      <find>getL</find>
+      <find>generateSingleInvoice</find>
+      <find>&lt;form</find>
+      <find>generate-driver-invoice</find>
+      <find>generateInvoice</find>
+      <find>addHires</find>
+      <find>down</find>
+      <find>positionClass</find>
+      <find>deleteMe</find>
+      <find>update(</find>
+      <find>stat</find>
+      <find>from_</find>
+      <find>store(</find>
+      <find>status(</find>
+      <find>toa</find>
+      <find>mark_pa</find>
     </findStrings>
     <replaceStrings>
       <replace>col-md-4</replace>
@@ -140,6 +187,10 @@
       <replace>$hire</replace>
       <replace>$</replace>
       <replace>$HireDriver-&gt;</replace>
+      <replace>TourInvoiceController</replace>
+      <replace>driver_invoice.</replace>
+      <replace>addHires</replace>
+      <replace>getHires</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -148,56 +199,56 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/tours.php" />
-        <option value="$PROJECT_DIR$/resources/views/vehicle_type/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Models/VehicleType.php" />
-        <option value="$PROJECT_DIR$/app/Models/Vehicle.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/vehicle/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/vehicle_type/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/drivers/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/customer/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HireADriverController.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_06_28_063822_hire_a_driver_attachments_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_06_27_064533_create_hire_a_driver_table.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/tour.php" />
-        <option value="$PROJECT_DIR$/resources/lang/de/hire.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/hire.php" />
-        <option value="$PROJECT_DIR$/app/Models/HireDriver.php" />
-        <option value="$PROJECT_DIR$/app/Models/HireAttachment.php" />
-        <option value="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/hire-drivers/view.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/hire-drivers/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/head.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" />
-        <option value="$PROJECT_DIR$/resources/views/hire-drivers/detail.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/messages.php" />
-        <option value="$PROJECT_DIR$/resources/lang/de/messages.php" />
-        <option value="$PROJECT_DIR$/resources/views/customer/add.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoices/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Models/Tour.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_01_085836_create_tour_invoice_details_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_01_101818_create_tour_invoice_details_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_01_085835_create_tour_invoice_table.php" />
         <option value="$PROJECT_DIR$/app/Models/TourInvoice.php" />
         <option value="$PROJECT_DIR$/app/Models/TourInvoiceDetail.php" />
         <option value="$PROJECT_DIR$/resources/views/invoices/tour/pdf.blade.php" />
-        <option value="$PROJECT_DIR$/resources/lang/de/tour.php" />
         <option value="$PROJECT_DIR$/app/Helpers/General.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" />
-        <option value="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Models/DriverInvoice.php" />
         <option value="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_07_02_133109_create_driver_invoice_detail_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_07_02_133059_create_driver_invoice_table.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Models/DriverInvoiceDetail.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/head.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/js.blade.php" />
+        <option value="$PROJECT_DIR$/config/toastr.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/vehicle_type.php" />
+        <option value="$PROJECT_DIR$/resources/views/vehicle_type/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/vehicle_type.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/pdf.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/driver.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/driver.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/customer.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/customer.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/hire.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/hire.php" />
+        <option value="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/vehicle.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/vehicle.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/tour.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/tour.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/driver_invoice.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/driver_invoice.php" />
+        <option value="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/DriverInvoiceController.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
@@ -296,6 +347,7 @@
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
       <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
+      <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -312,7 +364,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -323,38 +374,33 @@
             <path>
               <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="invoices" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="de" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="invoices" type="462c0819:PsiDirectoryNode" />
-              <item name="tour" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -419,18 +465,19 @@
       <workItem from="1561699381145" duration="19138000" />
       <workItem from="1561957924403" duration="1914000" />
       <workItem from="1561979250700" duration="9422000" />
-      <workItem from="1562043999748" duration="15602000" />
+      <workItem from="1562043999748" duration="22396000" />
+      <workItem from="1562130427924" duration="13210000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127361000" />
+    <option name="totallyTimeSpent" value="147365000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21408609" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23868082" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -467,37 +514,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_29_060206_vehicle_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_29_060201_vehicle_types_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#7#45#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/tour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/HireAttachment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/HireDriver.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -508,167 +524,265 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/TourInvoiceDetail.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
+        <state relative-caret-position="171">
+          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
           <folding>
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="e#30#69#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/drivers/view.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_01_085835_create_tour_invoice_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="43" column="6" lean-forward="true" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/view.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="58" lean-forward="true" selection-start-line="24" selection-start-column="58" selection-end-line="24" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/drivers/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="165" column="11" lean-forward="true" selection-start-line="165" selection-start-column="11" selection-end-line="165" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="143" column="21" selection-start-line="143" selection-start-column="21" selection-end-line="143" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3496">
-          <caret line="194" column="73" selection-start-line="194" selection-start-column="63" selection-end-line="194" selection-end-column="73" />
+        <state relative-caret-position="361">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="24" selection-end-column="33" />
           <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
+            <element signature="e#7#45#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_01_101818_create_tour_invoice_details_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="58" column="88" selection-start-line="58" selection-start-column="88" selection-end-line="58" selection-end-column="88" />
+        <state relative-caret-position="380">
+          <caret line="22" column="34" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="22" selection-end-column="34" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/.htaccess">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="54" column="57" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_02_133059_create_driver_invoice_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/DriverInvoice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding>
+            <element signature="e#30#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_02_133109_create_driver_invoice_detail_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="22" column="84" selection-start-line="22" selection-start-column="69" selection-end-line="22" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="134" column="25" selection-start-line="134" selection-start-column="17" selection-end-line="134" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/DriverInvoiceDetail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+          <folding>
+            <element signature="e#30#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/head.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+        <state relative-caret-position="532">
+          <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/js.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+        <state relative-caret-position="361">
+          <caret line="19" column="54" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/toastr.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vehicle_type/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="60" column="43" lean-forward="true" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/de/vehicle_type.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/vehicle_type.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="39" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="13" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/pdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="156" column="17" lean-forward="true" selection-start-line="121" selection-start-column="11" selection-end-line="156" selection-end-column="17" />
+          <folding>
+            <element signature="e#266#341#0#HTML" expanded="true" />
+            <element signature="e#561#589#0#HTML" expanded="true" />
+            <element signature="e#1702#1753#0#HTML" expanded="true" />
+            <element signature="e#1820#1862#0#HTML" expanded="true" />
+            <element signature="e#1965#1986#0#HTML" expanded="true" />
+            <element signature="e#2655#2698#0#HTML" expanded="true" />
+            <element signature="e#2828#2894#0#HTML" expanded="true" />
+            <element signature="e#3002#3068#0#HTML" expanded="true" />
+            <element signature="e#3165#3231#0#HTML" expanded="true" />
+            <element signature="e#3326#3392#0#HTML" expanded="true" />
+            <element signature="e#3485#3551#0#HTML" expanded="true" />
+            <element signature="e#3724#3773#0#HTML" expanded="true" />
+            <element signature="e#3831#3880#0#HTML" expanded="true" />
+            <element signature="e#3955#4004#0#HTML" expanded="true" />
+            <element signature="e#4069#4118#0#HTML" expanded="true" />
+            <element signature="e#4181#4230#0#HTML" expanded="true" />
+            <element signature="e#4393#4463#0#HTML" expanded="true" />
+            <element signature="e#4540#4625#0#HTML" expanded="true" />
+            <element signature="e#5245#5300#0#HTML" expanded="true" />
+            <element signature="e#5403#5436#0#HTML" expanded="true" />
+            <element signature="e#6076#6119#0#HTML" expanded="true" />
+            <element signature="e#6583#8645#0#HTML" />
+            <element signature="e#6649#6675#0#HTML" expanded="true" />
+            <element signature="e#6791#6844#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="160" column="13" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
+          <folding>
+            <element signature="e#6106#8181#0#HTML" />
+            <element signature="e#6172#6198#0#HTML" expanded="true" />
+            <element signature="e#6314#6367#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="115" column="54" lean-forward="true" selection-start-line="115" selection-start-column="8" selection-end-line="115" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/driver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/customer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="48" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="17" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/de/customer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="219" column="28" lean-forward="true" selection-start-line="219" selection-start-column="28" selection-end-line="219" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="78" column="55" lean-forward="true" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/lang/de/driver.php">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="46" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="20" selection-end-column="46" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/lang/en/hire.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="26" />
+        <state relative-caret-position="722">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="40" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/de/hire.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="168" selection-start-line="18" selection-start-column="168" selection-end-line="18" selection-end-column="168" />
+        <state relative-caret-position="133">
+          <caret line="68" column="130" selection-start-line="68" selection-start-column="130" selection-end-line="68" selection-end-column="130" />
           <folding>
             <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/TourStatusTableSeeder.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/messages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="47" column="46" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/de/messages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/customer/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="149" column="103" selection-start-line="149" selection-start-column="103" selection-end-line="149" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoices/index.blade.php" />
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_18_062713_tour_attachments_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="60" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="19" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/TourAttachment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="10" column="50" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_01_085836_create_tour_invoice_details_table.php" />
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_01_101818_create_tour_invoice_details_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Customer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/calendar.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="30" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="21" selection-end-column="30" />
+        <state relative-caret-position="502">
+          <caret line="116" column="128" selection-start-line="116" selection-start-column="128" selection-end-line="116" selection-end-column="128" />
           <folding>
             <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
           </folding>
@@ -677,209 +791,149 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="135" selection-start-line="15" selection-start-column="112" selection-end-line="15" selection-end-column="135" />
+        <state relative-caret-position="388">
+          <caret line="59" column="83" selection-start-line="59" selection-start-column="83" selection-end-line="59" selection-end-column="83" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_01_085835_create_tour_invoice_table.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="21" column="32" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_17_120325_tour_status_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_14_071503_create_tours_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="52" />
+        <state relative-caret-position="388">
+          <caret line="33" column="83" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
           <folding>
-            <element signature="e#7#45#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="e#237#243#1" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Tour.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="28" column="4" lean-forward="true" selection-start-line="28" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="388">
+          <caret line="33" column="83" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
           <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="e#237#243#1" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/TourInvoice.php">
+    <entry file="file://$PROJECT_DIR$/resources/lang/de/hire.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
-          <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="703">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/pdf.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VehicleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="570">
+          <caret line="248" column="53" selection-start-line="248" selection-start-column="53" selection-end-line="248" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/TourInvoiceDetail.php">
+    <entry file="file://$PROJECT_DIR$/resources/lang/de/vehicle.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-          <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="532">
+          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="166" column="50" lean-forward="true" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/vehicle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="48" lean-forward="true" selection-start-line="26" selection-start-column="4" selection-end-line="28" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="142" column="43" lean-forward="true" selection-start-line="141" selection-start-column="7" selection-end-line="142" selection-end-column="43" />
+        <state relative-caret-position="293">
+          <caret line="195" column="50" lean-forward="true" selection-start-line="195" selection-start-column="12" selection-end-line="195" selection-end-column="50" />
           <folding>
+            <element signature="e#40#66#0#PHP" expanded="true" />
             <element signature="e#1268#3762#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/resources/lang/de/tour.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        <state relative-caret-position="779">
+          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helpers/General.php">
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/tour.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="10" column="49" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="49" />
+        <state relative-caret-position="779">
+          <caret line="43" column="45" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="43" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php">
+    <entry file="file://$PROJECT_DIR$/resources/lang/de/driver_invoice.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="176" column="37" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
+        <state relative-caret-position="708">
+          <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="52" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/de/tour_invoice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="52" column="61" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/driver_invoice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="689">
+          <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="54" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/tour_invoice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="89" column="44" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="44" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/pdf.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverInvoiceController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/tour_invoice.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="64" column="82" selection-start-line="64" selection-start-column="82" selection-end-line="64" selection-end-column="82" />
+        <state relative-caret-position="551">
+          <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
           <folding>
-            <element signature="e#1107#1142#0#HTML" expanded="true" />
-            <element signature="e#245#320#0#HTML" expanded="true" />
-            <element signature="e#1433#1481#0#HTML" expanded="true" />
-            <element signature="e#1536#1577#0#HTML" expanded="true" />
-            <element signature="e#1668#1689#0#HTML" expanded="true" />
-            <element signature="e#2298#2341#0#HTML" expanded="true" />
-            <element signature="e#1453#1514#0#HTML" expanded="true" />
-            <element signature="e#1557#1619#0#HTML" expanded="true" />
-            <element signature="e#1682#1731#0#HTML" expanded="true" />
-            <element signature="e#1803#1852#0#HTML" expanded="true" />
-            <element signature="e#1922#1971#0#HTML" expanded="true" />
-            <element signature="e#2045#2094#0#HTML" expanded="true" />
-            <element signature="e#2172#2221#0#HTML" expanded="true" />
-            <element signature="e#2388#2420#0#HTML" expanded="true" />
-            <element signature="e#2462#2494#0#HTML" expanded="true" />
-            <element signature="e#2547#2579#0#HTML" expanded="true" />
-            <element signature="e#2628#2660#0#HTML" expanded="true" />
-            <element signature="e#2707#2739#0#HTML" expanded="true" />
-            <element signature="e#2798#2830#0#HTML" expanded="true" />
-            <element signature="e#2880#2912#0#HTML" expanded="true" />
-            <element signature="e#3064#3130#0#HTML" expanded="true" />
-            <element signature="e#3191#3274#0#HTML" expanded="true" />
-            <element signature="e#3371#3437#0#HTML" expanded="true" />
-            <element signature="e#3499#3582#0#HTML" expanded="true" />
-            <element signature="e#4701#4756#0#HTML" expanded="true" />
-            <element signature="e#4847#4880#0#HTML" expanded="true" />
-            <element signature="e#5470#5513#0#HTML" expanded="true" />
-            <element signature="e#3707#3795#0#HTML" expanded="true" />
-            <element signature="e#6084#6090#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/de/tour_invoice.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/de/tour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="48" column="112" selection-start-line="48" selection-start-column="112" selection-end-line="48" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="224" column="15" lean-forward="true" selection-start-line="204" selection-start-column="12" selection-end-line="224" selection-end-column="15" />
-          <folding>
-            <element signature="e#4597#4619#0#HTML" expanded="true" />
-            <element signature="e#4748#4754#1#HTML" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="e#239#245#1" expanded="true" />
-            <element signature="e#4#10#1" expanded="true" />
-            <element signature="e#4#10#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="153" column="33" selection-start-line="153" selection-start-column="23" selection-end-line="153" selection-end-column="33" />
-          <folding>
-            <element signature="e#3899#3917#0#HTML" expanded="true" />
-            <element signature="e#4153#4159#1#HTML" expanded="true" />
+            <element signature="e#40#64#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state relative-caret-position="266">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>

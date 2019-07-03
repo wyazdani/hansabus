@@ -26,12 +26,12 @@
                         </div>
                         <div class="col-md-1.5">
                             <div class="form-group">
-                                <input type='text' id="from_date" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
+                                <input type='text' id="from_date" autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -111,7 +111,6 @@
 
 @endsection
 @section('pagejs')
-    @include('tours.view')
     <script>
         function showButton()
         {
@@ -172,7 +171,7 @@
                             html+= '<td>&nbsp;</td>';
                         }
 
-                        html+= '<td>' + r.data[i].id + '</td>' +
+                        html+= '<td>' + r.data[i].invoice_id + '</td>' +
                             '<td>' + r.data[i].customer.name + '</td>' +
                             '<td>' + r.data[i].total + '</td>' +
                             '<td>' + r.data[i].status+ '</td>' +

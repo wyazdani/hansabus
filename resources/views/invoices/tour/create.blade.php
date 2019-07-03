@@ -96,7 +96,6 @@
 
 @endsection
 @section('pagejs')
-    @include('tours.view')
     <script>
 
         function generateSingleInvoice(id){

@@ -85,14 +85,14 @@
             color:#FFFFFF;
             font-size: 11px;
             text-transform: uppercase;
-            border-bottom:1px solid #DDDDDD;
+
             border-collapse: collapse;
             text-transform: capitalize;
         }
         #table tr td{
             font-weight: lighter;
             color:#444444;
-            border-bottom:1px solid #DDDDDD;
+
             vertical-align: middle;
             border-collapse: collapse;
             text-indent: 0 !important;
@@ -171,7 +171,7 @@
             width: 600px;
         }
         .gray{
-            background: #f1f1f1 !right;
+            background: #f1f1f1;
         }
         @page  {
             size: letter;

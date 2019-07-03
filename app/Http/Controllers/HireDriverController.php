@@ -163,7 +163,9 @@ class HireDriverController extends Controller
         $HireDriver->from_date = date('Y-m-d h:i',strtotime($request->from_date));
         $HireDriver->to_date = date('Y-m-d h:i',strtotime($request->to_date));
         $HireDriver->price = (int)$request->price;
-        $HireDriver->save();
+        if($HireDriver->save()){
+            toastr()->success(__('hire.created'));
+        }
 
 
         $files=[]; $attachments=[];
@@ -181,7 +183,8 @@ class HireDriverController extends Controller
             HireAttachment::insert($files);
         }
         unset($files); unset($attachments);
-        return redirect('/hire-drivers')->with('success', 'Hire driver successfully created.');
+
+        return redirect('/hire-drivers');
     }
 
     public function detail(HireDriver $HireDriver)
@@ -261,7 +264,9 @@ class HireDriverController extends Controller
         $hire->from_date = date('Y-m-d h:i',strtotime($request->from_date));
         $hire->to_date = date('Y-m-d h:i',strtotime($request->to_date));
         $hire->price = (int)$request->price;
-        $hire->save();
+        if($hire->save()){
+            toastr()->success(__('hire.updated'));
+        }
 
         /* if files uploaded */
         $files=[]; $attachments=[];
@@ -292,7 +297,7 @@ class HireDriverController extends Controller
         }
         unset($files); unset($attachments);
 
-        return redirect('/hire-drivers')->with('success', 'Hiring successfully updated');
+        return redirect('/hire-drivers');
     }
 
     /**

@@ -11,6 +11,10 @@ return [
     'mobile'=>'Cell Number',
     'web'=>'Company Web',
     'address'=>'Address',
-    'is_active'=>'Is Active'
+    'is_active'=>'Is Active',
+
+    'created'=>'Customer created.',
+    'updated'=>'Customer updated.',
+    'status_changed'=>'Customer status changed.'
 
     ];

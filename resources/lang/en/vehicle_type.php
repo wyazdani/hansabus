@@ -7,6 +7,12 @@ return [
     ],
     /* form / listing */
     'name'=>'Name',
-    'is_active'=>'Is Active'
+    'is_active'=>'Is Active',
+
+    'created'=>'Vehicle type created.',
+    'updated'=>'Vehicle type updated.',
+    'deleted'=>'Vehcile Type deleted.',
+
+
 
     ];

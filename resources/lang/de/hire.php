@@ -40,5 +40,7 @@ return [
     'is_active'=>'Ist aktiv',
     'select_one'=>'Wähle eins',
 
+    'created'=>'Fahrer angestellt.',
+    'updated'=>'Einstellung aktualisiert.',
 
 ];

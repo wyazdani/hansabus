@@ -83,23 +83,15 @@ class VehicleTypeController extends Controller
             'name'  => $request->get('name'),
         ]);
         $vehicle_type->save();
-        return redirect('/vehicle-type')->with('success', 'New vehicle type has been added.');
 
+        toastr()->success(__('vehicle_type.created'));
+        return redirect('/vehicle-type');
     }
 
     public function show(VehicleType $VehicleType)
     {
         return $VehicleType;
     }
-    public function status(VehicleType $VehicleType)
-    {
-        $VehicleType->status = !$VehicleType->status;
-        $VehicleType->save();
-        return redirect()->back()->with('info','Vehicle type # '.$VehicleType->id.trans('messages.updated'));
-    }
-
-
-
     public function edit($id)
     {
         $pageTitle= 'Edit Vehicle';
@@ -121,15 +113,16 @@ class VehicleTypeController extends Controller
 
         $vehicleType->save();
 
-        return redirect('/vehicle-type')->with('success', 'Vehicle type has been updated');
+        toastr()->success(__('vehicle_type.updated'));
+        return redirect('/vehicle-type');
     }
 
 
     public function destroy($id)
     {
         $vehicleType = VehicleType::find($id);
-        dd($id);
         $vehicleType->delete();
-        return redirect('/vehicle-type')->with('success', 'Vehicle type has been deleted Successfully');
+//        toastr()->success(__('vehicle_type.deleted'));
+//        return redirect('/vehicle-type');
     }
 }

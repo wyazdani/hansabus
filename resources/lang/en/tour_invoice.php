@@ -48,7 +48,9 @@ return [
 
     'invoice_footer_line1' => 'Please transfer the invoice amount within 7 days to the following account number,',
     'invoice_footer_line2' => 'We thank you for your order and your trust.',
-    'yours_sincerely'=>'Yours Sincerely'
+    'yours_sincerely'=>'Yours Sincerely',
 
+    'generated'=>'Invoice generated.',
+    'mark_paid'=>'Invoice status changed to paid.'
 
     ];

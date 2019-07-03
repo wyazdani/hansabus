@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use PDF;
 
 
-class InvoiceController extends Controller
+class TourInvoiceController extends Controller
 {
     public function __construct()
     {
@@ -87,14 +87,16 @@ class InvoiceController extends Controller
         }
 
         $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get([
+        $rows = $query->orderBy('id','DESC')->offset($start)->limit($limit)->get([
             'id','customer_id','status','total','created_at']);
 
         $data=[];
 
+        $general = new General();
 
         foreach($rows as $row){
 
+            $row->invoice_id = (string)$general->invoiceNumber($row->id);
             $row->customer;
             $row->status = ($row->status == 1)?'Unpaid':'Paid';
 //            $row['created_at'] = date('d/m/Y h:i A',strtotime($row['created_at']));
@@ -117,7 +119,8 @@ class InvoiceController extends Controller
                 $invoice->save();
             }
         }
-        return redirect('/tour-invoices')->with('success', 'Invoice(s) status changed.');
+        toastr()->success(__('tour_invoice.mark_paid'));
+        return redirect('/tour-invoices');
     }
     public function generateInvoice(Request $request){
 
@@ -144,8 +147,8 @@ class InvoiceController extends Controller
 
             Tour::whereIn('id',$request->ids)->update(['status'=>3]);
         }
-
-        return redirect('/tour-invoices')->with('success', 'Invoice successfully created.');
+        toastr()->success(__('driver_invoice.generated'));
+        return redirect('/tour-invoices');
     }
     public function downloadInvoice(Request $request){
 

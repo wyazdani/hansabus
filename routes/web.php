@@ -7,13 +7,20 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function (){
 
     /*invoices*/
-    Route::get('/tour-invoices', 'InvoiceController@index')->name('tour-invoices');
-    Route::get('/tour-invoices/create', 'InvoiceController@create')->name('tour-invoice-create');
-    Route::get('/tour-invoices-list', 'InvoiceController@getList')->name('tour-invoices-list');
-    Route::post('/generate-tour-invoice', 'InvoiceController@generateInvoice')->name('generate-tour-invoice');
-    Route::get('/mark-as-paid', 'InvoiceController@markAsPaid')->name('mark-as-paid');
-    Route::get('/download-tours-invoice', 'InvoiceController@downloadInvoice')->name('download-tours-invoice');
+    Route::get('/tour-invoices', 'TourInvoiceController@index')->name('tour-invoices');
+    Route::get('/tour-invoices/create', 'TourInvoiceController@create')->name('tour-invoice-create');
+    Route::get('/tour-invoices-list', 'TourInvoiceController@getList')->name('tour-invoices-list');
+    Route::get('/mark-as-paid', 'TourInvoiceController@markAsPaid')->name('mark-as-paid');
+    Route::get('/download-tours-invoice', 'TourInvoiceController@downloadInvoice')->name('download-tours-invoice');
+    Route::post('/generate-tour-invoice', 'TourInvoiceController@generateInvoice')->name('generate-tour-invoice');
 
+    /* Hire a driver Invoices */
+    Route::get('/driver-invoices', 'DriverInvoiceController@index')->name('driver-invoices');
+    Route::get('/driver-invoices/create', 'DriverInvoiceController@create')->name('driver-invoice-create');
+    Route::get('/driver-invoices-list', 'DriverInvoiceController@getList')->name('driver-invoices-list');
+    Route::get('/driver-mark-as-paid', 'DriverInvoiceController@markAsPaid')->name('driver-mark-as-paid');
+    Route::get('/download-driver-invoice', 'DriverInvoiceController@downloadInvoice')->name('download-driver-invoice');
+    Route::post('/generate-driver-invoice', 'DriverInvoiceController@generateInvoice')->name('generate-driver-invoice');
 
 
 

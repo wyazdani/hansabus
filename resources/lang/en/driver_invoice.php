@@ -1,18 +1,19 @@
 <?php
 return [
     'heading'=>[
-            'index'=>'Tours',
-            'add'=>'Add Tour',
-            'edit'=>'Edit Tour',
-            'calendar'=>'Tours Calendar'
+            'index'=>'Driver Invoices',
+            'add'=>'Generate Driver Invoice',
+            'edit'=>'Edit Driver Invoice'
     ],
     /* form / listing */
+    'hire_id'=>'Hire ID',
     'status'=>'Status',
     'customer'=>'Customer',
-    'vehicle'=>'Vehicle',
+    'date'=>'Date',
     'from'=>'From',
     'to'=>'To',
-    'driver'=>'Driver',
+    'total'=>'Total',
+    'invoice'=>'Invoice',
     'passengers'=>'Passengers',
     'guide'=>'Guide',
     'price'=>'Price',
@@ -38,9 +39,19 @@ return [
     'customer_information'=>'Customer Information',
 
     'is_active'=>'Is Active',
+    'mark_as_paid'=>'Mark as Paid',
+    'vat'=>'VAT 19%',
 
-    'created'=>'Tour created.',
-    'updated'=>'Tour updated.',
-    'status_changed'=>'Tour status changed.',
+    'invoice_header_line1' => 'Dear Ladies and Gentlemen,',
+    'invoice_header_line2' => 'for the transfer / bus rental / service acc. Your order will be confirmed / calculated as follows:',
+
+
+    'invoice_footer_line1' => 'Please transfer the invoice amount within 7 days to the following account number,',
+    'invoice_footer_line2' => 'We thank you for your order and your trust.',
+    'yours_sincerely'=>'Yours Sincerely',
+
+
+    'generated'=>'Invoice generated.',
+    'mark_paid'=>'Invoice status changed to paid.'
 
     ];

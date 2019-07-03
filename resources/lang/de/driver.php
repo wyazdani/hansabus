@@ -14,6 +14,10 @@ return [
     'address'=>'Adresse',
     'phone'=>'Telefon',
     'other_details'=>'Andere Details',
-    'is_active'=>'ist aktiv'
+    'is_active'=>'ist aktiv',
+
+    'created'=>'Treiber erstellt.',
+    'updated'=>'Treiber aktualisiert.',
+    'status_changed'=>'Fahrerstatus geändert.'
 
 ];

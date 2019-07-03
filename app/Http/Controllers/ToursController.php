@@ -192,7 +192,9 @@ class ToursController extends Controller
         $tour->passengers = (int)$request->passengers;
         $tour->price = (int)$request->price;
         $tour->guide = $request->guide;
-        $tour->save();
+        if($tour->save()){
+            toastr()->success(__('tour.created'));
+        }
 
 
         $files=[]; $attachments=[];
@@ -211,7 +213,7 @@ class ToursController extends Controller
 
         unset($files); unset($attachments);
 
-        return redirect('/tours')->with('success', 'Tour successfully created.');
+        return redirect('/tours');
     }
 
     public function detail(Tour $Tour)
@@ -303,7 +305,9 @@ class ToursController extends Controller
         $tour->passengers = (int)$request->passengers;
         $tour->price = (int)$request->price;
         $tour->guide = $request->guide;
-        $tour->save();
+        if($tour->save()){
+            toastr()->success(__('tour.updated'));
+        }
 
         /* if files uploaded */
         $files=[]; $attachments=[];
@@ -334,7 +338,7 @@ class ToursController extends Controller
         }
         unset($files); unset($attachments);
 
-        return redirect('/tours')->with('success', trans('messages.tour_updated'));
+        return redirect('/tours');
     }
 
     /**

@@ -10,4 +10,7 @@ return [
     'is_active'=>'ist aktiv',
     'add_new_type_message'=>'Neuer Fahrzeugtyp wurde hinzugefügt.',
 
+    'created'=>'Fahrzeugtyp erstellt.',
+    'updated'=>'Fahrzeugtyp aktualisiert.',
+    'deleted'=>'Fahrzeugtyp gelöscht.',
 ];

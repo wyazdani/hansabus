@@ -23,10 +23,8 @@
 						<span data-i18n="" class="menu-title">{{ __('messages.vehicles') }}</span>
 					</a>
 					<ul class="menu-content">
-						<li><a href="{{ route('vehicles.index') }}" class="menu-item">{{ __('messages.vehicles') }}</a>
-						</li>
-						<li><a href="{{ route('vehicle-type.index') }}" class="menu-item">{{ __('messages.vehicle_types') }}</a>
-						</li>
+						<li><a href="{{ route('vehicles.index') }}" class="menu-item">{{ __('messages.vehicles') }}</a></li>
+						<li><a href="{{ route('vehicle-type.index') }}" class="menu-item">{{ __('messages.vehicle_types') }}</a></li>
 					</ul>
 				</li>
 
@@ -43,10 +41,9 @@
 						<span data-i18n="" class="menu-title">{{ __('messages.tours') }}</span>
 					</a>
 					<ul class="menu-content">
-						<li><a href="{{ route('tours.index') }}" class="menu-item">{{ __('messages.tours') }}</a>
-						</li>
-						<li><a href="{{ route('tour-invoices') }}" class="menu-item">{{ __('tour_invoice.heading.index') }}</a></li>
+						<li><a href="{{ route('tours.index') }}" class="menu-item">{{ __('messages.tours') }}</a></li>
 						<li><a href="{{ route('tour-calendar') }}" class="menu-item">{{__('tour.heading.calendar')}}</a></li>
+						<li><a href="{{ route('tour-invoices') }}" class="menu-item">{{ __('tour_invoice.heading.index') }}</a></li>
 					</ul>
 				</li>
 
@@ -54,22 +51,19 @@
 
 				<li class="has-sub nav-item {{ (in_array(Request::route()->getName(),[
 				'v-drivers.index','v-drivers.create','v-drivers.edit',
-				'hire-drivers.index','hire-drivers.create','hire-drivers.edit','hire-driver-calendar'
+				'hire-drivers.index','hire-drivers.create','hire-drivers.edit','hire-driver-calendar',
+				'driver-invoices','driver-invoice-create'
 				])) ? 'open' : '' }}">
 					<a href="javascript:;">
 						<span data-i18n="" class="menu-title">{{ __('messages.drivers') }}</span>
 					</a>
 					<ul class="menu-content">
-						<li><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a>
-						</li>
-						<li><a href="{{ route('hire-drivers.index') }}" class="menu-item">{{ __('messages.hire_drivers') }}</a>
-						</li>
-						<li><a href="{{ route('hire-driver-calendar') }}" class="menu-item">{{ __('messages.drivers_calendar') }}</a>
-						</li>
-
+						<li><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a></li>
+						<li><a href="{{ route('hire-drivers.index') }}" class="menu-item">{{ __('messages.hire_drivers') }}</a></li>
+						<li><a href="{{ route('hire-driver-calendar') }}" class="menu-item">{{ __('messages.drivers_calendar') }}</a></li>
+						<li><a href="{{ route('driver-invoices') }}" class="menu-item">{{ __('driver_invoice.heading.index') }}</a></li>
 					</ul>
 				</li>
-
 
 				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.settings')}}</a></li>
 				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.reports')}}</a></li>

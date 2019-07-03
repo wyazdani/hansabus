@@ -103,7 +103,7 @@
 																	<div class="form-group">
 																		<label for="fromDate">{{__('tour.from')}}</label>
 																		<div class='input-group date'>
-																			<input type='text' name="from_date"
+																			<input type='text' name="from_date" autocomplete="off"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
 																				   value="{{ (!empty($tour->from_date))?date('m/d/Y h:i A',strtotime($tour->from_date)):old('from_date') }}"
 																			/>
@@ -114,7 +114,7 @@
 																	<div class="form-group">
 																		<label for="toDate">{{__('tour.to')}}</label>
 																		<div class='input-group date'>
-																			<input type='text' name="to_date"
+																			<input type='text' name="to_date" autocomplete="off"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
 																				   value="{{ (!empty($tour->to_date))?date('m/d/Y h:i A',strtotime($tour->to_date)):old('to_date') }}"
 																			/>

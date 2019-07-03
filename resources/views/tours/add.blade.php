@@ -57,7 +57,7 @@
 																			<option value="">- - - {{__('tour.select_status')}}- - -</option>
 																			@foreach($tour_statuses as $status)
 																				<option value="{{ $status->id  }}"
-																				@if(!empty($tour->status) && $tour->status==$status->id)
+																				@if(!empty($tour->status) && $tour->status==$status->id || old('status') == $status->id)
 																					{{ 'Selected' }}
 																						@endif
 																				>{{ $status->name }}</option>
@@ -72,7 +72,7 @@
 																			<option value="">- - - {{__('tour.select_customer')}} - - -</option>
 																			@foreach($customers as $customer)
 																				<option value="{{ $customer->id  }}"
-																				@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id)
+																				@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id || old('customer_id') == $customer->id)
 																					{{ 'Selected' }}
 																						@endif
 																				>{{ $customer->name }}</option>
@@ -88,7 +88,7 @@
 																			<option value="">- - - {{__('tour.select_vehicle')}} - - -</option>
 																			@foreach($vehicles as $vehicle)
 																				<option value="{{ $vehicle->id  }}"
-																				@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id)
+																				@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id || old('vehicle_id') == $vehicle->id)
 																					{{ 'Selected' }}
 																						@endif
 																				>{{
@@ -128,7 +128,7 @@
 																			<option value="">- - - {{__('tour.select_one')}} - - -</option>
 																			@foreach($drivers as $driver)
 																				<option value="{{ $driver->id  }}"
-																				@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id)
+																				@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id || old('driver_id') == $driver->id)
 																					{{ 'Selected' }}
 																						@endif
 																				>{{

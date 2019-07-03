@@ -156,6 +156,18 @@ class HireDriverController extends Controller
         ];
         $this->validate(request(), $rules, $messages);
 
+
+        /*
+         $closures = Closures::where(function($query) use ($start) {
+    return $query->where('start_date', '<=', $start)->where('end_date', '>=', $start);
+})
+->orWhere(function($query) use ($end) {
+    return $query->where('start_date', '<=', $end)->where('end_date', '>=', $end);
+})
+->get();
+
+         * */
+
         $HireDriver = new HireDriver;
         $HireDriver->status = (int)$request->status;
         $HireDriver->customer_id = (int)$request->customer_id;

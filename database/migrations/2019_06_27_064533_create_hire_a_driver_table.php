@@ -20,8 +20,8 @@ class CreateHireADriverTable extends Migration
             $table->bigInteger('customer_id')->default(0)->nullable();
             $table->bigInteger('driver_id')->default(0)->nullable();
 
-            $table->string('from_date')->nullable();
-            $table->string('to_date')->nullable();
+            $table->dateTime('from_date');
+            $table->dateTime('to_date');
             $table->integer('price')->default(0)->nullable();
 
             $table->softDeletes();

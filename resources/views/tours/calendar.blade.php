@@ -54,7 +54,7 @@
 					day: '{{__("tour.day")}}'
 				},
 				defaultView: 'dayGridMonth',
-				defaultDate: '2019-06-12',
+				defaultDate: '{{ date('Y-m-d')  }}',
 				navLinks: true, // can click day/week names to navigate views
 				editable: true,
 				eventLimit: true, // allow "more" link when too many events

@@ -75,11 +75,11 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="4" style="font-size: 12px; border: 0.5px solid #ccc;">{{__('driver_invoice.vat')}}</td>
+                            <td colspan="4" style="font-size: 12px; border: 0.5px solid #ccc; text-align: right !important;">{{__('driver_invoice.vat')}}</td>
                             <td colspan="1" style="font-size: 12px; border: 0.5px solid #ccc;font-weight: bold;"> @if(!empty($vat)) {{$vat}} €@endif</td>
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align: right;font-size: 12px; border: 0.5px solid #ccc;">{{__('tour.total_amount')}}</td>
+                            <td colspan="4" style="text-align: right;font-size: 12px; border: 0.5px solid #ccc; text-align: right !important;">{{__('tour.total_amount')}}</td>
                             <td colspan="1" style="text-align: left;font-size: 12px; border: 0.5px solid #ccc;font-weight: bold;"> @if(!empty($total)) {{$total}} €@endif</td>
                         </tr>
                         </tfoot>
@@ -110,11 +110,10 @@
                     <table style="font-size: 12px; padding: 10px 0 0;">
                         <tr>
                             <td class="left">
-                                <strong>{{__('driver_invoice.yours_sincerely')}}</strong>
+                                <strong>{{__('tour_invoice.yours_sincerely')}},</strong>
+                                <p>Mit freundlichen Grüßen<br>iA Alizada <br> <strong>Mobile tel.</strong> 0173/94 80 246</p>
+
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="left">iA Alizada <br> Mobile tel. 0173/94 80 246</td>
                         </tr>
                     </table>
                 </td>
@@ -126,21 +125,21 @@
                             <td>
                                 <table style="padding: 10px 0 0;border-top: 1px solid #ccc;" width="100%">
                                     <tr>
-                                        <td class="left">
+                                        <td class="left" width="35%">
                                             <strong>Hansa Bustouristik</strong> <br>
                                             Omnibusbetrieb <br>
                                             Inhaber , Alizada Timor <br>
                                             Hoisbütteler Dorfstr. 1, 22949 Ammersbek <br>
                                             <strong>Ust-IdNr.:</strong> DE256517113/
                                         </td>
-                                        <td class="left">
+                                        <td class="left" width="33%">
                                             www. hansebus.com<br>
                                             info@ hansebus.com<br>
                                             <strong>Tel :</strong>  040/521 580 81<br>
                                             <strong>Fax :</strong>  040/ 521 580 82<br>
                                             <strong>Steuer.- Nr. :</strong>  30/001/06020
                                         </td>
-                                        <td class="left">
+                                        <td class="left" width="32%">
                                             <strong>Bank :</strong>  DAB Bank<br>
                                             <strong>BLZ :</strong>  701 204 00<br>
                                             <strong>Konto Nr. :</strong>  8540743005<br>

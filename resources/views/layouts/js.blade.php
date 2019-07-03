@@ -15,8 +15,3 @@
 <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 @toastr_js
 @toastr_render
-<script>
-    toastr.options: {
-        "positionClass": "your-newly-created-div-class"
-    }
-</script>

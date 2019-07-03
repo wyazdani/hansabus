@@ -143,7 +143,7 @@
                 'customer_id' : $('#customer_id').val(),
                 'from_date' : $('#from_date').val(),
                 'to_date' : $('#to_date').val(),
-                'id' : $('#tourID').val(),
+                'id' : $('#invoiceID').val(),
             };
             $.ajax({
                 url: '{{ url('/driver-invoices-list') }}',
@@ -230,7 +230,7 @@
             });
             /* filter by search button click */
             $('#searchBtn').on('click', function(){
-                getTours();
+                getInvoices();
             });
 
             /* DateTime Picker */

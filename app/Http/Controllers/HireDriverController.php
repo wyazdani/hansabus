@@ -28,20 +28,30 @@ class HireDriverController extends Controller
         $pageTitle = __('hire.heading.calendar');
         $rows = HireDriver::where('status','>',1)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
 
-        $data=[]; $i=0;
+        $colors = ['red','green','blue','orange','Tan','Purple','brown','black'];
+        
+        $events = $drivers = []; $i=0;
         foreach($rows as $row){
 
-            $row->driver;
-            $row->customer;
 
-            $data[$i]['title'] = 'Hire # '.$row->id;
-            $data[$i]['start'] = $row->from_date;
-            $data[$i]['end'] = $row->to_date;
-            $data[$i]['url'] = url('/hire-driver/'.$row->id);
+            $row->customer;
+            $driver = $row->driver;
+            $driver['eventColor'] = $colors[$i];
+            $drivers[] = $driver;
+
+            $events[$i]['id'] = $row->id;
+            $events[$i]['resourceId'] = $row->driver_id;
+            $events[$i]['start'] = $row->from_date;
+            $events[$i]['end'] = $row->to_date;
+
+            $events[$i]['title'] = '
+            Hire # '.$row->id.' 
+            Customer: '.$row->customer->name;
+            $events[$i]['url'] = url('/hire-driver/'.$row->id);
             $i++;
         }
 //        dd($data);
-        return view('hire-drivers.calendar',compact('data','pageTitle'));
+        return view('hire-drivers.calendar',compact('events','drivers','pageTitle'));
     }
     public function getList(Request $request)
     {
@@ -125,8 +135,8 @@ class HireDriverController extends Controller
         $randomKey = $general->randomKey();
 
         $tour_statuses = TourStatus::get(['id','name']);
-        $customers = Customer::get(['name','id']);
-        $drivers = Driver::get(['driver_name','id']);
+        $customers = Customer::where('status','1')->get(['name','id']);
+        $drivers = Driver::where('status','1')->get(['driver_name','id']);
 
         return view('hire-drivers.add',compact('pageTitle','customers','drivers','tour_statuses','randomKey'));
     }
@@ -234,8 +244,8 @@ class HireDriverController extends Controller
         $randomKey = $general->randomKey();
 
         $tour_statuses = TourStatus::get(['id','name']);
-        $customers = Customer::get(['name','id']);
-        $drivers = Driver::get(['driver_name','id']);
+        $customers = Customer::where('status','1')->get(['name','id']);
+        $drivers = Driver::where('status','1')->get(['driver_name','id']);
 
         $attachments = HireAttachment::where('hire_id',$id)->get();
 //        dd($attachments);

@@ -36,6 +36,8 @@
 					@endif
 					@csrf
 
+									<input type="hidden" id="returnFlag" name="returnFlag" value="">
+
 
 									<div class="row">
 										<div class="col-md-8">

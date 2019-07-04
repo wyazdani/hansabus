@@ -28,22 +28,40 @@ class ToursController extends Controller
     {
         $pageTitle = __('messages.calendar');
         $rows = Tour::where('status','>',1)->get(
-            ['id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+            ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
-        $data=[]; $i=0;
+        $colors = ['red','green','blue','orange','Tan','Purple','brown','black'];
+
+        $events = $vehicles = []; $i=0;
         foreach($rows as $row){
-            $row->vehicle;
+
+            /*if(!empty($colors[$i])){
+                $color = $colors[$i];
+            }else{
+
+            }*/
             $row->driver;
             $row->customer;
-            // ' passengers on '.$row->vehicle->name.'. driver: '.$row->driver->driver_name
-            $data[$i]['title'] = 'Tour # '.$row->id;
-            $data[$i]['start'] = $row->from_date;
-            $data[$i]['end'] = $row->to_date;
-            $data[$i]['url'] = url('/tour/'.$row->id);
+
+            $vehicle= $row->vehicle;
+            $vehicle['eventColor'] = $colors[$i];
+            $vehicles[] = $vehicle;
+
+
+            $events[$i]['id'] = $row->id;
+            $events[$i]['resourceId'] = $row->id;
+            $events[$i]['start'] = $row->from_date;
+            $events[$i]['end'] = $row->to_date;
+
+            $events[$i]['title'] = '
+            Customer: '.$row->customer->name.'
+            Driver: '.$row->driver->driver_name;
+            $events[$i]['url'] = url('/tour/'.$row->id);
+
             $i++;
         }
 
-        return view('tours.calendar',compact('data','pageTitle'));
+        return view('tours.calendar',compact('events','vehicles','pageTitle'));
     }
     public function getList(Request $request)
     {
@@ -139,12 +157,11 @@ class ToursController extends Controller
         $pageTitle = __('tour.heading.add');
         $general = new General();
         $randomKey = $general->randomKey();
-        //$vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
-        $tour_statuses = TourStatus::get(['id','name']);
-        $customers = Customer::where('status','=',1)->get();
-        $drivers = Driver::where('status','=',1)->get();
-        $vehicles = Vehicle::where('status','=',1)->get();
 
+        $tour_statuses = TourStatus::get(['id','name']);
+        $customers = Customer::where('status','1')->get();
+        $drivers = Driver::where('status','1')->get();
+        $vehicles = Vehicle::where('status','1')->get();
 
         return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));
     }
@@ -200,7 +217,7 @@ class ToursController extends Controller
             $attachments = Attachment::where('temp_key',$request->temp_key)->get();
 
             foreach($attachments as $attachment){
-                $files [] = ['tour_id'=>$HireDriver->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
+                $files [] = ['tour_id'=>$tour->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
                 /* delete attachment */
                 Attachment::find($attachment->id)->delete();
             }
@@ -248,14 +265,12 @@ class ToursController extends Controller
 
         $general = new General();
         $randomKey = $general->randomKey();
-        $vehicles = Vehicle::get(['name','make','year','transmission','licensePlate','id']);
         $tour_statuses = TourStatus::get(['id','name']);
-        $customers = Customer::get(['name','id']);
-        $drivers = Driver::get(['driver_name','id']);
 
+        $vehicles = Vehicle::where('status','1')->get(['name','make','year','transmission','licensePlate','id']);
+        $customers = Customer::where('status','1')->get(['name','id']);
+        $drivers = Driver::where('status','1')->get(['driver_name','id']);
         $attachments = TourAttachment::where('tour_id',$id)->get();
-
-//        dd($attachments);
 
         return view('tours.add',compact('tour','pageTitle','vehicles','customers','drivers','tour_statuses','randomKey','attachments'));
     }

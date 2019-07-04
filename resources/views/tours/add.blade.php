@@ -54,7 +54,7 @@
 																		<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
 
 																		>
-																			<option value="">- - - {{__('tour.select_status')}}- - -</option>
+																			<option value="">{{__('tour.select_status')}}</option>
 																			@foreach($tour_statuses as $status)
 																				<option value="{{ $status->id  }}"
 																				@if(!empty($tour->status) && $tour->status==$status->id || old('status') == $status->id)
@@ -69,7 +69,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">{{__('tour.customer')}}</label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
-																			<option value="">- - - {{__('tour.select_customer')}} - - -</option>
+																			<option value="">{{__('tour.select_customer')}}</option>
 																			@foreach($customers as $customer)
 																				<option value="{{ $customer->id  }}"
 																				@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id || old('customer_id') == $customer->id)
@@ -85,7 +85,7 @@
 																	<div class="form-group">
 																		<label>{{__('tour.vehicle')}}</label>
 																		<select name="vehicle_id" class="form-control" onchange="getVehicleSeats(this.value);">
-																			<option value="">- - - {{__('tour.select_vehicle')}} - - -</option>
+																			<option value="">{{__('tour.select_vehicle')}}</option>
 																			@foreach($vehicles as $vehicle)
 																				<option value="{{ $vehicle->id  }}"
 																				@if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id || old('vehicle_id') == $vehicle->id)
@@ -125,7 +125,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">{{__('tour.driver')}}</label>
 																		<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
-																			<option value="">- - - {{__('tour.select_one')}} - - -</option>
+																			<option value="">{{__('tour.select_one')}}</option>
 																			@foreach($drivers as $driver)
 																				<option value="{{ $driver->id  }}"
 																				@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id || old('driver_id') == $driver->id)

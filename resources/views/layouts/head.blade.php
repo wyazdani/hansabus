@@ -30,11 +30,20 @@
 
 	@if(Request::route()->getName() == 'tour-calendar' || Request::route()->getName() == 'hire-driver-calendar' || Request::route()->getName() == 'home')
 	{{-- Canlender --}}
-	<link href="{{ asset('calendar/core/main.css') }}" rel='stylesheet' />
-	<link href="{{ asset('calendar/daygrid/main.css') }}" rel='stylesheet' />
-	<link href="{{ asset('calendar/timegrid/main.css') }}" rel='stylesheet' />
-	<script src="{{ asset('calendar/core/main.js') }}"></script>
-	<script src="{{ asset('calendar/daygrid/main.js') }}"></script>
-	<script src="{{ asset('calendar/timegrid/main.js') }}"></script>
+{{--	<link href="{{ asset('calendar/core/main.css') }}" rel='stylesheet' />--}}
+{{--	<link href="{{ asset('calendar/daygrid/main.css') }}" rel='stylesheet' />--}}
+{{--	<link href="{{ asset('calendar/timegrid/main.css') }}" rel='stylesheet' />--}}
+{{--	<script src="{{ asset('calendar/core/main.js') }}"></script>--}}
+{{--	<script src="{{ asset('calendar/daygrid/main.js') }}"></script>--}}
+{{--	<script src="{{ asset('calendar/timegrid/main.js') }}"></script>--}}
+
+
+		<link href='http://fullcalendar.io/js/fullcalendar-2.7.1/fullcalendar.css' rel='stylesheet' />
+		<link href='http://fullcalendar.io/js/fullcalendar-2.7.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+		<link href='http://fullcalendar.io/js/fullcalendar-scheduler-1.3.1/scheduler.min.css' rel='stylesheet' />
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+
 	@endif
 </head>

@@ -13,12 +13,12 @@
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-6 text-right">
-							<div class="dataTables_filter"><a href="{{ route('tours.index') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.tours') }}
-									<i class="ft-arrow-right mt-3"></i></a>
+							<div class="dataTables_filter"><a href="{{ route('tours.index') }}"
+								  class="btn btn-info ml-2 mt-2">{{ __('messages.tours') }} <i class="ft-arrow-right mt-3"></i></a>
 							</div>
-							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.calendar') }}
-									<i class="ft-arrow-right mt-3"></i></a>
-							</div>
+{{--							<div class="dataTables_filter"><a href="{{ route('tour-calendar') }}" class="btn btn-info ml-2 mt-2">{{ __('messages.calendar') }}--}}
+{{--									<i class="ft-arrow-right mt-3"></i></a>--}}
+{{--							</div>--}}
 						</div>
 					</div>
 				</div>

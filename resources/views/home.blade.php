@@ -16,7 +16,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalVehicles }}</h3>
-								<span>{{ __('messages.vehicles') }}</span>
+								<span><a href="{{ route('vehicles.index') }}" style="color: gray">{{ __('messages.vehicles') }}</a></span>
 							</div>
 						</div>
 					</div>
@@ -33,7 +33,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalDrivers  }}</h3>
-								<span>{{ __('messages.drivers') }}</span>
+								<span><a href="{{ route('v-drivers.index') }}" style="color: gray">{{ __('messages.drivers') }}</a></span>
 							</div>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalCustomers  }}</h3>
-								<span>{{ __('messages.customers') }}</span>
+								<span><a href="{{ route('customers.index') }}" style="color: gray">{{ __('messages.customers') }}</a></span>
 							</div>
 						</div>
 					</div>
@@ -93,7 +93,7 @@
 						<table class="table table-hover table-xl mb-0" id="recent-orders">
 							<thead>
 							<tr>
-								<th class="border-top-0" width="5%">ID</th>
+								<th class="border-top-0" width="5%">Tour ID</th>
 								<th class="border-top-0" width="15%">{{__('tour.customer')}}</th>
 								<th class="border-top-0" width="15%">{{__('tour.vehicle')}}</th>
 								<th class="border-top-0" width="12%">{{__('tour.from')}}</th>
@@ -106,8 +106,9 @@
 							</thead>
 							<tbody>
 							@foreach($recentTours as $tour)
+
 								<tr>
-									<td class="text-truncate">{!! $tour->id !!}</td>
+									<td class="text-truncate"><a href="{{ route('tour-detail',$tour->id) }}">{!! $tour->id !!}</a></td>
 									<td class="text-truncate">{!! !empty($tour->customer->name)?$tour->customer->name:'' !!}</td>
 									<td class="text-truncate">{!! !empty($tour->vehicle->name)?$tour->vehicle->name:'' !!}</td>
 									<td class="text-truncate">{!! $tour->from_date !!}</td>

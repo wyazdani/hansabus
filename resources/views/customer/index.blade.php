@@ -98,7 +98,7 @@
                 "searchable" : true,
                 "language": {
                     "search": "{{__('messages.search')}}",
-                    "emptyTable": "{{__('messages.emptyTable')}}"
+                    "emptyTable": "{{__('messages.no_record')}}"
                 },
                 "pageLength": 10,
                 "bLengthChange" : false,
@@ -132,7 +132,7 @@
                         view += ' href="javascript:;" onclick="viewCustomer('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
-                        buttons = status+edit+trash+view;
+                        buttons = status+edit+view;
                         return buttons;
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }

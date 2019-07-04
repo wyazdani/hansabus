@@ -171,14 +171,16 @@
 					</div>
 				</div>
 
-				<div class="col-md-12 text-center">
+				<div class="col-md-12 text-left">
 					<div class="form-actions">
+						<a href="{{route('hire-drivers.index')}}" class="btn btn-danger mr-1"><b>
+								<i class="fa fa-times"></i></b> {{__('messages.cancel')}}</a>
+
 						@if(!empty($hire->id))
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> {{__('messages.update')}}</button>
 						@else
-							<a href="{{route('tours.index')}}" class="btn btn-danger mr-1"><b>
-									<i class="fa fa-times"></i></b> {{__('messages.cancel')}}</a>
+
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> {{__('messages.save')}}</button>
 							<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">

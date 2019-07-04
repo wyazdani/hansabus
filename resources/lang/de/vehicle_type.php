@@ -13,4 +13,6 @@ return [
     'created'=>'Fahrzeugtyp erstellt.',
     'updated'=>'Fahrzeugtyp aktualisiert.',
     'deleted'=>'Fahrzeugtyp gelöscht.',
+
+    'status_changed'=>'Fahrzeugtypstatus geändert.',
 ];

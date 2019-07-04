@@ -13,6 +13,7 @@ return [
     'updated'=>'Vehicle type updated.',
     'deleted'=>'Vehcile Type deleted.',
 
+    'status_changed'=>'Vehicle type status changed.',
 
 
     ];

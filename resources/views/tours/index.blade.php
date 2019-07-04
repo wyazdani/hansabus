@@ -179,6 +179,10 @@
                 "serverSide": true,
                 // "searchable" : true,
                 'searching':false,
+                "language": {
+                    "search": "{{__('messages.search')}}",
+                    "emptyTable": "{{__('messages.no_record')}}"
+                },
                 "pageLength": 10,
                 "bLengthChange" : false,
                 "aoColumnDefs": [

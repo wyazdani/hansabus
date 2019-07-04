@@ -110,7 +110,10 @@
                                                             @foreach($vehicleTypes as $vehicleType)
                                                             
                                                             <option value="{{ $vehicleType->id }}"
-                                                            @if(!empty($vehicle->vehicle_type) && $vehicle->vehicle_type == $vehicleType->id)
+                                                            @if(
+                                                            (!empty($vehicle->vehicle_type) &&
+                                                            $vehicle->vehicle_type == $vehicleType->id)
+                                                            || old('vehicle_type') == $vehicleType->id )
                                                             {{ 'selected' }}
                                                             @endif    
                                                             >{{ $vehicleType->name }}</option>
@@ -270,17 +273,17 @@
 
                     </div>
 
-                    <div class="row">
                         <div class="col-md-12 text-left">
                             <div class="form-actions">
+                                <a href="{{ route('vehicles.index') }}" class="btn btn-danger mr-1">
+                                    <i class="fa fa-times"></i> {{__('messages.cancel')}}
+                                </a>
                                 @if(!empty($vehicle->id))
                                     <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
                                         <i class="icon-note"></i> {{__('messages.update')}}
                                     </button>
                                 @else
-                                    <a href="{{ url('/vehicles') }}" class="btn btn-danger mr-1">
-                                        <i class="fa fa-times"></i> {{__('messages.cancel')}}
-                                    </a>
+
                                     <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
                                         <i class="icon-note"></i> {{__('messages.save')}}
                                     </button>
@@ -290,7 +293,6 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
 
                 </form>
                         @else

@@ -129,9 +129,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-md-12 text-center">
-											<div class="form-actions">
+									<div class="col-md-12 text-left">
+										<div class="form-actions">
 												<a href="{{route('v-drivers.index')}}" class="btn btn-danger mr-1"><b>
 														<i class="fa fa-times"></i></b> {{__('messages.cancel')}}</a>
 
@@ -144,7 +143,7 @@
 												@endif
 											</div>
 										</div>
-									</div>
+
 
 								</form>
 				</div>

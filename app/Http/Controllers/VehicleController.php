@@ -76,7 +76,7 @@
 
         public function index(Request $request)
         {
-            $pageTitle = 'Vehicles';
+            $pageTitle = __('vehicle.heading.index');
 
             return view('vehicle.index', compact('pageTitle'));
         }
@@ -97,8 +97,8 @@
          */
         public function create()
         {
-            $pageTitle = 'Vehicle Create';
-            $vehicleTypes = VehicleType::whereNull('deleted_at')->get();
+            $pageTitle = __('vehicle.heading.add');
+            $vehicleTypes = VehicleType::where('status','1')->get();
             return view('vehicle.add', compact('pageTitle', 'vehicleTypes'));
         }
 
@@ -117,7 +117,7 @@
                 'engineNumber' => 'required|string|max:100',
                 'vehicle_type' => 'required|integer',
                 'licensePlate' => 'required|string|max:50',
-                'seats' => 'required|integer',
+                'seats' => 'required|integer|min:1,max:500',
                 'color' => 'required|string|max:50',
                 'registrationNumber' => 'required|string|max:100',
                 'transmission' => 'required',
@@ -187,8 +187,8 @@
          */
         public function edit(Vehicle $vehicle)
         {
-            $pageTitle = 'Vehicle Update';
-            $vehicleTypes = VehicleType::all();
+            $pageTitle = __('vehicle.heading.edit');
+            $vehicleTypes = VehicleType::where('status','1')->get();
             return view('vehicle.add', compact('pageTitle', 'vehicleTypes', 'vehicle'));
         }
 
@@ -209,7 +209,7 @@
                 'engineNumber' => 'required|string|max:100',
                 'vehicle_type' => 'required|integer',
                 'licensePlate' => 'required|string|max:50',
-                'seats' => 'required|integer',
+                'seats' => 'required|integer|min:1,max:500',
                 'color' => 'required|string|max:50',
                 'registrationNumber' => 'required|string|max:100',
                 'transmission' => 'required',
@@ -231,7 +231,6 @@
             $vehicle->registrationNumber = $request->registrationNumber;
             $vehicle->transmission = $request->transmission;
 
-            $status = true;
             $ac = $sunroof = $radio = $phoneCharging = false;
 
             if ($request->AC) $ac = true;
@@ -243,7 +242,6 @@
             $vehicle->radio = $radio;
             $vehicle->sunroof = $sunroof;
             $vehicle->phoneCharging = $phoneCharging;
-            $vehicle->status = $status;
 
             if ($vehicle->save()) {
                 toastr()->success(__('vehicle.updated'));

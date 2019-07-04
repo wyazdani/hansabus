@@ -53,9 +53,6 @@ class ToursController extends Controller
             $draw = $request->input('draw');
         }
 
-
-
-
         if(!empty($request->input('status'))){
             $query = Tour::where('status',$request->input('status'));
         }else{
@@ -113,6 +110,7 @@ class ToursController extends Controller
 
         $data=[];
         foreach($rows as $row){
+
             $row->vehicle;
             $row->driver;
             $row->customer;
@@ -167,7 +165,7 @@ class ToursController extends Controller
             'to_date' => 'required',
             'driver_id' => 'required|integer',
             'price' => 'required|numeric|digits_between:1,20',
-            'passengers' => 'required|integer',
+            'passengers' => 'required|integer|min:1,max:500',
             'guide' => 'required',
         ];
         $messages = [
@@ -279,7 +277,7 @@ class ToursController extends Controller
             'to_date' => 'required',
             'driver_id' => 'required|integer',
             'price' => 'required|numeric|digits_between:1,20',
-            'passengers' => 'required|integer',
+            'passengers' => 'required|integer|min:1,max:500',
             'guide' => 'required',
         ];
         $messages = [

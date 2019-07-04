@@ -111,7 +111,7 @@
                 "searchable" : true,
                 "language": {
                     "search": "{{__('messages.search')}}",
-                    "emptyTable": "{{__('messages.emptyTable')}}"
+                    "emptyTable": "{{__('messages.no_record')}}"
                 },
                 "pageLength": 10,
                 "bLengthChange" : false,
@@ -123,7 +123,6 @@
 
                         var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';
 
-                        // console.log(row.status);
                         status  = '<a class="danger p-0" data-original-title="Change Status" title="Change Status" ';
                         if(row.status == '1'){
                             status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
@@ -144,7 +143,7 @@
                         view += ' href="javascript:;" onclick="viewVehicle('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
-                        buttons = status+edit+trash+view;
+                        buttons = status+edit+view;
                         return buttons;
 
 

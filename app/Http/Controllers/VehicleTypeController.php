@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Driver;
+use App\Models\Vehicle;
 use App\Models\VehicleType;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
@@ -50,26 +51,26 @@ class VehicleTypeController extends Controller
             $query = VehicleType::where('name', 'LIKE','%'.$search.'%');
         }
         $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get();
+        $rows = $query->orderBy('name','asc')->offset($start)->limit($limit)->get();
 
         $data=[];
         foreach($rows as $row){
-            $row['action']='';
+
             $data[] = $row;
         }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
+//        $recordsFiltered = $query->offset($start)->limit($limit)->count();
 
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
     public function index()
     {
-        $pageTitle = 'Vehicle Types';
+        $pageTitle = __('vehicle_type.heading.index');
         return view('vehicle_type.index',compact('pageTitle'));
     }
 
     public function create()
     {
-        $pageTitle = 'Vehicle Create';
+        $pageTitle = __('vehicle_type.heading.add');
         return view('vehicle_type.add', compact('pageTitle'));
     }
 
@@ -81,9 +82,9 @@ class VehicleTypeController extends Controller
 
         $vehicle_type = new VehicleType([
             'name'  => $request->get('name'),
+            'status' => '1'
         ]);
         $vehicle_type->save();
-
         toastr()->success(__('vehicle_type.created'));
         return redirect('/vehicle-type');
     }
@@ -94,7 +95,7 @@ class VehicleTypeController extends Controller
     }
     public function edit($id)
     {
-        $pageTitle= 'Edit Vehicle';
+        $pageTitle = __('vehicle_type.heading.edit');
         $vehicleType = VehicleType::find($id);
 
         return view('vehicle_type.add', compact('vehicleType','pageTitle'));
@@ -117,7 +118,14 @@ class VehicleTypeController extends Controller
         return redirect('/vehicle-type');
     }
 
-
+    public function status(VehicleType $VehicleType)
+    {
+        // dd($vehicle);
+        $VehicleType->status = !$VehicleType->status;
+        $VehicleType->save();
+        toastr()->success(__('vehicle_type.status_changed'));
+        return redirect()->back();
+    }
     public function destroy($id)
     {
         $vehicleType = VehicleType::find($id);

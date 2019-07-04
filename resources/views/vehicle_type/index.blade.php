@@ -75,7 +75,7 @@
 				"searchable": true,
 				"language": {
 					"search": "{{__('messages.search')}}",
-					"emptyTable": "{{__('messages.emptyTable')}}"
+					"emptyTable": "{{__('messages.no_record')}}"
 				},
 				"pageLength": 10,
 				"bLengthChange" : false,
@@ -87,13 +87,13 @@
 
 						var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';
 
-						// console.log(row.status);
 						status  = '<a class="danger p-0" data-original-title="Change Status" title="Change Status" ';
 						if(row.status == '1'){
 							status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
 						}
 
-
+						status += 'href="{!! url("/vehicle-type/change-status/'+row.id+'") !!}">';
+						status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
@@ -104,7 +104,7 @@
 						trash += ' href="javascript:;" onclick="deleteMe('+row.id+')" >';
 						trash += '<i class="icon-trash font-medium-3 mr-2"></i></a>';
 
-						buttons = edit+trash;
+						buttons = status+edit;
 						return buttons;
 						// return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
 					}

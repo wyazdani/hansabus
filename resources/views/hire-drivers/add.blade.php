@@ -97,7 +97,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">{{__('hire.customer')}}</label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
-																			<option value="">{{__('hire.select_customer')}}</option>
+																			<option value="">- - - {{__('hire.select_customer')}} - - -</option>
 																			@foreach($customers as $customer)
 																				<option value="{{ $customer->id  }}"
 																				@if(!empty($hire->customer_id) && $hire->customer_id==$customer->id || old('customer_id') == $customer->id)
@@ -235,12 +235,14 @@
 		$(function() {
 
 			@if(!empty($tour->id))
-				getVehicleSeats('{{ $tour->vehicle_id }}');
+			getVehicleSeats('{{ $tour->vehicle_id }}');
 			@endif
 
 			passengersCheck();
 			/* DateTime Picker */
-			$('.datetimepicker1').datetimepicker();
+			$('.datetimepicker1').datetimepicker(
+					// { minDate: moment() }
+			);
 			$('.datetimepicker2').datetimepicker({
 				useCurrent: false //Important! See issue #1075
 			});

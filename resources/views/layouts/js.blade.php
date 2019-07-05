@@ -1,5 +1,5 @@
 <!-- BEGIN JS-->
-<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}"></script>
@@ -19,3 +19,10 @@
 <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 @toastr_js
 @toastr_render
+<style>
+    .dropzone {
+        max-height: 100px !important;
+        border: dashed 3px #B4B4B4;
+        /*background-color: lightblue;*/
+    }
+</style>

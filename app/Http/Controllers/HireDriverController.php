@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\HireDriver;
 use App\Models\HireAttachment;
-use App\Models\TourAttachment;
+use App\Models\DriverBooking;
 use App\Models\TourStatus;
 use App\Models\Customer;
 use App\Models\Attachment;
@@ -105,7 +105,7 @@ class HireDriverController extends Controller
         }
 
         $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get([
+        $rows = $query->orderBy('id','DESC')->offset($start)->limit($limit)->get([
             'id','customer_id','driver_id','status','price','from_date','to_date']);
 
         $data=[];
@@ -113,8 +113,8 @@ class HireDriverController extends Controller
 
             $row->driver;
             $row->customer;
-            $row->from_date = date('d/m/Y h:i',strtotime($row->from_date));
-            $row->to_date = date('d/m/Y h:i',strtotime($row->to_date));
+            $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
+            $row->to_date   = date('d..m.Y H:i',strtotime($row->to_date));
             $data[] = $row;
         }
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
@@ -167,45 +167,70 @@ class HireDriverController extends Controller
         $this->validate(request(), $rules, $messages);
 
 
-        /*
-         $closures = Closures::where(function($query) use ($start) {
-    return $query->where('start_date', '<=', $start)->where('end_date', '>=', $start);
-})
-->orWhere(function($query) use ($end) {
-    return $query->where('start_date', '<=', $end)->where('end_date', '>=', $end);
-})
-->get();
 
-         * */
+        /* check if driver is available for this time slot */
+        $from = date('Y-m-d H:i:s',strtotime($request->from_date));
+        $to   = date('Y-m-d H:i:s',strtotime($request->to_date));
+        $alreadyBooked = DriverBooking::where('driver_id',$request->driver_id)
+            ->where(function ($query) use ($from, $to) {
+                $query
+                    ->whereBetween('from_date', [$from, $to])
+                    ->orWhere(function ($query) use ($from, $to) {
+                        $query->whereBetween('to_date', [$from,$to]);
+                    });
+            })->first();
 
-        $HireDriver = new HireDriver;
-        $HireDriver->status = (int)$request->status;
-        $HireDriver->customer_id = (int)$request->customer_id;
-        $HireDriver->driver_id = (int)$request->driver_id;
-        $HireDriver->from_date = date('Y-m-d h:i',strtotime($request->from_date));
-        $HireDriver->to_date = date('Y-m-d h:i',strtotime($request->to_date));
-        $HireDriver->price = (int)$request->price;
-        if($HireDriver->save()){
-            toastr()->success(__('hire.created'));
-        }
+        if(!$alreadyBooked) {
 
+            $HireDriver = new HireDriver;
+            $HireDriver->status = (int)$request->status;
+            $HireDriver->customer_id = (int)$request->customer_id;
+            $HireDriver->driver_id = (int)$request->driver_id;
+            $HireDriver->from_date = $from;
+            $HireDriver->to_date = $to;
+            $HireDriver->price = (int)$request->price;
+            if ($HireDriver->save()) {
 
-        $files=[]; $attachments=[];
-        if(!empty($request->temp_key)){
-            $attachments = Attachment::where('temp_key',$request->temp_key)->get();
+                toastr()->success(__('hire.created'));
 
-            foreach($attachments as $attachment){
-                $files [] = ['hire_id'=>$HireDriver->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
-                /* delete attachment */
-                Attachment::find($attachment->id)->delete();
+                /* if hiring status is not Draft and Canceled */
+                DriverBooking::where('driver_id',$request->driver_id)
+                    ->where('booking_id',$HireDriver->id)
+                    ->where('with_vehicle',0)->delete();
+
+                if($request->status>1 && $request->status<5) {
+
+                    DriverBooking::create([
+                        'booking_id'=> $HireDriver->id,
+                        'driver_id' => $request->driver_id,
+                        'from_date' => $from,
+                        'to_date' => $to,
+                        'with_vehicle' => 0]);
+                }
             }
-        }
+            /* saving/uploading attachments if any */
+            $files = [];
+            $attachments = [];
+            if (!empty($request->temp_key)) {
+                $attachments = Attachment::where('temp_key', $request->temp_key)->get();
 
-        if(count($files)){
-            HireAttachment::insert($files);
-        }
-        unset($files); unset($attachments);
+                foreach ($attachments as $attachment) {
+                    $files [] = ['hire_id' => $HireDriver->id, 'file' => $attachment->file, 'ext' => $attachment->ext];
+                    /* delete temp attachment */
+                    Attachment::find($attachment->id)->delete();
+                }
+            }
 
+            if (count($files)) {
+                HireAttachment::insert($files);
+            }
+            unset($files);
+            unset($attachments);
+        }else{
+
+            toastr()->error(__('hire.already_booked'));
+            return back()->withInput();
+        }
         return redirect('/hire-drivers');
     }
 
@@ -252,13 +277,6 @@ class HireDriverController extends Controller
         return view('hire-drivers.add',compact('hire','pageTitle','customers','drivers','tour_statuses','randomKey','attachments'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $rules = [
@@ -279,46 +297,84 @@ class HireDriverController extends Controller
         $this->validate(request(), $rules, $messages);
 
 
-        $hire = HireDriver::find($request->id);
-        $hire->status = (int)$request->status;
-        $hire->customer_id = (int)$request->customer_id;
-        $hire->driver_id = (int)$request->driver_id;
-        $hire->from_date = date('Y-m-d h:i',strtotime($request->from_date));
-        $hire->to_date = date('Y-m-d h:i',strtotime($request->to_date));
-        $hire->price = (int)$request->price;
-        if($hire->save()){
-            toastr()->success(__('hire.updated'));
-        }
 
-        /* if files uploaded */
-        $files=[]; $attachments=[];
+        /* check if driver is available for this time slot */
+        $from = date('Y-m-d H:i:s',strtotime($request->from_date));
+        $to   = date('Y-m-d H:i:s',strtotime($request->to_date));
+        $alreadyBooked = DriverBooking::where('driver_id',$request->driver_id)
+            ->where('with_vehicle',0)->where('booking_id','!=',$request->id)
+            ->where(function ($query) use ($from, $to) {
+                $query
+                    ->whereBetween('from_date', [$from, $to])
+                    ->orWhere(function ($query) use ($from, $to) {
+                        $query->whereBetween('to_date', [$from,$to]);
+                    });
+            })->first();
 
-        /* delete old tour attachments */
-        HireAttachment::where('hire_id',$hire->id)->delete();
+        if(!$alreadyBooked) {
 
-        /* already uploaded files */
-        if(!empty($request->old_attachments)){
+            $hire = HireDriver::find($request->id);
+            $hire->status = (int)$request->status;
+            $hire->customer_id = (int)$request->customer_id;
+            $hire->driver_id = (int)$request->driver_id;
+            $hire->from_date = date('Y-m-d h:i', strtotime($request->from_date));
+            $hire->to_date = date('Y-m-d h:i', strtotime($request->to_date));
+            $hire->price = (int)$request->price;
+            if ($hire->save()) {
+                toastr()->success(__('hire.updated'));
 
-            foreach($request->old_attachments as $attachment){
 
-                $a = explode('.',$attachment);
-                $ext = $a[count($a)-1];
-                $files [] = ['hire_id'=>$hire->id,'file'=>$attachment,'ext'=>$ext];
+                /* if hiring status is not Draft and Canceled */
+                DriverBooking::where('driver_id',$request->driver_id)
+                    ->where('booking_id',$hire->id)
+                    ->where('with_vehicle',0)->delete();
+
+                if($request->status>1 && $request->status<5) {
+
+                    DriverBooking::create([
+                        'booking_id'=> $hire->id,
+                        'driver_id' => $request->driver_id,
+                        'from_date' => $from,
+                        'to_date' => $to,
+                        'with_vehicle' => 0]);
+                }
             }
-        }
-        /* new uploaded files */
-        if(!empty($request->temp_key)){
-            $attachments = Attachment::where('temp_key',$request->temp_key)->get();
-        }
 
-        foreach($attachments as $attachment){
-            $files [] = ['hire_id'=>$hire->id,'file'=>$attachment->file,'ext'=>$attachment->ext];
-        }
-        if(count($files)){
-            HireAttachment::insert($files);
-        }
-        unset($files); unset($attachments);
+            /* if files uploaded */
+            $files = [];
+            $attachments = [];
 
+            /* delete old tour attachments */
+            HireAttachment::where('hire_id', $hire->id)->delete();
+
+            /* already uploaded files */
+            if (!empty($request->old_attachments)) {
+
+                foreach ($request->old_attachments as $attachment) {
+
+                    $a = explode('.', $attachment);
+                    $ext = $a[count($a) - 1];
+                    $files [] = ['hire_id' => $hire->id, 'file' => $attachment, 'ext' => $ext];
+                }
+            }
+            /* new uploaded files */
+            if (!empty($request->temp_key)) {
+                $attachments = Attachment::where('temp_key', $request->temp_key)->get();
+            }
+
+            foreach ($attachments as $attachment) {
+                $files [] = ['hire_id' => $hire->id, 'file' => $attachment->file, 'ext' => $attachment->ext];
+            }
+            if (count($files)) {
+                HireAttachment::insert($files);
+            }
+            unset($files);
+            unset($attachments);
+        }else{
+
+            toastr()->error(__('hire.already_booked'));
+            return back()->withInput();
+        }
         return redirect('/hire-drivers');
     }
 

@@ -18,7 +18,7 @@ class General
     }
     public function validateMe($request, $rules, $messages){
 
-        $validator = Validator::make($request, $rules, $messages);
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
 
             $messages = $validator->messages();
@@ -26,9 +26,9 @@ class General
             {
                 toastr()->error($message, 'Failed', ['timeOut' => 10000]);
             }
-            return redirect()->back()->withInput();
+            return false;
         }
-
+        return true;
     }
 }
 ?>

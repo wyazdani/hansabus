@@ -115,37 +115,47 @@ class DriverController extends Controller
             'nic' => 'required|numeric|digits_between:1,30',
             'address' => 'required|string',
             'phone' => 'required|numeric|digits_between:1,16',
-            'other_details' => 'required|string'
+//            'other_details' => 'required|string'
         ];
+        $messages = [
+             'driver_name.required' => 'Name is required.',
+            'nic.required'=>'NIN No. is required.'
+        ];
+        $general = new General();
+        $validated = $general->validateMe($request, $rules, $messages);
+        if($validated) {
 
-        $this->validate(request(), $rules);
 
+            /* Profile picture upload */
+            $profilePic = '';
+            if (!empty($request->profile_pic)) {
 
-        /* Profile picture upload */
-        $profilePic = '';
-        if(!empty($request->profile_pic)){
+                $general = new General;
+                $ext = $request->file('profile_pic')->getClientOriginalExtension();
+                $profilePic = $general->randomKey() . '.' . $ext;
 
-            $general = new General;
-            $ext = $request->file('profile_pic')->getClientOriginalExtension();
-            $profilePic = $general->randomKey().'.'.$ext;
+                $request->file('profile_pic')->move(
+                    base_path() . '/public/images/drivers/', $profilePic
+                );
+            }
+            /* save data into database */
+            $driver = new Driver;
+            $driver->driver_name = $request->get('driver_name');
+            $driver->mobile_number = $request->get('mobile_number');
+            $driver->driver_license = $request->get('driver_name');
+            $driver->nic = $request->get('nic');
+            $driver->address = $request->get('address');
+            $driver->phone = $request->get('phone');
+            $driver->other_details = $request->get('other_details');
+            $driver->profile_pic = $profilePic;
+            if($driver->save()){
+                toastr()->success(__('driver.created'));
+            }
 
-            $request->file('profile_pic')->move(
-                base_path() . '/public/images/drivers/', $profilePic
-            );
+        }else{
+            return redirect()->back()->withInput($request->all());
         }
-        /* save data into database */
-        $driver = new Driver;
-        $driver->driver_name = $request->get('driver_name');
-        $driver->mobile_number = $request->get('mobile_number');
-        $driver->driver_license = $request->get('driver_name');
-        $driver->nic = $request->get('nic');
-        $driver->address = $request->get('address');
-        $driver->phone = $request->get('phone');
-        $driver->other_details = $request->get('other_details');
-        $driver->profile_pic = $profilePic;
-        $driver->save();
 
-        toastr()->success(__('driver.created'));
         return redirect('/v-drivers');
 
     }
@@ -180,39 +190,49 @@ class DriverController extends Controller
             'nic' => 'required|numeric|digits_between:1,30',
             'address' => 'required|string',
             'phone' => 'required|numeric|digits_between:1,16',
-            'other_details' => 'required|string'
+//            'other_details' => 'required|string'
         ];
 
-        $this->validate(request(), $rules);
+        $messages = [
+            'driver_name.required' => 'Name is required.',
+            'nic.required'=>'NIN No. is required.'
+        ];
+        $general = new General();
+        $validated = $general->validateMe($request, $rules, $messages);
+        if($validated) {
 
-        /* Profile picture upload */
-        $profilePic = '';
-        if(!empty($request->old_profile_pic)){
-            $profilePic = $request->old_profile_pic;
+            /* Profile picture upload */
+            $profilePic = '';
+            if (!empty($request->old_profile_pic)) {
+                $profilePic = $request->old_profile_pic;
+            }
+            if (!empty($request->profile_pic)) {
+
+                $general = new General;
+                $ext = $request->file('profile_pic')->getClientOriginalExtension();
+                $profilePic = $general->randomKey() . '.' . $ext;
+
+                $request->file('profile_pic')->move(
+                    base_path() . '/public/images/drivers/', $profilePic
+                );
+            }
+            /* save data into database */
+            $driver = Driver::find($id);
+            $driver->driver_name = $request->get('driver_name');
+            $driver->mobile_number = $request->get('mobile_number');
+            $driver->driver_license = $request->get('driver_name');
+            $driver->nic = $request->get('nic');
+            $driver->address = $request->get('address');
+            $driver->phone = $request->get('phone');
+            $driver->other_details = $request->get('other_details');
+            $driver->profile_pic = $profilePic;
+            if($driver->save()){
+                toastr()->success(__('driver.updated'));
+            }
+
+        }else{
+            return redirect()->back()->withInput($request->all());
         }
-        if(!empty($request->profile_pic)){
-
-            $general = new General;
-            $ext = $request->file('profile_pic')->getClientOriginalExtension();
-            $profilePic = $general->randomKey().'.'.$ext;
-
-            $request->file('profile_pic')->move(
-                base_path() . '/public/images/drivers/', $profilePic
-            );
-        }
-        /* save data into database */
-        $driver = Driver::find($id);
-        $driver->driver_name = $request->get('driver_name');
-        $driver->mobile_number = $request->get('mobile_number');
-        $driver->driver_license = $request->get('driver_name');
-        $driver->nic = $request->get('nic');
-        $driver->address = $request->get('address');
-        $driver->phone = $request->get('phone');
-        $driver->other_details = $request->get('other_details');
-        $driver->profile_pic = $profilePic;
-        $driver->save();
-
-        toastr()->success(__('driver.updated'));
         return redirect('/v-drivers');
     }
 

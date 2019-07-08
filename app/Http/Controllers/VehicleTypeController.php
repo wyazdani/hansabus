@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\General;
 use App\Models\Driver;
 use App\Models\Vehicle;
 use App\Models\VehicleType;
@@ -76,16 +77,27 @@ class VehicleTypeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'name'  =>'required|string'
-        ]);
+        ];
+        $messages = [
+             'name.required' => 'Vehicle type is required',
+        ];
+        $general = new General();
+        $validated = $general->validateMe($request, $rules, $messages);
+        if($validated){
 
-        $vehicle_type = new VehicleType([
-            'name'  => $request->get('name'),
-            'status' => '1'
-        ]);
-        $vehicle_type->save();
-        toastr()->success(__('vehicle_type.created'));
+            $vehicle_type = new VehicleType([
+                'name'  => $request->name,
+                'status' => '1'
+            ]);
+            if($vehicle_type->save()){
+                toastr()->success(__('vehicle_type.created'));
+            }
+        }else{
+            return redirect()->back()->withInput($request->all());
+        }
+
         return redirect('/vehicle-type');
     }
 
@@ -105,16 +117,25 @@ class VehicleTypeController extends Controller
     public function update(Request $request, $id)
     {
 
-        $request->validate([
+
+        $rules = [
             'name'  =>'required|string'
-            ]);
-        $vehicleType = VehicleType::find($id);
+        ];
+        $messages = [
+            'name.required' => 'Vehicle type is required',
+        ];
+        $general = new General();
+        $validated = $general->validateMe($request, $rules, $messages);
+        if($validated){
 
-        $vehicleType->name = $request->get('name');
-
-        $vehicleType->save();
-
-        toastr()->success(__('vehicle_type.updated'));
+            $vehicleType = VehicleType::find($id);
+            $vehicleType->name = $request->get('name');
+            if($vehicleType->save()) {
+                toastr()->success(__('vehicle_type.updated'));
+            }
+        }else{
+            return redirect()->back()->withInput($request->all());
+        }
         return redirect('/vehicle-type');
     }
 

@@ -40,6 +40,7 @@
 		$(function() { // document ready
 
 			$('#calendar').fullCalendar({
+
 				schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
 				now: '{{ date('Y-m-d') }}',
 				aspectRatio: 1.8,
@@ -49,7 +50,7 @@
 					center: '',
 					right: 'today agendaDay,month prev,next'
 				},
-				defaultView: 'agendaDay', // timeGridWeek, month, agendaDay
+				defaultView: 'agendaDay', // month, agendaDay
 				views: { },
 				resourceLabelText: 'Rooms',
 				resourceText: function(vehicle) {
@@ -68,7 +69,8 @@
 					week: '{{__("tour.week")}}',
 					day: '{{__("tour.day")}}'
 				},
-				events: {!! json_encode($events) !!}
+				events:{!! json_encode($events) !!},
+				timeFormat: 'h(:mm) A'
 
 			});
 
@@ -76,7 +78,6 @@
 			{
 				callback(vehicles);
 			}
-
 		});
 	</script>
 @endsection

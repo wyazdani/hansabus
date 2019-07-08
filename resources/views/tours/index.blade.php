@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-1-5">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <select name="status" id="status" class="form-control filterBox">
                                     <option value="">{{__('tour.select_status')}}</option>
@@ -71,9 +71,9 @@
                                 <input type='text' id="to_date" autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="tourID" placeholder="Tour ID" class="form-control" style="width: 120%" />
+                                <input type='text' id="tourID" placeholder="Tour ID" class="form-control" />
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -183,7 +183,7 @@
             var tableDiv = $('#listingTable').DataTable({
 
                 'bSortable': false,
-                'bProcessing': true,
+                // 'bProcessing': true,
                 "bInfo": false,
                 // "bAutoWidth": false,
                 "processing": true,
@@ -197,6 +197,7 @@
                 "pageLength": 10,
                 "bLengthChange" : false,
                 "aoColumnDefs": [
+                    { aTargets: ["_all"], bSortable: false },
                     {
                         "aTargets": [8],
                         "mData": "",
@@ -271,7 +272,7 @@
                 },
                 'rowId': 'id',
                 "columns": [
-                    { "data": { '_':"id" , "bSortable": false }},
+                    { "data": "id" },
                     { "data": "customer.name" },
                     { "data": "vehicle.name" },
                     { "data": "from_date" },

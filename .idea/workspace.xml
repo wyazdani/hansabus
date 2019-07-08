@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/drivers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/drivers/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehicle/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehicle/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehicle_type/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehicle_type/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +33,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="532">
@@ -58,10 +48,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="30" column="66" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="66" />
+            <state relative-caret-position="437">
+              <caret line="153" column="36" lean-forward="true" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="36" />
               <folding>
                 <element signature="e#40#69#0#PHP" expanded="true" />
+                <element signature="e#507#1679#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -76,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="184" column="16" lean-forward="true" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
+            <state relative-caret-position="748">
+              <caret line="315" column="11" lean-forward="true" selection-start-line="315" selection-start-column="11" selection-end-line="315" selection-end-column="11" />
               <folding>
                 <element signature="e#10527#12333#0#HTML" />
               </folding>
@@ -191,9 +182,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
         <option value="$PROJECT_DIR$/resources/views/drivers/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
+        <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
       </list>
     </option>
   </component>
@@ -415,12 +406,12 @@
       <workItem from="1562216159098" duration="24431000" />
       <workItem from="1562305035615" duration="23239000" />
       <workItem from="1562561984129" duration="2411000" />
-      <workItem from="1562567017746" duration="18107000" />
+      <workItem from="1562567017746" duration="18829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225383000" />
+    <option name="totallyTimeSpent" value="226105000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -817,22 +808,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="184" column="16" lean-forward="true" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
+        <state relative-caret-position="532">
+          <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
           <folding>
-            <element signature="e#10527#12333#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="30" column="66" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="66" />
-          <folding>
-            <element signature="e#40#69#0#PHP" expanded="true" />
+            <element signature="e#40#76#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -844,12 +825,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
+        <state relative-caret-position="437">
+          <caret line="153" column="36" lean-forward="true" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="36" />
           <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
+            <element signature="e#40#69#0#PHP" expanded="true" />
+            <element signature="e#507#1679#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="315" column="11" lean-forward="true" selection-start-line="315" selection-start-column="11" selection-end-line="315" selection-end-column="11" />
+          <folding>
+            <element signature="e#10527#12333#0#HTML" />
           </folding>
         </state>
       </provider>

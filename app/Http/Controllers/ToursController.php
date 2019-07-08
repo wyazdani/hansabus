@@ -68,7 +68,7 @@ class ToursController extends Controller
         $orderColumn = 'id';
         $dir = 'desc';
 
-        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+        /*if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
             $orderColumn = 'customer.name';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
@@ -87,7 +87,7 @@ class ToursController extends Controller
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
             $orderColumn = 'registrationNumber';
-        }
+        }*/
         if(!empty($request->order[0]['dir'])){
             $dir = $request->order[0]['dir'];
         }

@@ -68,7 +68,8 @@
 					week: '{{__("tour.week")}}',
 					day: '{{__("tour.day")}}'
 				},
-				events: {!! json_encode($events) !!}
+				events: {!! json_encode($events) !!},
+				timeFormat: 'h(:mm) A'
 
 			});
 

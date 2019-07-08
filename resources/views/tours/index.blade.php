@@ -20,6 +20,17 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-md-1-5">
+                            <div class="form-group">
+                                <select name="status" id="status" class="form-control filterBox">
+                                    <option value="">{{__('tour.select_status')}}</option>
+                                    @foreach($tour_statuses as $status)
+                                        <option value="{{ $status->id  }}">{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col-md-2">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
@@ -50,7 +61,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-1.5">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <input type='text' id="from_date" autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
                             </div>
@@ -245,6 +256,7 @@
                     "data": function () {
 
                         return {
+                            'status' : $('#status').val(),
                             'vehicle_id' : $('#vehicle_id').val(),
                             'customer_id' : $('#customer_id').val(),
                             'driver_id' : $('#driver_id').val(),

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\General;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -112,27 +113,33 @@ class CustomerController extends Controller
             'phone.required' => 'Please provide your phone number.',
             'address.required' => 'Please provide your address..',
         ];
-        $this->validate(request(), $rules, $messages);
+
+        $general = new General();
+        $validated = $general->validateMe($request, $rules, $messages);
+        if($validated) {
 
 
-        $customer = new Customer;
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-        $customer->url = $request->url;
-        $customer->phone = $request->phone;
-        $customer->address = $request->address;
+            $customer = new Customer;
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->url = $request->url;
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
 
-        $status = false;
-        if ($request->status) $status = true;
-        $customer->status = $status;
+            $status = false;
+            if ($request->status) $status = true;
+            $customer->status = $status;
 
-        if ($customer->save()) {
-            toastr()->success(__('customer.created'));
-            if ($request->returnFlag == 1) {
-                return redirect('/customers');
-            } else {
-                return redirect('/customers/create');
+            if ($customer->save()) {
+                toastr()->success(__('customer.created'));
+                if ($request->returnFlag == 1) {
+                    return redirect('/customers');
+                } else {
+                    return redirect('/customers/create');
+                }
             }
+        }else{
+            return redirect()->back()->withInput($request->all());
         }
         return redirect()->back();
     }
@@ -183,27 +190,32 @@ class CustomerController extends Controller
             'phone.required' => 'Please provide your phone number.',
             'address.required' => 'Please provide your address..',
         ];
-        $this->validate(request(), $rules, $messages);
+        $general = new General();
+        $validated = $general->validateMe($request, $rules, $messages);
+        if($validated) {
 
-        $customer = Customer::find($id);
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-        $customer->url = $request->url;
-        $customer->phone = $request->phone;
-        $customer->address = $request->address;
+            $customer = Customer::find($id);
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->url = $request->url;
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
 
-        $status = false;
-        if ($request->status) $status = true;
-        $customer->status = $status;
+            $status = false;
+            if ($request->status) $status = true;
+            $customer->status = $status;
 
-        if ($customer->save()) {
+            if ($customer->save()) {
 
-            toastr()->success(__('customer.updated'));
-            if ($request->returnFlag == 1) {
-                return redirect('/customers');
-            } else {
-                return redirect('/customers/create');
+                toastr()->success(__('customer.updated'));
+                if ($request->returnFlag == 1) {
+                    return redirect('/customers');
+                } else {
+                    return redirect('/customers/create');
+                }
             }
+        }else{
+            return redirect()->back()->withInput($request->all());
         }
         return redirect()->back();
     }

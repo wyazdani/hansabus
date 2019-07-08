@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Helpers\General;
     use App\Models\Vehicle;
     use App\Models\VehicleType;
     use Illuminate\Http\Request;
@@ -123,45 +124,52 @@
                 'transmission' => 'required',
             ];
             $messages = [
-                // 'title.required' => 'Title is required',
+                // 'name.required' => 'name is required',
             ];
-            $this->validate(request(), $rules, $messages);
 
-            $vehicle = new Vehicle;
-            $vehicle->name = $request->name;
-            $vehicle->year = $request->year;
-            $vehicle->make = $request->make;
-            $vehicle->engineNumber = $request->engineNumber;
-            $vehicle->vehicle_type = $request->vehicle_type;
-            $vehicle->licensePlate = $request->licensePlate;
-            $vehicle->color = $request->color;
-            $vehicle->seats = $request->seats;
-            $vehicle->registrationNumber = $request->registrationNumber;
-            $vehicle->transmission = $request->transmission;
+            $general = new General();
+            $validated = $general->validateMe($request, $rules, $messages);
+            if($validated) {
 
-            $status = true;
-            $ac = $sunroof = $radio = $phoneCharging = false;
+                $vehicle = new Vehicle;
+                $vehicle->name = $request->name;
+                $vehicle->year = $request->year;
+                $vehicle->make = $request->make;
+                $vehicle->engineNumber = $request->engineNumber;
+                $vehicle->vehicle_type = $request->vehicle_type;
+                $vehicle->licensePlate = $request->licensePlate;
+                $vehicle->color = $request->color;
+                $vehicle->seats = $request->seats;
+                $vehicle->registrationNumber = $request->registrationNumber;
+                $vehicle->transmission = $request->transmission;
 
-            if ($request->AC) $ac = true;
-            if ($request->sunroof) $sunroof = true;
-            if ($request->radio) $radio = true;
-            if ($request->phoneCharging) $phoneCharging = true;
+                $status = true;
+                $ac = $sunroof = $radio = $phoneCharging = false;
 
-            $vehicle->AC = $ac;
-            $vehicle->radio = $radio;
-            $vehicle->sunroof = $sunroof;
-            $vehicle->phoneCharging = $phoneCharging;
-            $vehicle->status = $status;
+                if ($request->AC) $ac = true;
+                if ($request->sunroof) $sunroof = true;
+                if ($request->radio) $radio = true;
+                if ($request->phoneCharging) $phoneCharging = true;
 
-            if ($vehicle->save()) {
-                toastr()->success(__('vehicle.created'));
-                if ($request->returnFlag == 1) {
-                    return redirect('/vehicles');
+                $vehicle->AC = $ac;
+                $vehicle->radio = $radio;
+                $vehicle->sunroof = $sunroof;
+                $vehicle->phoneCharging = $phoneCharging;
+                $vehicle->status = $status;
+
+                if ($vehicle->save()) {
+
+                    toastr()->success(__('vehicle.created'));
+                    if ($request->returnFlag == 1) {
+                        return redirect('/vehicles');
+                    } else {
+                        return redirect('/vehicles/create');
+                    }
                 } else {
-                    return redirect('/vehicles/create');
+                    toastr()->error(__('Error!'));
                 }
             }else{
-                dd('error');
+                return redirect()->back()->withInput($request->all());
             }
 
             return redirect()->back();
@@ -217,40 +225,46 @@
             $messages = [
                 // 'title.required' => 'Title is required',
             ];
-            $this->validate(request(), $rules, $messages);
 
-            $vehicle = Vehicle::find($request->id);
-            $vehicle->name = $request->name;
-            $vehicle->year = $request->year;
-            $vehicle->make = $request->make;
-            $vehicle->engineNumber = $request->engineNumber;
-            $vehicle->vehicle_type = $request->vehicle_type;
-            $vehicle->licensePlate = $request->licensePlate;
-            $vehicle->color = $request->color;
-            $vehicle->seats = $request->seats;
-            $vehicle->registrationNumber = $request->registrationNumber;
-            $vehicle->transmission = $request->transmission;
+            $general = new General();
+            $validated = $general->validateMe($request, $rules, $messages);
+            if($validated) {
 
-            $ac = $sunroof = $radio = $phoneCharging = false;
+                $vehicle = Vehicle::find($request->id);
+                $vehicle->name = $request->name;
+                $vehicle->year = $request->year;
+                $vehicle->make = $request->make;
+                $vehicle->engineNumber = $request->engineNumber;
+                $vehicle->vehicle_type = $request->vehicle_type;
+                $vehicle->licensePlate = $request->licensePlate;
+                $vehicle->color = $request->color;
+                $vehicle->seats = $request->seats;
+                $vehicle->registrationNumber = $request->registrationNumber;
+                $vehicle->transmission = $request->transmission;
 
-            if ($request->AC) $ac = true;
-            if ($request->sunroof) $sunroof = true;
-            if ($request->radio) $radio = true;
-            if ($request->phoneCharging) $phoneCharging = true;
+                $ac = $sunroof = $radio = $phoneCharging = false;
 
-            $vehicle->AC = $ac;
-            $vehicle->radio = $radio;
-            $vehicle->sunroof = $sunroof;
-            $vehicle->phoneCharging = $phoneCharging;
+                if ($request->AC) $ac = true;
+                if ($request->sunroof) $sunroof = true;
+                if ($request->radio) $radio = true;
+                if ($request->phoneCharging) $phoneCharging = true;
 
-            if ($vehicle->save()) {
-                toastr()->success(__('vehicle.updated'));
-                if ($request->returnFlag == 1) {
-                    return redirect('/vehicles');
-                } else {
-                    return redirect('/vehicles/create');
+                $vehicle->AC = $ac;
+                $vehicle->radio = $radio;
+                $vehicle->sunroof = $sunroof;
+                $vehicle->phoneCharging = $phoneCharging;
+
+                if ($vehicle->save()) {
+                    toastr()->success(__('vehicle.updated'));
+                    if ($request->returnFlag == 1) {
+                        return redirect('/vehicles');
+                    } else {
+                        return redirect('/vehicles/create');
+                    }
+
                 }
-
+            }else{
+                return redirect()->back()->withInput($request->all());
             }
             return redirect()->back();
         }

@@ -27,7 +27,14 @@
 						<div class="col-md-6">
 							<dl>
 								<dt width="30%">Status:</dt>
-								<dd>{{ ($Tour->status)?'Yes':'No' }}</dd>
+								<dd>
+										@if($Tour->status == 1) {{ 'Draft' }}
+									@elseif($Tour->status == 2) {{ 'Confirmed' }}
+									@elseif($Tour->status == 3) {{ 'Invoiced' }}
+									@elseif($Tour->status == 4) {{ 'Paid' }}
+									@elseif($Tour->status == 5) {{ 'Canceled' }} @endif
+
+								</dd>
 								<dt>{{ __('tour.customer') }}:</dt>
 								<dd>{{ $Tour->customer->name }}</dd>
 								<dt>{{ __('tour.vehicle') }}:</dt>

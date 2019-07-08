@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-sm-4 col-md-6 text-right">
                             <div class="dataTables_filter"><a href="{{ route('driver-invoice-create') }}" class="btn btn-success ml-2 mt-2">
-                                    <i class="ft-plus"></i>{{ __('driver_invoice.heading.add') }}</a>
+                                    {{ __('driver_invoice.heading.add') }}</a>
                             </div>
                         </div>
 

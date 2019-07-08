@@ -14,7 +14,7 @@
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="">
                               {{--  <label><input type="search" class="form-control form-control-sm" placeholder="{{__('messages.search')}}" aria-controls="DataTables_Table_0"></label>--}}
-                                <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('vehicle.heading.add')}}</a>
+                                <a href="{{ url('/vehicles/create') }}" id="addRow" class="btn btn-info ml-2 mt-2">{{__('vehicle.heading.add')}}</a>
                             </div>
                         </div>
                     </div>

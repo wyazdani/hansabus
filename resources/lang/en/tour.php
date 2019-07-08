@@ -42,5 +42,5 @@ return [
     'created'=>'Tour created.',
     'updated'=>'Tour updated.',
     'status_changed'=>'Tour status changed.',
-
+    'vehicle_already_booked'=>'Vehicle already booked.',
     ];

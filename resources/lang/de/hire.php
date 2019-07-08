@@ -42,5 +42,5 @@ return [
 
     'created'=>'Fahrer angestellt.',
     'updated'=>'Einstellung aktualisiert.',
-
+    'already_booked'=>'Der Fahrer ist bereits für / während dieses Zeitfensters angestellt.',
 ];

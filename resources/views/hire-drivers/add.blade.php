@@ -36,6 +36,7 @@
 										@endforeach
 									@endif
 
+									<input type="hidden" id="returnFlag" name="returnFlag" value="">
 
 									<div class="row">
 										<div class="col-md-12">
@@ -50,7 +51,7 @@
 																		<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
 
 																		>
-																			<option value="">- - - {{__('hire.select_status')}}- - -</option>
+																			<option value="">{{__('hire.select_status')}}</option>
 																			@foreach($tour_statuses as $status)
 																				<option value="{{ $status->id  }}"
 																				@if(!empty($hire->status) && $hire->status==$status->id || old('status') == $status->id)
@@ -112,7 +113,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">{{__('hire.driver')}}</label>
 																		<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
-																			<option value="">- - - {{__('hire.select_one')}} - - -</option>
+																			<option value="">{{__('hire.select_one')}}</option>
 																			@foreach($drivers as $driver)
 																				<option value="{{ $driver->id  }}"
 																				@if(!empty($hire->driver_id) && $hire->driver_id==$driver->id || old('driver_id') == $driver->id)
@@ -183,7 +184,7 @@
 
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> {{__('messages.save')}}</button>
-							<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">
+							<button type="button" onclick="$('#returnFlag').val('1'); $('#tourForm').submit()"  class="btn btn-info">
 								<i class="icon-note"></i> {{__('messages.save_add_another')}}
 							</button>
 						@endif
@@ -234,12 +235,14 @@
 		$(function() {
 
 			@if(!empty($tour->id))
-				getVehicleSeats('{{ $tour->vehicle_id }}');
+			getVehicleSeats('{{ $tour->vehicle_id }}');
 			@endif
 
 			passengersCheck();
 			/* DateTime Picker */
-			$('.datetimepicker1').datetimepicker();
+			$('.datetimepicker1').datetimepicker(
+					// { minDate: moment() }
+			);
 			$('.datetimepicker2').datetimepicker({
 				useCurrent: false //Important! See issue #1075
 			});

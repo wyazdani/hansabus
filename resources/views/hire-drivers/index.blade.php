@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ route('hire-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('hire.heading.add')}}</a>
+                                <a href="{{ route('hire-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2">{{__('hire.heading.add')}}</a>
                             </div>
                         </div>
 
@@ -42,12 +42,12 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="from_date" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
+                                <input type='text' id="from_date" autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
+                                <input type='text' id="to_date" autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">

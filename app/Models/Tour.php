@@ -37,7 +37,7 @@ class Tour extends Model
 
     public function vehicle()
     {
-        return $this->hasOne('App\Models\Vehicle','id','vehicle_id')->select(['id','name']);
+        return $this->hasOne('App\Models\Vehicle','id','vehicle_id');
     }
 
     public function driver()

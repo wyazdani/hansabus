@@ -39,5 +39,6 @@ return [
     'is_active'=>'Is Active',
     'created'=>'Driver hired.',
     'updated'=>'Hiring updated.',
+    'already_booked'=>'Driver is already hired for/during this time slot.',
 
     ];

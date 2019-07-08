@@ -44,6 +44,6 @@ return [
     'created'=>'Tour erstellt.',
     'updated'=>'Tour aktualisiert.',
     'status_changed'=>'Tourstatus geändert.',
-
+    'vehicle_already_booked'=>'Fahrzeug bereits gebucht.',
 
 ];

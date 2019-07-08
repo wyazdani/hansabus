@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTable">
-                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('tour.heading.add')}}</a>
+                                <a href="{{ url('/tours/create') }}" id="addRow" class="btn btn-info ml-2 mt-2">{{__('tour.heading.add')}}</a>
                             </div>
                         </div>
 

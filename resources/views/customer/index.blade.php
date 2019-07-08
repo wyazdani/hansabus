@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ route('customers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> {{__('customer.heading.add')}}</a>
+                                <a href="{{ route('customers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"> {{__('customer.heading.add')}}</a>
                             </div>
                         </div>
                     </div>

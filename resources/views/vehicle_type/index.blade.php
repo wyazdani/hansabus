@@ -14,7 +14,7 @@
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('vehicle_type.heading.add')}}</a>
+								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2">{{__('vehicle_type.heading.add')}}</a>
 							</div>
 						</div>
 					</div>

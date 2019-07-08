@@ -49,6 +49,11 @@ class HomeController extends Controller
             $calendarTours[$i]['start'] = $row->from_date;
             $calendarTours[$i]['end'] = $row->to_date;
             $calendarTours[$i]['url'] = url('/tour/'.$row->id);
+
+            $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
+            $row->to_date   = date('d.m.Y H:i',strtotime($row->to_date));
+
+
             $i++;
             $recentTours[] = $row;
         }

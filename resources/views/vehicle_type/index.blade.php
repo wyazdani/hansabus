@@ -121,7 +121,9 @@
 					if ($('#listingTable tr').length < 11) {
 						$('.dataTables_paginate').hide();
 					}
-				}
+				},
+				'bSortable': true,
+				'bProcessing': true,
 
 			});
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';

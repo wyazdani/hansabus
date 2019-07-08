@@ -22,8 +22,8 @@
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
-                            <div class="">
-                                <table class=" table-hover table-xl mb-0" id="listingTable">
+                            <div class="table-responsive">
+                                <table class=" table table-hover datatable-basic table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="7%">ID</th>
@@ -37,7 +37,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     </tbody>
                                 </table>
                             </div>

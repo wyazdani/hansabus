@@ -26,7 +26,7 @@ class HireDriverController extends Controller
     public function calendar(Request $request)
     {
         $pageTitle = __('hire.heading.calendar');
-        $rows = HireDriver::where('status','>',1)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
+        $rows = HireDriver::where('status','>',1)->where('status','<',4)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
 
         $colors = ['red','green','blue','orange','tan','purple','brown','black'];
         

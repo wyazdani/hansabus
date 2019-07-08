@@ -91,7 +91,8 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
-
+                'bSortable': true,
+                'bProcessing': true,
                 "bInfo": false,
                 "processing": true,
                 "serverSide": true,

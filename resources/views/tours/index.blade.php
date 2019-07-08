@@ -182,10 +182,10 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
-
+                'bSortable': false,
+                'bProcessing': true,
                 "bInfo": false,
                 // "bAutoWidth": false,
-
                 "processing": true,
                 "serverSide": true,
                 // "searchable" : true,
@@ -271,7 +271,7 @@
                 },
                 'rowId': 'id',
                 "columns": [
-                    { "data": "id" },
+                    { "data": { '_':"id" , "bSortable": false }},
                     { "data": "customer.name" },
                     { "data": "vehicle.name" },
                     { "data": "from_date" },

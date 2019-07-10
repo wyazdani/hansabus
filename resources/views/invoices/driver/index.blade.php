@@ -175,7 +175,7 @@
                             '<td>' + r.data[i].customer.name + '</td>' +
                             '<td>' + r.data[i].total + '</td>' +
                             '<td>' + r.data[i].status+ '</td>' +
-                            '<td>' + r.data[i].created_at + '</td>';
+                            '<td>' + r.data[i].created + '</td>';
                         if(r.data[i].status == 'Unpaid'){
                             html+= '<td><a href="{{ route('driver-mark-as-paid')}}?ids[]='+ r.data[i].id + '" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a></td>';
                         }else{

@@ -89,7 +89,7 @@ class CustomerController extends Controller
             $row['action']='';
             $data[] = $row;
         }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
+//        $recordsFiltered = $query->offset($start)->limit($limit)->count();
 
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
@@ -114,7 +114,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Customer Create';
+        $pageTitle = __('customer.heading.add');
         return view('customer.add', compact('pageTitle'));
     }
 

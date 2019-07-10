@@ -24,7 +24,9 @@ class TourInvoiceController extends Controller
         $customers = Customer::where('status','1')->get(['name','id']);
         return view('invoices.tour.index',compact('pageTitle','customers'));
     }
-
+    public function show(TourInvoice $TourInvoice){
+        return $TourInvoice;
+    }
     public function create(){
 
         $pageTitle = __('tour_invoice.heading.add');

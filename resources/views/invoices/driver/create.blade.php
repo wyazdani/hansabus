@@ -112,11 +112,15 @@
             var total = getTotal();
             $('#total').val(total);
 
-            if($('#customerID').val() != '') {
-
-                $('#theForm').submit();
-            }
-
+            $.ajax({
+                url: '{{ url('/hire-drivers') }}/'+id,
+                type: 'GET',  // user.destroy
+                success: function(r) {
+                    console.log(r.customer_id);
+                    $('#customer_id').val(r.customer_id);
+                    $('#theForm').submit();
+                }
+            });
         }
 
         function getTotal(){

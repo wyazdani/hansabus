@@ -100,7 +100,8 @@ class DriverInvoiceController extends Controller
             $row->invoice_id = (string)$general->invoiceNumber($row->id);
             $row->customer;
             $row->status = ($row->status == 1)?'Unpaid':'Paid';
-//            $row['created_at'] = date('d/m/Y h:i A',strtotime($row['created_at']));
+            $row->created = date('d.m.Y H:i',strtotime($row->created_at));
+//            dd($row);
             $data[] = $row;
         }
 //        dd($data);

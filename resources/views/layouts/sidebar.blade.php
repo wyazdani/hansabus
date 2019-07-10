@@ -47,6 +47,9 @@
 					</ul>
 				</li>
 
+				<li class="{{ (in_array(Request::route()->getName(),[
+				'bus-services.index','bus-services.create','bus-services.edit'])) ? 'open' : '' }}">
+					<a href="{{ route('bus-services.index') }}" class="menu-item">{{ __('service.heading.index') }}</a></li>
 
 
 				<li class="has-sub nav-item {{ (in_array(Request::route()->getName(),[

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\TourInvoice;
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -7,6 +9,11 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware' => 'auth'], function (){
+
+    /**/
+    Route::resource('bus-services', 'BusServiceController');
+    Route::get('/bus-services-list', 'BusServiceController@getList')->name('bus-services-list');
+
 
     /* customers */
     Route::resource('customers', 'CustomerController');

@@ -21,6 +21,32 @@ class CustomerController extends Controller
     public function getList(Request $request)
     {
 
+
+        $orderColumn = 'id';
+        $dir = 'desc';
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'name';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
+            $orderColumn = 'email';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
+            $orderColumn = 'phone';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
+            $orderColumn = 'address';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
+            $orderColumn = 'url';
+        }
+        if(!empty($request->order[0]['dir'])){
+            $dir = $request->order[0]['dir'];
+        }
+
+
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -56,14 +82,14 @@ class CustomerController extends Controller
                 ->orWhere('url', 'LIKE',"%{$search}%");
         }
         $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get(['id','name','email','phone','address','url','status']);
+        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','phone','address','url','status']);
 
         $data=[];
         foreach($rows as $row){
             $row['action']='';
             $data[] = $row;
         }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
+//        $recordsFiltered = $query->offset($start)->limit($limit)->count();
 
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
@@ -88,7 +114,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Customer Create';
+        $pageTitle = __('customer.heading.add');
         return view('customer.add', compact('pageTitle'));
     }
 

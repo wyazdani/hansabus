@@ -97,7 +97,7 @@
 																	<div class="form-group">
 																		<label for="customSelect">{{__('hire.customer')}}</label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
-																			<option value="">- - - {{__('hire.select_customer')}} - - -</option>
+																			<option value=""> {{__('hire.select_customer')}}</option>
 																			@foreach($customers as $customer)
 																				<option value="{{ $customer->id  }}"
 																				@if(!empty($hire->customer_id) && $hire->customer_id==$customer->id || old('customer_id') == $customer->id)

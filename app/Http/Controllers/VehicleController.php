@@ -23,6 +23,34 @@
         public function getList(Request $request)
         {
 
+            $orderColumn = 'id';
+            $dir = 'desc';
+
+            if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+                $orderColumn = 'name';
+            }
+            if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
+                $orderColumn = 'make';
+            }
+
+            if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
+                $orderColumn = 'year';
+            }
+
+            if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
+                $orderColumn = 'licensePlate';
+            }
+            if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
+                $orderColumn = 'engineNumber';
+            }
+            if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
+                $orderColumn = 'registrationNumber';
+            }
+            if(!empty($request->order[0]['dir'])){
+                $dir = $request->order[0]['dir'];
+            }
+
+
             if(!empty($request->input('draw')) ) {
                 $draw = $request->input('draw');
             }else{
@@ -63,7 +91,7 @@
 
             }
             $recordsTotal = $query->count();
-            $rows = $query->offset($start)->limit($limit)->get(['id','name','make','year','licensePlate','engineNumber','registrationNumber','status']);
+            $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','make','year','licensePlate','engineNumber','registrationNumber','status']);
 
             $data=[];
             foreach($rows as $row){

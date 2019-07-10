@@ -112,11 +112,14 @@
             var total = getTotal();
             $('#total').val(total);
 
-            if($('#customerID').val() != '') {
-
-                $('#theForm').submit();
-            }
-
+            $.ajax({
+                url: '{{ url('/tours') }}/'+id,
+                type: 'GET',  // user.destroy
+                success: function(r) {
+                    $('#customer_id').val(r.customer_id);
+                    $('#theForm').submit();
+                }
+            });
         }
 
         function getTotal(){

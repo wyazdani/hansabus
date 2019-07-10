@@ -28,7 +28,7 @@ class ToursController extends Controller
     public function calendar(Request $request)
     {
         $pageTitle = __('messages.calendar');
-        $rows = Tour::where('status','>',1)->get(
+        $rows = Tour::where('status','>',1)->where('status','<',4)->get(
             ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
         $colors = ['red','green','blue','orange','tan','purple','brown','black'];
@@ -65,7 +65,34 @@ class ToursController extends Controller
     }
     public function getList(Request $request)
     {
-//        dd($request->all());
+        $orderColumn = 'id';
+        $dir = 'desc';
+
+        /*if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'customer.name';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
+            $orderColumn = 'vehicle.name';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
+            $orderColumn = 'year';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
+            $orderColumn = 'licensePlate';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
+            $orderColumn = 'engineNumber';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
+            $orderColumn = 'registrationNumber';
+        }*/
+        if(!empty($request->order[0]['dir'])){
+            $dir = $request->order[0]['dir'];
+        }
+
+
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -123,7 +150,8 @@ class ToursController extends Controller
         }
 
         $recordsTotal = $query->count();
-        $rows = $query->orderBy('id','DESC')->offset($start)->limit($limit)->get([
+
+        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get([
             'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
         $data=[];

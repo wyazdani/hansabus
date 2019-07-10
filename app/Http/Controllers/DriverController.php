@@ -18,6 +18,31 @@ class DriverController extends Controller
     public function getList(Request $request)
     {
 
+        $orderColumn = 'id';
+        $dir = 'desc';
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'driver_name';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
+            $orderColumn = 'mobile_number';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
+            $orderColumn = 'driver_license';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
+            $orderColumn = 'nic';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
+            $orderColumn = 'phone';
+        }
+        if(!empty($request->order[0]['dir'])){
+            $dir = $request->order[0]['dir'];
+        }
+
+
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -56,7 +81,7 @@ class DriverController extends Controller
             ;
         }
         $recordsTotal = $query->count();
-        $rows = $query->offset($start)->limit($limit)->get();
+        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get();
 
         $data=[];
         foreach($rows as $row){

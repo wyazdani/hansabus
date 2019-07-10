@@ -48,7 +48,7 @@
                                         <div class="form-body">
 
 
-                                            @if(count($vehicleTypes) >= 1)
+                                           
 
                                             <div class="row">
 
@@ -295,15 +295,7 @@
                         </div>
 
                 </form>
-                        @else
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="alert alert-danger" style="color: #454545 !important">
-                                            {{__('messages.add_vehicle_type')}}
-                                        </div>
-                                    </div>
-                                </div>
-                @endif
+
             </div>
         </div>
     </div>

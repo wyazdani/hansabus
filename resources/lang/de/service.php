@@ -12,7 +12,7 @@ return [
     'title'=>'Bedienung',
     'price'=>'Preis',
     'date'=>'Datum',
-
+    'type'=>'Service Type',
 
     'is_active'=>'Ist aktiv',
 

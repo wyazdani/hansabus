@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusServiceTable extends Migration
+class CreateServiceTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateBusServiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('bus_service', function (Blueprint $table) {
-
+        Schema::create('bus_service_type', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->bigInteger('type_id')->default(0);
-            $table->string('customer')->nullable();
-            $table->integer('total')->default(0);
-
+            $table->string('name')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +28,6 @@ class CreateBusServiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bus_service');
+        Schema::dropIfExists('bus_service_type');
     }
 }

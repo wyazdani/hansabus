@@ -46,12 +46,29 @@
 
                                                         <div class="form-body servicesDiv">
                                                             <div class="row">
-                                                                <div class="col-md-12">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="projectinput3">{{__('service.type')}}</label>
+                                                                        <select name="type_id" class="{{($errors->has('type_id')) ?'form-control error_input':'form-control'}}"
+
+                                                                        >
+                                                                            <option value="">{{__('service.type')}}</option>
+                                                                            @foreach($service_types as $service_type)
+                                                                                <option value="{{ $service_type->id  }}"
+                                                                                @if(!empty($service->type_id) && $service->type_id==$service_type->id || old('type_id') == $service_type->id)
+                                                                                    {{ 'Selected' }}
+                                                                                        @endif
+                                                                                >{{ $service_type->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput3">{{__('service.customer')}}</label>
                                                                         <input type="text" name="customer"
                                                                                class="{{($errors->has('customer')) ?' error_input':'form-control'}}"
-                                                                               value="{{ $customer }}">
+                                                                               value="{{ (!empty($service->customer))?$service->customer:old('customer') }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -94,8 +111,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12 text-right mt-0 pr-5"><a href="javascript:;" onclick="addRow()">[add row]</a> </div>
+                                    <div class="row" style="margin-top: -20px;">
+                                        <div class="col-md-12 text-right mt-0 pr-5"><a href="javascript:;" class="btn btn-primary" onclick="addRow()">Add row</a> </div>
                                     </div>
 
                                     <div class="col-md-12 text-left">

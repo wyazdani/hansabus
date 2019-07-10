@@ -9,16 +9,16 @@ class BusService extends Model
 {
     use SoftDeletes;
     protected $table = 'bus_service';
-    protected $fillable = ['customer','total'];
+    protected $fillable = ['type_id','customer','total'];
 
-    public function servicesTitle(){
+    public function details(){
 
-        return $this->hasMany('App\Models\BusServiceDetail','service_id','id')->get();
+        return $this->hasMany('App\Models\BusServiceDetail','service_id','id');
     }
 
-    public function services()
+    public function service()
     {
-        return $this->hasMany('App\Models\BusServiceDetail','service_id','id')->get();
+//        return $this->hasOne('App\Models\ServiceType','service_type','id')->get();
+        return $this->hasOne('App\Models\ServiceType', 'id', 'type_id');
     }
-
 }

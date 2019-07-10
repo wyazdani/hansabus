@@ -62,7 +62,7 @@
                         @foreach($details as $detail)
                             <tr>
                                 <td style="font-size: 12px; border: 0.5px solid #ccc">{{ $i }}</td>
-                                <td style="font-size: 12px; border: 0.5px solid #ccc">{{ $detail['title'] }}</td>
+                                <td style="font-size: 12px; border: 0.5px solid #ccc">{{ $service->service->name.' - '.$detail['title'] }}</td>
                                 <td style="font-size: 12px; border: 0.5px solid #ccc">{{ $detail['price'] }}</td>
                             </tr>
                         @php $i++; @endphp

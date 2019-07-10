@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 use App\Models\BusService;
 use App\Models\BusServiceDetail;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 use App\Helpers\General;
 use PDF;
@@ -19,7 +20,6 @@ class BusServiceController extends Controller
     public function getList(Request $request)
     {
 
-
         $orderColumn = 'id';
         $dir = 'DESC';
 
@@ -33,7 +33,6 @@ class BusServiceController extends Controller
         if(!empty($request->order[0]['dir'])){
             $dir = $request->order[0]['dir'];
         }
-
 
         $draw = 0;
         if(!empty($request->input('draw')) ) {
@@ -63,23 +62,23 @@ class BusServiceController extends Controller
 
         if(!empty($search)){
 
-            $query = BusService::where('customer', 'LIKE','%'.$search.'%');
+            $query = $query->where('customer', 'LIKE','%'.$search.'%');
+        }
+        if(!empty($request->type_id)){
+            $query = $query->where('type_id',$request->type_id);
         }
         $recordsTotal = $query->count();
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)
-            ->get(['id','customer','total','created_at']);
+            ->get(['id','type_id','customer','total','created_at']);
 
         $data=[];
         foreach($rows as $row){
 
-            $title = [];
-            foreach($row->servicesTitle() as $s){
-                $title[] = $s->title;
-            }
-            $row->title =  \Str::limit(implode(', ',$title),35);
+            $row->title =  \Str::limit($row->service->name,55);
             $row['date'] = date('d.m.Y H:i',strtotime($row->created_at));
             $data[] = $row;
         }
+//        dd($rows);
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
 
@@ -88,8 +87,8 @@ class BusServiceController extends Controller
     public function index()
     {
         $pageTitle = __('service.heading.index');
-
-        return view('service.index',compact('pageTitle'));
+        $service_types = ServiceType::get(['id','name']);
+        return view('service.index',compact('pageTitle','service_types'));
     }
 
     /**
@@ -100,12 +99,8 @@ class BusServiceController extends Controller
     public function create()
     {
         $pageTitle = __('service.heading.add');
-
-        $customer = 'Walking Customer';
-        if(!empty($service->customer)) $customer = $service->customer;
-        if(!empty(old('customer'))) $customer = old('customer');
-
-        return view('service.add', compact('pageTitle','customer'));
+        $service_types = ServiceType::get(['id','name']);
+        return view('service.add', compact('pageTitle','service_types'));
     }
 
     /**
@@ -118,10 +113,12 @@ class BusServiceController extends Controller
     {
 
         $rules = [
+            'type_id'=>'required',
             'customer' => 'required|string'
         ];
         $messages = [
-            'customer.required' => 'Please enter customer information.'
+            'type_id.required' => 'Please select service type.',
+            'customer.required' => 'Customer info required.'
         ];
 
         $general = new General();
@@ -137,6 +134,7 @@ class BusServiceController extends Controller
             if($total>0){
 
                 $service = new BusService;
+                $service->type_id = $request->type_id;
                 $service->customer = $request->customer;
                 $service->total = $total;
                 if ($service->save()) {
@@ -180,7 +178,13 @@ class BusServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = BusService::find($id);
+        $total = $service->total;
+        $vat = ($total/100)*19;
+        $details = $service->details;
+
+        $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
+        return $pdf->stream();
     }
 
     /**
@@ -192,16 +196,12 @@ class BusServiceController extends Controller
     public function edit($id)
     {
         $pageTitle = __('service.heading.edit');
-
-        $customer = 'Walking Customer';
+        $service_types = ServiceType::get(['id','name']);
 
         $service = BusService::find($id);
         $details = BusServiceDetail::where('service_id',$service->id)->orderBy('id','ASC')->get();
 
-        if(!empty($service->customer)) $customer = $service->customer;
-        if(!empty(old('customer'))) $customer = old('customer');
-
-        return view('service.add', compact('pageTitle','service','details','customer'));
+        return view('service.add', compact('pageTitle','service','details','service_types'));
     }
 
     /**
@@ -214,10 +214,12 @@ class BusServiceController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
+            'type_id'=>'required',
             'customer' => 'required|string'
         ];
         $messages = [
-            'customer.required' => 'Please select customer.'
+            'type_id.required' => 'Please select service type.',
+            'customer.required' => 'Customer info required.'
         ];
 
         $general = new General();
@@ -233,6 +235,7 @@ class BusServiceController extends Controller
             if($total>0){
 
                 $service = BusService::find($request->id);
+                $service->type_id = $request->type_id;
                 $service->customer = $request->customer;
                 $service->total = $total;
                 if ($service->save()) {
@@ -257,10 +260,8 @@ class BusServiceController extends Controller
                     }
                     toastr()->success(__('service.updated'));
 
-                $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
+                    $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
                     return $pdf->stream();
-//                return $pdf->download('service_invoice.pdf');
-
                 }
             }
         }else{

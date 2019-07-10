@@ -18,7 +18,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row"><div class="col-12">@include('layouts.errors')</div></div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <select name="type_id" id="type_id" class="form-control filterBox">
+                                    <option value="">{{__('service.type')}}</option>
+                                    @foreach($service_types as $service_type)
+                                        <option value="{{ $service_type->id  }}"
+                                        @if(!empty($service->type_id) && $service->type_id==$service_type->id || old('type_id') == $service_type->id)
+                                            {{ 'Selected' }}
+                                                @endif
+                                        >{{ $service_type->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-content mt-1">
                     <div class="card-body">
@@ -29,8 +44,8 @@
                             <thead>
                                 <tr>
                                     <th class="border-top-0" width="5%">ID</th>
-                                    <th class="border-top-0" width="25%">{{__('service.customer')}}</th>
                                     <th class="border-top-0" width="35%">{{__('service.title')}}</th>
+                                    <th class="border-top-0" width="25%">{{__('service.customer')}}</th>
                                     <th class="border-top-0" width="10%">{{__('service.price')}}</th>
                                     <th class="border-top-0" width="15%">{{__('service.date')}}</th>
                                     <th class="border-top-0" width="10%">&nbsp;</th>
@@ -115,7 +130,7 @@
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                         view  = '<a class="p-0" data-original-title="View" title="View" ';
-                        view += ' href="javascript:;" onclick="viewCustomer('+row.id+');" >';
+                        view += 'href="{!! url("/bus-services/'+row.id+'") !!}">';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
                         buttons = edit+view;
@@ -124,11 +139,21 @@
                     }
                 }],
                 "ajax": "{{ url('/bus-services-list') }}",
+
+                "ajax": {
+                    "url": "{{ url('/bus-services-list') }}",
+                    "type": "GET",
+                    "data": function () {
+                        return {
+                            'type_id' : $('#type_id').val()
+                        }
+                    }
+                },
                 'rowId': 'id',
                 "columns": [
                     { "data": "id" },
-                    { "data": "customer" },
                     { "data": "title" },
+                    { "data": "customer" },
                     { "data": "total" },
                     { "data": "date" }
                 ],
@@ -138,10 +163,12 @@
                         $('.dataTables_paginate').hide();
                     }
                 }
-
             });
 
-            tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
+
+            $('.filterBox ').on('change', function(){
+                tableDiv.draw();
+            });
 
         } );
 

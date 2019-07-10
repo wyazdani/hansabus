@@ -12,6 +12,7 @@ return [
     'title'=>'Service',
     'price'=>'Price',
     'date'=>'Date',
+    'type'=>'Service Type',
 
 
     'is_active'=>'Is Active',

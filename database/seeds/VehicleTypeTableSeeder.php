@@ -14,7 +14,7 @@ class VehicleTypeTableSeeder extends Seeder
     {
 
         DB::table('vehicle_types')->insert(
-            [['name' => 'Car'],['name' => 'Bus']]
+            [['name' => 'Car','status'=>1],['name' => 'Bus','status'=>1]]
         );
     }
 }

@@ -4,7 +4,7 @@
     <div class="row match-height">
         <div class="col-md-12" id="recent-sales">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-print-none">
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="card-title-wrap bar-primary">
@@ -76,9 +76,9 @@
                             </div>
                         </div>
 
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                                         <th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
                                         <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
                                         <th class="border-top-0" width="5%">Status</th>
-                                        <th class="border-top-0" width="8%">&nbsp;</th>
+                                        <th class="border-top-0 d-print-none" width="8%">&nbsp;</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -176,12 +176,29 @@
             });
         };
         //
-
-
         $(document).ready(function() {
 
             var tableDiv = $('#listingTable').DataTable({
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend(
+                                    '<h1>Header goes here</h1>'
+                                ).append(
+                                '<h1>footer goes here</h1>'
+                            );
+
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
                 'bSortable': true,
                 // 'bProcessing': true,
                 "bInfo": false,
@@ -225,24 +242,24 @@
                         var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';
 
                         // console.log(row.status);
-                        status  = '<a class="danger p-0" data-original-title="Change Status" title="Change Status" ';
+                        status  = '<a class="danger p-0 d-print-none" data-original-title="Change Status" title="Change Status" ';
                         if(row.status == '1'){
-                            status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
+                            status  = '<a class="success p-0 d-print-none" data-original-title="Change Status" title="Change Status" ';
                         }
 
                         status += 'href="{!! url("/tours/change-status/'+row.id+'") !!}">';
                         status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
-                        edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
+                        edit  = '<a class="info p-0 d-print-none" data-original-title="Edit" title="Edit" ';
                         edit += 'href="tours/'+row.id+'/edit")">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
-                        trash  = '<a class="danger p-0" data-original-title="Delete" title="Delete" ';
+                        trash  = '<a class="danger p-0 d-print-none" data-original-title="Delete" title="Delete" ';
                         trash += ' href="javascript:;" onclick="deleteMe('+row.id+')" >';
                         trash += '<i class="icon-trash font-medium-3 mr-2"></i></a>';
 
-                        view  = '<a class="p-0" data-original-title="View" title="View" ';
+                        view  = '<a class="p-0 d-print-none" data-original-title="View" title="View" ';
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 

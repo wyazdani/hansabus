@@ -45,5 +45,6 @@
         'logout'=>'Logout',
         'tour_calendar '=>'Tour Clalender',
         'select_vehicle'=>'Select Vehicle',
-        'generate_invoice'=>'Generate Invoice'
+        'generate_invoice'=>'Generate Invoice',
+        'print'=>'Print'
     ];

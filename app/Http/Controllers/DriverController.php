@@ -171,7 +171,12 @@ class DriverController extends Controller
             $driver->nic = $request->get('nic');
             $driver->address = $request->get('address');
             $driver->phone = $request->get('phone');
-            $driver->other_details = $request->get('other_details');
+
+            $other_details = ' ';
+            if(!empty($request->other_details)){
+                $other_details = $request->other_details;
+            }
+            $driver->other_details = $other_details;
             $driver->profile_pic = $profilePic;
             if($driver->save()){
                 toastr()->success(__('driver.created'));
@@ -249,7 +254,11 @@ class DriverController extends Controller
             $driver->nic = $request->get('nic');
             $driver->address = $request->get('address');
             $driver->phone = $request->get('phone');
-            $driver->other_details = $request->get('other_details');
+            $other_details = ' ';
+            if(!empty($request->other_details)){
+                $other_details = $request->other_details;
+            }
+            $driver->other_details = $other_details;
             $driver->profile_pic = $profilePic;
             if($driver->save()){
                 toastr()->success(__('driver.updated'));

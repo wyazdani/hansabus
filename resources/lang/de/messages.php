@@ -49,6 +49,7 @@
         'logout'=>'Ausloggen',
         'tour_calendar '=>'Tourkalender',
         'select_vehicle'=>'Fahrzeug auswählen',
-        'generate_invoice'=>'Rechnung Erstellen'
+        'generate_invoice'=>'Rechnung Erstellen',
+        'print'=>'Drucken'
     ];
 

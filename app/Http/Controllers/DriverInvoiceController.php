@@ -36,6 +36,7 @@ class DriverInvoiceController extends Controller
     public function getList(Request $request)
     {
 //        dd($request->all());
+
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -51,9 +52,7 @@ class DriverInvoiceController extends Controller
         $start =0;
         if(!empty($request->input('start'))){
 
-//            if($request->input('start')>0){
             $start = ($request->input('start')-1);
-//            }
         }
         $limit = 10;
         if(!empty($request->input('length'))){

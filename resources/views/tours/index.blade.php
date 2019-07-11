@@ -182,7 +182,7 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
-                'bSortable': false,
+                'bSortable': true,
                 // 'bProcessing': true,
                 "bInfo": false,
                 // "bAutoWidth": false,
@@ -197,7 +197,7 @@
                 "pageLength": 10,
                 "bLengthChange" : false,
                 "aoColumnDefs": [
-                    { aTargets: ["_all"], bSortable: false },
+                    // { aTargets: ["_all"], bSortable: false },
                     {
                         "aTargets": [8],
                         "mData": "",
@@ -254,17 +254,15 @@
                 "ajax": {
                     "url": "{{ url('/tours-list') }}",
                     "type": "GET",
-                    "data": function () {
+                    "data": function ( d ) {
 
-                        return {
-                            'status' : $('#status').val(),
-                            'vehicle_id' : $('#vehicle_id').val(),
-                            'customer_id' : $('#customer_id').val(),
-                            'driver_id' : $('#driver_id').val(),
-                            'from_date' : $('#from_date').val(),
-                            'to_date' : $('#to_date').val(),
-                            'id' : $('#tourID').val(),
-                        }
+                        d.status = $('#status').val();
+                        d.vehicle_id = $('#vehicle_id').val();
+                        d.customer_id = $('#customer_id').val();
+                        d.driver_id = $('#driver_id').val();
+                        d.from_date = $('#from_date').val();
+                        d.to_date = $('#to_date').val();
+                        d.id = $('#tourID').val();
                     }
                 },
                 searchText: {

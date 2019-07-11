@@ -65,8 +65,8 @@
                             <thead>
                                 <tr>
                                     <th class="border-top-0" width="5%">ID</th>
-                                    <th class="border-top-0" width="35%">{{__('service.title')}}</th>
-                                    <th class="border-top-0" width="25%">{{__('service.customer')}}</th>
+                                    <th class="border-top-0" width="20%">{{__('service.title')}}</th>
+                                    <th class="border-top-0" width="40%">{{__('service.customer')}}</th>
                                     <th class="border-top-0" width="10%">{{__('service.price')}}</th>
                                     <th class="border-top-0" width="15%">{{__('service.date')}}</th>
                                     <th class="border-top-0" width="10%">&nbsp;</th>
@@ -127,13 +127,11 @@
                 "ajax": {
                     "url": "{{ url('/bus-services-list') }}",
                     "type": "GET",
-                    "data": function () {
-                        return {
-                            'type_id' : $('#type_id').val(),
-                            'from_date' : $('#from_date').val(),
-                            'to_date' : $('#to_date').val(),
-                            'id' : $('#id').val()
-                        }
+                    "data": function ( d ) {
+                        d.type_id = $('#type_id').val();
+                        d.from_date = $('#from_date').val();
+                        d.to_date = $('#to_date').val();
+                        d.id =  $('#id').val();
                     }
                 },
                 'rowId': 'id',

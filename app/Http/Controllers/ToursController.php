@@ -68,26 +68,32 @@ class ToursController extends Controller
         $orderColumn = 'id';
         $dir = 'desc';
 
-        /*if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
-            $orderColumn = 'customer.name';
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==0){
+            $orderColumn = 'id';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'customer_id';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
-            $orderColumn = 'vehicle.name';
+            $orderColumn = 'vehicle_id';
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
-            $orderColumn = 'year';
+            $orderColumn = 'from_date';
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
-            $orderColumn = 'licensePlate';
+            $orderColumn = 'to_date';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
-            $orderColumn = 'engineNumber';
+            $orderColumn = 'driver_id';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
-            $orderColumn = 'registrationNumber';
-        }*/
+            $orderColumn = 'passengers';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==7){
+            $orderColumn = 'price';
+        }
         if(!empty($request->order[0]['dir'])){
             $dir = $request->order[0]['dir'];
         }

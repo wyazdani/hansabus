@@ -24,11 +24,20 @@ class BusServiceController extends Controller
         $orderColumn = 'id';
         $dir = 'DESC';
 
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==0){
+            $orderColumn = 'id';
+        }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
-            $orderColumn = 'customer';
+            $orderColumn = 'type_id';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
+            $orderColumn = 'customer';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
             $orderColumn = 'total';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
+            $orderColumn = 'created_at';
         }
 
         if(!empty($request->order[0]['dir'])){

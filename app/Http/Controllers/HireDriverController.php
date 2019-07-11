@@ -59,6 +59,37 @@ class HireDriverController extends Controller
     }
     public function getList(Request $request)
     {
+        $orderColumn = 'id';
+        $dir = 'DESC';
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==0){
+            $orderColumn = 'id';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'customer_id';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
+            $orderColumn = 'driver_id';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
+            $orderColumn = 'from_date';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
+            $orderColumn = 'to_date';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
+            $orderColumn = 'price';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
+            $orderColumn = 'status';
+        }
+
+        if(!empty($request->order[0]['dir'])){
+            $dir = $request->order[0]['dir'];
+        }
+
+
+
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -109,7 +140,7 @@ class HireDriverController extends Controller
         }
 
         $recordsTotal = $query->count();
-        $rows = $query->orderBy('id','DESC')->offset($start)->limit($limit)->get([
+        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get([
             'id','customer_id','driver_id','status','price','from_date','to_date']);
 
         $data=[];

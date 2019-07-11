@@ -19,8 +19,6 @@
 					</div>
 				</div>
 				<div class="card-content mt-1">
-
-
 					@if(!empty($tour->id))
 						<form class="form" method="POST" action="{{ route('tours.update',$tour->id) }}" id="tourForm" enctype="multipart/form-data" >
 							@method('PUT')

@@ -94,6 +94,25 @@
 
 			var tableDiv = $('#listingTable').DataTable({
 
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'print',
+						customize: function ( win ) {
+							$(win.document.body)
+									.css( 'font-size', '10pt' )
+									.prepend(
+											'<h1>Header goes here</h1>'
+									).append(
+									'<h1>footer goes here</h1>'
+							);
+
+							$(win.document.body).find( 'table' )
+									.addClass( 'compact' )
+									.css( 'font-size', 'inherit' );
+						}
+					}
+				],
 				'bSortable': true,
 				'bProcessing': true,
 				"bInfo": false,

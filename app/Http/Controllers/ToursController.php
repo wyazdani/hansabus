@@ -32,7 +32,7 @@ class ToursController extends Controller
             ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
         $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
-        
+
         $events = $vehicles = []; $i=$j=0;
         foreach($rows as $row){
 

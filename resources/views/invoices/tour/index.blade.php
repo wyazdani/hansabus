@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
                         <div class="col-md-6" >

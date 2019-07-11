@@ -4,7 +4,7 @@
     <div class="row match-height">
         <div class="col-md-12" id="recent-sales">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-print-none">
                     <div class="row">
 
                         <div class="col-sm-6 col-md-6">
@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
 
@@ -69,7 +69,7 @@
                                     <th class="border-top-0" width="40%">{{__('service.customer')}}</th>
                                     <th class="border-top-0" width="10%">{{__('service.price')}}</th>
                                     <th class="border-top-0" width="15%">{{__('service.date')}}</th>
-                                    <th class="border-top-0" width="10%">&nbsp;</th>
+                                    <th class="border-top-0 d-print-none" width="10%">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +91,25 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend(
+                                    '<h1>Header goes here</h1>'
+                                ).append(
+                                    '<h1>footer goes here</h1>'
+                                );
+
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
                 'bSortable': true,
                 'bProcessing': true,
                 "bInfo": false,

@@ -173,7 +173,7 @@
 				header: {
 					left: 'title',
 					center: '',
-					right: 'month prev,next'
+					right: 'prev,next'
 					// right: 'today agendaDay,month prev,next'
 				},
 				defaultView: 'month', // month, agendaDay

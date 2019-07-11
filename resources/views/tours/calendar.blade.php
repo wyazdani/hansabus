@@ -48,7 +48,7 @@
 				header: {
 					left: 'title',
 					center: '',
-					right: 'month prev,next'
+					right: 'prev,next'
 				},
 				defaultView: 'month', // month, agendaDay
 				views: { },

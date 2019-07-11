@@ -2,50 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/attachments/0a5a2ab8-1e43-44a7-8423-041627d3a8dd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/0d7f6cd5-c8fd-46d4-81f2-0a7c9b2764bd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/104ee80d-cb9f-487b-bf93-01da5a0d2e01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/1722d3e7-f855-4926-9d5c-065a916e82ee.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/19b9b862-9148-415e-a177-1283094f7181.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/2120a83b-c726-407c-a2d8-14edb485e0bd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/260f7cf4-eac7-4b58-b9df-0f30e222b9c2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/26edf736-0500-42c0-81d7-0880aeb10e00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/27cfa892-8c84-4488-a5d5-293ac7b409ff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/2a60a71f-cc1e-4796-b3e4-252909ca73c4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/451d67fd-8d84-4837-8a5e-1c0fd3104e8b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/590dd8d7-5401-4921-bfc0-22117162a5fc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/5b339288-2ddb-418d-9c75-269dc8949c5b.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/61c3ce77-e112-486c-af82-08acaac3f511.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/693198a1-b518-444d-9576-235ef204d59f.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/7932aca0-1462-4203-97f7-2219221cac41.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/7f7a7c7a-04d5-46b8-b80d-28ea649fbf4e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/832db5cc-f44c-44fa-ba01-1848a8d57dce.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/85129f60-acb9-4ae4-b9ae-120273aab232.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/8728c0d9-b376-4a42-b71f-0a77011fb029.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/88af88e2-c36a-4b25-a9a2-0f4ddcbdee09.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/98fa6176-d7d5-4130-a11e-042f53308382.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/9ba5863e-2261-4c2d-aacb-124340222843.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/a6210953-544b-4891-8812-005f2f15bc45.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/a7858853-8f52-47c2-976b-084a6fb28f9e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/a85cb374-8b50-42c5-8b96-0c80c3eae22b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/a97cccc7-57b4-4b91-93ad-0f60d128b5e9.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/b39bc507-ce1e-4202-bc2e-08bb40656e1f.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/bddd3152-cb64-4a59-b190-154afde0f361.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/c00e0267-75e2-4afa-bc66-232b0971b291.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/c329e3c9-307f-4513-a2f8-2a7d6377d29b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/d0fa3938-3aeb-4041-87bf-1f6f63fe604c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/d5b819bc-0cb5-4728-89ae-216261110f53.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/d96889c5-dea7-4b06-ad6c-02ed496aa219.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/e1d87f5c-cf08-4035-a93e-22b53d509951.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/e3384e36-7295-4522-ad6c-0ed56fcc3d8f.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/e4611963-eaee-4585-8579-27a444a18915.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/e4fe9a3f-efd0-4bd1-af3b-17be22bd935c.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/ea3efd58-f5cd-43ae-9b0f-113c43aac414.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/ecfbbece-7145-4abd-90e1-040d6f616479.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/f4075b96-1fea-47da-ab06-0cbfe9a8cf8d.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/attachments/fd7f790c-e923-4320-a963-1dc899331e5b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/calendar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/calendar.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+            <state relative-caret-position="779">
+              <caret line="182" column="38" lean-forward="true" selection-start-line="182" selection-start-column="38" selection-end-line="182" selection-end-column="38" />
               <folding>
                 <element signature="e#40#69#0#PHP" expanded="true" />
                 <element signature="e#930#1592#0#PHP" />
@@ -118,7 +77,34 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/tours/calendar.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="175" column="28" selection-start-line="175" selection-start-column="28" selection-end-line="175" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/js.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
@@ -238,9 +224,6 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/customer/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/customer/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/calendar.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DriverInvoiceController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BusServiceController.php" />
         <option value="$PROJECT_DIR$/resources/views/service/index.blade.php" />
@@ -251,6 +234,9 @@
         <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/head.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/js.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/tours/calendar.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
       </list>
     </option>
   </component>
@@ -389,13 +375,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="tours" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -472,12 +451,12 @@
       <workItem from="1562561984129" duration="2411000" />
       <workItem from="1562567017746" duration="22304000" />
       <workItem from="1562734729369" duration="26609000" />
-      <workItem from="1562821833716" duration="14223000" />
+      <workItem from="1562821833716" duration="15018000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270412000" />
+    <option name="totallyTimeSpent" value="271207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -788,27 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="175" column="28" selection-start-line="175" selection-start-column="28" selection-end-line="175" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/calendar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -894,17 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
-          <folding>
-            <element signature="e#40#69#0#PHP" expanded="true" />
-            <element signature="e#930#1592#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/upload_files.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -929,6 +876,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="182" column="38" lean-forward="true" selection-start-line="182" selection-start-column="38" selection-end-line="182" selection-end-column="38" />
+          <folding>
+            <element signature="e#40#69#0#PHP" expanded="true" />
+            <element signature="e#930#1592#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/calendar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/hire-drivers/calendar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="175" column="28" selection-start-line="175" selection-start-column="28" selection-end-line="175" selection-end-column="28" />
         </state>
       </provider>
     </entry>

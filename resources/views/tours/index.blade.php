@@ -20,18 +20,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <select name="status" id="status" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_status')}}</option>
-                                    @foreach($tour_statuses as $status)
-                                        <option value="{{ $status->id  }}">{{ $status->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_customer')}}</option>
@@ -41,7 +30,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <select id="driver_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_driver')}}</option>
@@ -51,7 +40,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <select id="vehicle_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_vehicle')}}</option>
@@ -76,9 +65,20 @@
                                 <input type='text' id="tourID" placeholder="Tour ID" class="form-control" />
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select name="status" id="status" class="form-control filterBox">
+                                    <option value="">{{__('tour.select_status')}}</option>
+                                    @foreach($tour_statuses as $status)
+                                        <option value="{{ $status->id  }}">{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col-md-1">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-warning bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
-                'bSortable': false,
+                'bSortable': true,
                 // 'bProcessing': true,
                 "bInfo": false,
                 // "bAutoWidth": false,
@@ -197,7 +197,7 @@
                 "pageLength": 10,
                 "bLengthChange" : false,
                 "aoColumnDefs": [
-                    { aTargets: ["_all"], bSortable: false },
+                    // { aTargets: ["_all"], bSortable: false },
                     {
                         "aTargets": [8],
                         "mData": "",
@@ -254,17 +254,15 @@
                 "ajax": {
                     "url": "{{ url('/tours-list') }}",
                     "type": "GET",
-                    "data": function () {
+                    "data": function ( d ) {
 
-                        return {
-                            'status' : $('#status').val(),
-                            'vehicle_id' : $('#vehicle_id').val(),
-                            'customer_id' : $('#customer_id').val(),
-                            'driver_id' : $('#driver_id').val(),
-                            'from_date' : $('#from_date').val(),
-                            'to_date' : $('#to_date').val(),
-                            'id' : $('#tourID').val(),
-                        }
+                        d.status = $('#status').val();
+                        d.vehicle_id = $('#vehicle_id').val();
+                        d.customer_id = $('#customer_id').val();
+                        d.driver_id = $('#driver_id').val();
+                        d.from_date = $('#from_date').val();
+                        d.to_date = $('#to_date').val();
+                        d.id = $('#tourID').val();
                     }
                 },
                 searchText: {

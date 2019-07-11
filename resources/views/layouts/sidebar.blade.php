@@ -68,8 +68,8 @@
 					</ul>
 				</li>
 
-				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.settings')}}</a></li>
 				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.reports')}}</a></li>
+				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.settings')}}</a></li>
 
 			</ul>
 		</div>

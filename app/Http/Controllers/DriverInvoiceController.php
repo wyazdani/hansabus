@@ -36,6 +36,7 @@ class DriverInvoiceController extends Controller
     public function getList(Request $request)
     {
 //        dd($request->all());
+
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
@@ -51,9 +52,7 @@ class DriverInvoiceController extends Controller
         $start =0;
         if(!empty($request->input('start'))){
 
-//            if($request->input('start')>0){
             $start = ($request->input('start')-1);
-//            }
         }
         $limit = 10;
         if(!empty($request->input('length'))){
@@ -70,10 +69,10 @@ class DriverInvoiceController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d h:i',strtotime($request->from_date));
+            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d h:i',strtotime($request->to_date));
+            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
         }
         if(!empty($from) && !empty($to)){
 

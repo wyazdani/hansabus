@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-warning bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
                     </div>
@@ -223,15 +223,13 @@
                 "ajax": {
                     "url": "{{ url('/hire-driver-list') }}",
                     "type": "GET",
-                    "data": function () {
-
-                        return {
-                            'customer_id' : $('#customer_id').val(),
-                            'driver_id' : $('#driver_id').val(),
-                            'from_date' : $('#from_date').val(),
-                            'to_date' : $('#to_date').val(),
-                            'id' : $('#hireID').val(),
-                        }
+                    "data": function ( d ) {
+                        d._token = '{{ csrf_token() }}';
+                        d.customer_id = $('#customer_id').val();
+                        d.driver_id = $('#driver_id').val();
+                        d.from_date = $('#from_date').val();
+                        d.to_date = $('#to_date').val();
+                        d.id = $('#hireID').val();
                     }
                 },
                 'rowId': 'id',

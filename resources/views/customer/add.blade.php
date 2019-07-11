@@ -58,7 +58,8 @@
                                                                     <div class="form-group">
                                                                         <label for="projectinput1">{{__('customer.name')}}</label>
 
-                                                                        <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->name))?$customer->name:old('name') }}" >
+                                                                        <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}"
+                                                                               value="{{ (!empty($customer->name))?$customer->name:old('name') }}" >
 
                                                                     </div>
                                                                 </div>

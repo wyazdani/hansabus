@@ -18,7 +18,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
 				</div>
 
 				<div class="card-content mt-1">
@@ -151,8 +150,6 @@
 					{ "data": "driver_license" },
 					{ "data": "nic" },
 					{ "data": "phone" },
-
-					// { "data": "actions" }
 				],
 				drawCallback: deleteMe|viewDriver,
 				"fnDrawCallback": function(oSettings) {
@@ -160,7 +157,6 @@
 						$('.dataTables_paginate').hide();
 					}
 				}
-
 			});
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
 		} );

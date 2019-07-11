@@ -47,10 +47,9 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('pagejs')
-    @include('customer.view')
+@include('customer.view')
     <script>
         var deleteMe = function(id){
 
@@ -147,8 +146,6 @@
                     { "data": "phone" },
                     { "data": "address" },
                     { "data": "url" },
-
-                    // { "data": "actions" }
                 ],
                 drawCallback: deleteMe|viewCustomer,
                 "fnDrawCallback": function(oSettings) {

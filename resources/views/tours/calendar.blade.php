@@ -48,9 +48,9 @@
 				header: {
 					left: 'title',
 					center: '',
-					right: 'today agendaDay,month prev,next'
+					right: 'prev,next'
 				},
-				defaultView: 'agendaDay', // month, agendaDay
+				defaultView: 'month', // month, agendaDay
 				views: { },
 				resourceLabelText: 'Rooms',
 				resourceText: function(vehicle) {

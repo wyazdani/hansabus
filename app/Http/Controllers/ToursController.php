@@ -28,18 +28,17 @@ class ToursController extends Controller
     public function calendar(Request $request)
     {
         $pageTitle = __('messages.calendar');
-        $rows = Tour::where('status','>',1)->where('status','<',4)->get(
+        $rows = Tour::where('status','>',1)->where('status','<',4)->whereNull('deleted_at')->get(
             ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
-        $colors = ['red','green','blue','orange','tan','purple','brown','black'];
-
+        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
+        
         $events = $vehicles = []; $i=$j=0;
         foreach($rows as $row){
 
             if($j>7){
                 $j = $j-8;
             }
-
 
             $row->driver;
             $row->customer;
@@ -55,9 +54,9 @@ class ToursController extends Controller
             Customer: '.$row->customer->name.' 
             Driver: '.$row->driver->driver_name;
             $events[$i]['url'] = url('/tour/'.$row->id);
-            $events[$i]['eventColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = $colors[$j];
 
-            $i++;
+            $j++; $i++;
         }
 
 //        dd($events);
@@ -68,26 +67,32 @@ class ToursController extends Controller
         $orderColumn = 'id';
         $dir = 'desc';
 
-        /*if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
-            $orderColumn = 'customer.name';
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==0){
+            $orderColumn = 'id';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'customer_id';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
-            $orderColumn = 'vehicle.name';
+            $orderColumn = 'vehicle_id';
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
-            $orderColumn = 'year';
+            $orderColumn = 'from_date';
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
-            $orderColumn = 'licensePlate';
+            $orderColumn = 'to_date';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
-            $orderColumn = 'engineNumber';
+            $orderColumn = 'driver_id';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
-            $orderColumn = 'registrationNumber';
-        }*/
+            $orderColumn = 'passengers';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==7){
+            $orderColumn = 'price';
+        }
         if(!empty($request->order[0]['dir'])){
             $dir = $request->order[0]['dir'];
         }
@@ -132,10 +137,10 @@ class ToursController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d H:i',strtotime($request->from_date));
+            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d H:i',strtotime($request->to_date));
+            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
         }
         if(!empty($from) && !empty($to)){
 

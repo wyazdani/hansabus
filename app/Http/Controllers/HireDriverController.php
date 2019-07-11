@@ -48,8 +48,8 @@ class HireDriverController extends Controller
             $events[$i]['start'] = $row->from_date;
             $events[$i]['end'] = $row->to_date;
 
-            $events[$i]['title'] = '
-            Hire # '.$row->id.' 
+            $events[$i]['title'] = '# '.$row->id.'  
+            Driver: '.$row->driver->driver_name.', 
             Customer: '.$row->customer->name;
             $events[$i]['url'] = url('/hire-driver/'.$row->id);
             $i++; $j++;
@@ -91,10 +91,10 @@ class HireDriverController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d h:i',strtotime($request->from_date));
+            $from = date('Y-m-d h:i',strtotime($request->from_date)).':00';
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d h:i',strtotime($request->to_date));
+            $to = date('Y-m-d h:i',strtotime($request->to_date)).':59';
         }
         if(!empty($from) && !empty($to)){
 

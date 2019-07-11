@@ -33,6 +33,27 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type='text' id="from_date" autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type='text' id="to_date" autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type='text' id="id" placeholder="ID" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <a href="javascript:;" id="searchBtn" class="btn btn-warning bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="card-content mt-1">
@@ -65,42 +86,8 @@
 @endsection
 @section('pagejs')
     <script>
-        var deleteMe = function(id){
 
-            if(confirm('{{__("messages.want_to_delete")}}')){
-
-                $.ajax({
-                    url: "{{ url('/bus-services') }}/"+id,
-                    data: "_token={{ csrf_token() }}",
-                    type: 'DELETE',  // user.destroy
-                    success: function(result) {
-                        // console.log(result);
-                        $('#'+id).remove();
-                    }
-                });
-            }
-        };
-        var viewCustomer = function(id){
-
-            $.ajax({
-                url: "{{ url('/bus-services') }}/"+id,
-                cache: false,
-                success: function(cus){
-
-                    $('#v_name').html(cus.name);
-                    $('#v_email').html(cus.email);
-                    $('#v_phone').html(cus.phone);
-                    $('#v_url').html(cus.url);
-                    $('#v_address').html(cus.address);
-
-                    if(cus.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
-
-                    $('#viewModel').modal('show');
-                }
-            });
-        };
         $(document).ready(function() {
-
 
             var tableDiv = $('#listingTable').DataTable({
 
@@ -124,7 +111,6 @@
 
                         var edit = '';  var view = ''; var buttons = '';
 
-
                         edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
                         edit += 'href="{!! url("/bus-services/'+row.id+'/edit") !!}">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
@@ -138,14 +124,15 @@
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],
-                "ajax": "{{ url('/bus-services-list') }}",
-
                 "ajax": {
                     "url": "{{ url('/bus-services-list') }}",
                     "type": "GET",
                     "data": function () {
                         return {
-                            'type_id' : $('#type_id').val()
+                            'type_id' : $('#type_id').val(),
+                            'from_date' : $('#from_date').val(),
+                            'to_date' : $('#to_date').val(),
+                            'id' : $('#id').val()
                         }
                     }
                 },
@@ -157,7 +144,6 @@
                     { "data": "total" },
                     { "data": "date" }
                 ],
-                drawCallback: deleteMe|viewCustomer,
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
                         $('.dataTables_paginate').hide();
@@ -168,6 +154,22 @@
 
             $('.filterBox ').on('change', function(){
                 tableDiv.draw();
+            });
+            $('#searchBtn').on('click', function(){
+                tableDiv.draw();
+            });
+
+
+            /* DateTime Picker */
+            $('.datetimepicker1').datetimepicker();
+            $('.datetimepicker2').datetimepicker({
+                useCurrent: false //Important! See issue #1075
+            });
+            $(".datetimepicker1").on("dp.change", function (e) {
+                $('.datetimepicker2').data("DateTimePicker").minDate(e.date);
+            });
+            $(".datetimepicker2").on("dp.change", function (e) {
+                $('.datetimepicker1').data("DateTimePicker").maxDate(e.date);
             });
 
         } );

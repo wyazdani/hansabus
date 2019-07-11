@@ -132,10 +132,10 @@ class ToursController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d H:i',strtotime($request->from_date));
+            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d H:i',strtotime($request->to_date));
+            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
         }
         if(!empty($from) && !empty($to)){
 

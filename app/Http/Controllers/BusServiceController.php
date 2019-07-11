@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 use App\Models\BusService;
 use App\Models\BusServiceDetail;
+use App\Models\Driver;
 use App\Models\ServiceType;
 use Illuminate\Http\Request;
 use App\Helpers\General;
@@ -51,6 +52,8 @@ class BusServiceController extends Controller
         if(!empty($request->input('length'))){
             $limit = $request->input('length');
         }
+
+
         $search = '';
         if(!empty($request->input('q'))){
 
@@ -62,11 +65,40 @@ class BusServiceController extends Controller
 
         if(!empty($search)){
 
-            $query = $query->where('customer', 'LIKE','%'.$search.'%');
+            $query = BusService::where('customer', 'LIKE','%'.$search.'%');
         }
+
+        /* service type */
         if(!empty($request->type_id)){
             $query = $query->where('type_id',$request->type_id);
         }
+
+        /* service ID */
+        if(!empty($request->id)){
+            $query = $query->where('id',(int)$request->id);
+        }
+        /* by date  */
+        $from =''; $to ='';
+        if(!empty($request->from_date)){
+
+            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
+        }
+        if(!empty($request->to_date)){
+            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
+        }
+        if(!empty($from) && !empty($to)){
+
+            $query = $query->whereBetween('created_at', [$from, $to]);
+
+        }elseif(!empty($from)){
+
+            $query = $query->where('created_at','>=',$from);
+        }elseif(!empty($to)){
+
+            $query = $query->where('created_at','<=',$to);
+        }
+
+
         $recordsTotal = $query->count();
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)
             ->get(['id','type_id','customer','total','created_at']);

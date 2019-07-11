@@ -47,9 +47,9 @@
 				header: {
 					left: 'title',
 					center: '',
-					right: 'today agendaDay,month prev,next'
+					right: 'month prev,next'
 				},
-				defaultView: 'agendaDay', // timeGridWeek, month, agendaDay
+				defaultView: 'month', // timeGridWeek, month, agendaDay
 				views: { },
 				resourceLabelText: 'Rooms',
 				resourceText: function(driver) {

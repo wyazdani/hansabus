@@ -20,14 +20,10 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-	@if(Request::route()->getName() == 'tour-calendar' ||
-		Request::route()->getName() == 'hire-driver-calendar' ||
-		Request::route()->getName() == 'home')
-	<link href='http://fullcalendar.io/js/fullcalendar-2.7.1/fullcalendar.css' rel='stylesheet' />
-	<link href='http://fullcalendar.io/js/fullcalendar-2.7.1/fullcalendar.print.css' rel='stylesheet' media='print' />
-	<link href='http://fullcalendar.io/js/fullcalendar-scheduler-1.3.1/scheduler.min.css' rel='stylesheet' />
+	<link rel="stylesheet" type="text/css" href="{{ asset('calendar/jquery.dataTables.min.css')}}">
+
+
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.css' rel='stylesheet' />
 	<link href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' rel="stylesheet">
-	@endif
 	@toastr_css
 </head>

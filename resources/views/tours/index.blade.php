@@ -20,18 +20,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <select name="status" id="status" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_status')}}</option>
-                                    @foreach($tour_statuses as $status)
-                                        <option value="{{ $status->id  }}">{{ $status->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <select id="customer_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_customer')}}</option>
@@ -41,7 +30,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <select id="driver_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_driver')}}</option>
@@ -51,7 +40,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <select id="vehicle_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_vehicle')}}</option>
@@ -76,9 +65,20 @@
                                 <input type='text' id="tourID" placeholder="Tour ID" class="form-control" />
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select name="status" id="status" class="form-control filterBox">
+                                    <option value="">{{__('tour.select_status')}}</option>
+                                    @foreach($tour_statuses as $status)
+                                        <option value="{{ $status->id  }}">{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col-md-1">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-warning bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
                     </div>

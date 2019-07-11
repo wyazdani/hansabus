@@ -89,22 +89,47 @@
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
-                                                            @else
-                                                                <div class="row">
-                                                                    <div class="col-md-10">
-                                                                        <div class="form-group">
-                                                                            <label for="projectinput1">{{__('service.title')}}</label>
-                                                                            <input type="text" name="title[]" class="form-control">
+                                                            @endif
+
+                                                            @if(!empty(old('title')))
+                                                                @php $i=0; @endphp
+                                                                @foreach(old('title') as $old)
+                                                                   @if(!empty($old))
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <div class="form-group">
+                                                                                <label for="projectinput1">{{__('service.title')}}</label>
+                                                                                <input type="text" name="title[]" class="form-control" value="{{ old('title')[$i] }}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                <label for="projectinput2">{{__('service.price')}}</label>
+                                                                                <input type="number" name="price[]" class="form-control" value="{{ old('price')[$i] }}">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-2">
-                                                                        <div class="form-group">
-                                                                            <label for="projectinput2">{{__('service.price')}}</label>
-                                                                            <input type="number" name="price[]" class="form-control">
-                                                                        </div>
+                                                                    @endif
+                                                                    @php $i++; @endphp
+                                                                @endforeach
+                                                            @endif
+
+                                                            <div class="row">
+                                                                <div class="col-md-10">
+                                                                    <div class="form-group">
+                                                                        <label for="projectinput1">{{__('service.title')}}</label>
+                                                                        <input type="text" name="title[]" class="form-control">
                                                                     </div>
                                                                 </div>
-                                                            @endif
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label for="projectinput2">{{__('service.price')}}</label>
+                                                                        <input type="number" name="price[]" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
                                                         </div>
                                                     </div>
                                                 </div>

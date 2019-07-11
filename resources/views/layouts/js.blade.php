@@ -21,4 +21,20 @@
     .dropzone {
         border: dashed 3px #B4B4B4;
     }
+    .fc-time {
+
+        letter-spacing: 1px !important;
+        font-family: 'Montserrat', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        font-weight: 100 !important;
+        line-height: 1.2em !important;
+        color: #454545 !important;
+    }
+    .fc-title {
+
+        letter-spacing: 1px !important;
+        font-family: 'Montserrat', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        font-weight: 100 !important;
+        line-height: 1.2em !important;
+        color: #454545 !important;
+    }
 </style>

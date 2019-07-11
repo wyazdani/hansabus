@@ -28,7 +28,7 @@ class HireDriverController extends Controller
         $pageTitle = __('hire.heading.calendar');
         $rows = HireDriver::where('status','>',1)->where('status','<',4)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
 
-        $colors = ['red','green','blue','orange','tan','purple','brown','black'];
+        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
         
         $events = $drivers = []; $i=$j=0;
         foreach($rows as $row){
@@ -52,6 +52,7 @@ class HireDriverController extends Controller
             Driver: '.$row->driver->driver_name.', 
             Customer: '.$row->customer->name;
             $events[$i]['url'] = url('/hire-driver/'.$row->id);
+            $events[$i]['backgroundColor'] = $colors[$j];
             $i++; $j++;
         }
 //        dd($data);

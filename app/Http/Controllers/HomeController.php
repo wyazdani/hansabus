@@ -36,7 +36,7 @@ class HomeController extends Controller
         $rows = Tour::where('status','>',1)->where('status','<',4)->orderBy('id','DESC')->offset(0)->limit(10)->get(
             ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
-        $colors = ['red','green','blue','orange','tan','purple','brown','black'];
+        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
 
         $events = $vehicles = $recentTours = []; $i=$j=0;
         foreach($rows as $row){
@@ -63,9 +63,9 @@ class HomeController extends Controller
             Customer: '.$row->customer->name.' 
             Driver: '.$row->driver->driver_name;
             $events[$i]['url'] = url('/tour/'.$row->id);
-            $events[$i]['eventColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = $colors[$j];
 
-            $i++;
+            $i++; $j++;
         }
 
         return view('home',compact('pageTitle','totalVehicles','totalDrivers','totalCustomers','recentTours','events','vehicles'));

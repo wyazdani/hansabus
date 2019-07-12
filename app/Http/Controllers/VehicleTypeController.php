@@ -6,6 +6,7 @@ use App\Helpers\General;
 use App\Models\Driver;
 use App\Models\Vehicle;
 use App\Models\VehicleType;
+use App\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -95,9 +96,8 @@ class VehicleTypeController extends Controller
         $messages = [
              'name.required' => 'Vehicle type is required',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated){
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             $vehicle_type = new VehicleType([
                 'name'  => $request->name,
@@ -125,10 +125,35 @@ class VehicleTypeController extends Controller
         return view('vehicle_type.add', compact('vehicleType','pageTitle'));
     }
 
+    public function changePasswordForm(){
+
+        $pageTitle = __('message.change_password');
+        return view('change_password', compact('pageTitle'));
+    }
+    public function changePassword(Request $request){
+
+        $rules = [
+            'password'              => 'alpha_num|between:6,12|confirmed',
+            'password_confirmation' => 'alpha_num|between:6,12',
+        ];
+        $messages = [
+            'pass.required' => '',
+        ];
+        $this->validate(request(), $rules, $messages);
+        if(true){
+
+            $u = User::find(\Auth::user()->id);
+            $u->password = bcrypt($request->pass);
+            if($u->save()) {
+                toastr()->success(__('messages.password_updated'));
+            }
+        }
+
+        return redirect('/change-password');
+    }
 
     public function update(Request $request, $id)
     {
-
 
         $rules = [
             'name'  =>'required|string'
@@ -136,9 +161,8 @@ class VehicleTypeController extends Controller
         $messages = [
             'name.required' => 'Vehicle type is required',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated){
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             $vehicleType = VehicleType::find($id);
             $vehicleType->name = $request->get('name');

@@ -189,7 +189,7 @@ class ToursController extends Controller
         $general = new General();
         $randomKey = $general->randomKey();
 
-        $tour_statuses = TourStatus::get(['id','name']);
+        $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
         $customers = Customer::where('status','1')->get();
         $drivers = Driver::where('status','1')->get();
         $vehicles = Vehicle::where('status','1')->get();
@@ -214,7 +214,7 @@ class ToursController extends Controller
             'driver_id' => 'required|integer',
             'price' => 'required|numeric|digits_between:1,20',
             'passengers' => 'required|integer|min:1,max:500',
-            'guide' => 'required',
+//            'guide' => 'required',
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -226,9 +226,8 @@ class ToursController extends Controller
             'passengers.required' => 'Please provide number of passengers.',
             'guide.required' => 'Please provide guide name.',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
 
             /* check if driver is available for this time slot */
@@ -359,7 +358,7 @@ class ToursController extends Controller
 
         $general = new General();
         $randomKey = $general->randomKey();
-        $tour_statuses = TourStatus::get(['id','name']);
+        $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
 
         $vehicles = Vehicle::where('status','1')->get(['name','make','year','transmission','licensePlate','id']);
         $customers = Customer::where('status','1')->get(['name','id']);
@@ -387,7 +386,7 @@ class ToursController extends Controller
             'driver_id' => 'required|integer',
             'price' => 'required|numeric|digits_between:1,20',
             'passengers' => 'required|integer|min:1,max:500',
-            'guide' => 'required',
+//            'guide' => 'required',
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -399,9 +398,8 @@ class ToursController extends Controller
             'passengers.required' => 'Please provide number of passengers.',
             'guide.required' => 'Please provide guide name.',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
 
             /* check if driver is available for this time slot */

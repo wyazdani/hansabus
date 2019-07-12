@@ -33,35 +33,25 @@
                     <form class="form" method="POST" action="{{ route('vehicles.store') }}" id="theForm">
                     @endif
 
-
                     @csrf
                     <input type="hidden" id="returnFlag" name="returnFlag" value="">
-
                     <div class="row">
-
                         <div class="col-md-8">
                             <div class="card">
-
                                 <div class="card-body">
                                     <div class="px-3">
-
                                         <div class="form-body">
-
-
-
-
                                             <div class="row">
-
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput1">{{__('vehicle.name')}}</label>
+                                                        <label for="projectinput1">{{__('vehicle.name')}}<span class="{{($errors->has('name')) ?'errorStar':''}}">*</span></label>
 
                                                         <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->name))?$vehicle->name:old('name') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput2">{{__('vehicle.year')}}</label>
+                                                        <label for="projectinput2">{{__('vehicle.year')}}<span class="{{($errors->has('year')) ?'errorStar':''}}">*</span></label>
 
                                                         <select name="year" class="{{($errors->has('year')) ?'form-control error_input':'form-control'}}">
                                                             @for($year=date('Y'); $year>(date('Y')-50); $year--)
@@ -81,7 +71,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput3">{{__('vehicle.make')}}</label>
+                                                        <label for="projectinput3">{{__('vehicle.make')}}<span class="{{($errors->has('make')) ?'errorStar':''}}">*</span></label>
 
                                                         <input type="text" name="make" class="{{($errors->has('make')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->make))?$vehicle->make:old('make') }}">
 
@@ -90,7 +80,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('vehicle.engine_number')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.engine_number')}}<span class="{{($errors->has('engineNumber')) ?'errorStar':''}}">*</span></label>
 
                                                         <input type="text" name="engineNumber" class="{{($errors->has('engineNumber')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->engineNumber))?$vehicle->engineNumber:old('engineNumber') }}">
 
@@ -102,7 +92,7 @@
 
                                                 <div class="col-md-6">
                                                     <fieldset class="form-group">
-                                                        <label for="customSelect">{{__('vehicle.vehicle_type')}}</label>
+                                                        <label for="customSelect">{{__('vehicle.vehicle_type')}}<span class="{{($errors->has('vehicle_type')) ?'errorStar':''}}">*</span></label>
 
                                                         <select class="{{($errors->has('vehicle_type')) ?'custom-select d-block w-100 error_input':'custom-select d-block w-100'}}"
                                                         id="customSelect" name="vehicle_type">
@@ -124,21 +114,21 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('vehicle.seats')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.seats')}}<span class="{{($errors->has('seats')) ?'errorStar':''}}">*</span></label>
                                                         <input type="number" name="seats" class="{{($errors->has('seats')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->seats))?$vehicle->seats:old('seats') }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('vehicle.license_plate')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.license_plate')}}<span class="{{($errors->has('licensePlate')) ?'errorStar':''}}">*</span></label>
                                                         <input type="text" name="licensePlate" class="{{($errors->has('licensePlate')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->licensePlate))?$vehicle->licensePlate:old('licensePlate') }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('vehicle.color')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.color')}}<span class="{{($errors->has('color')) ?'errorStar':''}}">*</span></label>
 
                                                         <input type="text" name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->color))?$vehicle->color:old('color') }}">
 
@@ -148,7 +138,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('vehicle.reg_number')}}</label>
+                                                        <label for="projectinput4">{{__('vehicle.reg_number')}}<span class="{{($errors->has('registrationNumber')) ?'errorStar':''}}">*</span></label>
 
                                                         <input type="text" name="registrationNumber" class="{{($errors->has('registrationNumber')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->registrationNumber))?$vehicle->registrationNumber:old('registrationNumber') }}">
 
@@ -159,21 +149,22 @@
                                                 <div class="col-md-6">
 
 
-
-                                                    @if ($errors->has('transmission'))
-                                                        <span class="label label-danger">{!! $errors->first('transmission') !!}</span>@endif
                                                     <div class="form-group">
-                                                        <label>{{__('vehicle.transmission')}}</label>
+                                                        <label class="">{{__('vehicle.transmission')}}<span class="{{($errors->has('transmission')) ?'errorStar':''}}">*</span></label>
                                                         <div class="input-group">
-                                                            <div class="custom-control custom-radio display-inline-block mr-2">
+                                                            <div class="custom-control custom-radio display-inline-block mr-2 {{($errors->has('transmission')) ?'error_input':''}}">
                                                                 <input type="radio" name="transmission" class="custom-control-input"
                                                                 id="customRadioInline4"
                                                                 value="Automatic"
-                                                                @if(old('transmission') == 'Automatic') 
-                                                                    {{ 'checked' }} 
-                                                                @elseif(!empty($vehicle->transmission) && $vehicle->transmission == 'Automatic')
+                                                                @if(!empty($vehicle->transmission) &&!empty(old('transmission') ))
+                                                                    @if(old('transmission') == 'Automatic')
+                                                                        {{ 'checked' }}
+                                                                    @elseif(!empty($vehicle->transmission) && $vehicle->transmission == 'Automatic')
+                                                                        {{ 'checked' }}
+                                                                    @endif
+                                                                @else
                                                                     {{ 'checked' }}
-                                                                @endif 
+                                                                @endif
                                                                 >
                                                                 <label class="custom-control-label" for="customRadioInline4">{{__('vehicle.automatic')}}</label>
                                                             </div>

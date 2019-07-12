@@ -27,13 +27,13 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="7%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('vehicle.name')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('vehicle.make')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('vehicle.year')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('vehicle.license_plate')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('vehicle.engine_number')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('vehicle.reg_number')}}</th>
-                                        <th class="border-top-0" width="10%">&nbsp;</th>
+                                        <th class="border-top-0" width="24%">{{__('vehicle.name')}}</th>
+                                        <th class="border-top-0" width="25%">{{__('vehicle.make')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('vehicle.year')}}</th>
+                                        <th class="border-top-0" width="13%">{{__('vehicle.license_plate')}}</th>
+                                        <th class="border-top-0" width="13%">{{__('vehicle.engine_number')}}</th>
+                                        <th class="border-top-0" width="13%">{{__('vehicle.reg_number')}}</th>
+                                        <th class="border-top-0 d-print-none " width="10%">&nbsp;</th>
                                     </tr>
                                     </thead>
                                     <tbody>

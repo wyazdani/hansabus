@@ -59,6 +59,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/vehicle-list', 'VehicleController@getList')->name('vehicle-list');
     Route::get('/vehicles/change-status/{Vehicle}', 'VehicleController@status')->name('vehicles.status-change');
 
+
+    Route::get('change-password', 'VehicleTypeController@changePasswordForm')->name('change-password-form');
+    Route::post('change-password', 'VehicleTypeController@changePassword')->name('change-password');
+
     /* vehicle types */
     Route::resource('vehicle-type', 'VehicleTypeController');
     Route::get('/vehicle-type-list', 'VehicleTypeController@getList')->name('vehicle-type-list');

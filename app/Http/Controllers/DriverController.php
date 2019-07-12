@@ -88,7 +88,6 @@ class DriverController extends Controller
             $row['action']='';
             $data[] = $row;
         }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
 
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
@@ -146,10 +145,8 @@ class DriverController extends Controller
              'driver_name.required' => 'Name is required.',
             'nic.required'=>'NIN No. is required.'
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
-
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* Profile picture upload */
             $profilePic = '';
@@ -167,7 +164,7 @@ class DriverController extends Controller
             $driver = new Driver;
             $driver->driver_name = $request->get('driver_name');
             $driver->mobile_number = $request->get('mobile_number');
-            $driver->driver_license = $request->get('driver_name');
+            $driver->driver_license = $request->get('driver_license');
             $driver->nic = $request->get('nic');
             $driver->address = $request->get('address');
             $driver->phone = $request->get('phone');
@@ -227,9 +224,8 @@ class DriverController extends Controller
             'driver_name.required' => 'Name is required.',
             'nic.required'=>'NIN No. is required.'
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* Profile picture upload */
             $profilePic = '';
@@ -250,7 +246,7 @@ class DriverController extends Controller
             $driver = Driver::find($id);
             $driver->driver_name = $request->get('driver_name');
             $driver->mobile_number = $request->get('mobile_number');
-            $driver->driver_license = $request->get('driver_name');
+            $driver->driver_license = $request->get('driver_license');
             $driver->nic = $request->get('nic');
             $driver->address = $request->get('address');
             $driver->phone = $request->get('phone');

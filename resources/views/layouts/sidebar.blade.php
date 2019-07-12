@@ -3,8 +3,8 @@
 	 class="app-sidebar d-print-none">
 	<div class="sidebar-header">
 		<div class="logo clearfix"><a href="{{ route('home') }}" class="logo-text float-left">
-				<div class="logo-img"><img src="{{ asset('images/logo.png') }}" alt="Convex Logo" /></div>
-				<span class="text align-middle">E-Coach</span>
+				<div class="logo-img2"><img src="{{ asset('images/hansa_logo.png') }}" alt="Convex Logo" width="220" /></div>
+{{--				<span class="text align-middle">E-Coach</span>--}}
 			</a>
 		</div>
 	</div>
@@ -59,8 +59,9 @@
 						<li><a href="{{ route('driver-invoices') }}" class="menu-item">{{ __('driver_invoice.heading.index') }}</a></li>
 					</ul>
 				</li>
-				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.reports')}}</a></li>
-				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.settings')}}</a></li>
+				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="{{ route('change-password') }}" class="menu-item">{{__('messages.change_password')}}</a></li>
+{{--				<li @if(Request::route()->getName() == 'reports') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.reports')}}</a></li>--}}
+{{--				<li @if(Request::route()->getName() == 'settings') {{ ' class=open' }} @endif ><a href="javascript:;" class="menu-item">{{__('messages.settings')}}</a></li>--}}
 			</ul>
 		</div>
 	</div>

@@ -8,9 +8,9 @@
 		  content="">
 	<meta name="author" content="">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>{{ config('app.name', 'E-Coach') }} @if(!empty($pageTitle)) {{ ' - '.$pageTitle }} @endif</title>
-	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
-	<link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon-32.png') }}">
+	<title>HB @if(!empty($pageTitle)) {{ ' - '.$pageTitle }} @endif</title>
+{{--	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/hb-fav.ico') }}">--}}
+	<link rel="shortcut icon" type="image/png" href="{{ asset('images/hb-fav.png') }}">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -25,5 +25,8 @@
 	<link href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' rel="stylesheet">
 	<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.css' rel='stylesheet' />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/basic.css" rel="stylesheet">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.css" />
 	@toastr_css
 </head>

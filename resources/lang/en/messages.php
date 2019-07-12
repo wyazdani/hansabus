@@ -46,5 +46,10 @@
         'tour_calendar '=>'Tour Clalender',
         'select_vehicle'=>'Select Vehicle',
         'generate_invoice'=>'Generate Invoice',
-        'print'=>'Print'
+        'print'=>'Print',
+        'change_password'=>'Change Password',
+        'new_password'=>'New Password',
+        'confirm_password'=>'Confirm Password',
+        'password_updated'=>'Password updated.',
+
     ];

@@ -139,11 +139,8 @@ class CustomerController extends Controller
             'phone.required' => 'Please provide your phone number.',
             'address.required' => 'Please provide your address..',
         ];
-
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
-
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             $customer = new Customer;
             $customer->name = $request->name;
@@ -216,9 +213,8 @@ class CustomerController extends Controller
             'phone.required' => 'Please provide your phone number.',
             'address.required' => 'Please provide your address..',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             $customer = Customer::find($id);
             $customer->name = $request->name;

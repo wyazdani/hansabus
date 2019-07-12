@@ -23,7 +23,7 @@ return [
     'select_one'=>'Select One',
     'select_status'=>'Select Status',
     'select_customer'=>'Select Customer',
-    'select_driver'=>'Select driver',
+    'select_driver'=>'Select Driver',
 
     'today'=>'Today',
     'month'=>'Month',

@@ -170,7 +170,7 @@ class HireDriverController extends Controller
         $general = new General();
         $randomKey = $general->randomKey();
 
-        $tour_statuses = TourStatus::get(['id','name']);
+        $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
         $customers = Customer::where('status','1')->get(['name','id']);
         $drivers = Driver::where('status','1')->get(['driver_name','id']);
 
@@ -200,13 +200,8 @@ class HireDriverController extends Controller
             'driver_id.required' => 'Please select driver.',
             'price.required' => 'Please provide tour price.'
         ];
-//        $this->validate(request(), $rules, $messages);
-
-
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
-
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* check if driver is available for this time slot */
             $from = date('Y-m-d H:i:s',strtotime($request->from_date));
@@ -312,7 +307,7 @@ class HireDriverController extends Controller
         $general = new General();
         $randomKey = $general->randomKey();
 
-        $tour_statuses = TourStatus::get(['id','name']);
+        $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
         $customers = Customer::where('status','1')->get(['name','id']);
         $drivers = Driver::where('status','1')->get(['driver_name','id']);
 
@@ -338,12 +333,8 @@ class HireDriverController extends Controller
             'driver_id.required' => 'Please select driver.',
             'price.required' => 'Please provide tour price.'
         ];
-//        $this->validate(request(), $rules, $messages);
-
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
-
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* check if driver is available for this time slot */
             $from = date('Y-m-d H:i:s', strtotime($request->from_date));

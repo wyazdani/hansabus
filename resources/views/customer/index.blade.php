@@ -34,7 +34,7 @@
                                     <th class="border-top-0" width="10%">{{__('customer.mobile')}}</th>
                                     <th class="border-top-0" width="20%">{{__('customer.address')}}</th>
                                     <th class="border-top-0" width="15%">{{__('customer.web')}}</th>
-                                    <th class="border-top-0" width="10%">&nbsp;</th>
+                                    <th class="border-top-0 d-print-none" width="10%">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -125,6 +125,7 @@
 
                     "aTargets": [6],
                     "mData": "",
+                    'className' : "d-print-none",
                     "mRender": function (data, type, row) {
 
                         var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';

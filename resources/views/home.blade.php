@@ -169,7 +169,6 @@
 				schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
 				now: '{{ date('Y-m-d') }}',
 				aspectRatio: 1.8,
-				scrollTime: '00:00', // undo default 6am scrollTime
 				header: {
 					left: 'title',
 					center: '',
@@ -177,7 +176,7 @@
 					// right: 'today agendaDay,month prev,next'
 				},
 				defaultView: 'month', // month, agendaDay
-				views: { },
+				/*views: { },
 				resourceLabelText: 'Rooms',
 				resourceText: function(vehicle) {
 
@@ -187,14 +186,14 @@
 				resources: resourcesFunc,
 				plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list',
 					'dayGridMonth','timeGridWeek','timeGridDay' ],
-				// plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin ],
-				height: 'parent',
-				buttonText: {
-					today: '{{__("tour.today")}}',
-					month: '{{__("tour.month")}}',
-					week: '{{__("tour.week")}}',
-					day: '{{__("tour.day")}}'
-				},
+				// plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin ],*/
+				// height: 'parent',
+				{{--buttonText: {--}}
+				{{--	today: '{{__("tour.today")}}',--}}
+				{{--	month: '{{__("tour.month")}}',--}}
+				{{--	week: '{{__("tour.week")}}',--}}
+				{{--	day: '{{__("tour.day")}}'--}}
+				{{--},--}}
 				events:{!! json_encode($events) !!},
 				timeFormat: 'h(:mm) A'
 

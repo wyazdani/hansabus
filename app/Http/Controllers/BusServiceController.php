@@ -162,9 +162,8 @@ class BusServiceController extends Controller
             'customer.required' => 'Customer info required.'
         ];
 
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             $total = 0;
             foreach($request->price as $price){
@@ -262,10 +261,8 @@ class BusServiceController extends Controller
             'type_id.required' => 'Please select service type.',
             'customer.required' => 'Customer info required.'
         ];
-
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             $total = 0;
             foreach($request->price as $price){
@@ -319,6 +316,10 @@ class BusServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $service_detail = BusServiceDetail::where('service_id',$id);
+        $service_detail->delete();
+
+        $service = BusService::find($id);
+        $service->delete();
     }
 }

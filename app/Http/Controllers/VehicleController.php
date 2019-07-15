@@ -154,10 +154,8 @@
             $messages = [
                 // 'name.required' => 'name is required',
             ];
-
-            $general = new General();
-            $validated = $general->validateMe($request, $rules, $messages);
-            if($validated) {
+            $this->validate(request(), $rules, $messages);
+            if(true){
 
                 $vehicle = new Vehicle;
                 $vehicle->name = $request->name;
@@ -253,10 +251,8 @@
             $messages = [
                 // 'title.required' => 'Title is required',
             ];
-
-            $general = new General();
-            $validated = $general->validateMe($request, $rules, $messages);
-            if($validated) {
+            $this->validate(request(), $rules, $messages);
+            if(true){
 
                 $vehicle = Vehicle::find($request->id);
                 $vehicle->name = $request->name;

@@ -8,7 +8,7 @@
             <div class="col-12 d-flex align-items-center justify-content-center gradient-aqua-marine">
                 <div class="card px-4 py-2 box-shadow-2 width-400">
                     <div class="card-header text-center">
-                        <img src="images/hansa_logo.png" alt="company-logo" class="mb-3" width="300">
+                        <img src="{{ asset('images/hansa_logo_colored.png') }}" alt="company-logo" class="mb-3" width="300">
                         <h4 class="text-uppercase text-bold-400 grey darken-1">{{ __('Login') }}</h4>
                     </div>
                     <div class="card-body">

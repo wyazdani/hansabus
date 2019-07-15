@@ -57,7 +57,9 @@
 
 																	<div class="col-md-6">
 																		<div class="form-group">
-																			<label for="projectinput1">{{__('vehicle_type.name')}}</label>
+																			<label for="projectinput1">{{__('vehicle_type.name')}}
+																				<span class="{{($errors->has('name')) ?'errorStar':''}}">*</span>
+																			</label>
 
 																			<input type="text" name="name"
 																				   class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}"

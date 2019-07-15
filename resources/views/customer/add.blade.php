@@ -56,7 +56,7 @@
 
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput1">{{__('customer.name')}}</label>
+                                                                        <label for="projectinput1">{{__('customer.name')}} <span class="{{($errors->has('name')) ?'errorStar':''}}">*</span></label>
 
                                                                         <input type="text" name="name" class="{{($errors->has('name')) ?'form-control error_input':'form-control'}}"
                                                                                value="{{ (!empty($customer->name))?$customer->name:old('name') }}" >
@@ -65,7 +65,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput2">{{__('customer.email')}}</label>
+                                                                        <label for="projectinput2">{{__('customer.email')}} <span class="{{($errors->has('email')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="email" name="email" class="{{($errors->has('email')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->email))?$customer->email:old('email') }}"
                                                                         @if(!empty($customer->id)) {{ 'readonly="readonly"'  }} @endif >
 
@@ -83,7 +83,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput4">{{__('customer.mobile')}}</label>
+                                                                        <label for="projectinput4">{{__('customer.mobile')}} <span class="{{($errors->has('phone')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" maxlength = "11"  value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
 
                                                                     </div>
@@ -93,7 +93,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput4">{{__('customer.address')}}</label>
+                                                                        <label for="projectinput4">{{__('customer.address')}} <span class="{{($errors->has('address')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="text" name="address" class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->address))?$customer->address:old('address') }}">
 
                                                                     </div>
@@ -150,9 +150,7 @@
                                                 <button type="button" onclick="$('#returnFlag').val('1'); $('#theForm').submit();" class="btn btn-success">
                                                     <i class="icon-note"></i> {{__('messages.save')}}
                                                 </button>
-                                                <button type="button" onclick="$('#returnFlag').val('0'); $('#theForm').submit();" class="btn btn-info">
-                                                    <i class="icon-note"></i> {{__('messages.save_add_another')}}
-                                                </button>
+
                                             @endif
                                         </div>
                                     </div>

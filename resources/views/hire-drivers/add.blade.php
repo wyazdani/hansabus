@@ -47,7 +47,7 @@
 															<div class="row">
 																<div class="col-md-3">
 																	<div class="form-group">
-																		<label for="projectinput3">Status</label>
+																		<label for="projectinput3">Status <span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
 																		<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
 
 																		>
@@ -65,7 +65,7 @@
 
 																<div class="col-md-3">
 																	<div class="form-group">
-																		<label for="fromDate">{{__('tour.from')}}</label>
+																		<label for="fromDate">{{__('tour.from')}} <span class="{{($errors->has('from_date')) ?'errorStar':''}}">*</span></label>
 																		<div class='input-group date'>
 																			<input type='text' name="from_date" autocomplete="off"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
@@ -76,7 +76,7 @@
 																</div>
 																<div class="col-md-3">
 																	<div class="form-group">
-																		<label for="toDate">{{__('tour.to')}}</label>
+																		<label for="toDate">{{__('tour.to')}} <span class="{{($errors->has('to_date')) ?'errorStar':''}}">*</span></label>
 																		<div class='input-group date'>
 																			<input type='text' name="to_date" autocomplete="off"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
@@ -87,7 +87,7 @@
 																</div>
 																<div class="col-md-3">
 																	<div class="form-group">
-																		<label for="projectinput3">{{__('tour.price')}}</label>
+																		<label for="projectinput3">{{__('tour.price')}} <span class="{{($errors->has('price')) ?'errorStar':''}}">*</span></label>
 																		<input type="number" name="price"
 																			   class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}"
 																			   value="{{ (!empty($hire->price))?$hire->price:old('price') }}" >
@@ -95,7 +95,7 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="customSelect">{{__('hire.customer')}}</label>
+																		<label for="customSelect">{{__('hire.customer')}} <span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
 																			<option value=""> {{__('hire.select_customer')}}</option>
 																			@foreach($customers as $customer)
@@ -111,9 +111,9 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="customSelect">{{__('hire.driver')}}</label>
+																		<label for="customSelect">{{__('hire.driver')}} <span class="{{($errors->has('driver_id')) ?'errorStar':''}}">*</span></label>
 																		<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
-																			<option value="">{{__('hire.select_one')}}</option>
+																			<option value="">{{__('hire.select_driver')}}</option>
 																			@foreach($drivers as $driver)
 																				<option value="{{ $driver->id  }}"
 																				@if(!empty($hire->driver_id) && $hire->driver_id==$driver->id || old('driver_id') == $driver->id)
@@ -184,9 +184,9 @@
 
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> {{__('messages.save')}}</button>
-							<button type="button" onclick="$('#returnFlag').val('1'); $('#tourForm').submit()"  class="btn btn-info">
-								<i class="icon-note"></i> {{__('messages.save_add_another')}}
-							</button>
+{{--							<button type="button" onclick="$('#returnFlag').val('1'); $('#tourForm').submit()"  class="btn btn-info">--}}
+{{--								<i class="icon-note"></i> {{__('messages.save_add_another')}}--}}
+{{--							</button>--}}
 						@endif
 					</div>
 				</div>

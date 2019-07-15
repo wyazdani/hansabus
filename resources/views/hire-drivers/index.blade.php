@@ -134,7 +134,7 @@
                         if(item.file.includes('.pdf') || item.file.includes('.txt') || item.file.includes('.doc')){
                             attachments += '<li><a href="{{ url('/attachments') }}/'+item.file+'" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></li>';
                         }else{
-                            attachments += '<li><img src="{{ url('/attachments') }}/'+item.file+'" style="display:block; width: 100%; height:auto;"></li>';
+                            attachments += '<p><img src="{{ url('/attachments') }}/'+item.file+'" style="display:block; width: 90%; height:auto;"></p>';
                         }
 
                     });

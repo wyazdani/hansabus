@@ -50,6 +50,10 @@
         'tour_calendar '=>'Tourkalender',
         'select_vehicle'=>'Fahrzeug auswählen',
         'generate_invoice'=>'Rechnung Erstellen',
-        'print'=>'Drucken'
+        'print'=>'Drucken',
+        'change_password'=>'Ändere das Passwort',
+        'new_password'=>'Neues Kennwort',
+        'confirm_password'=>'Passwort bestätigen',
+        'password_updated'=>'Passwort aktualisiert.',
     ];
 

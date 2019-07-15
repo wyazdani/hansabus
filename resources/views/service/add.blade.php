@@ -48,7 +48,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput3">{{__('service.type')}}</label>
+                                                                        <label for="projectinput3">{{__('service.type')}}<span class="{{($errors->has('type_id')) ?'errorStar':''}}">*</span></label>
                                                                         <select name="type_id" class="{{($errors->has('type_id')) ?'form-control error_input':'form-control'}}"
 
                                                                         >
@@ -65,9 +65,9 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput3">{{__('service.customer')}}</label>
+                                                                        <label for="projectinput3">{{__('service.customer')}}<span class="{{($errors->has('customer')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="text" name="customer"
-                                                                               class="{{($errors->has('customer')) ?' error_input':'form-control'}}"
+                                                                               class="{{($errors->has('customer')) ?'form-control error_input':'form-control'}}"
                                                                                value="{{ (!empty($service->customer))?$service->customer:old('customer') }}">
                                                                     </div>
                                                                 </div>
@@ -117,13 +117,13 @@
                                                             <div class="row">
                                                                 <div class="col-md-10">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput1">{{__('service.title')}}</label>
+                                                                        <label for="projectinput1">{{__('service.title')}} </label>
                                                                         <input type="text" name="title[]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput2">{{__('service.price')}}</label>
+                                                                        <label for="projectinput2">{{__('service.price')}} </label>
                                                                         <input type="number" name="price[]" class="form-control">
                                                                     </div>
                                                                 </div>

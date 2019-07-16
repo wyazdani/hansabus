@@ -75,22 +75,29 @@ class CustomerController extends Controller
 
         if(!empty($search)){
 
-            $query = Customer::where('name', 'LIKE','%'.$search.'%')
-                ->orWhere('email', 'LIKE','%'.$search.'%')
-                ->orWhere('phone', 'LIKE','%'.$search.'%')
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('url', 'LIKE',"%{$search}%");
+            $query = Customer::where(function ($query) use ($search) {
+                $query->where('name', 'LIKE','%'.$search.'%')
+                    ->orWhere('email', 'LIKE','%'.$search.'%')
+                    ->orWhere('phone', 'LIKE','%'.$search.'%')
+                    ->orWhere('address', 'LIKE','%'.$search.'%');
+            });
+            /* if searching from autocomplete */
+            if(!empty($request->key) && $request->key=='auto'){
+                $query->where('status',1);
+            }
         }
+
+
         $recordsTotal = $query->count();
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','phone','address','url','status']);
 
         $data=[];
         foreach($rows as $row){
-            $row['action']='';
+
+            $row['label'] = $row['name'];
+            $row['value'] = $row['name'];
             $data[] = $row;
         }
-//        $recordsFiltered = $query->offset($start)->limit($limit)->count();
-
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
     public function index(Request $request)
@@ -139,7 +146,17 @@ class CustomerController extends Controller
             'phone.required' => 'Please provide your phone number.',
             'address.required' => 'Please provide your address..',
         ];
-        $this->validate(request(), $rules, $messages);
+
+        if(!empty($request->key) && $request->key == 'popup'){
+
+            $validation = Validator::make($request->only('name', 'email','phone','address'),$rules);
+            if(!$validation->passes()) {
+
+                return response()->json(['errors'=>$validation->errors()]);
+            }
+        }else {
+            $this->validate(request(), $rules, $messages);
+        }
         if(true){
 
             $customer = new Customer;
@@ -154,11 +171,17 @@ class CustomerController extends Controller
             $customer->status = $status;
 
             if ($customer->save()) {
-                toastr()->success(__('customer.created'));
-                if ($request->returnFlag == 1) {
-                    return redirect('/customers');
-                } else {
-                    return redirect('/customers/create');
+
+                if(!empty($request->key) && $request->key == 'popup'){
+
+                    return $customer;
+                }else{
+                    toastr()->success(__('customer.created'));
+                    if ($request->returnFlag == 1) {
+                        return redirect('/customers');
+                    } else {
+                        return redirect('/customers/create');
+                    }
                 }
             }
         }else{

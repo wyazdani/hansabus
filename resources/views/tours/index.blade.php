@@ -187,11 +187,8 @@
                         customize: function ( win ) {
                             $(win.document.body)
                                 .css( 'font-size', '10pt' )
-                                .prepend(
-                                    '<h1>Header goes here</h1>'
-                                ).append(
-                                '<h1>footer goes here</h1>'
-                            );
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
 
                             $(win.document.body).find( 'table' )
                                 .addClass( 'compact' )
@@ -263,8 +260,11 @@
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
-                        buttons = edit+trash+view;
-                        return buttons;
+                        buttons = ''+view;
+                        if(row.status == '1' || row.status == '2'){
+                            buttons = edit+trash+view;
+                        }
+                        return '<div class="text-right">'+buttons+'</div>';
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],

@@ -65,9 +65,8 @@
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
-
                             <div class="table-responsive">
-                                <table class="table table-hover table-xl mb-0" id="listingTable">
+                                <table class="table table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
@@ -160,11 +159,8 @@
                         customize: function ( win ) {
                             $(win.document.body)
                                 .css( 'font-size', '10pt' )
-                                .prepend(
-                                    '<h1>Header goes here</h1>'
-                                ).append(
-                                '<h1>footer goes here</h1>'
-                            );
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
 
                             $(win.document.body).find( 'table' )
                                 .addClass( 'compact' )

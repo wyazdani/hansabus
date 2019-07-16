@@ -97,11 +97,8 @@
                         customize: function ( win ) {
                             $(win.document.body)
                                 .css( 'font-size', '10pt' )
-                                .prepend(
-                                    '<h1>Header goes here</h1>'
-                                ).append(
-                                '<h1>footer goes here</h1>'
-                            );
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
 
                             $(win.document.body).find( 'table' )
                                 .addClass( 'compact' )

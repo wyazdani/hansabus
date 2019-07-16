@@ -95,7 +95,9 @@
 
             $data=[];
             foreach($rows as $row){
-                $row['action']='';
+
+                $row['label'] = $row['name'];
+                $row['value'] = $row['name'];
                 $data[] = $row;
             }
             $recordsFiltered = $query->offset($start)->limit($limit)->count();

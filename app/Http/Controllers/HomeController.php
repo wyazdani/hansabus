@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         $colors = ['#1E9FF2','#34D093','#F78C47','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
 
-        $events = $vehicles = $recentTours = []; $i=$j=0;
+        $events = $recentTours = []; $i=$j=0;
         foreach($rows as $row){
 
             if($j>7){
@@ -52,7 +52,7 @@ class HomeController extends Controller
             if($i<11) {
                 $recentTours[] = $row;
             }
-            $vehicles[] = $row->vehicle;
+//            $vehicles[] = $row->vehicle;
             $events[$i]['id'] = $row->id;
             $events[$i]['resourceId'] = $row->vehicle->id;
             $events[$i]['start'] = $row->from_date;
@@ -68,6 +68,6 @@ class HomeController extends Controller
             $i++; $j++;
         }
 
-        return view('home',compact('pageTitle','totalVehicles','totalDrivers','totalCustomers','recentTours','events','vehicles'));
+        return view('home',compact('pageTitle','totalVehicles','totalDrivers','totalCustomers','recentTours','events'));
     }
 }

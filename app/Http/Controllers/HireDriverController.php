@@ -87,8 +87,6 @@ class HireDriverController extends Controller
             $dir = $request->order[0]['dir'];
         }
 
-
-
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');

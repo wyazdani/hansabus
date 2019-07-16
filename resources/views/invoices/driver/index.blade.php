@@ -85,10 +85,10 @@
                                             </div>
                                         </th>
                                         <th class="border-top-0" width="10%">{{__('driver_invoice.invoice')}} #</th>
-                                        <th class="border-top-0" width="35%">{{__('driver_invoice.customer')}}</th>
+                                        <th class="border-top-0" width="45%">{{__('driver_invoice.customer')}}</th>
                                         <th class="border-top-0" width="10%">{{__('driver_invoice.total')}}</th>
                                         <th class="border-top-0" width="10%">{{__('driver_invoice.status')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('driver_invoice.date')}}</th>
+                                        <th class="border-top-0" width="10%">{{__('driver_invoice.date')}}</th>
                                         <th class="border-top-0" width="7.5%">&nbsp;</th>
                                         <th class="border-top-0" width="7.5%">&nbsp;</th>
                                     </tr>

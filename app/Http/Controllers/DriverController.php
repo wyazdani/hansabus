@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\General;
+use App\Models\Customer;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 
@@ -71,21 +72,27 @@ class DriverController extends Controller
 
         if(!empty($search)){
 
-            $query = Driver::where('driver_name', 'LIKE','%'.$search.'%')
-                ->orWhere('mobile_number', 'LIKE','%'.$search.'%')
-                ->orWhere('driver_license', 'LIKE','%'.$search.'%')
-                ->orWhere('nic', 'LIKE',"%{$search}%")
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('phone', 'LIKE',"%{$search}%")
-                ->orWhere('other_details', 'LIKE',"%{$search}%")
-            ;
+            $query = Driver::where(function ($query) use ($search) {
+                $query->where('driver_name', 'LIKE','%'.$search.'%')
+                    ->orWhere('mobile_number', 'LIKE','%'.$search.'%')
+                    ->orWhere('driver_license', 'LIKE','%'.$search.'%')
+                    ->orWhere('nic', 'LIKE','%'.$search.'%')
+                    ->orWhere('address', 'LIKE','%'.$search.'%')
+                    ->orWhere('phone', 'LIKE','%'.$search.'%')
+                    ->orWhere('other_details', 'LIKE','%'.$search.'%');
+            });
+            /* if searching from autocomplete */
+            if(!empty($request->key) && $request->key=='auto'){
+                $query->where('status',1);
+            }
         }
         $recordsTotal = $query->count();
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get();
 
         $data=[];
         foreach($rows as $row){
-            $row['action']='';
+            $row['label'] = $row['driver_name'];
+            $row['value'] = $row['driver_name'];
             $data[] = $row;
         }
 
@@ -176,7 +183,13 @@ class DriverController extends Controller
             $driver->other_details = $other_details;
             $driver->profile_pic = $profilePic;
             if($driver->save()){
-                toastr()->success(__('driver.created'));
+
+                if(!empty($request->key) && $request->key == 'popup'){
+
+                    return $driver;
+                }else{
+                    toastr()->success(__('driver.created'));
+                }
             }
 
         }else{

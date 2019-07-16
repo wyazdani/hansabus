@@ -24,7 +24,7 @@ return [
     'select_status'=>'Select Status',
     'select_customer'=>'Select Customer',
     'select_vehicle'=>'Select Vehicle',
-    'select_driver'=>'Select driver',
+    'select_driver'=>'Select Driver',
 
     'today'=>'Today',
     'month'=>'Month',
@@ -43,4 +43,7 @@ return [
     'updated'=>'Tour updated.',
     'status_changed'=>'Tour status changed.',
     'vehicle_already_booked'=>'Vehicle already booked.',
+
+    ''=>'',
+
     ];

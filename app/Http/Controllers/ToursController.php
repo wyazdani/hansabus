@@ -33,7 +33,7 @@ class ToursController extends Controller
 
         $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
 
-        $events = $vehicles = []; $i=$j=0;
+        $events = []; $i = $j=0;
         foreach($rows as $row){
 
             if($j>7){
@@ -43,7 +43,7 @@ class ToursController extends Controller
             $row->driver;
             $row->customer;
 
-            $vehicles[] = $row->vehicle;
+//            $vehicles[] = $row->vehicle;
             $events[$i]['id'] = $row->id;
             $events[$i]['resourceId'] = $row->vehicle->id;
             $events[$i]['start'] = $row->from_date;
@@ -60,7 +60,7 @@ class ToursController extends Controller
         }
 
 //        dd($events);
-        return view('tours.calendar',compact('events','vehicles','pageTitle'));
+        return view('tours.calendar',compact('events','pageTitle'));
     }
     public function getList(Request $request)
     {
@@ -188,13 +188,10 @@ class ToursController extends Controller
         $pageTitle = __('tour.heading.add');
         $general = new General();
         $randomKey = $general->randomKey();
-
         $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
-        $customers = Customer::where('status','1')->get();
-        $drivers = Driver::where('status','1')->get();
         $vehicles = Vehicle::where('status','1')->get();
 
-        return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));
+        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey'));
     }
 
     /**
@@ -361,11 +358,9 @@ class ToursController extends Controller
         $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
 
         $vehicles = Vehicle::where('status','1')->get(['name','make','year','transmission','licensePlate','id']);
-        $customers = Customer::where('status','1')->get(['name','id']);
-        $drivers = Driver::where('status','1')->get(['driver_name','id']);
         $attachments = TourAttachment::where('tour_id',$id)->get();
 
-        return view('tours.add',compact('tour','pageTitle','vehicles','customers','drivers','tour_statuses','randomKey','attachments'));
+        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments'));
     }
 
     /**

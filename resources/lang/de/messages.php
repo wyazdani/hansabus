@@ -55,5 +55,9 @@
         'new_password'=>'Neues Kennwort',
         'confirm_password'=>'Passwort bestätigen',
         'password_updated'=>'Passwort aktualisiert.',
+
+        'drag'=>'Ziehen Sie oder',
+        'upload'=>'Hochladen',
+        'allowed_extentions'=>'(nur PDF-, JPG-, GIF- und PNG-Dateien)',
     ];
 

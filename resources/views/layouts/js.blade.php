@@ -23,28 +23,57 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
 @toastr_js
 @toastr_render
 <script>
-    $(".searchable").select2({
-        // placeholder: 'Select a country',
-        // maximumSelectionSize: 6,
-        // // width: 'resolve',
-        // // theme: 'bootstrap',
-    });
+    Dropzone.autoDiscover = false;
+    $("#dpz-multiple-files").dropzone({   acceptedFiles: ".png, .jpg, .gif,.pdf" });
+    $( function() {
+
+        $("#customer_search" ).autocomplete({
+            source: function( request, response ) {
+                $.ajax( {
+                    url: "{{ url('/customer-list') }}?key=auto",
+                    dataType: "json",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+
+                        console.log(data);
+                        response( data.data);
+                    }
+                } );
+            },
+            minLength: 2,
+            select: function( event, ui ) {
+                $( "#customer_search" ).val(ui.item.value);
+                $( "#customer_id" ).val(ui.item.id );
+            }
+        });
+        $("#driver_search" ).autocomplete({
+            source: function( request, response ) {
+                $.ajax( {
+                    url: "{{ url('/drivers-list') }}?key=auto",
+                    dataType: "json",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        response( data.data);
+                    }
+                } );
+            },
+            minLength: 2,
+            select: function( event, ui ) {
+                $( "#driver_search" ).val(ui.item.value);
+                $( "#driver_id" ).val(ui.item.id );
+            }
+        });
+    } );
 </script>
 <style>
-    .ChangedHeight{
-        height: 200px!important;
-    }
-    .select2-container .select2-choice, .searchable{
-        display: block!important;
-        height: 46px!important;
-        white-space: nowrap!important;
-        line-height: 26px!important;
-    }
     .errorStar{
         color: #FE3600;
         font-size: 18px;
@@ -72,4 +101,6 @@
         line-height: 1.2em !important;
         color: black !important;
     }
+    .fc-today { background-color: #F2F3F8 !important;
+        color: #777777 !important;}
 </style>

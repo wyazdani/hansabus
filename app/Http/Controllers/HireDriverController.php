@@ -30,18 +30,16 @@ class HireDriverController extends Controller
 
         $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
         
-        $events = $drivers = []; $i=$j=0;
+        $events =  []; $i=$j=0;
         foreach($rows as $row){
 
 
             $row->customer;
-            $driver = $row->driver;
 
             if($j>7){
                 $j = $j-8;
             }
-            $driver['eventColor'] = $colors[$j];
-            $drivers[] = $driver;
+
 
             $events[$i]['id'] = $row->id;
             $events[$i]['resourceId'] = $row->driver_id;
@@ -56,7 +54,7 @@ class HireDriverController extends Controller
             $i++; $j++;
         }
 //        dd($data);
-        return view('hire-drivers.calendar',compact('events','drivers','pageTitle'));
+        return view('hire-drivers.calendar',compact('events','pageTitle'));
     }
     public function getList(Request $request)
     {
@@ -89,14 +87,17 @@ class HireDriverController extends Controller
             $dir = $request->order[0]['dir'];
         }
 
-
-
         $draw = 0;
         if(!empty($request->input('draw')) ) {
             $draw = $request->input('draw');
         }
 
+
         $query = HireDriver::where('status','>',0);
+        if(!empty($request->status)){
+            $query = HireDriver::where('status',$request->status);
+        }
+
         $start =0;
         if(!empty($request->input('start'))){
 
@@ -150,7 +151,7 @@ class HireDriverController extends Controller
             $row->driver;
             $row->customer;
             $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
-            $row->to_date   = date('d..m.Y H:i',strtotime($row->to_date));
+            $row->to_date   = date('d.m.Y H:i',strtotime($row->to_date));
             $data[] = $row;
         }
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];

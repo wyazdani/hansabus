@@ -52,4 +52,8 @@
         'confirm_password'=>'Confirm Password',
         'password_updated'=>'Password updated.',
 
+        'drag'=>'Drag or',
+        'upload'=>'Upload',
+        'allowed_extentions'=>'( pdf, jpg, gif and png files only)',
+
     ];

@@ -104,7 +104,6 @@
 																	</div>
 																</div>
 															</div>
-
 															<div class="form-group">
 																<label for="projectinput8">{{__('driver.other_details') }}</label>
 																<textarea rows="5" name="other_details"

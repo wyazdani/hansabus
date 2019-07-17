@@ -1,5 +1,5 @@
 <div class="card-block">
-    <label for="Attachments">{{__('tour.attachments')}}</label><br>
+{{--    <label for="Attachments">{{__('tour.attachments')}}</label><br>--}}
     <form action="{{ url('file-upload') }}" class="dropzone dropzone-area dropzone_multiple" id="dpz-multiple-files"
           method="POST" enctype="multipart/form-data" style="height: 100px;">
         <div class="form-group">

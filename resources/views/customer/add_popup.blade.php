@@ -48,7 +48,8 @@
                                         <input type="text" name="address" class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}" >
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <input type="hidden" name="status" value="true">
+                                {{--<div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{__('customer.is_active')}}</label>
                                         <div class="form-group">
@@ -64,7 +65,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     </div>

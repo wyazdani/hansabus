@@ -160,7 +160,7 @@
                 ],
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
-                        $('.dataTables_paginate').hide();
+                        // $('.dataTables_paginate').hide();
                     }
                 }
             });
@@ -175,8 +175,11 @@
 
 
             /* DateTime Picker */
-            $('.datetimepicker1').datetimepicker();
+            $('.datetimepicker1').datetimepicker(
+                {format:'DD.MM.YYYY HH:mm'}
+            );
             $('.datetimepicker2').datetimepicker({
+                format:'DD.MM.YYYY HH:mm',
                 useCurrent: false //Important! See issue #1075
             });
             $(".datetimepicker1").on("dp.change", function (e) {

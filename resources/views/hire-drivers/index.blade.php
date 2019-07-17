@@ -100,7 +100,7 @@
             if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
-                    url: '/hire-drivers/'+id,
+                    url: '{{ url('/hire-drivers') }}/'+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {
@@ -131,7 +131,7 @@
                     $.each(t.attachments, function(index, item) {
 
                         if(item.file.includes('.pdf') || item.file.includes('.txt') || item.file.includes('.doc')){
-                            attachments += '<li><a href="{{ url('/attachments') }}/'+item.file+'" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></li>';
+                            attachments += '<li><a href="{{ url('/attachments') }}/'+item.file+'" target="_blank"><i class="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i></a></li>';
                         }else{
                             attachments += '<p><img src="{{ url('/attachments') }}/'+item.file+'" style="display:block; width: 90%; height:auto;"></p>';
                         }
@@ -265,7 +265,7 @@
                 drawCallback: deleteMe|viewTour,
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
-                        $('.dataTables_paginate').hide();
+                        // $('.dataTables_paginate').hide();
                     }
                 }
             });
@@ -280,8 +280,11 @@
 
 
             /* DateTime Picker */
-            $('.datetimepicker1').datetimepicker();
+            $('.datetimepicker1').datetimepicker(
+                {format:'DD.MM.YYYY HH:mm'}
+            );
             $('.datetimepicker2').datetimepicker({
+                format:'DD.MM.YYYY HH:mm',
                 useCurrent: false //Important! See issue #1075
             });
             $(".datetimepicker1").on("dp.change", function (e) {

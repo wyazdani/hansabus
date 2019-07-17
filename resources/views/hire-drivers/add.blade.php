@@ -69,7 +69,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="from_date" autocomplete="off"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
-																				   value="{{ (!empty($hire->from_date))?date('m/d/Y h:i A',strtotime($hire->from_date)):old('from_date') }}"
+																				   value="{{ (!empty($hire->from_date))?date('d.m.Y H:i',strtotime($hire->from_date)):old('from_date') }}"
 																			/>
 																		</div>
 																	</div>
@@ -80,7 +80,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="to_date" autocomplete="off"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
-																				   value="{{ (!empty($hire->to_date))?date('m/d/Y h:i A',strtotime($hire->to_date)):old('to_date') }}"
+																				   value="{{ (!empty($hire->to_date))?date('d.m.Y H:i',strtotime($hire->to_date)):old('to_date') }}"
 																			/>
 																		</div>
 																	</div>
@@ -146,9 +146,8 @@
 												@foreach($attachments as $attachment)
 													@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 													@if(in_array($ext,['png','jpg','jpeg','gif']))
-														<li>
-															<a href="javascript:;" onclick="showImg('{{ url('/attachments/'.$attachment->file) }}')" >
-																<img src="{{ url('/attachments/'.$attachment->file) }}" border="0">
+														<li><a href="javascript:;" onclick="showImg('{{ url('/attachments/'.$attachment->file) }}')" ><img
+																		src="{{ url('/attachments/'.$attachment->file) }}" border="0">
 															</a>
 														</li>
 													@endif
@@ -157,9 +156,16 @@
 											@foreach($attachments as $attachment)
 												@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 												@if(!in_array($ext,['png','jpg','jpeg','gif']))
-													<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
-															{{ $attachment->file }}
-														</a></div>
+
+
+													@if(in_array($ext,['PDF','pdf']))
+														<div class="col-md-3 mb-2"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank"><i
+																		class="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i></a></div>
+													@else
+													<div class="col-md-3 mb-1"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+															{{ $attachment->file }}</a></div>
+													@endif
+
 												@endif
 											@endforeach
 										</div>
@@ -241,9 +247,10 @@
 			passengersCheck();
 			/* DateTime Picker */
 			$('.datetimepicker1').datetimepicker(
-					// { minDate: moment() }
+					{format:'DD.MM.YYYY HH:mm'}
 			);
 			$('.datetimepicker2').datetimepicker({
+				format:'DD.MM.YYYY HH:mm',
 				useCurrent: false //Important! See issue #1075
 			});
 			$(".datetimepicker1").on("dp.change", function (e) {

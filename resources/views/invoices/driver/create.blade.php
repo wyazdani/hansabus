@@ -67,7 +67,7 @@
                                 <form class="form" method="POST" action="{{ route('generate-driver-invoice') }}"
                                       id="theForm">
                                     @csrf
-                                <input type="hidden" name="customer_id" id="customer_id" value="">
+                                <input type="hidden" name="customer_id" id="customer_id" value="{{request()->get('customer_id')}}">
                                 <input type="hidden" name="total" id="total" value="">
 
                                 <table class="table table-xl mb-0" id="listingTable">
@@ -198,59 +198,7 @@
             }
         }
 
-        function getHires(){
 
-            if($('#customerID').val() == ''){
-                $('#hiresDiv').html('');
-            }
-
-            var data =  {
-                'status':2,
-                'customer_id' : $('#customerID').val(),
-                'from_date' : $('#from_date').val(),
-                'to_date' : $('#to_date').val(),
-                'id' : $('#hireID').val(),
-            };
-            $.ajax({
-                url: '{{ url('/hire-driver-list') }}',
-                data: data,
-                type: 'GET',  // user.destroy
-                success: function(r) {
-                    var html = '';
-
-                    var i;
-                    var total = 0;
-
-                    if (r.data.length) {
-
-                    for (i = 0; i < r.data.length; ++i) {
-
-                        total += parseInt(r.data[i].price);
-
-                        html +=
-                            '<tr>' +
-                            '<td><div class="custom-control custom-checkbox" style="top: -5px;">' +
-                            '<input type="checkbox" id="a' + r.data[i].id + '" ' +
-                            'class="custom-control-input form-check-input ids" onclick="addHires();" ' +
-                            'value="' + r.data[i].id + '" name="ids[]">' +
-                            '<label class="custom-control-label" for="a' + r.data[i].id + '">&nbsp;</label></div></td>' +
-                            '<td>' + r.data[i].id + '</td>' +
-                            '<td>' + r.data[i].driver.driver_name + '</td>' +
-                            '<td>' + r.data[i].from_date + '</td>' +
-                            '<td>' + r.data[i].to_date + '</td>' +
-                            '<td id="price_' + r.data[i].id + '">' + r.data[i].price + '</td>' +
-                            '<td><a href="javascript:;" onclick="generateSingleInvoice(' + r.data[i].id + ')" class="btn-sm btn btn-outline-primary">{{__("messages.generate_invoice")}}</a></td>' +
-                            '</tr>';
-                    }
-                        $('#hiresDiv').html(html);
-
-                    }else{
-                        $('#hiresDiv').html('<tr><td colspan="8" class="text-center">{{__("messages.no_record")}}.</td></tr>');
-                    }
-                    // console.log(html);
-                }
-            });
-        }
         $(document).ready(function() {
 
 
@@ -277,18 +225,6 @@
                 addHires();
             });
 
-
-            /* filter by customer, from/to dates change */
-            $('.filterBox ').on('change', function(){
-
-                $('#customer_id').val($('#customerID').val());
-                // getHires();
-            });
-            /* filter by search button click */
-            $('#searchBtn').on('click', function(){
-                // getHires();
-            });
-
             /* DateTime Picker */
             $('.datetimepicker1').datetimepicker();
             $('.datetimepicker2').datetimepicker({
@@ -300,8 +236,6 @@
             $(".datetimepicker2").on("dp.change", function (e) {
                 $('.datetimepicker1').data("DateTimePicker").maxDate(e.date);
             });
-
-            // getHires();
 
         });
 

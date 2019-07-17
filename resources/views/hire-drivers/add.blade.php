@@ -137,9 +137,8 @@
 								</form>
 
 
-
+								<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
 								@if(!empty($attachments))
-									<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
 									<div class="row">
 										<div class="col-lg-12">
 											<ul class="upload-list">

@@ -191,9 +191,9 @@
 								</form>
 						</form>
 
-
+						<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
 						@if(!empty($attachments))
-							<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
+
 							<div class="row">
 								<div class="col-lg-12">
 									<ul class="upload-list">
@@ -208,7 +208,7 @@
 											@endif
 										@endforeach
 									</ul>
-									
+
 									@foreach($attachments as $attachment)
 										@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 										@if(!in_array($ext,['png','jpg','jpeg','gif']))

@@ -69,7 +69,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="from_date" autocomplete="off"
 																				   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
-																				   value="{{ (!empty($hire->from_date))?date('m/d/Y h:i A',strtotime($hire->from_date)):old('from_date') }}"
+																				   value="{{ (!empty($hire->from_date))?date('d.m.Y H:i',strtotime($hire->from_date)):old('from_date') }}"
 																			/>
 																		</div>
 																	</div>
@@ -80,7 +80,7 @@
 																		<div class='input-group date'>
 																			<input type='text' name="to_date" autocomplete="off"
 																				   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
-																				   value="{{ (!empty($hire->to_date))?date('m/d/Y h:i A',strtotime($hire->to_date)):old('to_date') }}"
+																				   value="{{ (!empty($hire->to_date))?date('d.m.Y H:i',strtotime($hire->to_date)):old('to_date') }}"
 																			/>
 																		</div>
 																	</div>
@@ -247,9 +247,10 @@
 			passengersCheck();
 			/* DateTime Picker */
 			$('.datetimepicker1').datetimepicker(
-					// { minDate: moment() }
+					{format:'DD.MM.YYYY HH:mm'}
 			);
 			$('.datetimepicker2').datetimepicker({
+				format:'DD.MM.YYYY HH:mm',
 				useCurrent: false //Important! See issue #1075
 			});
 			$(".datetimepicker1").on("dp.change", function (e) {

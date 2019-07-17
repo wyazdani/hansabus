@@ -226,8 +226,11 @@
             });
 
             /* DateTime Picker */
-            $('.datetimepicker1').datetimepicker();
+            $('.datetimepicker1').datetimepicker(
+                {format:'DD.MM.YYYY HH:mm'}
+            );
             $('.datetimepicker2').datetimepicker({
+                format:'DD.MM.YYYY HH:mm',
                 useCurrent: false //Important! See issue #1075
             });
             $(".datetimepicker1").on("dp.change", function (e) {

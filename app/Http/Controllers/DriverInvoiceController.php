@@ -59,7 +59,6 @@ class DriverInvoiceController extends Controller
 
 
         $rows = $query->orderBy('id','DESC')->paginate(10);
-        $data=[];
         $general = new General();
         foreach($rows as $row){
 
@@ -67,9 +66,7 @@ class DriverInvoiceController extends Controller
             $row->customer;
             $row->status = ($row->status == 1)?'Unpaid':'Paid';
             $row->created = date('d.m.Y H:i',strtotime($row->created_at));
-            $data[] = $row;
         }
-//        dd($rows);
         return view('invoices.driver.index',compact('pageTitle','customers','rows'));
     }
 
@@ -77,10 +74,6 @@ class DriverInvoiceController extends Controller
 
         $pageTitle = __('driver_invoice.heading.add');
         $customers = Customer::where('status','1')->get(['name','id']);
-
-
-
-
 
         $query = HireDriver::where('status',2);
 
@@ -129,80 +122,6 @@ class DriverInvoiceController extends Controller
         return view('invoices.driver.create',compact('pageTitle','customers','rows'));
     }
 
-    /*public function getList(Request $request)
-    {
-        $draw = 0;
-        if(!empty($request->input('draw')) ) {
-            $draw = $request->input('draw');
-        }
-
-        if(!empty($request->input('status'))){
-            $query = DriverInvoice::where('status',$request->input('status'));
-        }else{
-            $query = DriverInvoice::where('status','>',0);
-        }
-
-        $start =0;
-        if(!empty($request->input('start'))){
-
-            $start = ($request->input('start')-1);
-        }
-        $limit = 2;
-        if(!empty($request->input('length'))){
-            $limit = $request->input('length');
-        }
-
-        if(!empty($request->id)){
-            $query = $query->where('id',(int)$request->id);
-        }
-        if(!empty($request->customer_id)){
-            $query = $query->where('customer_id',$request->customer_id);
-        }
-
-        $from =''; $to ='';
-        if(!empty($request->from_date)){
-
-            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
-        }
-        if(!empty($request->to_date)){
-            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
-        }
-        if(!empty($from) && !empty($to)){
-
-            $query = $query->whereBetween('created_at', [$from, $to]);
-
-        }elseif(!empty($from)){
-
-            $query = $query->where('created_at','>=',$from);
-        }elseif(!empty($to)){
-
-            $query = $query->where('created_at','<=',$to);
-        }
-
-        $recordsTotal = $query->count();
-//        $rows = $query->orderBy('id','DESC')->offset($start)->limit($limit)->get([
-//            'id','customer_id','status','total','created_at']);
-
-        $rows = $query->orderBy('id','DESC')->paginate(2);
-        $data=[];
-
-        $general = new General();
-
-        foreach($rows as $row){
-
-            $row->invoice_id = (string)$general->invoiceNumber($row->id);
-            $row->customer;
-            $row->status = ($row->status == 1)?'Unpaid':'Paid';
-            $row->created = date('d.m.Y H:i',strtotime($row->created_at));
-//            dd($row);
-            $data[] = $row;
-        }
-//        dd($data);
-        unset($rows);
-        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
-    }*/
-
-
     public function markAsPaid(Request $request){
 
         if(!empty($request->ids)){
@@ -218,9 +137,6 @@ class DriverInvoiceController extends Controller
         return redirect('/driver-invoices');
     }
     public function generateInvoice(Request $request){
-
-//        dd($request->all());
-        /* save invoice */
 
         if(!empty($request->customer_id) && $request->customer_id>0) {
 

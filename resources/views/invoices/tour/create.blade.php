@@ -13,38 +13,42 @@
                         </div>
                     </div>
                     <div>&nbsp;</div>
+                    <form class="form" method="GET" action="{{ route('tour-invoice-create') }}" id="searchForm">
+                        @csrf
                     <div class="row">
-                        <div class="col-md-4">
+
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <select id="customerID" class="form-control filterBox">
+                                <select id="customer_id" name="customer_id" class="form-control filterBox">
                                     <option value="">{{__('tour.select_customer')}}</option>
                                     @foreach($customers as $customer)
-                                        <option value="{{$customer->id}}">{{$customer->name}}</option>
-                                    @endforeach
+                                        <option value="{{$customer->id}}"
+                                        @if($customer->id == request()->get('customer_id') )
+                                            {{ 'Selected' }}
+                                                @endif
+                                        >{{$customer->name}}</option> @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <input type='text' id="from_date" autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
-                            </div>
+                        <div class="col-md-1.5">
+                            <div class="form-group"><input type='text' name="from_date" id="from_date"  value="{{request()->get('from_date')}}"
+                                                           autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" /></div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' id="to_date" autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
+                                <input type='text' name="to_date" id="to_date" value="{{request()->get('to_date')}}"
+                                       autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="form-group">
-                                <input type='text' id="tourID" placeholder="Tour ID" class="form-control" />
-                            </div>
+                            <div class="form-group"><input type='text' name="id" id="invoiceID" autocomplete="off" value="{{request()->get('id')}}"
+                                                           placeholder="Invoice ID" class="form-control" /></div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" onclick="$('#searchForm').submit()" class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
-
                         <div class="col-md-6" >
                             <div class="form-group text-left">
                                 <a href="javascript:;" onclick="$('#theForm').submit()"
@@ -52,8 +56,8 @@
                                    id="generate_invoice">{{ __('messages.generate_invoice') }}</a>
                             </div>
                         </div>
-
                     </div>
+                    </form>
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
@@ -61,7 +65,7 @@
                             <div class="table-responsive">
                                 <form class="form" method="POST" action="{{ route('generate-tour-invoice') }}" id="theForm">
                                     @csrf
-                                <input type="hidden" name="customer_id" id="customer_id" value="">
+                                <input type="hidden" name="customer_id" id="customerID" value="{{request()->get('customer_id')}}">
                                 <input type="hidden" name="total" id="total" value="">
 
                                 <table class="table table-hover table-xl mb-0" id="listingTable">
@@ -83,6 +87,25 @@
                                     </tr>
                                     </thead>
                                     <tbody id="toursDiv">
+
+                                    @foreach($rows as $row)
+                                        <tr>
+                                            <td><div class="custom-control custom-checkbox" style="top: -5px;">
+                                                    <input type="checkbox" id="a{{$row->id}}" class="custom-control-input form-check-input ids" onclick="addTours();" value="{{$row->id}}" name="ids[]">
+                                                    <label class="custom-control-label" for="a{{$row->id}}">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <td>{{ $row->id }}</td>
+                                            <td>{{ $row->vehicle->name }}</td>
+                                            <td>{{ $row->from_date }}</td>
+                                            <td>{{ $row->to_date }}</td>
+                                            <td>{{ $row->driver->driver_name }}</td>
+                                            <td id="price_{{$row->id}}">{{ $row->price }}</td>
+                                            <td><a href="javascript:;" onclick="generateSingleInvoice('{{ $row->id }}')" class="btn-sm btn btn-outline-primary">{{__("messages.generate_invoice")}}</a></td>
+                                        </tr>
+                                    @endforeach
+                                    <tr><td colspan="7">{{$rows->appends(request()->input())->links()}}</td> </tr>
+
                                     </tbody>
                                 </table>
                                 </form>
@@ -116,7 +139,9 @@
                 url: '{{ url('/tours') }}/'+id,
                 type: 'GET',  // user.destroy
                 success: function(r) {
-                    $('#customer_id').val(r.customer_id);
+
+                    console.log(r.customer_id);
+                    $('#customerID').val(r.customer_id);
                     $('#theForm').submit();
                 }
             });
@@ -149,7 +174,6 @@
             }
             if(okay){
 
-
                 var total = getTotal();
                 $('#total').val(total);
 
@@ -157,7 +181,6 @@
 
                     console.log(total);
                     $('#generate_invoice').removeClass('disabled');
-
                 }
             }
             else {
@@ -165,65 +188,7 @@
             }
         }
 
-        function getTours(){
 
-            if($('#customerID').val() == ''){
-                $('#toursDiv').html('');
-            }
-
-            var data =  {
-                'status':2,
-                'customer_id' : $('#customerID').val(),
-                'from_date' : $('#from_date').val(),
-                'to_date' : $('#to_date').val(),
-                'id' : $('#tourID').val(),
-            };
-            $.ajax({
-                url: '{{ url('/tours-list') }}',
-                data: data,
-                type: 'GET',  // user.destroy
-                success: function(r) {
-                    var html = '';
-
-                    var i;
-                    var total = 0;
-
-                    if (r.data.length) {
-
-                    for (i = 0; i < r.data.length; ++i) {
-
-                        total += parseInt(r.data[i].price);
-
-                        html +=
-                            '<tr>' +
-                            '<td><div class="custom-control custom-checkbox" style="top: -5px;">' +
-                            '<input type="checkbox" id="a' + r.data[i].id + '" ' +
-                            'class="custom-control-input form-check-input ids" onclick="addTours();" ' +
-                            'value="' + r.data[i].id + '" name="ids[]">' +
-                            '<label class="custom-control-label" for="a' + r.data[i].id + '">&nbsp;</label></div></td>' +
-                            '<td>' + r.data[i].id + '</td>' +
-                            '<td>' + r.data[i].vehicle.name + '</td>' +
-                            '<td>' + r.data[i].from_date + '</td>' +
-                            '<td>' + r.data[i].to_date + '</td>' +
-                            '<td>' + r.data[i].driver.driver_name + '</td>' +
-                            '<td id="price_' + r.data[i].id + '">' + r.data[i].price + '</td>' +
-                            '<td><a href="javascript:;" onclick="generateSingleInvoice(' + r.data[i].id + ')" class="btn-sm btn btn-outline-primary">{{__("messages.generate_invoice")}}</a></td>' +
-                            '</tr>';
-                    }
-                   /* html +=
-                        '<tr>' +
-                        '<td colspan="7" style="text-align: right;">Total:</td>' +
-                        '<td>' + total + '</td>' +
-                        '</tr>';*/
-                        $('#toursDiv').html(html);
-
-                    }else{
-                        $('#toursDiv').html('<tr><td colspan="8" class="text-center">{{__("messages.no_record")}}.</td></tr>');
-                    }
-                    // console.log(html);
-                }
-            });
-        }
         $(document).ready(function() {
 
 
@@ -251,16 +216,7 @@
             });
 
 
-            /* filter by customer, from/to dates change */
-            $('.filterBox ').on('change', function(){
 
-                $('#customer_id').val($('#customerID').val());
-                getTours();
-            });
-            /* filter by search button click */
-            $('#searchBtn').on('click', function(){
-                getTours();
-            });
 
             /* DateTime Picker */
             $('.datetimepicker1').datetimepicker();
@@ -274,7 +230,7 @@
                 $('.datetimepicker1').data("DateTimePicker").maxDate(e.date);
             });
 
-            getTours();
+            // getTours();
 
         });
 

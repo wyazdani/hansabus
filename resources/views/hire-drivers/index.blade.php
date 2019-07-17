@@ -230,8 +230,14 @@
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
-                        buttons = edit+trash+view;
-                        return buttons;
+
+                        buttons = ''+view;
+                        if(row.status == '1' || row.status == '2'){
+                            buttons = edit+trash+view;
+                        }
+                        return '<div class="text-right">'+buttons+'</div>';
+
+
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],

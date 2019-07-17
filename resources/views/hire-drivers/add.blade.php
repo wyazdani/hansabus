@@ -93,39 +93,44 @@
 																			   value="{{ (!empty($hire->price))?$hire->price:old('price') }}" >
 																	</div>
 																</div>
-																<div class="col-md-6">
-																	<div class="form-group">
-																		<label for="customSelect">{{__('hire.customer')}} <span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
-																		<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
-																			<option value=""> {{__('hire.select_customer')}}</option>
-																			@foreach($customers as $customer)
-																				<option value="{{ $customer->id  }}"
-																				@if(!empty($hire->customer_id) && $hire->customer_id==$customer->id || old('customer_id') == $customer->id)
-																					{{ 'Selected' }}
-																						@endif
-																				>{{ $customer->name }}</option>
-																			@endforeach
-																		</select>
 
+
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
+
+																		<span style="float: right"><a href="javascriot:;" onclick="addCustomer()">{{strtolower(__('customer.heading.add'))}}</a></span>
+																		<input type='text' name="customer_search" id="customer_search"
+																			   @if(!empty($hire->customer->name))
+																			   value="{{ old('customer_search',$hire->customer->name) }}"
+																			   @else value="{{ old('customer_search','') }}" @endif
+																			   class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
+																		<input type="hidden" id="customer_id" name="customer_id"
+																			   @if(!empty($hire->customer_id))
+																			   value="{{ old('customer_id',$hire->customer_id) }}"
+																			   @else value="{{ old('customer_id','') }}" @endif
+																		>
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<label for="customSelect">{{__('hire.driver')}} <span class="{{($errors->has('driver_id')) ?'errorStar':''}}">*</span></label>
-																		<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
-																			<option value="">{{__('hire.select_driver')}}</option>
-																			@foreach($drivers as $driver)
-																				<option value="{{ $driver->id  }}"
-																				@if(!empty($hire->driver_id) && $hire->driver_id==$driver->id || old('driver_id') == $driver->id)
-																					{{ 'Selected' }}
-																						@endif
-																				>{{
-																	$driver->driver_name
-																	 }}</option>
-																			@endforeach
-																		</select>
+																		<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}">*</span></label>
+																		<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
+																		<input type='text' name="driver_search" id="driver_search"
+																			   @if(!empty($hire->driver->driver_name))
+																			   value="{{ old('driver_search',$hire->driver->driver_name) }}"
+																			   @else value="{{ old('driver_search','') }}" @endif
+																			   class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
+																		<input type="hidden" id="driver_id" name="driver_id"
+																			   @if(!empty($hire->driver_id))
+																			   value="{{ old('driver_id',$hire->driver_id) }}"
+																			   @else value="{{ old('driver_id','') }}" @endif
+																		>
 																	</div>
 																</div>
+
+
+
 
 															</div>
 														</div>
@@ -202,7 +207,8 @@
 @endsection
 @section('pagejs')
 	@include('tours.img_view')
-
+	@include('customer.add_popup')
+	@include('drivers.add_popup')
 	<script type="text/javascript">
 		function passengersCheck(){
 

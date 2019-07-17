@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hire-drivers/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hire-drivers/detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/service/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/service/pdf_design.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tours/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,13 +34,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="291" column="85" lean-forward="true" selection-start-line="291" selection-start-column="33" selection-end-line="291" selection-end-column="85" />
-              <folding>
-                <element signature="e#40#76#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="399">
+              <caret line="21" column="112" lean-forward="true" selection-start-line="21" selection-start-column="75" selection-end-line="21" selection-end-column="112" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="21" column="113" selection-start-line="21" selection-start-column="113" selection-end-line="21" selection-end-column="113" />
             </state>
           </provider>
         </entry>
@@ -119,22 +119,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriverInvoiceController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="116" column="75" lean-forward="true" selection-start-line="116" selection-start-column="75" selection-end-line="116" selection-end-column="75" />
-              <folding>
-                <element signature="e#40#64#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="265" column="10" selection-start-line="265" selection-start-column="10" selection-end-line="265" selection-end-column="10" />
+            <state relative-caret-position="266">
+              <caret line="238" column="5" lean-forward="true" selection-start-line="238" selection-start-column="5" selection-end-line="238" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -244,10 +232,8 @@
         <option value="$PROJECT_DIR$/app/Models/DriverInvoice.php" />
         <option value="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DriverInvoiceController.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/hire-drivers/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
         <option value="$PROJECT_DIR$/resources/views/hire-drivers/detail.blade.php" />
@@ -256,6 +242,8 @@
         <option value="$PROJECT_DIR$/resources/views/invoices/service/pdf_design.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" />
       </list>
     </option>
   </component>
@@ -500,12 +488,12 @@
       <workItem from="1562907791460" duration="20630000" />
       <workItem from="1563171393726" duration="23450000" />
       <workItem from="1563258554787" duration="20435000" />
-      <workItem from="1563338709644" duration="7426000" />
+      <workItem from="1563338709644" duration="7969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="348884000" />
+    <option name="totallyTimeSpent" value="349427000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -799,16 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="102" column="68" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="68" />
-          <folding>
-            <element signature="e#7455#7473#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
@@ -827,13 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="266" column="75" lean-forward="true" selection-start-line="262" selection-start-column="24" selection-end-line="266" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="69" column="87" selection-start-line="69" selection-start-column="87" selection-end-line="69" selection-end-column="87" />
         </state>
       </provider>
     </entry>
@@ -931,8 +902,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="265" column="10" selection-start-line="265" selection-start-column="10" selection-end-line="265" selection-end-column="10" />
+        <state relative-caret-position="266">
+          <caret line="238" column="5" lean-forward="true" selection-start-line="238" selection-start-column="5" selection-end-line="238" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/driver/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="112" lean-forward="true" selection-start-line="21" selection-start-column="75" selection-end-line="21" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="113" selection-start-line="21" selection-start-column="113" selection-end-line="21" selection-end-column="113" />
         </state>
       </provider>
     </entry>

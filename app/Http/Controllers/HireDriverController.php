@@ -289,8 +289,8 @@ class HireDriverController extends Controller
         $HireDriver->driver;
         $HireDriver->customer;
         $HireDriver->attachments;
-        $HireDriver->from_date = date('d/m/Y h:i A',strtotime($HireDriver->from_date));
-        $HireDriver->to_date = date('d/m/Y h:i A',strtotime($HireDriver->to_date));
+        $HireDriver->from_date = date('d.m.Y H:i',strtotime($HireDriver->from_date));
+        $HireDriver->to_date = date('d.m.Y H:i',strtotime($HireDriver->to_date));
         return $HireDriver;
     }
 

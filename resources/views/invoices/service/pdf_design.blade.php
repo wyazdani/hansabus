@@ -10,10 +10,16 @@
                         <tr>
                             <td class="left" width="300px">
                                 <img width="300px" src="images/hansa_logo_colored.png" >
-                                <div class="right" style="padding-right: 10px;">
-                                    <p><strong>{{__('tour.invoice_date')}}:  </strong>{{ date('d-m-Y') }}</p>
-                                    <p><strong>{{__('tour.invoice_number')}}:  </strong>{{  str_pad($service->id, 9, "0", STR_PAD_LEFT) }}</p>
-                                </div>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="55%" class="right"><strong>{{__('tour.invoice_date')}}:  </strong><br>
+                                            <strong>{{__('tour.invoice_number')}}:  </strong>
+                                        </td>
+                                        <td width="45%" class="right">{{ date('d.m.Y H:i',strtotime($service->created_at)) }}<br>
+                                            {{  str_pad($service->id, 9, "0", STR_PAD_LEFT) }}
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                             <td class="right">
                                 <strong style="font-size: 10px;"><span>{{__('tour.customer_information')}}</span></strong>

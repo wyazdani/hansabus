@@ -146,9 +146,8 @@
 												@foreach($attachments as $attachment)
 													@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 													@if(in_array($ext,['png','jpg','jpeg','gif']))
-														<li>
-															<a href="javascript:;" onclick="showImg('{{ url('/attachments/'.$attachment->file) }}')" >
-																<img src="{{ url('/attachments/'.$attachment->file) }}" border="0">
+														<li><a href="javascript:;" onclick="showImg('{{ url('/attachments/'.$attachment->file) }}')" ><img
+																		src="{{ url('/attachments/'.$attachment->file) }}" border="0">
 															</a>
 														</li>
 													@endif
@@ -157,9 +156,16 @@
 											@foreach($attachments as $attachment)
 												@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 												@if(!in_array($ext,['png','jpg','jpeg','gif']))
-													<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
-															{{ $attachment->file }}
-														</a></div>
+
+
+													@if(in_array($ext,['PDF','pdf']))
+														<div class="col-md-3 mb-2"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank"><i
+																		class="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i></a></div>
+													@else
+													<div class="col-md-3 mb-1"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+															{{ $attachment->file }}</a></div>
+													@endif
+
 												@endif
 											@endforeach
 										</div>

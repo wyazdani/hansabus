@@ -167,7 +167,7 @@
                 drawCallback: deleteMe|viewCustomer,
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
-                        $('.dataTables_paginate').hide();
+                        // $('.dataTables_paginate').hide();
                     }
                 }
 

@@ -259,10 +259,10 @@ class TourInvoiceController extends Controller
 
             $tours[] = $inv->tour;
         }
-
         $vat = ($total/100)*19;
 
         $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tours','total','vat'));
+//        return $pdf->stream();
         return $pdf->download('tours_invoice.pdf');
     }
 }

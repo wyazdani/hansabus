@@ -2,18 +2,25 @@
 
 @section('content')
 
-<table id="table" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="color: #333;font-size: 12px;">
+<table id="table" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
+       style="color: #333;font-size: 12px;">
     <tbody>
     <tr>
         <td>
-            <table style="font-size: 12px; padding: 10px 0 10px!important; margin-top: -20px;" width="100%">
+            <table style="font-size: 12px; padding: 10px 0 0 !important; margin-top: -20px;" width="100%">
                 <tr>
                     <td class="left" width="300px">
                         <img width="300px" src="images/hansa_logo_colored.png" >
-                        <div class="right" style="padding-right: 10px;">
-                            <p><strong>{{__('tour.invoice_date')}}:  </strong>{{ date('d-m-Y') }}</p>
-                            <p><strong>{{__('tour.invoice_number')}}:  </strong>{{  str_pad($invoice->id, 9, "0", STR_PAD_LEFT) }}</p>
-                        </div>
+                        <table width="100%">
+                            <tr>
+                                <td width="55%" class="right"><strong>{{__('tour.invoice_date')}}:  </strong><br>
+                                    <strong>{{__('tour.invoice_number')}}:  </strong>
+                                </td>
+                                <td width="45%" class="right">{{ date('d.m.Y H:i',strtotime($invoice->created_at)) }}<br>
+                                    {{  str_pad($invoice->id, 9, "0", STR_PAD_LEFT) }}
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                     <td class="right">
                         <strong style="font-size: 10px;"><span>{{__('tour.customer_information')}}</span></strong>

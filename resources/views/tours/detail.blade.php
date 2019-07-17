@@ -48,9 +48,9 @@
 						<div class="col-md-6">
 							<dl>
 								<dt>{{ __('tour.from') }}:</dt>
-								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->from_date)) }}</dd>
+								<dd>{{ date('d.m.Y H:i',strtotime($Tour->from_date)) }}</dd>
 								<dt>{{ __('tour.to') }}:</dt>
-								<dd>{{ date('m/d/Y h:i A',strtotime($Tour->to_date)) }}</dd>
+								<dd>{{ date('d.m.Y H:i',strtotime($Tour->to_date)) }}</dd>
 
 								<dt>{{ __('tour.guide') }}:</dt>
 								<dd>{{ $Tour->guide }}</dd>

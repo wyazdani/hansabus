@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select id="customerID" name="customer_id" class="form-control filterBox">
+                                <select id="customerID" name="customer_id" onchange="$('#searchForm').submit()" class="form-control filterBox">
                                     <option value="">{{__('tour.select_customer')}}</option>
                                     @foreach($customers as $customer)
                                         <option value="{{$customer->id}}"

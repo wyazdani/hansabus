@@ -44,6 +44,6 @@ return [
     'status_changed'=>'Tour status changed.',
     'vehicle_already_booked'=>'Vehicle already booked.',
 
-    ''=>'',
+    'passengers_allowed'=>' passengers allowed.',
 
     ];

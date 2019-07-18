@@ -126,9 +126,8 @@
 																		<div class="form-group">
 																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}">*</span></label>
 																			<input type="number" name="passengers" id="passengers"
-
 																				   onkeyup='if(!passengersCheck(this.value)) this.value="";'
-																					   class="{{($errors->has('passengers')) ?'error_input form-control':'form-control'}}"
+																				   class="{{($errors->has('passengers')) ?'error_input form-control':'form-control'}}"
 																				   value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 																		</div>
 																	</div>
@@ -252,6 +251,7 @@
 		</div>
 	</div>
 	<input type="hidden" id="seatsAllowed" value="">
+	<div class='error' style='display:none'>I did something!</div>
 @endsection
 @section('pagejs')
 	@include('tours.img_view')
@@ -265,9 +265,18 @@
 			if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
 
 				// console.log('passengers count is fine.');
+				$('#passengers').removeClass('error_input');
 				return true;
 			}else{
 				// console.log('vehicle overloaded.');
+				// $('.error').stop().fadeIn(400).delay(3000).fadeOut(400);
+
+				if($('#passengers').val() !=''){
+
+					$('#passengers').addClass('error_input');
+					toastr.info(seatsAllowed+'{{__('tour.passengers_allowed')}}');
+				}
+
 				return false;
 			}
 		}
@@ -281,7 +290,7 @@
 
 					$('#seatsAllowed').val(parseInt(v.seats));
 					passengersCheck();
-					console.log('seats allowed: '+v.seats);
+					// console.log('seats allowed: '+v.seats);
 				}
 			});
 		}

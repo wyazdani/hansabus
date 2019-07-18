@@ -102,5 +102,25 @@
         color: black !important;
     }
     .fc-today { background-color: #F2F3F8 !important;
-        color: #777777 !important;}
+        color: #777777 !important;
+    }
+    .error {
+        width:200px;
+        height:20px;
+        height:auto;
+        position:absolute;
+        left:50%;
+        margin-left:-100px;
+        bottom:10px;
+        background-color: #383838;
+        color: #F0F0F0;
+        font-family: Calibri;
+        font-size: 20px;
+        padding:10px;
+        text-align:center;
+        border-radius: 2px;
+        -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+        -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+        box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    }
 </style>

@@ -233,21 +233,38 @@ class ToursController extends Controller
 
             $alreadyBooked = false;
             /* check for driver bookings */
+
             $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
-                ->where(function ($query) use ($from, $to) {
-                    $query
-                        ->whereBetween('from_date', [$from, $to])
-                        ->orWhere(function ($query) use ($from, $to) {
-                            $query->whereBetween('to_date', [$from, $to]);
-                        });
-                })->first();
-            if ($driverBooked) {
+                ->where('from_date','<=',$from)
+                ->where('to_date','>=',$from)
+                ->first();
+
+            $driverBooked2 = DriverBooking::where('driver_id', $request->driver_id)
+                ->where('from_date','<=',$to)
+                ->where('to_date','>=',$to)
+                ->first();
+
+            if ($driverBooked ||  $driverBooked2) {
 
                 $alreadyBooked = true;
                 toastr()->error(__('hire.already_booked'));
             }
+
+//            dd( $alreadyBooked);
             /* check for vehicle bookings */
             $vehicleBooked = Tour::where('vehicle_id', $request->vehicle_id)
+                ->where('status', '>', 1)->where('status', '<', 5)
+                ->where('from_date','<=',$from)
+                ->where('to_date','>=',$from)
+                ->first();
+
+            $vehicleBooked2 = Tour::where('vehicle_id', $request->vehicle_id)
+                ->where('status', '>', 1)->where('status', '<', 5)
+                ->where('from_date','<=',$to)
+                ->where('to_date','>=',$to)
+                ->first();
+
+            /*$vehicleBooked = Tour::where('vehicle_id', $request->vehicle_id)
                 ->where('status', '>', 1)->where('status', '<', 5)
                 ->where(function ($query) use ($from, $to) {
                     $query
@@ -255,8 +272,8 @@ class ToursController extends Controller
                         ->orWhere(function ($query) use ($from, $to) {
                             $query->whereBetween('to_date', [$from, $to]);
                         });
-                })->first();
-            if ($vehicleBooked) {
+                })->first();*/
+            if ($vehicleBooked || $vehicleBooked2) {
 
                 $alreadyBooked = true;
                 toastr()->error(__('tour.vehicle_already_booked'));

@@ -123,7 +123,7 @@
             if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
-                    url: '/tours/'+id,
+                    url: '{{ url('/tours') }}/'+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {

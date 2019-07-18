@@ -57,7 +57,7 @@
 			if(confirm('{{__("messages.want_to_delete")}}')){
 
 				$.ajax({
-					url: '/v-drivers/'+id,
+					url: '{{ url('/v-drivers') }}/'+id,
 					data: "_token={{ csrf_token() }}",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {

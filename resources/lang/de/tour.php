@@ -46,4 +46,5 @@ return [
     'status_changed'=>'Tourstatus geändert.',
     'vehicle_already_booked'=>'Fahrzeug bereits gebucht.',
 
+    'passengers_allowed'=>' passagiere erlaubt.',
 ];

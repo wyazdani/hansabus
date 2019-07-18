@@ -70,33 +70,27 @@
 																			<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 
 																			<span style="float: right"><a href="javascriot:;" onclick="addCustomer()">{{strtolower(__('customer.heading.add'))}}</a></span>
-
 																			<input type='text' name="customer_search" id="customer_search"
 																				   @if(!empty($tour->customer->name))
 																				   		value="{{ old('customer_search',$tour->customer->name) }}"
 																					@else value="{{ old('customer_search','') }}" @endif
 																				   class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
-
 																			<input type="hidden" id="customer_id" name="customer_id"
 																				   @if(!empty($tour->customer_id))
 																				   value="{{ old('customer_id',$tour->customer_id) }}"
 																				   @else value="{{ old('customer_id','') }}" @endif
 																				   >
-
 																		</div>
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">
 																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}">*</span></label>
 																			<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
-
-
 																			<input type='text' name="driver_search" id="driver_search"
 																				   @if(!empty($tour->driver->driver_name))
 																				   value="{{ old('driver_search',$tour->driver->driver_name) }}"
 																				   @else value="{{ old('driver_search','') }}" @endif
 																				   class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
-
 																			<input type="hidden" id="driver_id" name="driver_id"
 																				   @if(!empty($tour->driver_id))
 																				   value="{{ old('driver_id',$tour->driver_id) }}"
@@ -132,9 +126,8 @@
 																		<div class="form-group">
 																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}">*</span></label>
 																			<input type="number" name="passengers" id="passengers"
-
 																				   onkeyup='if(!passengersCheck(this.value)) this.value="";'
-																					   class="{{($errors->has('passengers')) ?'error_input form-control':'form-control'}}"
+																				   class="{{($errors->has('passengers')) ?'error_input form-control':'form-control'}}"
 																				   value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 																		</div>
 																	</div>
@@ -258,6 +251,7 @@
 		</div>
 	</div>
 	<input type="hidden" id="seatsAllowed" value="">
+	<div class='error' style='display:none'>I did something!</div>
 @endsection
 @section('pagejs')
 	@include('tours.img_view')
@@ -271,9 +265,18 @@
 			if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
 
 				// console.log('passengers count is fine.');
+				$('#passengers').removeClass('error_input');
 				return true;
 			}else{
 				// console.log('vehicle overloaded.');
+				// $('.error').stop().fadeIn(400).delay(3000).fadeOut(400);
+
+				if($('#passengers').val() !=''){
+
+					$('#passengers').addClass('error_input');
+					toastr.info(seatsAllowed+'{{__('tour.passengers_allowed')}}');
+				}
+
 				return false;
 			}
 		}
@@ -287,7 +290,7 @@
 
 					$('#seatsAllowed').val(parseInt(v.seats));
 					passengersCheck();
-					console.log('seats allowed: '+v.seats);
+					// console.log('seats allowed: '+v.seats);
 				}
 			});
 		}

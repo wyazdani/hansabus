@@ -203,16 +203,27 @@ class HireDriverController extends Controller
         if(true){
 
             /* check if driver is available for this time slot */
-            $from = date('Y-m-d H:i:s',strtotime($request->from_date));
-            $to   = date('Y-m-d H:i:s',strtotime($request->to_date));
-            $alreadyBooked = DriverBooking::where('driver_id',$request->driver_id)
-                ->where(function ($query) use ($from, $to) {
-                    $query
-                        ->whereBetween('from_date', [$from, $to])
-                        ->orWhere(function ($query) use ($from, $to) {
-                            $query->whereBetween('to_date', [$from,$to]);
-                        });
-                })->first();
+            $from = date('Y-m-d H:i:s', strtotime($request->from_date));
+            $to = date('Y-m-d H:i:s', strtotime($request->to_date));
+
+            $alreadyBooked = false;
+            /* check for driver bookings */
+
+            $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
+                ->where('from_date','<=',$from)
+                ->where('to_date','>=',$from)
+                ->first();
+
+            $driverBooked2 = DriverBooking::where('driver_id', $request->driver_id)
+                ->where('from_date','<=',$to)
+                ->where('to_date','>=',$to)
+                ->first();
+
+            if ($driverBooked ||  $driverBooked2) {
+
+                $alreadyBooked = true;
+                toastr()->error(__('hire.already_booked'));
+            }
 
             if(!$alreadyBooked) {
 
@@ -338,15 +349,28 @@ class HireDriverController extends Controller
             /* check if driver is available for this time slot */
             $from = date('Y-m-d H:i:s', strtotime($request->from_date));
             $to = date('Y-m-d H:i:s', strtotime($request->to_date));
-            $alreadyBooked = DriverBooking::where('driver_id', $request->driver_id)
+
+            $alreadyBooked = false;
+            /* check for driver bookings */
+
+            $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
                 ->where('with_vehicle', 0)->where('booking_id', '!=', $request->id)
-                ->where(function ($query) use ($from, $to) {
-                    $query
-                        ->whereBetween('from_date', [$from, $to])
-                        ->orWhere(function ($query) use ($from, $to) {
-                            $query->whereBetween('to_date', [$from, $to]);
-                        });
-                })->first();
+                ->where('from_date','<=',$from)
+                ->where('to_date','>=',$from)
+                ->first();
+
+            $driverBooked2 = DriverBooking::where('driver_id', $request->driver_id)
+                ->where('with_vehicle', 0)->where('booking_id', '!=', $request->id)
+                ->where('from_date','<=',$to)
+                ->where('to_date','>=',$to)
+                ->first();
+
+            if ($driverBooked ||  $driverBooked2) {
+
+                $alreadyBooked = true;
+                toastr()->error(__('hire.already_booked'));
+            }
+
 
             if (!$alreadyBooked) {
 

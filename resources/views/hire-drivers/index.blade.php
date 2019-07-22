@@ -22,22 +22,22 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select id="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('hire.select_customer')}}</option>
-                                    @foreach($customers as $customer)
-                                        <option value="{{$customer->id}}">{{$customer->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type='text' name="customer_search" id="customer_search"
+                                       placeholder="{{__('tour.customer')}}" class="form-control filterBox"
+                                       value="{{ request()->get('customer_search') }}"
+                                       onkeyup="if(this.value=='')$('#customer_id').val('')">
+                                <input type="hidden" id="customer_id" name="customer_id"
+                                       value="{{ request()->get('customer_id') }}" >
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select id="driver_id" class="form-control filterBox">
-                                    <option value="">{{__('hire.select_driver')}}</option>
-                                    @foreach($drivers as $driver)
-                                        <option value="{{$driver->id}}">{{$driver->driver_name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type='text' name="driver_search" id="driver_search"
+                                       placeholder="{{__('tour.driver')}}" class="form-control filterBox"
+                                       value="{{ request()->get('driver_search') }}"
+                                       onkeyup="if(this.value=='')$('#driver_id').val('')">
+                                <input type="hidden" id="driver_id" name="driver_id"
+                                       value="{{ request()->get('driver_id') }}">
                             </div>
                         </div>
                         <div class="col-md-2">

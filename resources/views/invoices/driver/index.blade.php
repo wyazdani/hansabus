@@ -22,15 +22,12 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <select id="customer_id" name="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_customer')}}</option>
-                                    @foreach($customers as $customer)
-                                        <option value="{{$customer->id}}"
-                                        @if($customer->id == request()->get('customer_id') )
-                                            {{ 'Selected' }}
-                                        @endif
-                                        >{{$customer->name}}</option> @endforeach
-                                </select>
+                                <input type='text' name="customer_search" id="customer_search"
+                                       placeholder="{{__('tour.customer')}}" class="form-control filterBox"
+                                       value="{{ request()->get('customer_search') }}"
+                                       onkeyup="if(this.value=='')$('#customer_id').val('')">
+                                <input type="hidden" id="customer_id" name="customer_id"
+                                       value="{{ request()->get('customer_id') }}" >
                             </div>
                         </div>
                         <div class="col-md-1.5">

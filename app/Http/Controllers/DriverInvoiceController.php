@@ -22,7 +22,7 @@ class DriverInvoiceController extends Controller
     public function index(Request $request){
 
         $pageTitle = __('driver_invoice.heading.index');
-        $customers = Customer::where('status','1')->get(['name','id']);
+//        $customers = Customer::where('status','1')->get(['name','id']);
 
         $query = DriverInvoice::where('id','>',0);
 
@@ -67,7 +67,7 @@ class DriverInvoiceController extends Controller
             $row->status = ($row->status == 1)?'Unpaid':'Paid';
             $row->created = date('d.m.Y H:i',strtotime($row->created_at));
         }
-        return view('invoices.driver.index',compact('pageTitle','customers','rows'));
+        return view('invoices.driver.index',compact('pageTitle','rows'));
     }
 
     public function create(Request $request){

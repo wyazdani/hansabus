@@ -159,10 +159,8 @@ class HireDriverController extends Controller
     public function index()
     {
         $pageTitle = __('hire.heading.index');
-        $customers = Customer::where('status','1')->get(['name','id']);
-        $drivers = Driver::where('status','1')->get(['driver_name','id']);
 
-        return view('hire-drivers.index',compact('drivers','customers','pageTitle'));
+        return view('hire-drivers.index',compact('pageTitle'));
     }
 
     public function create()

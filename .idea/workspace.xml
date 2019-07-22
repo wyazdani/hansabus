@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="249" column="13" lean-forward="true" selection-start-line="228" selection-start-column="12" selection-end-line="249" selection-end-column="13" />
+            <state relative-caret-position="551">
+              <caret line="442" column="12" selection-start-line="442" selection-start-column="12" selection-end-line="442" selection-end-column="12" />
               <folding>
                 <element signature="e#40#69#0#PHP" expanded="true" />
               </folding>
@@ -45,11 +44,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="129" column="141" selection-start-line="129" selection-start-column="141" selection-end-line="129" selection-end-column="141" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="440" column="9" lean-forward="true" selection-start-line="440" selection-start-column="9" selection-end-line="440" selection-end-column="9" />
+            <state relative-caret-position="209">
+              <caret line="410" column="35" selection-start-line="410" selection-start-column="35" selection-end-line="410" selection-end-column="35" />
               <folding>
                 <element signature="e#40#76#0#PHP" expanded="true" />
                 <element signature="e#7199#9341#0#PHP" />
@@ -62,14 +73,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>strea</find>
       <find>stream</find>
       <find>down</find>
       <find>getLis</find>
       <find>10</find>
       <find>attach</find>
       <find>from_dat</find>
-      <find>update(</find>
       <find>date('Y</find>
       <find>from)da</find>
       <find>from_da</find>
@@ -82,7 +91,6 @@
       <find>.'59'</find>
       <find>APP_TIMEZONE</find>
       <find>time</find>
-      <find>passengersCheck</find>
       <find>passengers&quot;</find>
       <find>allow</find>
       <find>seatsAllowed</find>
@@ -92,6 +100,9 @@
       <find>console</find>
       <find>inde</find>
       <find>store(</find>
+      <find>passengersCheck</find>
+      <find>update</find>
+      <find>update(</find>
     </findStrings>
     <replaceStrings>
       <replace>col-md-4</replace>
@@ -157,15 +168,15 @@
         <option value="$PROJECT_DIR$/resources/lang/de/tour.php" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/resources/views/layouts/js.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/hire-drivers/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DriverInvoiceController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
         <option value="$PROJECT_DIR$/resources/views/tours/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" />
+        <option value="$PROJECT_DIR$/resources/views/tours/add.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" />
       </list>
     </option>
   </component>
@@ -304,29 +315,6 @@
               <item name="ecoach" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="invoices" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="invoices" type="462c0819:PsiDirectoryNode" />
-              <item name="driver" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="invoices" type="462c0819:PsiDirectoryNode" />
-              <item name="tour" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecoach" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecoach" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="tours" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -413,12 +401,12 @@
       <workItem from="1563427041030" duration="5389000" />
       <workItem from="1563772858296" duration="257000" />
       <workItem from="1563777889403" duration="3005000" />
-      <workItem from="1563787356627" duration="248000" />
+      <workItem from="1563787356627" duration="1495000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="368484000" />
+    <option name="totallyTimeSpent" value="369731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -755,13 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1767">
-          <caret line="93" column="40" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/tours/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
@@ -800,23 +781,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="249" column="13" lean-forward="true" selection-start-line="228" selection-start-column="12" selection-end-line="249" selection-end-column="13" />
+        <state relative-caret-position="209">
+          <caret line="410" column="35" selection-start-line="410" selection-start-column="35" selection-end-line="410" selection-end-column="35" />
           <folding>
-            <element signature="e#40#69#0#PHP" expanded="true" />
+            <element signature="e#40#76#0#PHP" expanded="true" />
+            <element signature="e#7199#9341#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/tours/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="440" column="9" lean-forward="true" selection-start-line="440" selection-start-column="9" selection-end-line="440" selection-end-column="9" />
+        <state relative-caret-position="312">
+          <caret line="129" column="141" selection-start-line="129" selection-start-column="141" selection-end-line="129" selection-end-column="141" />
           <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
-            <element signature="e#7199#9341#0#PHP" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ToursController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="442" column="12" selection-start-line="442" selection-start-column="12" selection-end-line="442" selection-end-column="12" />
+          <folding>
+            <element signature="e#40#69#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

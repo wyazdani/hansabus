@@ -250,7 +250,7 @@
 
 		</div>
 	</div>
-	<input type="hidden" id="seatsAllowed" value="">
+	<input type="hidden" id="seatsAllowed" value="{{(!empty($tour->vehicle->seats))?$tour->vehicle->seats:''}}">
 	<div class='error' style='display:none'>I did something!</div>
 @endsection
 @section('pagejs')
@@ -271,10 +271,10 @@
 				// console.log('vehicle overloaded.');
 				// $('.error').stop().fadeIn(400).delay(3000).fadeOut(400);
 
-				if($('#passengers').val() !=''){
+				if($('#seatsAllowed').val() !=''){
 
 					$('#passengers').addClass('error_input');
-					toastr.info(seatsAllowed+'{{__('tour.passengers_allowed')}}');
+					toastr.info( parseInt($('#seatsAllowed').val())+'{{__('tour.passengers_allowed')}}');
 				}
 
 				return false;

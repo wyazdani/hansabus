@@ -24,18 +24,12 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <select id="customer_id" name="customer_id" class="form-control filterBox">
-                                        <option value="">{{__('tour.select_customer')}}</option>
-                                        @foreach($customers as $customer)
-                                            <option value="{{$customer->id}}"
-                                            @if($customer->id == request()->get('customer_id') )
-                                                {{ 'Selected' }}
-                                                    @endif
-                                            >{{$customer->name}}</option> @endforeach
-                                    </select>
+                                    <input type='text' name="customer_search" id="customer_search"
+                                           placeholder="{{__('tour.customer')}}" class="form-control filterBox" value="{{ request()->get('customer_search') }}" >
+                                    <input type="hidden" id="customer_id" name="customer_id" value="{{ request()->get('customer_id') }}" >
                                 </div>
                             </div>
-                            <div class="col-md-1.5">
+                            <div class="col-md-2">
                                 <div class="form-group"><input type='text' name="from_date" id="from_date"  value="{{request()->get('from_date')}}"
                                                                autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" /></div>
                             </div>
@@ -49,7 +43,7 @@
                                 <div class="form-group"><input type='text' name="id" id="invoiceID" value="{{request()->get('id')}}"
                                                                placeholder="Invoice ID" class="form-control" /></div>
                             </div>
-                            <div class="col-md-1.5">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <select id="status" name="status" class="form-control filterBox"><option value="">{{__('tour.select_status')}}</option>
                                         <option value="1" @if(request()->get('status') == 1) {{ 'Selected' }}  @endif >Unpaid</option>
@@ -61,7 +55,7 @@
                                     <a href="javascript:;" onclick="$('#searchForm').submit()"  class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                                 </div>
                             </div>
-                            <div class="col-md-6" >
+                            <div class="col-sm-12" >
                                 <div class="form-group text-left">
                                     <a href="javascript:;" onclick="$('#theForm').submit()"
                                        class="btn btn-info disabled"

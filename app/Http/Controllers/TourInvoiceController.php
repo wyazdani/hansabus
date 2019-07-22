@@ -22,8 +22,6 @@ class TourInvoiceController extends Controller
     public function index(Request $request){
 
         $pageTitle = __('tour_invoice.heading.index');
-        $customers = Customer::where('status','1')->get(['name','id']);
-
 
         $query = TourInvoice::where('status','>',0);
         if(!empty($request->status)){
@@ -66,7 +64,7 @@ class TourInvoiceController extends Controller
             $row->created = date('d.m.Y H:i',strtotime($row->created_at));
         }
 
-        return view('invoices.tour.index',compact('pageTitle','customers','rows'));
+        return view('invoices.tour.index',compact('pageTitle','rows'));
     }
     public function show(TourInvoice $TourInvoice){
         return $TourInvoice;

@@ -178,9 +178,8 @@ class ToursController extends Controller
 
         $tour_statuses = TourStatus::get(['id','name']);
         $vehicles = Vehicle::where('status','1')->get(['name','id']);
-        $customers = Customer::where('status','1')->get(['name','id']);
-        $drivers = Driver::where('status','1')->get(['driver_name','id']);
-        return view('tours.index',compact('drivers','customers','vehicles','tour_statuses','pageTitle'));
+
+        return view('tours.index',compact('vehicles','tour_statuses','pageTitle'));
     }
 
     public function create()

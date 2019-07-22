@@ -127,6 +127,7 @@
 																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}">*</span></label>
 																			<input type="number" name="passengers" id="passengers"
 																				   onkeyup='if(!passengersCheck(this.value)) this.value="";'
+																				   onchange='if(!passengersCheck(this.value)) this.value="";'
 																				   class="{{($errors->has('passengers')) ?'error_input form-control':'form-control'}}"
 																				   value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 																		</div>

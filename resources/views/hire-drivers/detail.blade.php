@@ -37,9 +37,9 @@
 						<div class="col-md-6">
 							<dl>
 								<dt>{{ __('tour.from') }}:</dt>
-								<dd>{{ date('m/d/Y h:i A',strtotime($HireDriver->from_date)) }}</dd>
+								<dd>{{ date('d.m.Y H:i',strtotime($HireDriver->from_date)) }}</dd>
 								<dt>{{ __('tour.to') }}:</dt>
-								<dd>{{ date('m/d/Y h:i A',strtotime($HireDriver->to_date)) }}</dd>
+								<dd>{{ date('d.m.Y H:i',strtotime($HireDriver->to_date)) }}</dd>
 
 								<dt>{{ __('tour.price') }}:</dt>
 								<dd>{{ $HireDriver->price }}</dd>

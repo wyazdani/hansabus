@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestEmail;
+use App\Mail\TourConfirmation;
+use App\Mail\TourConfirmationInvoice;
 use App\Models\DriverBooking;
+use App\Models\TourInvoiceDetail;
 use App\Models\TourStatus;
 use App\Models\TourAttachment;
 use App\Models\Customer;
@@ -15,6 +19,7 @@ use Illuminate\Http\Request;
 use App\Helpers\General;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 
 class ToursController extends Controller
@@ -28,23 +33,22 @@ class ToursController extends Controller
     public function calendar(Request $request)
     {
         $pageTitle = __('messages.calendar');
-        $rows = Tour::where('status','>',1)->where('status','<',4)->get(
+        $rows = Tour::where('status','>',1)->where('status','<',4)->whereNull('deleted_at')->get(
             ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
-        $colors = ['red','green','blue','orange','tan','purple','brown','black'];
+        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
 
-        $events = $vehicles = []; $i=$j=0;
+        $events = []; $i = $j=0;
         foreach($rows as $row){
 
             if($j>7){
                 $j = $j-8;
             }
 
-
             $row->driver;
             $row->customer;
 
-            $vehicles[] = $row->vehicle;
+//            $vehicles[] = $row->vehicle;
             $events[$i]['id'] = $row->id;
             $events[$i]['resourceId'] = $row->vehicle->id;
             $events[$i]['start'] = $row->from_date;
@@ -55,39 +59,45 @@ class ToursController extends Controller
             Customer: '.$row->customer->name.' 
             Driver: '.$row->driver->driver_name;
             $events[$i]['url'] = url('/tour/'.$row->id);
-            $events[$i]['eventColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = $colors[$j];
 
-            $i++;
+            $j++; $i++;
         }
 
 //        dd($events);
-        return view('tours.calendar',compact('events','vehicles','pageTitle'));
+        return view('tours.calendar',compact('events','pageTitle'));
     }
     public function getList(Request $request)
     {
         $orderColumn = 'id';
         $dir = 'desc';
 
-        /*if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
-            $orderColumn = 'customer.name';
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==0){
+            $orderColumn = 'id';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'customer_id';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
-            $orderColumn = 'vehicle.name';
+            $orderColumn = 'vehicle_id';
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
-            $orderColumn = 'year';
+            $orderColumn = 'from_date';
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
-            $orderColumn = 'licensePlate';
+            $orderColumn = 'to_date';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
-            $orderColumn = 'engineNumber';
+            $orderColumn = 'driver_id';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
-            $orderColumn = 'registrationNumber';
-        }*/
+            $orderColumn = 'passengers';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==7){
+            $orderColumn = 'price';
+        }
         if(!empty($request->order[0]['dir'])){
             $dir = $request->order[0]['dir'];
         }
@@ -132,10 +142,10 @@ class ToursController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d H:i',strtotime($request->from_date));
+            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d H:i',strtotime($request->to_date));
+            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
         }
         if(!empty($from) && !empty($to)){
 
@@ -173,9 +183,8 @@ class ToursController extends Controller
 
         $tour_statuses = TourStatus::get(['id','name']);
         $vehicles = Vehicle::where('status','1')->get(['name','id']);
-        $customers = Customer::where('status','1')->get(['name','id']);
-        $drivers = Driver::where('status','1')->get(['driver_name','id']);
-        return view('tours.index',compact('drivers','customers','vehicles','tour_statuses','pageTitle'));
+
+        return view('tours.index',compact('vehicles','tour_statuses','pageTitle'));
     }
 
     public function create()
@@ -183,13 +192,10 @@ class ToursController extends Controller
         $pageTitle = __('tour.heading.add');
         $general = new General();
         $randomKey = $general->randomKey();
-
-        $tour_statuses = TourStatus::get(['id','name']);
-        $customers = Customer::where('status','1')->get();
-        $drivers = Driver::where('status','1')->get();
+        $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
         $vehicles = Vehicle::where('status','1')->get();
 
-        return view('tours.add',compact('pageTitle','vehicles','customers','drivers','tour_statuses','randomKey'));
+        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey'));
     }
 
     /**
@@ -206,10 +212,11 @@ class ToursController extends Controller
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            'driver_id' => 'required|integer',
+            /*'driver_id' => 'required|integer',*/
             'price' => 'required|numeric|digits_between:1,20',
-            'passengers' => 'required|integer|min:1,max:500',
-            'guide' => 'required',
+            /*'passengers' => 'required|integer|min:1,max:500',*/
+            'description' => 'required'
+//            'guide' => 'required',
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -219,61 +226,75 @@ class ToursController extends Controller
             'driver_id.required' => 'Please select driver.',
             'price.required' => 'Please provide tour price.',
             'passengers.required' => 'Please provide number of passengers.',
-            'guide.required' => 'Please provide guide name.',
+            'description.required' => 'Please provide description.',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
-
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* check if driver is available for this time slot */
-            $from = date('Y-m-d H:i:s', strtotime($request->from_date));
-            $to = date('Y-m-d H:i:s', strtotime($request->to_date));
+            $from   =   '';
+            $to     =   '';
+            if ($request->from_date){
+                $from = date('Y-m-d H:i:s', strtotime($request->from_date));
+            }
+           if ($request->to_date){
+               $to = date('Y-m-d H:i:s', strtotime($request->to_date));
+           }
+
 
             $alreadyBooked = false;
             /* check for driver bookings */
-            $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
-                ->where(function ($query) use ($from, $to) {
-                    $query
-                        ->whereBetween('from_date', [$from, $to])
-                        ->orWhere(function ($query) use ($from, $to) {
-                            $query->whereBetween('to_date', [$from, $to]);
-                        });
-                })->first();
-            if ($driverBooked) {
 
-                $alreadyBooked = true;
-                toastr()->error(__('hire.already_booked'));
+
+            if (!empty($request->driver_id)){
+                $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
+                    ->where('from_date','<=',$from)
+                    ->where('to_date','>=',$from)
+                    ->first();
+
+                $driverBooked2 = DriverBooking::where('driver_id', $request->driver_id)
+                    ->where('from_date','<=',$to)
+                    ->where('to_date','>=',$to)
+                    ->first();
+
+                if ($driverBooked ||  $driverBooked2) {
+
+                    $alreadyBooked = true;
+                    toastr()->error(__('hire.already_booked'));
+                }
+            }
+            if (!empty($request->driver_id)){
+                $vehicleBooked = Tour::where('vehicle_id', $request->vehicle_id)
+                    ->where('status', '>', 1)->where('status', '<', 5)
+                    ->where('from_date','<=',$from)
+                    ->where('to_date','>=',$from)
+                    ->first();
+
+                $vehicleBooked2 = Tour::where('vehicle_id', $request->vehicle_id)
+                    ->where('status', '>', 1)->where('status', '<', 5)
+                    ->where('from_date','<=',$to)
+                    ->where('to_date','>=',$to)
+                    ->first();
+                if ($vehicleBooked || $vehicleBooked2) {
+
+                    $alreadyBooked = true;
+                    toastr()->error(__('tour.vehicle_already_booked'));
+                }
             }
             /* check for vehicle bookings */
-            $vehicleBooked = Tour::where('vehicle_id', $request->vehicle_id)
-                ->where('status', '>', 1)->where('status', '<', 5)
-                ->where(function ($query) use ($from, $to) {
-                    $query
-                        ->whereBetween('from_date', [$from, $to])
-                        ->orWhere(function ($query) use ($from, $to) {
-                            $query->whereBetween('to_date', [$from, $to]);
-                        });
-                })->first();
-            if ($vehicleBooked) {
-
-                $alreadyBooked = true;
-                toastr()->error(__('tour.vehicle_already_booked'));
-            }
-//        dd($driverBooked);
-
             if (!$alreadyBooked) {
-
                 $tour = new Tour;
-                $tour->status = (int)$request->status;
-                $tour->customer_id = (int)$request->customer_id;
-                $tour->vehicle_id = (int)$request->vehicle_id;
-                $tour->driver_id = (int)$request->driver_id;
-                $tour->from_date = date('Y-m-d H:i', strtotime($request->from_date));
-                $tour->to_date = date('Y-m-d H:i', strtotime($request->to_date));
-                $tour->passengers = (int)$request->passengers;
-                $tour->price = (int)$request->price;
-                $tour->guide = $request->guide;
+                $tour->status = !empty($request->status)?(int)$request->status:1;
+                $tour->customer_id = !empty($request->customer_id)?(int)$request->customer_id:0;
+                $tour->vehicle_id = !empty($request->vehicle_id)?(int)$request->vehicle_id:0;
+                $tour->driver_id = !empty($request->driver_id)?(int)$request->driver_id:0;
+                $tour->from_date = !empty($request->from_date)?date('Y-m-d H:i', strtotime($request->from_date)):null;
+                $tour->to_date = !empty($request->to_date)?date('Y-m-d H:i', strtotime($request->to_date)):null;
+                $tour->passengers = !empty($request->passengers)?(int)$request->passengers:0;
+                $tour->price = !empty($request->price)?(int)$request->price:0;
+                $tour->guide = !empty($request->guide)?$request->guide:'';
+                $tour->description = !empty($request->description)?$request->description:'';
+
                 if ($tour->save()) {
 
                     toastr()->success(__('tour.created'));
@@ -293,6 +314,9 @@ class ToursController extends Controller
                             'with_vehicle' => 1]);
                     }
                 }
+
+
+
 
                 $files = [];
                 $attachments = [];
@@ -332,14 +356,18 @@ class ToursController extends Controller
     }
     public function show(Tour $Tour)
     {
+        $Tour->id;
+        $Tour->customer_id;
         $Tour->vehicle;
         $Tour->driver;
         $Tour->customer;
         $Tour->attachments;
-        $Tour->from_date = date('d/m/Y h:i A',strtotime($Tour->from_date));
-        $Tour->to_date = date('d/m/Y h:i A',strtotime($Tour->to_date));
+        $Tour->from_date = date('d.m.Y H:i',strtotime($Tour->from_date));
+        $Tour->to_date   = date('d.m.Y H:i',strtotime($Tour->to_date));
+
         return $Tour;
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -354,14 +382,12 @@ class ToursController extends Controller
 
         $general = new General();
         $randomKey = $general->randomKey();
-        $tour_statuses = TourStatus::get(['id','name']);
+        $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
 
         $vehicles = Vehicle::where('status','1')->get(['name','make','year','transmission','licensePlate','id']);
-        $customers = Customer::where('status','1')->get(['name','id']);
-        $drivers = Driver::where('status','1')->get(['driver_name','id']);
         $attachments = TourAttachment::where('tour_id',$id)->get();
 
-        return view('tours.add',compact('tour','pageTitle','vehicles','customers','drivers','tour_statuses','randomKey','attachments'));
+        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments'));
     }
 
     /**
@@ -379,10 +405,11 @@ class ToursController extends Controller
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            'driver_id' => 'required|integer',
+            /*'driver_id' => 'required|integer',*/
             'price' => 'required|numeric|digits_between:1,20',
-            'passengers' => 'required|integer|min:1,max:500',
-            'guide' => 'required',
+            /*'passengers' => 'required|integer|min:1,max:500',*/
+            'description' => 'required'
+//            'guide' => 'required',
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -392,12 +419,10 @@ class ToursController extends Controller
             'driver_id.required' => 'Please select driver.',
             'price.required' => 'Please provide tour price.',
             'passengers.required' => 'Please provide number of passengers.',
-            'guide.required' => 'Please provide guide name.',
+            'description.required' => 'Please provide description.',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
-
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* check if driver is available for this time slot */
             $from = date('Y-m-d H:i:s', strtotime($request->from_date));
@@ -405,16 +430,20 @@ class ToursController extends Controller
 
             $alreadyBooked = false;
             /* check for driver bookings */
+
             $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
                 ->where('with_vehicle', 1)->where('booking_id', '!=', $request->id)
-                ->where(function ($query) use ($from, $to) {
-                    $query
-                        ->whereBetween('from_date', [$from, $to])
-                        ->orWhere(function ($query) use ($from, $to) {
-                            $query->whereBetween('to_date', [$from, $to]);
-                        });
-                })->first();
-            if ($driverBooked) {
+                ->where('from_date','<=',$from)
+                ->where('to_date','>=',$from)
+                ->first();
+
+            $driverBooked2 = DriverBooking::where('driver_id', $request->driver_id)
+                ->where('with_vehicle', 1)->where('booking_id', '!=', $request->id)
+                ->where('from_date','<=',$to)
+                ->where('to_date','>=',$to)
+                ->first();
+
+            if ($driverBooked ||  $driverBooked2) {
 
                 $alreadyBooked = true;
                 toastr()->error(__('hire.already_booked'));
@@ -423,31 +452,34 @@ class ToursController extends Controller
             $vehicleBooked = Tour::where('vehicle_id', $request->vehicle_id)
                 ->where('id', '!=', $request->id)
                 ->where('status', '>', 1)->where('status', '<', 5)
-                ->where(function ($query) use ($from, $to) {
-                    $query
-                        ->whereBetween('from_date', [$from, $to])
-                        ->orWhere(function ($query) use ($from, $to) {
-                            $query->whereBetween('to_date', [$from, $to]);
-                        });
-                })->first();
-            if ($vehicleBooked) {
+                ->where('from_date','<=',$from)
+                ->where('to_date','>=',$from)
+                ->first();
+
+            $vehicleBooked2 = Tour::where('vehicle_id', $request->vehicle_id)
+                ->where('id', '!=', $request->id)
+                ->where('status', '>', 1)->where('status', '<', 5)
+                ->where('from_date','<=',$to)
+                ->where('to_date','>=',$to)
+                ->first();
+            if ($vehicleBooked || $vehicleBooked2) {
 
                 $alreadyBooked = true;
                 toastr()->error(__('tour.vehicle_already_booked'));
             }
-
-
+            
             if (!$alreadyBooked) {
 
                 $tour = Tour::find($request->id);
                 $tour->status = (int)$request->status;
                 $tour->customer_id = (int)$request->customer_id;
                 $tour->vehicle_id = (int)$request->vehicle_id;
-                $tour->driver_id = (int)$request->driver_id;
+                $tour->driver_id = !empty($request->driver_id)?(int)$request->driver_id:0;
                 $tour->from_date = date('Y-m-d H:i', strtotime($request->from_date));
                 $tour->to_date = date('Y-m-d H:i', strtotime($request->to_date));
-                $tour->passengers = (int)$request->passengers;
+                $tour->passengers = !empty($request->passengers)?(int)$request->passengers:0;
                 $tour->price = (int)$request->price;
+                $tour->description = $request->description;
                 $tour->guide = $request->guide;
                 if ($tour->save()) {
                     toastr()->success(__('tour.updated'));
@@ -512,6 +544,17 @@ class ToursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function tour_customer_email(Request  $request)
+    {
+        if ($request->send_invoice){
+            Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
+        }else{
+            Mail::send(new TourConfirmation($request->customer_id_email,$request->tour_id_email));
+        }
+        toastr()->success(__('tour.email'));
+        return redirect('/tours');
+    }
     public function destroy($id)
     {
         $tour = Tour::find($id);

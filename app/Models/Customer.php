@@ -9,7 +9,7 @@ class Customer extends Model
 {
     use SoftDeletes;
     protected $table = 'customer';
-    protected $fillable = ['name','email','url','address','phone','status'];
+    protected $fillable = ['name','email','url','address','phone','postal_code','country_id','status'];
     protected $dates = ['deleted_at'];
 
 

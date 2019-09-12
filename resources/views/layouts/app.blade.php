@@ -26,7 +26,7 @@
 </body>
 @else
 <body data-col="1-column" class=" 1-column  blank-page blank-page">
-	@yield('content')     
+	@yield('content')
 </body>		
 @endif
 </html>

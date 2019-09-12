@@ -50,5 +50,7 @@ return [
     'yours_sincerely'=>'Dein',
 
     'generated'=>'Rechnung erstellt.',
-    'mark_paid'=>'Rechnungsstatus wurde in bezahlt geändert.'
+    'mark_paid'=>'Rechnungsstatus wurde in bezahlt geändert.',
+    'driver_email'  =>  'Fahrer-E-Mail',
+    'driver_license'    =>  'Führerschein'
 ];

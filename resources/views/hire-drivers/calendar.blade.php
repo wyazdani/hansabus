@@ -36,48 +36,21 @@
 @endsection
 @section('pagejs')
 	<script>
-		const drivers = {!! json_encode($drivers) !!};
 		$(function() { // document ready
-
 			$('#calendar').fullCalendar({
-				schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
 				now: '{{ date('Y-m-d') }}',
 				aspectRatio: 1.8,
-				scrollTime: '00:00', // undo default 6am scrollTime
 				header: {
 					left: 'title',
 					center: '',
-					right: 'today agendaDay,month prev,next'
+					right: 'prev,next'
 				},
-				defaultView: 'agendaDay', // timeGridWeek, month, agendaDay
-				views: { },
-				resourceLabelText: 'Rooms',
-				resourceText: function(driver) {
-					//return ('' + resource.driver_name).toUpperCase();
-					return driver.driver_name;
-				},
-				resourceOrder: 'sortOrder',
-				resources: resourcesFunc,
-				plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list',
-					'dayGridMonth','timeGridWeek','timeGridDay' ],
-				// plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin ],
+				defaultView: 'month', // timeGridWeek, month, agendaDay
 				height: 'parent',
-				buttonText: {
-					today: '{{__("tour.today")}}',
-					month: '{{__("tour.month")}}',
-					week: '{{__("tour.week")}}',
-					day: '{{__("tour.day")}}'
-				},
+				fixedWeekCount: false,
 				events: {!! json_encode($events) !!},
 				timeFormat: 'h(:mm) A'
-
 			});
-
-			function resourcesFunc(callback)
-			{
-				callback(drivers);
-			}
-
 		});
 	</script>
 @endsection

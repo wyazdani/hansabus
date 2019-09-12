@@ -155,43 +155,27 @@
 					</div>
 					<p>&nbsp;</p>
 				</div>
-
-
 			</div>
 		</div>
-
-
-
 	</div>
 @endsection
 @section('pagejs')
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			var calendarEl = document.getElementById('calendar');
 
-			var calendar = new FullCalendar.Calendar(calendarEl, {
-				plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-				height: 'parent',
+		$(function() { // document ready
+			$('#calendar').fullCalendar({
+				now: '{{ date('Y-m-d') }}',
+				aspectRatio: 1.8,
 				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+					left: 'title',
+					center: '',
+					right: 'prev,next' // today agendaDay,month prev,next'
 				},
-				buttonText: {
-					today: '{{__("tour.today")}}',
-					month: '{{__("tour.month")}}',
-					week: '{{__("tour.week")}}',
-					day: '{{__("tour.day")}}'
-				},
-				defaultView: 'dayGridMonth',
-				defaultDate: '2019-06-12',
-				navLinks: true, // can click day/week names to navigate views
-				editable: true,
-				eventLimit: true, // allow "more" link when too many events
-				events: {!! json_encode($calendarTours) !!}
+				defaultView: 'month', // month, agendaDay
+				fixedWeekCount: false,
+				events:{!! json_encode($events) !!},
+				timeFormat: 'h(:mm) A'
 			});
-
-			calendar.render();
 		});
 	</script>
 @endsection

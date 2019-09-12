@@ -22,22 +22,22 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select id="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('hire.select_customer')}}</option>
-                                    @foreach($customers as $customer)
-                                        <option value="{{$customer->id}}">{{$customer->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type='text' name="customer_search" id="customer_search"
+                                       placeholder="{{__('tour.customer')}}" class="form-control filterBox"
+                                       value="{{ request()->get('customer_search') }}"
+                                       onkeyup="if(this.value=='')$('#customer_id').val('')">
+                                <input type="hidden" id="customer_id" name="customer_id"
+                                       value="{{ request()->get('customer_id') }}" >
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select id="driver_id" class="form-control filterBox">
-                                    <option value="">{{__('hire.select_driver')}}</option>
-                                    @foreach($drivers as $driver)
-                                        <option value="{{$driver->id}}">{{$driver->driver_name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type='text' name="driver_search" id="driver_search"
+                                       placeholder="{{__('tour.driver')}}" class="form-control filterBox"
+                                       value="{{ request()->get('driver_search') }}"
+                                       onkeyup="if(this.value=='')$('#driver_id').val('')">
+                                <input type="hidden" id="driver_id" name="driver_id"
+                                       value="{{ request()->get('driver_id') }}">
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                <a href="javascript:;" id="searchBtn" class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
                     </div>
@@ -65,9 +65,8 @@
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
-
                             <div class="table-responsive">
-                                <table class="table table-hover table-xl mb-0" id="listingTable">
+                                <table class="table table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
@@ -101,7 +100,7 @@
             if(confirm('{{__("messages.want_to_delete")}}')){
 
                 $.ajax({
-                    url: '/hire-drivers/'+id,
+                    url: '{{ url('/hire-drivers') }}/'+id,
                     data: "_token={{ csrf_token() }}",
                     type: 'DELETE',  // user.destroy
                     success: function(result) {
@@ -132,9 +131,9 @@
                     $.each(t.attachments, function(index, item) {
 
                         if(item.file.includes('.pdf') || item.file.includes('.txt') || item.file.includes('.doc')){
-                            attachments += '<li><a href="{{ url('/attachments') }}/'+item.file+'" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></li>';
+                            attachments += '<li><a href="{{ url('/attachments') }}/'+item.file+'" target="_blank"><i class="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i></a></li>';
                         }else{
-                            attachments += '<li><img src="{{ url('/attachments') }}/'+item.file+'" style="display:block; width: 100%; height:auto;"></li>';
+                            attachments += '<p><img src="{{ url('/attachments') }}/'+item.file+'" style="display:block; width: 90%; height:auto;"></p>';
                         }
 
                     });
@@ -153,6 +152,22 @@
             var tableDiv = $('#listingTable').DataTable({
 
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
+
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
                 "bInfo": false,
                 // "bAutoWidth": false,
 
@@ -215,23 +230,27 @@
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
-                        buttons = edit+trash+view;
-                        return buttons;
+
+                        buttons = ''+view;
+                        if(row.status == '1' || row.status == '2'){
+                            buttons = edit+trash+view;
+                        }
+                        return '<div class="text-right">'+buttons+'</div>';
+
+
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],
                 "ajax": {
                     "url": "{{ url('/hire-driver-list') }}",
                     "type": "GET",
-                    "data": function () {
-
-                        return {
-                            'customer_id' : $('#customer_id').val(),
-                            'driver_id' : $('#driver_id').val(),
-                            'from_date' : $('#from_date').val(),
-                            'to_date' : $('#to_date').val(),
-                            'id' : $('#hireID').val(),
-                        }
+                    "data": function ( d ) {
+                        d._token = '{{ csrf_token() }}';
+                        d.customer_id = $('#customer_id').val();
+                        d.driver_id = $('#driver_id').val();
+                        d.from_date = $('#from_date').val();
+                        d.to_date = $('#to_date').val();
+                        d.id = $('#hireID').val();
                     }
                 },
                 'rowId': 'id',
@@ -246,7 +265,7 @@
                 drawCallback: deleteMe|viewTour,
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
-                        $('.dataTables_paginate').hide();
+                        // $('.dataTables_paginate').hide();
                     }
                 }
             });
@@ -261,8 +280,11 @@
 
 
             /* DateTime Picker */
-            $('.datetimepicker1').datetimepicker();
+            $('.datetimepicker1').datetimepicker(
+                {format:'DD.MM.YYYY HH:mm'}
+            );
             $('.datetimepicker2').datetimepicker({
+                format:'DD.MM.YYYY HH:mm',
                 useCurrent: false //Important! See issue #1075
             });
             $(".datetimepicker1").on("dp.change", function (e) {

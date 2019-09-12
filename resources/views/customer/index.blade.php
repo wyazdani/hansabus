@@ -34,7 +34,7 @@
                                     <th class="border-top-0" width="10%">{{__('customer.mobile')}}</th>
                                     <th class="border-top-0" width="20%">{{__('customer.address')}}</th>
                                     <th class="border-top-0" width="15%">{{__('customer.web')}}</th>
-                                    <th class="border-top-0" width="10%">&nbsp;</th>
+                                    <th class="border-top-0 d-print-none" width="10%">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,10 +47,9 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('pagejs')
-    @include('customer.view')
+@include('customer.view')
     <script>
         var deleteMe = function(id){
 
@@ -91,6 +90,22 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
+
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
                 'bSortable': true,
                 'bProcessing': true,
                 "bInfo": false,
@@ -107,6 +122,7 @@
 
                     "aTargets": [6],
                     "mData": "",
+                    'className' : "d-print-none",
                     "mRender": function (data, type, row) {
 
                         var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';
@@ -147,13 +163,11 @@
                     { "data": "phone" },
                     { "data": "address" },
                     { "data": "url" },
-
-                    // { "data": "actions" }
                 ],
                 drawCallback: deleteMe|viewCustomer,
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
-                        $('.dataTables_paginate').hide();
+                        // $('.dataTables_paginate').hide();
                     }
                 }
 

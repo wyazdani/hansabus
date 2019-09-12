@@ -19,8 +19,6 @@
 					</div>
 				</div>
 				<div class="card-content mt-1">
-
-
 					@if(!empty($tour->id))
 						<form class="form" method="POST" action="{{ route('tours.update',$tour->id) }}" id="tourForm" enctype="multipart/form-data" >
 							@method('PUT')
@@ -46,45 +44,13 @@
 												<div class="card-body">
 													<div class="px-3">
 														<div class="form-body">
-															@if(count($customers) >= 1 && count($vehicles) >= 1 && count($drivers) >= 1)
+
 																<div class="row">
-																	<div class="col-md-4">
-																		<div class="form-group">
-																			<label for="projectinput3">Status</label>
-																			<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
 
-																			>
-																				<option value="">{{__('tour.select_status')}}</option>
-																				@foreach($tour_statuses as $status)
-																					<option value="{{ $status->id  }}"
-																					@if(!empty($tour->status) && $tour->status==$status->id || old('status') == $status->id)
-																						{{ 'Selected' }}
-																							@endif
-																					>{{ $status->name }}</option>
-																				@endforeach
-																			</select>
-																		</div>
-																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">
-																			<label for="customSelect">{{__('tour.customer')}}</label>
-																			<select name="customer_id" class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
-																				<option value="">{{__('tour.select_customer')}}</option>
-																				@foreach($customers as $customer)
-																					<option value="{{ $customer->id  }}"
-																					@if(!empty($tour->customer_id) && $tour->customer_id==$customer->id || old('customer_id') == $customer->id)
-																						{{ 'Selected' }}
-																							@endif
-																					>{{ $customer->name }}</option>
-																				@endforeach
-																			</select>
-
-																		</div>
-																	</div>
-																	<div class="col-md-4">
-																		<div class="form-group">
-																			<label>{{__('tour.vehicle')}}</label>
-																			<select name="vehicle_id" class="form-control" onchange="getVehicleSeats(this.value);">
+																			<label>{{__('tour.vehicle')}}<span class="{{($errors->has('vehicle_id')) ?'errorStar':''}}">*</span></label>
+																			<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}" onchange="getVehicleSeats(this.value);">
 																				<option value="">{{__('tour.select_vehicle')}}</option>
 																				@foreach($vehicles as $vehicle)
 																					<option value="{{ $vehicle->id  }}"
@@ -101,54 +67,75 @@
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">
-																			<label for="fromDate">{{__('tour.from')}}</label>
+																			<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
+
+																			<span style="float: right"><a href="javascriot:;" onclick="addCustomer()">{{strtolower(__('customer.heading.add'))}}</a></span>
+																			<input type='text' name="customer_search" id="customer_search"
+																				   @if(!empty($tour->customer->name))
+																				   		value="{{ old('customer_search',$tour->customer->name) }}"
+																					@else value="{{ old('customer_search','') }}" @endif
+																				   class="{{($errors->has('customer_id')) ?'form-control error_input':'form-control'}}">
+																			<input type="hidden" id="customer_id" name="customer_id"
+																				   @if(!empty($tour->customer_id))
+																				   value="{{ old('customer_id',$tour->customer_id) }}"
+																				   @else value="{{ old('customer_id','') }}" @endif
+																				   >
+																		</div>
+																	</div>
+																	<div class="col-md-4">
+																		<div class="form-group">
+																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}"></span></label>
+																			<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
+																			<input type='text' name="driver_search" id="driver_search"
+																				   @if(!empty($tour->driver->driver_name))
+																				   value="{{ old('driver_search',$tour->driver->driver_name) }}"
+																				   @else value="{{ old('driver_search','') }}" @endif
+																				   class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
+																			<input type="hidden" id="driver_id" name="driver_id"
+																				   @if(!empty($tour->driver_id))
+																				   value="{{ old('driver_id',$tour->driver_id) }}"
+																				   @else value="{{ old('driver_id','') }}" @endif
+																			>
+																		</div>
+																	</div>
+																	<div class="col-md-2">
+																		<div class="form-group">
+																			<label for="fromDate">{{__('tour.from')}}<span class="{{($errors->has('from_date')) ?'errorStar':''}}">*</span></label>
 																			<div class='input-group date'>
 																				<input type='text' name="from_date" autocomplete="off"
 																					   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
-																					   value="{{ (!empty($tour->from_date))?date('m/d/Y h:i A',strtotime($tour->from_date)):old('from_date') }}"
+																					   value="{{ (!empty($tour->from_date))?date('d.m.Y H:i',strtotime($tour->from_date)):old('from_date') }}"
 																				/>
 																			</div>
 																		</div>
 																	</div>
-																	<div class="col-md-4">
+																	<div class="col-md-2">
 																		<div class="form-group">
-																			<label for="toDate">{{__('tour.to')}}</label>
+																			<label for="toDate">{{__('tour.to')}}<span class="{{($errors->has('to_date')) ?'errorStar':''}}">*</span></label>
 																			<div class='input-group date'>
 																				<input type='text' name="to_date" autocomplete="off"
 																					   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
-																					   value="{{ (!empty($tour->to_date))?date('m/d/Y h:i A',strtotime($tour->to_date)):old('to_date') }}"
+																					   value="{{ (!empty($tour->to_date))?date('d.m.Y H:i',strtotime($tour->to_date)):old('to_date') }}"
 																				/>
 																			</div>
 																		</div>
 																	</div>
-																	<div class="col-md-4">
-																		<div class="form-group">
-																			<label for="customSelect">{{__('tour.driver')}}</label>
-																			<select name="driver_id" class="{{($errors->has('driver_id')) ?'form-control error_input':'form-control'}}">
-																				<option value="">{{__('tour.select_one')}}</option>
-																				@foreach($drivers as $driver)
-																					<option value="{{ $driver->id  }}"
-																					@if(!empty($tour->driver_id) && $tour->driver_id==$driver->id || old('driver_id') == $driver->id)
-																						{{ 'Selected' }}
-																							@endif
-																					>{{
-																	$driver->driver_name
-																	 }}</option>
-																				@endforeach
-																			</select>
-																		</div>
-																	</div>
-																	<div class="col-md-4">
-																		<div class="form-group">
-																			<label for="projectinput3"># {{__('tour.passengers')}}</label>
-																			<input type="number" name="passengers" id="passengers"
 
+
+																	<div class="col-md-2">
+																		<div class="form-group">
+																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}"></span></label>
+																			<input type="number" name="passengers" id="passengers"
 																				   onkeyup='if(!passengersCheck(this.value)) this.value="";'
-																				   class="form-control"
+																				   onchange='if(!passengersCheck(this.value)) this.value="";'
+																				   class="{{($errors->has('passengers')) ?'error_input form-control':'form-control'}}"
 																				   value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 																		</div>
 																	</div>
-																	<div class="col-md-4">
+
+
+
+																	<div class="col-md-2">
 																		<div class="form-group">
 																			<label for="projectinput3">{{__('tour.guide')}}</label>
 																			<input type="text" name="guide"
@@ -156,17 +143,40 @@
 																				   value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
 																		</div>
 																	</div>
-
-																	<div class="col-md-4">
+																	<div class="col-md-2">
 																		<div class="form-group">
-																			<label for="projectinput3">{{__('tour.price')}}</label>
+																			<label for="projectinput3">{{__('tour.price')}}<span class="{{($errors->has('price')) ?'errorStar':''}}">*</span></label>
 																			<input type="number" name="price"
 																				   class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}"
 																				   value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
 																		</div>
 																	</div>
+																	<div class="col-md-2">
+																		<div class="form-group">
+																			<label for="projectinput3">Status<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
+																			<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
+
+																			>
+																				<option value="">{{__('tour.select_status')}}</option>
+																				@foreach($tour_statuses as $status)
+																					<option value="{{ $status->id  }}"
+																					@if(!empty($tour->status) && $tour->status==$status->id || old('status') == $status->id)
+																						{{ 'Selected' }}
+																							@endif
+																					>{{ $status->name }}</option>
+																				@endforeach
+																			</select>
+																		</div>
+																	</div>
+
+
 
 																</div>
+															<label for="projectinput3">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
+																<textarea type="text"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}} form form-control" placeholder="Decription" name="description" id="description">
+																</textarea>
+
+
 														</div>
 													</div>
 												</div>
@@ -177,9 +187,10 @@
 								</form>
 						</form>
 
+						<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
 
 						@if(!empty($attachments))
-							<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
+
 							<div class="row">
 								<div class="col-lg-12">
 									<ul class="upload-list">
@@ -194,14 +205,23 @@
 											@endif
 										@endforeach
 									</ul>
+
 									@foreach($attachments as $attachment)
 										@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 										@if(!in_array($ext,['png','jpg','jpeg','gif']))
-											<div class="col-md-3"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
-													{{ $attachment->file }}
-												</a></div>
+
+
+											@if(in_array($ext,['PDF','pdf']))
+												<div class="col-md-3 mb-2"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank"><i
+																class="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i></a></div>
+											@else
+												<div class="col-md-3 mb-1"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
+														{{ $attachment->file }}</a></div>
+											@endif
+
 										@endif
 									@endforeach
+
 								</div>
 							</div>
 						@endif
@@ -232,22 +252,15 @@
 				</div>
 			</div>
 
-			@else
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="alert alert-danger" style="color: #454545 !important">
-							{{__('messages.add_tour_msg')}}
-						</div>
-					</div>
-				</div>
-			@endif
 		</div>
 	</div>
-	<input type="hidden" id="seatsAllowed" value="">
+	<input type="hidden" id="seatsAllowed" value="{{(!empty($tour->vehicle->seats))?$tour->vehicle->seats:''}}">
+	<div class='error' style='display:none'>I did something!</div>
 @endsection
 @section('pagejs')
 	@include('tours.img_view')
-
+	@include('customer.add_popup')
+	@include('drivers.add_popup')
 	<script type="text/javascript">
 		function passengersCheck(){
 
@@ -256,9 +269,18 @@
 			if(passengers !='' && passengers>0 && passengers <= seatsAllowed){
 
 				// console.log('passengers count is fine.');
+				$('#passengers').removeClass('error_input');
 				return true;
 			}else{
 				// console.log('vehicle overloaded.');
+				// $('.error').stop().fadeIn(400).delay(3000).fadeOut(400);
+
+				if($('#seatsAllowed').val() !=''){
+
+					/*$('#passengers').addClass('error_input');*/
+					toastr.info( parseInt($('#seatsAllowed').val())+'{{__('tour.passengers_allowed')}}');
+				}
+
 				return false;
 			}
 		}
@@ -272,7 +294,7 @@
 
 					$('#seatsAllowed').val(parseInt(v.seats));
 					passengersCheck();
-					console.log('seats allowed: '+v.seats);
+					// console.log('seats allowed: '+v.seats);
 				}
 			});
 		}
@@ -291,9 +313,10 @@
 			passengersCheck();
 			/* DateTime Picker */
 			$('.datetimepicker1').datetimepicker(
-					// { minDate: moment() }
+					{format:'DD.MM.YYYY HH:mm'}
 			);
 			$('.datetimepicker2').datetimepicker({
+				format:'DD.MM.YYYY HH:mm',
 				useCurrent: false //Important! See issue #1075
 			});
 			$(".datetimepicker1").on("dp.change", function (e) {

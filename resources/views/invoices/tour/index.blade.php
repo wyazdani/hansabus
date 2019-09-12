@@ -11,62 +11,59 @@
                                 <h4 class="card-title">{{__('tour_invoice.heading.index')}}</h4>
                             </div>
                         </div>
+                        <div class="col-sm-6 col-md-6 text-right">
+                            <a href="{{ route('tour-invoice-create') }}" class="btn btn-success ml-2 mt-2">
+                                {{ __('tour_invoice.heading.add') }}</a>
+                        </div>
                     </div>
                     <div>&nbsp;</div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <select id="customer_id" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_customer')}}</option>
-                                    @foreach($customers as $customer)
-                                        <option value="{{$customer->id}}">{{$customer->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-1.5">
-                            <div class="form-group">
-                                <input type='text' id="from_date" autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" />
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <input type='text' id="to_date" autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <input type='text' id="invoiceID" placeholder="Invoice ID" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-md-1.5">
-                            <div class="form-group">
-                                <select id="status" class="form-control filterBox">
-                                    <option value="">{{__('tour.select_status')}}</option>
-                                    <option value="1">Unpaid</option>
-                                    <option value="2">Paid</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <a href="javascript:;" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6" >
-                            <div class="form-group text-left">
-                                <a href="javascript:;" onclick="$('#theForm').submit()"
-                                   class="btn btn-info disabled"
-                                   id="mark_as_paidDiv">{{ __('tour_invoice.mark_as_paid') }}</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 text-right">
-                            <div class="dataTables_filter"><a href="{{ route('tour-invoice-create') }}" class="btn btn-success ml-2 mt-2">
-                                    {{ __('tour_invoice.heading.add') }}</a>
-                            </div>
-                        </div>
 
-                    </div>
+                    <form class="form" method="GET" action="{{ route('tour-invoices') }}" id="searchForm">
+                        @csrf
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input type='text' name="customer_search" id="customer_search"
+                                           placeholder="{{__('tour.customer')}}" class="form-control filterBox" value="{{ request()->get('customer_search') }}" >
+                                    <input type="hidden" id="customer_id" name="customer_id" value="{{ request()->get('customer_id') }}" >
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group"><input type='text' name="from_date" id="from_date"  value="{{request()->get('from_date')}}"
+                                                               autocomplete="off" placeholder="{{__('tour.from')}}" class="form-control datetimepicker1" /></div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type='text' name="to_date" id="to_date" value="{{request()->get('to_date')}}"
+                                           autocomplete="off" placeholder="{{__('tour.to')}}" class="form-control datetimepicker2" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group"><input type='text' name="id" id="invoiceID" value="{{request()->get('id')}}"
+                                                               placeholder="Invoice ID" class="form-control" /></div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select id="status" name="status" class="form-control filterBox"><option value="">{{__('tour.select_status')}}</option>
+                                        <option value="1" @if(request()->get('status') == 1) {{ 'Selected' }}  @endif >Unpaid</option>
+                                        <option value="2" @if(request()->get('status') == 2) {{ 'Selected' }}  @endif >Paid</option></select>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <a href="javascript:;" onclick="$('#searchForm').submit()"  class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" >
+                                <div class="form-group text-left">
+                                    <a href="javascript:;" onclick="$('#theForm').submit()"
+                                       class="btn btn-info disabled"
+                                       id="mark_as_paidDiv">{{ __('tour_invoice.mark_as_paid') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-content mt-1">
                     <div class="card-body">
@@ -75,31 +72,54 @@
                             <div class="table-responsive">
                                 <form class="form" method="GET" action="{{ route('mark-as-paid') }}" id="theForm">
                                     @csrf
-                                <table class="table table-hover table-xl mb-0" id="listingTable">
-                                    <thead>
-                                    <tr>
-                                        <th class="border-top-0" width="5%">
-                                            <div class="custom-control custom-checkbox" style="top: -5px;">
-                                                <input type="checkbox" class="custom-control-input" id="isSelected" name="example1">
-                                                <label class="custom-control-label" for="isSelected">&nbsp;</label>
-                                            </div>
+                                    <table class="table table-xl mb-0" id="listingTable">
+                                        <thead>
+                                        <tr>
+                                            <th class="border-top-0" width="5%">
+                                                <div class="custom-control custom-checkbox" style="top: -5px;">
+                                                    <input type="checkbox" class="custom-control-input" id="isSelected" name="example1">
+                                                    <label class="custom-control-label" for="isSelected">&nbsp;</label>
+                                                </div>
+                                            </th>
+                                            <th class="border-top-0" width="10%">{{__('tour_invoice.invoice')}} #</th>
+                                            <th class="border-top-0" width="35%">{{__('tour_invoice.customer')}}</th>
+                                            <th class="border-top-0" width="10%">{{__('tour_invoice.total')}}</th>
+                                            <th class="border-top-0" width="10%">{{__('tour_invoice.status')}}</th>
+                                            <th class="border-top-0" width="20%">{{__('tour_invoice.date')}}</th>
+                                            <th class="border-top-0" width="7.5%">&nbsp;</th>
+                                            <th class="border-top-0" width="7.5%">&nbsp;</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="toursDiv">
+                                        @foreach($rows as $row)
+                                            <tr>
+                                                @if($row->status == 'Unpaid')
+                                                    <td><div class="custom-control custom-checkbox" style="top: -5px;">
+                                                            <input type="checkbox" id="a{{$row->id}}" class="custom-control-input form-check-input ids" onclick="showButton();" value="{{$row->id}}" name="ids[]">
+                                                            <label class="custom-control-label" for="a{{$row->id}}">&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                @else
+                                                    <td>&nbsp;</td>
+                                                @endif
+                                                <td>{{ $row->invoice_id }}</td>
+                                                <td>{{ $row->customer->name }}</td>
+                                                <td>{{ $row->total }}</td>
+                                                <td>{{ $row->status }}</td>
+                                                <td>{{ $row->created }}</td>
+                                                <td>
+                                                    @if($row->status == 'Unpaid')
+                                                        <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
+                                                    @else
+                                                        <a href="{{ route('download-tours-invoice') }}?id={{$row->id}}" class="btn btn-sm btn-outline-primary">Download</a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        <tr><td colspan="7">{{$rows->appends(request()->input())->links()}}</td> </tr>
 
-{{--                                            <div class="form-check">--}}
-{{--                                                <input class="form-check-input" type="checkbox" id="isSelected">--}}
-{{--                                            </div>--}}
-                                        </th>
-                                        <th class="border-top-0" width="10%">{{__('tour_invoice.invoice')}} #</th>
-                                        <th class="border-top-0" width="35%">{{__('tour_invoice.customer')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('tour_invoice.total')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('tour_invoice.status')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('tour_invoice.date')}}</th>
-                                        <th class="border-top-0" width="7.5%">&nbsp;</th>
-                                        <th class="border-top-0" width="7.5%">&nbsp;</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="toursDiv">
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
                                 </form>
                             </div>
                         </div>
@@ -132,72 +152,7 @@
             }
         }
 
-        function getInvoices(){
 
-            if($('#customer_id').val() == ''){
-                $('#toursDiv').html('');
-            }
-
-            var data =  {
-                'status':$('#status').val(),
-                'customer_id' : $('#customer_id').val(),
-                'from_date' : $('#from_date').val(),
-                'to_date' : $('#to_date').val(),
-                'id' : $('#invoiceID').val(),
-            };
-            $.ajax({
-                url: '{{ url('/tour-invoices-list') }}',
-                data: data,
-                type: 'GET',  // user.destroy
-                success: function(r) {
-                    var html = '';
-
-                    var i;
-                    var total = 0;
-
-                    if (r.data.length) {
-
-                    for (i = 0; i < r.data.length; ++i) {
-
-                        total += parseInt(r.data[i].price);
-                        html +=
-                            '<tr>';
-
-                        if(r.data[i].status == 'Unpaid'){
-                            html += '<td><div class="custom-control custom-checkbox" style="top: -5px;">' +
-                                '<input type="checkbox" id="a' + r.data[i].id + '" class="custom-control-input form-check-input ids" onclick="showButton();" value="' + r.data[i].id + '" name="ids[]">' +
-                                '<label class="custom-control-label" for="a' + r.data[i].id + '">&nbsp;</label></div></td>';
-                        }else{
-                            html+= '<td>&nbsp;</td>';
-                        }
-
-                        html+= '<td>' + r.data[i].invoice_id + '</td>' +
-                            '<td>' + r.data[i].customer.name + '</td>' +
-                            '<td>' + r.data[i].total + '</td>' +
-                            '<td>' + r.data[i].status+ '</td>' +
-                            '<td>' + r.data[i].created_at + '</td>';
-                        if(r.data[i].status == 'Unpaid'){
-                            html+= '<td><a href="{{ route('mark-as-paid')}}?ids[]='+ r.data[i].id + '" class="btn btn-sm btn-outline-info">{{__('tour_invoice.mark_as_paid')}}</a></td>';
-                        }else{
-                            html+= '<td>&nbsp;</td>';
-                        }
-                        html+= '<td><a href="{{ route('download-tours-invoice') }}?id=' + r.data[i].id + '" class="btn btn-sm btn-outline-primary">Download</a></td>' +
-                            '</tr>';
-                    }
-                   /* html +=
-                        '<tr>' +
-                        '<td colspan="7" style="text-align: right;">Total:</td>' +
-                        '<td>' + total + '</td>' +
-                        '</tr>';*/
-                        $('#toursDiv').html(html);
-
-                    }else{
-                        $('#toursDiv').html('<tr><td colspan="8" class="text-center">{{__("messages.no_record")}}.</td></tr>');
-                    }
-                    // console.log(html);
-                }
-            });
-        }
         $(document).ready(function() {
 
 
@@ -224,18 +179,12 @@
             });
 
 
-            /* filter by customer, from/to dates change */
-            $('.filterBox ').on('change', function(){
-                getInvoices();
-            });
-            /* filter by search button click */
-            $('#searchBtn').on('click', function(){
-                getInvoices();
-            });
-
             /* DateTime Picker */
-            $('.datetimepicker1').datetimepicker();
+            $('.datetimepicker1').datetimepicker(
+                {format:'DD.MM.YYYY HH:mm'}
+            );
             $('.datetimepicker2').datetimepicker({
+                format:'DD.MM.YYYY HH:mm',
                 useCurrent: false //Important! See issue #1075
             });
             $(".datetimepicker1").on("dp.change", function (e) {
@@ -245,7 +194,6 @@
                 $('.datetimepicker1').data("DateTimePicker").maxDate(e.date);
             });
 
-            getInvoices();
         });
 
     </script>

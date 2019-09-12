@@ -32,33 +32,42 @@ class HomeController extends Controller
         $totalDrivers= Driver::where('status',1)->count();
         $totalCustomers = Customer::where('status',1)->count();
 
-        /* recent tours */
-//        $recentTours    = Tour::limit(10)->orderby('id', 'desc')->get();
 
-        /* tours calendar */
-        $rows = Tour::where('status','>',1)->orderby('id','desc')->limit(50)->get(
-            ['id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+        $rows = Tour::where('status','>',1)->where('status','<',4)->orderBy('id','DESC')->offset(0)->limit(10)->get(
+            ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
-        $calendarTours =[]; $i=0; $recentTours=[];
+        $colors = ['#1E9FF2','#34D093','#F78C47','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
+
+        $events = $recentTours = []; $i=$j=0;
         foreach($rows as $row){
-            $row->vehicle;
+
+            if($j>7){
+                $j = $j-8;
+            }
+
+
             $row->driver;
             $row->customer;
-            // ' passengers on '.$row->vehicle->name.'. driver: '.$row->driver->driver_name
-            $calendarTours[$i]['title'] = 'Tour # '.$row->id;
-            $calendarTours[$i]['start'] = $row->from_date;
-            $calendarTours[$i]['end'] = $row->to_date;
-            $calendarTours[$i]['url'] = url('/tour/'.$row->id);
 
-            $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
-            $row->to_date   = date('d.m.Y H:i',strtotime($row->to_date));
+            if($i<11) {
+                $recentTours[] = $row;
+            }
+//            $vehicles[] = $row->vehicle;
+            $events[$i]['id'] = $row->id;
+            $events[$i]['resourceId'] = $row->vehicle->id;
+            $events[$i]['start'] = $row->from_date;
+            $events[$i]['end'] = $row->to_date;
 
 
-            $i++;
-            $recentTours[] = $row;
+            $events[$i]['title'] = ' 
+            Customer: '.$row->customer->name.' 
+            Driver: '.$row->driver->driver_name;
+            $events[$i]['url'] = url('/tour/'.$row->id);
+            $events[$i]['backgroundColor'] = $colors[$j];
+
+            $i++; $j++;
         }
-        unset($rows);
 
-        return view('home',compact('pageTitle','totalVehicles','totalDrivers','totalCustomers','recentTours','calendarTours'));
+        return view('home',compact('pageTitle','totalVehicles','totalDrivers','totalCustomers','recentTours','events'));
     }
 }

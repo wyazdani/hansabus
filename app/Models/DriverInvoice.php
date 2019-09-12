@@ -15,6 +15,4 @@ class DriverInvoice extends Model
     {
         return $this->hasOne('App\Models\Customer','id','customer_id');
     }
-
-
 }

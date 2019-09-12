@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\General;
+use App\Models\Customer;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 
@@ -71,24 +72,29 @@ class DriverController extends Controller
 
         if(!empty($search)){
 
-            $query = Driver::where('driver_name', 'LIKE','%'.$search.'%')
-                ->orWhere('mobile_number', 'LIKE','%'.$search.'%')
-                ->orWhere('driver_license', 'LIKE','%'.$search.'%')
-                ->orWhere('nic', 'LIKE',"%{$search}%")
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('phone', 'LIKE',"%{$search}%")
-                ->orWhere('other_details', 'LIKE',"%{$search}%")
-            ;
+            $query = Driver::where(function ($query) use ($search) {
+                $query->where('driver_name', 'LIKE','%'.$search.'%')
+                    ->orWhere('mobile_number', 'LIKE','%'.$search.'%')
+                    ->orWhere('driver_license', 'LIKE','%'.$search.'%')
+                    ->orWhere('nic', 'LIKE','%'.$search.'%')
+                    ->orWhere('address', 'LIKE','%'.$search.'%')
+                    ->orWhere('phone', 'LIKE','%'.$search.'%')
+                    ->orWhere('other_details', 'LIKE','%'.$search.'%');
+            });
+            /* if searching from autocomplete */
+            if(!empty($request->key) && $request->key=='auto'){
+                $query->where('status',1);
+            }
         }
         $recordsTotal = $query->count();
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get();
 
         $data=[];
         foreach($rows as $row){
-            $row['action']='';
+            $row['label'] = $row['driver_name'];
+            $row['value'] = $row['driver_name'];
             $data[] = $row;
         }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
 
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
@@ -146,10 +152,8 @@ class DriverController extends Controller
              'driver_name.required' => 'Name is required.',
             'nic.required'=>'NIN No. is required.'
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
-
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* Profile picture upload */
             $profilePic = '';
@@ -167,14 +171,25 @@ class DriverController extends Controller
             $driver = new Driver;
             $driver->driver_name = $request->get('driver_name');
             $driver->mobile_number = $request->get('mobile_number');
-            $driver->driver_license = $request->get('driver_name');
+            $driver->driver_license = $request->get('driver_license');
             $driver->nic = $request->get('nic');
             $driver->address = $request->get('address');
             $driver->phone = $request->get('phone');
-            $driver->other_details = $request->get('other_details');
+
+            $other_details = ' ';
+            if(!empty($request->other_details)){
+                $other_details = $request->other_details;
+            }
+            $driver->other_details = $other_details;
             $driver->profile_pic = $profilePic;
             if($driver->save()){
-                toastr()->success(__('driver.created'));
+
+                if(!empty($request->key) && $request->key == 'popup'){
+
+                    return $driver;
+                }else{
+                    toastr()->success(__('driver.created'));
+                }
             }
 
         }else{
@@ -222,9 +237,8 @@ class DriverController extends Controller
             'driver_name.required' => 'Name is required.',
             'nic.required'=>'NIN No. is required.'
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             /* Profile picture upload */
             $profilePic = '';
@@ -245,11 +259,15 @@ class DriverController extends Controller
             $driver = Driver::find($id);
             $driver->driver_name = $request->get('driver_name');
             $driver->mobile_number = $request->get('mobile_number');
-            $driver->driver_license = $request->get('driver_name');
+            $driver->driver_license = $request->get('driver_license');
             $driver->nic = $request->get('nic');
             $driver->address = $request->get('address');
             $driver->phone = $request->get('phone');
-            $driver->other_details = $request->get('other_details');
+            $other_details = ' ';
+            if(!empty($request->other_details)){
+                $other_details = $request->other_details;
+            }
+            $driver->other_details = $other_details;
             $driver->profile_pic = $profilePic;
             if($driver->save()){
                 toastr()->success(__('driver.updated'));

@@ -11,6 +11,8 @@ return [
     'mobile'=>'Handynummer',
     'web'=>'Firmenweb',
     'address'=>'Adresse',
+    'postal_code'=>'Postleitzahl',
+    'country'=>'Land',
     'is_active'=>'ist aktiv',
 
     'created'=>'Kunde erstellt.',

@@ -20,7 +20,8 @@ class Tour extends Model
 
         'passengers',
         'guide',
-        'price'
+        'price',
+        'description'
     ];
 
     protected $dates = ['deleted_at'];
@@ -43,5 +44,10 @@ class Tour extends Model
     public function driver()
     {
         return $this->hasOne('App\Models\Driver','id','driver_id')->select(['id','driver_name']);
+    }
+
+    public function tourdetails()
+    {
+        return  $this->hasOne(TourInvoiceDetail::class,'invoice_id','id');
     }
 }

@@ -20,12 +20,10 @@ return [
     'drag'=>'Ziehen oder',
     'upload'=>'hochladen',
 
-    'select_one'=>'Select One',
     'select_status'=>'Wählen Sie Status',
     'select_customer'=>'Wählen Sie Kunde',
     'select_vehicle'=>'Fahrzeug auswählen',
     'select_driver'=>'Treiber auswählen',
-
 
     'today'=>'Heute',
     'month'=>'Monat',
@@ -46,4 +44,10 @@ return [
     'status_changed'=>'Tourstatus geändert.',
     'vehicle_already_booked'=>'Fahrzeug bereits gebucht.',
 
+    'booked_for_tour'   =>  'Sie haben für die Tour gebucht',
+    'passengers_allowed'=>' passagiere erlaubt.',
+    'description' => 'Beschreibung',
+    'send_invoice' => 'Rechnung senden',
+    'invoice'       =>  'Rechnung',
+    'email'         =>  'Email wurde erfolgreich Versendet'
 ];

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\TourInvoice;
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -7,6 +9,11 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware' => 'auth'], function (){
+
+    /**/
+    Route::resource('bus-services', 'BusServiceController');
+    Route::get('/bus-services-list', 'BusServiceController@getList')->name('bus-services-list');
+
 
     /* customers */
     Route::resource('customers', 'CustomerController');
@@ -18,6 +25,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/tours-list', 'ToursController@getList')->name('tour-list');
     Route::get('/tour/{Tour}', 'ToursController@detail')->name('tour-detail');
     Route::get('/tour-calendar', 'ToursController@calendar')->name('tour-calendar');
+    Route::post('/tour-customer-email', 'ToursController@tour_customer_email')->name('tour-customer-email');
 
     /* Tour invoices*/
     Route::get('/tour-invoices', 'TourInvoiceController@index')->name('tour-invoices');
@@ -52,11 +60,20 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/vehicle-list', 'VehicleController@getList')->name('vehicle-list');
     Route::get('/vehicles/change-status/{Vehicle}', 'VehicleController@status')->name('vehicles.status-change');
 
+
+    Route::get('change-password', 'VehicleTypeController@changePasswordForm')->name('change-password-form');
+    Route::post('change-password', 'VehicleTypeController@changePassword')->name('change-password');
+
     /* vehicle types */
     Route::resource('vehicle-type', 'VehicleTypeController');
     Route::get('/vehicle-type-list', 'VehicleTypeController@getList')->name('vehicle-type-list');
     Route::get('/vehicle-type/change-status/{VehicleType}', 'VehicleTypeController@status')->name('vehicle-type.status-change');
 
+
+    /*Offers*/
+    Route::resource('offers', 'OfferController');
+    Route::post('/offer/send-mail', 'OfferController@send_mail')->name('offers.send_mail');
+    Route::post('/offer/modal-mail', 'OfferController@modal_mail')->name('offers.modal_mail');
 
     /* file upload */
     Route::post('/file-upload', 'AttachmentController@uploadFiles')->name('file-upload');

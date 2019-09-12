@@ -18,7 +18,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
 				</div>
 
 				<div class="card-content mt-1">
@@ -58,7 +57,7 @@
 			if(confirm('{{__("messages.want_to_delete")}}')){
 
 				$.ajax({
-					url: '/v-drivers/'+id,
+					url: '{{ url('/v-drivers') }}/'+id,
 					data: "_token={{ csrf_token() }}",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
@@ -95,6 +94,22 @@
 
 			var tableDiv = $('#listingTable').DataTable({
 
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'print',
+						customize: function ( win ) {
+							$(win.document.body)
+									.css( 'font-size', '10pt' )
+									.prepend('@include('layouts.print_header')')
+									.append('@include('layouts.print_footer')');
+
+							$(win.document.body).find( 'table' )
+									.addClass( 'compact' )
+									.css( 'font-size', 'inherit' );
+						}
+					}
+				],
 				'bSortable': true,
 				'bProcessing': true,
 				"bInfo": false,
@@ -151,16 +166,13 @@
 					{ "data": "driver_license" },
 					{ "data": "nic" },
 					{ "data": "phone" },
-
-					// { "data": "actions" }
 				],
 				drawCallback: deleteMe|viewDriver,
 				"fnDrawCallback": function(oSettings) {
 					if ($('#listingTable tr').length < 11) {
-						$('.dataTables_paginate').hide();
+						// $('.dataTables_paginate').hide();
 					}
 				}
-
 			});
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
 		} );

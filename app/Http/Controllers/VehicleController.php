@@ -95,7 +95,9 @@
 
             $data=[];
             foreach($rows as $row){
-                $row['action']='';
+
+                $row['label'] = $row['name'];
+                $row['value'] = $row['name'];
                 $data[] = $row;
             }
             $recordsFiltered = $query->offset($start)->limit($limit)->count();
@@ -154,10 +156,8 @@
             $messages = [
                 // 'name.required' => 'name is required',
             ];
-
-            $general = new General();
-            $validated = $general->validateMe($request, $rules, $messages);
-            if($validated) {
+            $this->validate(request(), $rules, $messages);
+            if(true){
 
                 $vehicle = new Vehicle;
                 $vehicle->name = $request->name;
@@ -253,10 +253,8 @@
             $messages = [
                 // 'title.required' => 'Title is required',
             ];
-
-            $general = new General();
-            $validated = $general->validateMe($request, $rules, $messages);
-            if($validated) {
+            $this->validate(request(), $rules, $messages);
+            if(true){
 
                 $vehicle = Vehicle::find($request->id);
                 $vehicle->name = $request->name;

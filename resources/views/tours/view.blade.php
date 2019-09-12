@@ -28,9 +28,19 @@
 					</dl>
 				</div>
 				<div class="col-md-6">
+					{{--<span> Want to share this info with customer</span>
+					<label>Enter Customer Email</label>
+					<input type="email" class="form form-control">
+					<button class="btn btn-light-blue" onclick="function f() {
+
+							}">Send Email</button>--}}
 				</div>
 				<div class="col-md-12" id="v_attachments">
 				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-labeled btn-xxs btn-success"> Print</button>
 			</div>
 		</div>
 	</div>

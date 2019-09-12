@@ -27,13 +27,13 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="7%">ID</th>
-                                        <th class="border-top-0" width="20%">{{__('vehicle.name')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('vehicle.make')}}</th>
-                                        <th class="border-top-0" width="10%">{{__('vehicle.year')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('vehicle.license_plate')}}</th>
-                                        <th class="border-top-0" width="20%">{{__('vehicle.engine_number')}}</th>
-                                        <th class="border-top-0" width="15%">{{__('vehicle.reg_number')}}</th>
-                                        <th class="border-top-0" width="10%">&nbsp;</th>
+                                        <th class="border-top-0" width="24%">{{__('vehicle.name')}}</th>
+                                        <th class="border-top-0" width="25%">{{__('vehicle.make')}}</th>
+                                        <th class="border-top-0" width="8%">{{__('vehicle.year')}}</th>
+                                        <th class="border-top-0" width="13%">{{__('vehicle.license_plate')}}</th>
+                                        <th class="border-top-0" width="13%">{{__('vehicle.engine_number')}}</th>
+                                        <th class="border-top-0" width="13%">{{__('vehicle.reg_number')}}</th>
+                                        <th class="border-top-0 d-print-none " width="10%">&nbsp;</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -95,7 +95,6 @@
                     if(vehicle.phoneCharging == 1) $('#v_phoneCharging').html('{{__('messages.yes')}}'); else $('#v_phoneCharging').html('{{__('messages.no')}}');
 
                     $('#viewModel').modal('show');
-
                 }
             });
         };
@@ -104,6 +103,22 @@
 
             var tableDiv = $('#listingTable').DataTable( {
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
+
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
                 "bInfo": false,
                 "processing": true,
                 "serverSide": true,
@@ -165,7 +180,7 @@
                 drawCallback: deleteMe|viewVehicle,
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
-                        $('.dataTables_paginate').hide();
+                        // $('.dataTables_paginate').hide();
                     }
                 }
 

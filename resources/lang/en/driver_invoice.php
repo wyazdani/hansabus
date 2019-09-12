@@ -52,6 +52,8 @@ return [
 
 
     'generated'=>'Invoice generated.',
-    'mark_paid'=>'Invoice status changed to paid.'
+    'mark_paid'=>'Invoice status changed to paid.',
+    'driver_email'  =>  'Driver Email',
+    'driver_license'    =>  'Driver License'
 
     ];

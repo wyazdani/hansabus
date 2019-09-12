@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\General;
+use App\Models\Country;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -75,22 +76,29 @@ class CustomerController extends Controller
 
         if(!empty($search)){
 
-            $query = Customer::where('name', 'LIKE','%'.$search.'%')
-                ->orWhere('email', 'LIKE','%'.$search.'%')
-                ->orWhere('phone', 'LIKE','%'.$search.'%')
-                ->orWhere('address', 'LIKE',"%{$search}%")
-                ->orWhere('url', 'LIKE',"%{$search}%");
+            $query = Customer::where(function ($query) use ($search) {
+                $query->where('name', 'LIKE','%'.$search.'%')
+                    ->orWhere('email', 'LIKE','%'.$search.'%')
+                    ->orWhere('phone', 'LIKE','%'.$search.'%')
+                    ->orWhere('address', 'LIKE','%'.$search.'%');
+            });
+            /* if searching from autocomplete */
+            if(!empty($request->key) && $request->key=='auto'){
+                $query->where('status',1);
+            }
         }
+
+
         $recordsTotal = $query->count();
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','phone','address','url','status']);
 
         $data=[];
         foreach($rows as $row){
-            $row['action']='';
+
+            $row['label'] = $row['name'];
+            $row['value'] = $row['name'];
             $data[] = $row;
         }
-        $recordsFiltered = $query->offset($start)->limit($limit)->count();
-
         return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
     public function index(Request $request)
@@ -114,8 +122,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Customer Create';
-        return view('customer.add', compact('pageTitle'));
+        $pageTitle = __('customer.heading.add');
+        $countries  =   Country::orderBy('country_name','ASC')->get();
+        return view('customer.add', compact('pageTitle','countries'));
     }
 
     /**
@@ -130,7 +139,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|email|unique:customer',
 //            'url' => 'required|url|max:200',
-            'phone' => 'required|numeric',
+            /*'phone' => 'required|numeric',*/
             'address' => 'required|string|max:200',
         ];
         $messages = [
@@ -140,10 +149,17 @@ class CustomerController extends Controller
             'address.required' => 'Please provide your address..',
         ];
 
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        if(!empty($request->key) && $request->key == 'popup'){
 
+            $validation = Validator::make($request->only('name', 'email','phone','address'),$rules);
+            if(!$validation->passes()) {
+
+                return response()->json(['errors'=>$validation->errors()]);
+            }
+        }else {
+            $this->validate(request(), $rules, $messages);
+        }
+        if(true){
 
             $customer = new Customer;
             $customer->name = $request->name;
@@ -151,17 +167,25 @@ class CustomerController extends Controller
             $customer->url = $request->url;
             $customer->phone = $request->phone;
             $customer->address = $request->address;
+            $customer->postal_code = $request->postal_code;
+            $customer->country_id = $request->country_id;
 
             $status = false;
             if ($request->status) $status = true;
             $customer->status = $status;
 
             if ($customer->save()) {
-                toastr()->success(__('customer.created'));
-                if ($request->returnFlag == 1) {
-                    return redirect('/customers');
-                } else {
-                    return redirect('/customers/create');
+
+                if(!empty($request->key) && $request->key == 'popup'){
+
+                    return $customer;
+                }else{
+                    toastr()->success(__('customer.created'));
+                    if ($request->returnFlag == 1) {
+                        return redirect('/customers');
+                    } else {
+                        return redirect('/customers/create');
+                    }
                 }
             }
         }else{
@@ -190,7 +214,8 @@ class CustomerController extends Controller
     {
         $pageTitle = 'Customer Update';
         $customer = $Customer;
-        return view('customer.add', compact('pageTitle','customer'));
+        $countries  =   Country::orderBy('country_name','ASC')->get();
+        return view('customer.add', compact('pageTitle','customer','countries'));
     }
 
     /**
@@ -207,7 +232,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|email',
 //            'url' => 'required|url|max:200',
-            'phone' => 'required|numeric',
+            /*'phone' => 'required|numeric',*/
             'address' => 'required|string|max:200',
         ];
         $messages = [
@@ -216,9 +241,8 @@ class CustomerController extends Controller
             'phone.required' => 'Please provide your phone number.',
             'address.required' => 'Please provide your address..',
         ];
-        $general = new General();
-        $validated = $general->validateMe($request, $rules, $messages);
-        if($validated) {
+        $this->validate(request(), $rules, $messages);
+        if(true){
 
             $customer = Customer::find($id);
             $customer->name = $request->name;
@@ -226,6 +250,8 @@ class CustomerController extends Controller
             $customer->url = $request->url;
             $customer->phone = $request->phone;
             $customer->address = $request->address;
+            $customer->postal_code = $request->postal_code;
+            $customer->country_id = $request->country_id;
 
             $status = false;
             if ($request->status) $status = true;

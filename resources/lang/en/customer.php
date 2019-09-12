@@ -11,6 +11,8 @@ return [
     'mobile'=>'Cell Number',
     'web'=>'Company Web',
     'address'=>'Address',
+    'postal_code'=>'Postal Code',
+    'country'=>'Country',
     'is_active'=>'Is Active',
 
     'created'=>'Customer created.',

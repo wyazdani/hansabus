@@ -23,14 +23,13 @@
         'download'=>'Download',
         'all_rights_reserved'=>'All Rights Reserved',
         'yes/no'=>'Yes / No',
+        'no/yes'=>'No / Yes  ',
         'no_record'=>'No data available in table',
         'copyright'=>'Copyright',
         'coach'=>'Coach',
         'management'=>'Management',
-        'update'=>'Update',
         'yes'=>'Yes',
         'no'=>'No',
-        'logout'=>'Logout',
         'hire_drivers'=>'Hire Drivers',
         'drivers_calendar'=>'Drivers Calendar',
         'updated'=>'Updated',
@@ -45,5 +44,16 @@
         'logout'=>'Logout',
         'tour_calendar '=>'Tour Clalender',
         'select_vehicle'=>'Select Vehicle',
-        'generate_invoice'=>'Generate Invoice'
+        'generate_invoice'=>'Generate Invoice',
+        'print'=>'Print',
+        'change_password'=>'Change Password',
+        'new_password'=>'New Password',
+        'confirm_password'=>'Confirm Password',
+        'password_updated'=>'Password updated.',
+
+        'offers'            =>  'Offers',
+        'drag'=>'Drag or',
+        'upload'=>'Upload',
+        'allowed_extentions'=>'( pdf, jpg, gif and png files only)',
+
     ];

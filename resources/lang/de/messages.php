@@ -24,6 +24,7 @@
         'download'=>'Herunterladen',
         'all_rights_reserved'=>'Alle Rechte vorbehalten',
         'yes/no'=>'Ja / Nein',
+        'no/yes'=>'Nein / Ja  ',
         'no_record'=>'Keine Daten in der Tabelle verfügbar',
         'copyright'=>'Urheberrechte ©',
         'coach'=>'Reisebus',
@@ -49,6 +50,16 @@
         'logout'=>'Ausloggen',
         'tour_calendar '=>'Tourkalender',
         'select_vehicle'=>'Fahrzeug auswählen',
-        'generate_invoice'=>'Rechnung Erstellen'
+        'generate_invoice'=>'Rechnung Erstellen',
+        'print'=>'Drucken',
+        'change_password'=>'Ändere das Passwort',
+        'new_password'=>'Neues Kennwort',
+        'confirm_password'=>'Passwort bestätigen',
+        'password_updated'=>'Passwort aktualisiert.',
+        'offers'            =>  'Bietet an',
+
+        'drag'=>'Ziehen Sie oder',
+        'upload'=>'Hochladen',
+        'allowed_extentions'=>'(nur PDF-, JPG-, GIF- und PNG-Dateien)',
     ];
 

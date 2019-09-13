@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\General;
+use App\Models\Country;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -122,7 +123,8 @@ class CustomerController extends Controller
     public function create()
     {
         $pageTitle = __('customer.heading.add');
-        return view('customer.add', compact('pageTitle'));
+        $countries  =   Country::orderBy('country_name','ASC')->get();
+        return view('customer.add', compact('pageTitle','countries'));
     }
 
     /**
@@ -137,7 +139,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|email|unique:customer',
 //            'url' => 'required|url|max:200',
-            'phone' => 'required|numeric',
+            /*'phone' => 'required|numeric',*/
             'address' => 'required|string|max:200',
         ];
         $messages = [
@@ -165,6 +167,8 @@ class CustomerController extends Controller
             $customer->url = $request->url;
             $customer->phone = $request->phone;
             $customer->address = $request->address;
+            $customer->postal_code = $request->postal_code;
+            $customer->country_id = $request->country_id;
 
             $status = false;
             if ($request->status) $status = true;
@@ -210,7 +214,8 @@ class CustomerController extends Controller
     {
         $pageTitle = 'Customer Update';
         $customer = $Customer;
-        return view('customer.add', compact('pageTitle','customer'));
+        $countries  =   Country::orderBy('country_name','ASC')->get();
+        return view('customer.add', compact('pageTitle','customer','countries'));
     }
 
     /**
@@ -227,7 +232,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|email',
 //            'url' => 'required|url|max:200',
-            'phone' => 'required|numeric',
+            /*'phone' => 'required|numeric',*/
             'address' => 'required|string|max:200',
         ];
         $messages = [
@@ -245,6 +250,8 @@ class CustomerController extends Controller
             $customer->url = $request->url;
             $customer->phone = $request->phone;
             $customer->address = $request->address;
+            $customer->postal_code = $request->postal_code;
+            $customer->country_id = $request->country_id;
 
             $status = false;
             if ($request->status) $status = true;

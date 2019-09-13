@@ -222,8 +222,9 @@ class BusServiceController extends Controller
         $total = $service->total;
         $vat = ($total/100)*19;
         $details = $service->details;
+        $invoice_date   =   date('Y-m-d');
 
-        $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
+        $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
         return $pdf->stream();
     }
 

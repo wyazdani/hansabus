@@ -44,6 +44,11 @@ return [
     'status_changed'=>'Tour status changed.',
     'vehicle_already_booked'=>'Vehicle already booked.',
 
+    'booked_for_tour'   =>  'You Have Booked For the Tour',
     'passengers_allowed'=>' passengers allowed.',
+    'description' => 'Description',
+    'send_invoice' => 'Send Invoice',
+    'invoice'       =>  'Invoice',
+    'email'         =>  'Email Sent Successfully'
 
     ];

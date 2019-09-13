@@ -84,7 +84,7 @@
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">
-																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}">*</span></label>
+																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}"></span></label>
 																			<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
 																			<input type='text' name="driver_search" id="driver_search"
 																				   @if(!empty($tour->driver->driver_name))
@@ -124,7 +124,7 @@
 
 																	<div class="col-md-2">
 																		<div class="form-group">
-																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}">*</span></label>
+																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}"></span></label>
 																			<input type="number" name="passengers" id="passengers"
 																				   onkeyup='if(!passengersCheck(this.value)) this.value="";'
 																				   onchange='if(!passengersCheck(this.value)) this.value="";'
@@ -172,7 +172,9 @@
 
 
 																</div>
-
+															<label for="projectinput3">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
+																<textarea type="text"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}} form form-control" placeholder="Decription" name="description" id="description">
+																</textarea>
 
 
 														</div>
@@ -186,6 +188,7 @@
 						</form>
 
 						<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
+
 						@if(!empty($attachments))
 
 							<div class="row">
@@ -274,7 +277,7 @@
 
 				if($('#seatsAllowed').val() !=''){
 
-					$('#passengers').addClass('error_input');
+					/*$('#passengers').addClass('error_input');*/
 					toastr.info( parseInt($('#seatsAllowed').val())+'{{__('tour.passengers_allowed')}}');
 				}
 

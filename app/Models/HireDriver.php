@@ -32,6 +32,6 @@ class HireDriver extends Model
 
     public function driver()
     {
-        return $this->hasOne('App\Models\Driver','id','driver_id')->select(['id','driver_name']);
+        return $this->hasOne('App\Models\Driver','id','driver_id')->select(['id','driver_name','driver_license']);
     }
 }

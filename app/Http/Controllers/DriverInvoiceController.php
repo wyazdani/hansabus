@@ -193,8 +193,9 @@ class DriverInvoiceController extends Controller
         }
 //        dd($hires);
         $vat = ($total/100)*19;
+        $invoice_date   =   date('Y-m-d');
 
-        $pdf = PDF::loadView('invoices.driver.pdf_design', compact('customer','invoice','hires','total','vat'));
+        $pdf = PDF::loadView('invoices.driver.pdf_design', compact('customer','invoice','hires','total','vat','invoice_date'));
         return $pdf->download('hire_a_driver_invoice.pdf');
     }
 }

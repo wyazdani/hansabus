@@ -247,7 +247,7 @@ class TourInvoiceController extends Controller
 
         $customer = $invoice->customer;
         $invoice_details = TourInvoiceDetail::where('invoice_id',$invoice->id)->get();
-        $tours =[];
+        $tour ='';
         foreach($invoice_details as $inv){
             $inv->tour;
             $inv->tour->driver;
@@ -255,11 +255,14 @@ class TourInvoiceController extends Controller
             $inv->tour->vehicle;
             $total += $inv->tour->price;
 
-            $tours[] = $inv->tour;
+            $tour = $inv->tour;
         }
+
         $vat = ($total/100)*19;
 
-        $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tours','total','vat'));
+        $invoice_date   =   date('Y-m-d');
+
+        $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
 //        return $pdf->stream();
         return $pdf->download('tours_invoice.pdf');
     }

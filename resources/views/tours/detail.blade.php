@@ -53,14 +53,22 @@
 								<dd>{{ date('d.m.Y H:i',strtotime($Tour->to_date)) }}</dd>
 
 								<dt>{{ __('tour.guide') }}:</dt>
-								<dd>{{ $Tour->guide }}</dd>
+								<dd>{{ !empty($Tour->guide)?$Tour->guide:'None' }}</dd>
 
 								<dt>{{ __('tour.price') }}:</dt>
 								<dd>{{ $Tour->price }}</dd>
 							</dl>
 						</div>
+						<div class="col-md-12">
+							<dl>
+								<dt>{{ __('tour.description') }}:
+								</dt>
+							</dl></div>
+						<div class="row col-md-12">
+							<p>{!! $Tour->description  !!}</p>
+						</div>
 					</div>
-					@if(count($Tour->attachments))
+					{{--@if(count($Tour->attachments))
 						<div class="col-sm-12"><h5>{{ __('tour.attachments') }}:</h5></div>
 						<div class="row">
 							<div class="col-lg-12">
@@ -86,8 +94,8 @@
 								@endforeach
 							</div>
 						</div>
-					@endif
-					<p>&nbsp;</p>
+					@endif--}}
+
 				</div>
 			</div>
 		</div>

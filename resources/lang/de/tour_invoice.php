@@ -20,6 +20,13 @@ return [
     'attachments'=>'Attachments',
     'drag'=>'Drag or',
     'upload'=>'upload',
+    'calculate_as_follows'  =>  'Wir erlauben uns, wie folgt zu berechnen',
+    'holiday_destination'  =>  'Reiseziel',
+    'when_to_go'        =>  'Reisetermin',
+    'persons'           =>  'Personenzahl',
+    'power'           =>  'Leistung',
+    'included_in_value'           =>  'Im Betrag enthaltene Mehrwertsteuer',
+    'value_added'=>'Mehrwertsteuer',
 
     'select_one'=>'Select One',
     'select_status'=>'Select Status',
@@ -50,5 +57,8 @@ return [
     'yours_sincerely'=>'Dein',
 
     'generated'=>'Rechnung erstellt.',
-    'mark_paid'=>'Rechnungsstatus wurde in bezahlt geändert.'
+    'mark_paid'=>'Rechnungsstatus wurde in bezahlt geändert.',
+    'gross' => 'bruto',
+    'invoice_amount' =>  'Rechnungsbetrag',
+    'payable_amount' =>  'zu zahlender Betrag',
 ];

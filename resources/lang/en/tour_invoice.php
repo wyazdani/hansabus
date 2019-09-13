@@ -20,6 +20,12 @@ return [
     'attachments'=>'Attachments',
     'drag'=>'Drag or',
     'upload'=>'upload',
+    'calculate_as_follows'  =>  'We allow ourselves to calculate as follows',
+    'holiday_destination'  =>  'Holiday Destination',
+    'when_to_go'        =>  'When to go',
+    'persons'           =>  'persons',
+    'power'           =>  'Power',
+    'included_in_value'           =>  'Included in value added tax',
 
     'select_one'=>'Select One',
     'select_status'=>'Select Status',
@@ -41,6 +47,7 @@ return [
     'is_active'=>'Is Active',
     'mark_as_paid'=>'Mark as Paid',
     'vat'=>'VAT 19%',
+    'value_added'=>'Value Added Tax',
 
     'invoice_header_line1' => 'Dear Ladies and Gentlemen,',
     'invoice_header_line2' => 'for the transfer / bus rental / service acc. Your order will be confirmed / calculated as follows:',
@@ -51,6 +58,9 @@ return [
     'yours_sincerely'=>'Yours Sincerely',
 
     'generated'=>'Invoice generated.',
-    'mark_paid'=>'Invoice status changed to paid.'
+    'mark_paid'=>'Invoice status changed to paid.',
+    'gross' =>  'Gross',
+    'invoice_amount' =>  'Invoice Amount',
+    'payable_amount' =>  'Payable Amount',
 
     ];

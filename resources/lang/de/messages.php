@@ -24,6 +24,7 @@
         'download'=>'Herunterladen',
         'all_rights_reserved'=>'Alle Rechte vorbehalten',
         'yes/no'=>'Ja / Nein',
+        'no/yes'=>'Nein / Ja  ',
         'no_record'=>'Keine Daten in der Tabelle verfügbar',
         'copyright'=>'Urheberrechte ©',
         'coach'=>'Reisebus',
@@ -55,6 +56,7 @@
         'new_password'=>'Neues Kennwort',
         'confirm_password'=>'Passwort bestätigen',
         'password_updated'=>'Passwort aktualisiert.',
+        'offers'            =>  'Bietet an',
 
         'drag'=>'Ziehen Sie oder',
         'upload'=>'Hochladen',

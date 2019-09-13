@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/tours-list', 'ToursController@getList')->name('tour-list');
     Route::get('/tour/{Tour}', 'ToursController@detail')->name('tour-detail');
     Route::get('/tour-calendar', 'ToursController@calendar')->name('tour-calendar');
+    Route::post('/tour-customer-email', 'ToursController@tour_customer_email')->name('tour-customer-email');
 
     /* Tour invoices*/
     Route::get('/tour-invoices', 'TourInvoiceController@index')->name('tour-invoices');
@@ -68,6 +69,11 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/vehicle-type-list', 'VehicleTypeController@getList')->name('vehicle-type-list');
     Route::get('/vehicle-type/change-status/{VehicleType}', 'VehicleTypeController@status')->name('vehicle-type.status-change');
 
+
+    /*Offers*/
+    Route::resource('offers', 'OfferController');
+    Route::post('/offer/send-mail', 'OfferController@send_mail')->name('offers.send_mail');
+    Route::post('/offer/modal-mail', 'OfferController@modal_mail')->name('offers.modal_mail');
 
     /* file upload */
     Route::post('/file-upload', 'AttachmentController@uploadFiles')->name('file-upload');

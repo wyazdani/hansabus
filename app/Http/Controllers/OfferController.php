@@ -234,7 +234,8 @@ class OfferController extends Controller
                 'time'          =>  !empty($request->departure_date)?date('Y-m-d H:i:s',strtotime($request->departure_date.$request->departure_time)):'',
                 'trip_type'     =>  1,
             ]);
-        }elseif ($request->name_two){
+            return  $inquiry;
+        }elseif ($request->name_two && $request->from_address_two && $request->to_address_two &&$request->departure_date_two &&$request->arrival_date_two){
             $inquiry    =   Inquiry::create([
                 'name'           =>  $request->name_two,
                 'email'          =>  $request->email_two,
@@ -258,10 +259,11 @@ class OfferController extends Controller
                 'time'          =>  !empty($request->arrival_date_two)?date('Y-m-d H:i:s',strtotime($request->arrival_date_two.$request->arrival_time_two)):'',
                 'trip_type'     =>  2,
             ]);
+            return  $inquiry;
         }
 
 
-        return  $inquiry;
+
     }
     public function destroy($id)
     {

@@ -133,8 +133,7 @@ class VehicleTypeController extends Controller
     public function changePassword(Request $request){
 
         $rules = [
-            'password'              => 'alpha_num|between:6,12|confirmed',
-            'password_confirmation' => 'alpha_num|between:6,12',
+            'password'              => 'confirmed'
         ];
         $messages = [
             'pass.required' => '',

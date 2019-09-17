@@ -41,6 +41,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @if(count($inquiries)>0))
                                         @foreach($inquiries  as $inquiry)
                                             <tr>
                                                 <td>{!! $inquiry->id !!}</td>
@@ -64,6 +65,11 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="10" class="text-center">No data available in table</td>
+                                        </tr>
+                                    @endif
                                     </tbody>
                                 </table>
                                 <div class="pull-right">

@@ -198,8 +198,8 @@ class BusServiceController extends Controller
                             $i++;
                         }
                         toastr()->success(__('service.created'));
-
-                        $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
+                        $invoice_date   =   date('Y-m-d');
+                        $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
                         return $pdf->stream();
 //                return $pdf->download('service_invoice.pdf');
                     }
@@ -298,8 +298,8 @@ class BusServiceController extends Controller
                         $i++;
                     }
                     toastr()->success(__('service.updated'));
-
-                    $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
+                    $invoice_date   =   date('Y-m-d');
+                    $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
                     return $pdf->stream();
                 }
             }

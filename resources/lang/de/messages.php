@@ -27,7 +27,7 @@
         'no/yes'=>'Nein / Ja  ',
         'no_record'=>'Keine Daten in der Tabelle verfügbar',
         'copyright'=>'Urheberrechte ©',
-        'coach'=>'Reisebus',
+        'coach'=>'HansaBus',
         'management'=>'Verwaltung',
         'update'=>'Aktualisieren',
         'yes'=>'Ja',

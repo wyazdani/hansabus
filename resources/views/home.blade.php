@@ -57,23 +57,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-3 col-lg-6 col-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="px-3 py-3">
-						<div class="media">
-							<div class="media-body text-left align-self-center">
-								<i class="icon-settings danger font-large-2 float-left"></i>
-							</div>
-							<div class="media-body text-right">
-								<h3>423</h3>
-								<span>{{ __('messages.vehicle_maintenance') }}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 	<!--Statistics cards Ends-->
 

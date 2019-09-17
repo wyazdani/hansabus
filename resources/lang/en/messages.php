@@ -26,7 +26,7 @@
         'no/yes'=>'No / Yes  ',
         'no_record'=>'No data available in table',
         'copyright'=>'Copyright',
-        'coach'=>'Coach',
+        'coach'=>'HansaBus',
         'management'=>'Management',
         'yes'=>'Yes',
         'no'=>'No',

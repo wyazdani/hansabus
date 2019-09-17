@@ -55,6 +55,8 @@
                                     <a href="javascript:;" onclick="$('#searchForm').submit()"  class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-12" >
                                 <div class="form-group text-left">
                                     <a href="javascript:;" onclick="$('#theForm').submit()"

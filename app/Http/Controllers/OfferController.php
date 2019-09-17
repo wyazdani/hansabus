@@ -217,7 +217,7 @@ class OfferController extends Controller
     {
 
 
-        if ($request->name){
+        if ($request->name && $request->departure_date && $request->to_address && $request->email && $request->to_address){
             $inquiry    =   Inquiry::create([
                 'name'           =>  $request->name,
                 'email'          =>  $request->email,
@@ -261,9 +261,6 @@ class OfferController extends Controller
             ]);
             return  $inquiry;
         }
-
-
-
     }
     public function destroy($id)
     {

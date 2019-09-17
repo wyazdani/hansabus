@@ -173,7 +173,7 @@
 
 																</div>
 															<label for="projectinput3">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
-																<textarea type="text"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}} form form-control" placeholder="Decription" name="description" id="description">
+																<textarea type="text"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}} form form-control" placeholder="Decription" name="description" id="description" >{!! !empty($tour->description)?$tour->description:'' !!}
 																</textarea>
 
 

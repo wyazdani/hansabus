@@ -3,8 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BusServiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BusServiceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleTypeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/TourConfirmationInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/TourConfirmationInvoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/offers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/add.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -139,7 +149,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wp_ecoach" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -217,7 +227,11 @@
       <workItem from="1568178557383" duration="19952000" />
       <workItem from="1568214866652" duration="2482000" />
       <workItem from="1568267018943" duration="12798000" />
-      <workItem from="1568352513653" duration="9455000" />
+      <workItem from="1568352513653" duration="10263000" />
+      <workItem from="1568614164201" duration="16174000" />
+      <workItem from="1568642996009" duration="162000" />
+      <workItem from="1568643565854" duration="685000" />
+      <workItem from="1568698143292" duration="21000" />
     </task>
     <servers />
   </component>

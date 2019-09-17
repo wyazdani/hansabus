@@ -48,7 +48,7 @@ class TourConfirmationInvoice extends Mailable
 
         $customer = $invoice->customer;
         $invoice_details = TourInvoiceDetail::where('invoice_id',$invoice->id)->get();
-        $tours =[];
+        $tour ='';
         foreach($invoice_details as $inv){
             $inv->tour;
             $inv->tour->driver;
@@ -56,11 +56,11 @@ class TourConfirmationInvoice extends Mailable
             $inv->tour->vehicle;
             $total += $inv->tour->price;
 
-            $tours[] = $inv->tour;
+            $tour = $inv->tour;
         }
         $vat = ($total/100)*19;
-
-        $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tours','total','vat'));
+        $invoice_date   =   date('Y-m-d');
+        $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
         return $this->to($this->customer->email)
             ->subject(' TourConfirmation')
             ->view('mail.tour_confirmation')

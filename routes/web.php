@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/tour-calendar', 'ToursController@calendar')->name('tour-calendar');
     Route::post('/tour-customer-email', 'ToursController@tour_customer_email')->name('tour-customer-email');
 
+
     /* Tour invoices*/
     Route::get('/tour-invoices', 'TourInvoiceController@index')->name('tour-invoices');
     Route::get('/tour-invoices/create', 'TourInvoiceController@create')->name('tour-invoice-create');
@@ -34,6 +35,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/mark-as-paid', 'TourInvoiceController@markAsPaid')->name('mark-as-paid');
     Route::get('/download-tours-invoice', 'TourInvoiceController@downloadInvoice')->name('download-tours-invoice');
     Route::post('/generate-tour-invoice', 'TourInvoiceController@generateInvoice')->name('generate-tour-invoice');
+    Route::post('/tour-driver-form', 'TourInvoiceController@driver_pdf')->name('tour-driver-form');
 
     /* Drivers */
     Route::resource('v-drivers', 'DriverController');

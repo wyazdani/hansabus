@@ -50,7 +50,7 @@
 																	<div class="col-md-4">
 																		<div class="form-group">
 																			<label>{{__('tour.vehicle')}}<span class="{{($errors->has('vehicle_id')) ?'errorStar':''}}">*</span></label>
-																			<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}" onchange="getVehicleSeats(this.value);">
+																			{{--<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}" onchange="getVehicleSeats(this.value);">
 																				<option value="">{{__('tour.select_vehicle')}}</option>
 																				@foreach($vehicles as $vehicle)
 																					<option value="{{ $vehicle->id  }}"
@@ -58,6 +58,16 @@
 																						{{ 'Selected' }}
 																							@endif
 																					>{{
+																	$vehicle->name.' - '.$vehicle->make.' - '.$vehicle->year.' - '.
+																	$vehicle->licensePlate.' - '.$vehicle->transmission
+																	 }}</option>
+																				@endforeach
+																			</select>--}}
+																			<select name="vehicle_id" id="basic" class="{{($errors->has('vehicle_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true" onchange="getVehicleSeats(this.value);">
+																				<option value="">{{__('tour.select_vehicle')}}</option>
+																				@foreach($vehicles as $vehicle)
+																					<option value="{!! $vehicle->id !!}" @if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id ||
+																					old('vehicle_id')==$vehicle->id) selected @endif>{{
 																	$vehicle->name.' - '.$vehicle->make.' - '.$vehicle->year.' - '.
 																	$vehicle->licensePlate.' - '.$vehicle->transmission
 																	 }}</option>
@@ -70,7 +80,14 @@
 																			<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 
 																			<span style="float: right"><a href="javascriot:;" onclick="addCustomer()">{{strtolower(__('customer.heading.add'))}}</a></span>
-																			<input type='text' name="customer_search" id="customer_search"
+																			<select name="customer_id" id="basic" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+																					<option value="">{{__('tour.select_customer')}}</option>
+																					@foreach($customers as $customer)
+																					<option value="{!! $customer->id !!}" @if(!empty($tour->customer_id) && $tour->customer_id==$customer->id ||
+																					old('customer_id')==$customer->id) selected @endif>{!! $customer->name !!}</option>
+																					@endforeach
+																			</select>
+																			{{--<input type='text' name="customer_search" id="customer_search"
 																				   @if(!empty($tour->customer->name))
 																				   		value="{{ old('customer_search',$tour->customer->name) }}"
 																					@else value="{{ old('customer_search','') }}" @endif
@@ -79,14 +96,22 @@
 																				   @if(!empty($tour->customer_id))
 																				   value="{{ old('customer_id',$tour->customer_id) }}"
 																				   @else value="{{ old('customer_id','') }}" @endif
-																				   >
+																				   >--}}
 																		</div>
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">
 																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}"></span></label>
+
 																			<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
-																			<input type='text' name="driver_search" id="driver_search"
+																			<select name="driver_id" id="basic" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+																				<option value="">{{__('tour.select_driver')}}</option>
+																				@foreach($drivers as $driver)
+																					<option value="{!! $driver->id !!}" @if(!empty($tour->driver_id) && $tour->driver_id==$driver->id ||
+																					old('customer_id')==$driver->id) selected @endif>{!! $driver->driver_name !!}</option>
+																				@endforeach
+																			</select>
+																			{{--<input type='text' name="driver_search" id="driver_search"
 																				   @if(!empty($tour->driver->driver_name))
 																				   value="{{ old('driver_search',$tour->driver->driver_name) }}"
 																				   @else value="{{ old('driver_search','') }}" @endif
@@ -95,7 +120,7 @@
 																				   @if(!empty($tour->driver_id))
 																				   value="{{ old('driver_id',$tour->driver_id) }}"
 																				   @else value="{{ old('driver_id','') }}" @endif
-																			>
+																			>--}}
 																		</div>
 																	</div>
 																	<div class="col-md-2">
@@ -173,7 +198,7 @@
 
 																</div>
 															<label for="projectinput3">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
-																<textarea type="text"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}} form form-control" placeholder="Decription" name="description" id="description" >{!! !empty($tour->description)?$tour->description:'' !!}
+																<textarea type="text"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}} form form-control" placeholder="Decription" name="description" id="description" >{!! !empty($tour->description)?$tour->description:old('description') !!}
 																</textarea>
 
 

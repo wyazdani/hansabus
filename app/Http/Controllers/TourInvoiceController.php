@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\General;
 use App\Models\Customer;
+use App\Models\Driver;
 use App\Models\HireDriver;
 use App\Models\Tour;
 use App\Models\TourInvoice;
@@ -22,7 +23,7 @@ class TourInvoiceController extends Controller
     public function index(Request $request){
 
         $pageTitle = __('tour_invoice.heading.index');
-
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
         $query = TourInvoice::where('status','>',0);
         if(!empty($request->status)){
             $query = TourInvoice::where('status',$request->status);
@@ -64,7 +65,7 @@ class TourInvoiceController extends Controller
             $row->created = date('d.m.Y H:i',strtotime($row->created_at));
         }
 
-        return view('invoices.tour.index',compact('pageTitle','rows'));
+        return view('invoices.tour.index',compact('pageTitle','rows','customers'));
     }
     public function show(TourInvoice $TourInvoice){
         return $TourInvoice;
@@ -261,9 +262,22 @@ class TourInvoiceController extends Controller
         $vat = ($total/100)*19;
 
         $invoice_date   =   date('Y-m-d');
+        $html   =   view('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
+        return General::DownloadPdf("P",$html,"tour_invoice","Invoice");
+        /*$pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
 
-        $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
-//        return $pdf->stream();
-        return $pdf->download('tours_invoice.pdf');
+        return $pdf->download('tours_invoice.pdf');*/
+    }
+
+    public function driver_pdf(Request  $request){
+
+        $tour   =   Tour::find($request->tour_id);
+        $driver =   Driver::find($request->driver_id);
+        $html   =   view('driver-form.driver_form',compact('date','driver','tour'));
+
+        return General::CreatePdf("P",$html,"driver_form","Form");
+
+
+
     }
 }

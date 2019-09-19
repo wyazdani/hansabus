@@ -22,28 +22,33 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-
-                                <input type='text' name="customer_search" id="customer_search"
-                                       placeholder="{{__('tour.customer')}}" class="form-control filterBox"
-                                       value="{{ request()->get('customer_search') }}"
-                                       onkeyup="if(this.value=='')$('#customer_id').val('')">
-                                <input type="hidden" id="customer_id" name="customer_id"
-                                       value="{{ request()->get('customer_id') }}" >
+                                <select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                    <option value="">{{__('tour.select_customer')}}</option>
+                                    @foreach($customers as $customer)
+                                        <option value="{!! $customer->id !!}" >{!! $customer->name !!}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type='text' name="driver_search" id="driver_search"
+                                {{--<input type='text' name="driver_search" id="driver_search"
                                        placeholder="{{__('tour.driver')}}" class="form-control filterBox"
                                        value="{{ request()->get('driver_search') }}"
                                        onkeyup="if(this.value=='')$('#driver_id').val('')">
                                 <input type="hidden" id="driver_id" name="driver_id"
-                                       value="{{ request()->get('driver_id') }}">
+                                       value="{{ request()->get('driver_id') }}">--}}
+                                <select name="driver_id" id="driver_id" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                    <option value="">{{__('tour.select_driver')}}</option>
+                                    @foreach($drivers as $driver)
+                                        <option value="{!! $driver->id !!}" >{!! $driver->driver_name !!}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select id="vehicle_id" class="form-control filterBox">
+                                <select  name="vehicle_id" id="vehicle_id" class="{{($errors->has('vehicle_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control filterBox'}}" data-live-search="true">
                                     <option value="">{{__('tour.select_vehicle')}}</option>
                                     @foreach($vehicles as $vehicle)
                                         <option value="{{$vehicle->id}}">{{$vehicle->name}}</option>
@@ -84,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
@@ -153,6 +159,9 @@
                     $('#v_passengers').html(t.passengers?t.passengers:'None');
                     $('#v_guide').html(t.guide ? t.guide : 'None');
                     $('#v_price').html(t.price?t.price:'None');
+                    $('#v_description').html(t.description?t.description:'None');
+                    $('#v_tour_id').val(t.id);
+                    $('#v_driver_id').val(t.driver_id);
 
 
                          if(t.status == 1) $('#v_status').html('Draft');
@@ -197,7 +206,7 @@
                     $('#v_passengers_e').html(t.passengers?t.passengers:'None');
                     $('#v_guide_e').html(t.guide ? t.guide : 'None');
                     $('#v_price_e').html(t.price?t.price:'None');
-
+                    $('#v_description_e').html(t.description?t.description:'None');
                     $('#tour_id_email').val(t.id);
                     $('#customer_id_email').val(t.customer_id);
                     if(t.status == 1) $('#v_status_e').html('Draft');
@@ -359,7 +368,7 @@
                     { "data": "vehicle.name" },
                     { "data": "from_date" },
                     { "data": "to_date" },
-                    { "data": "driver.driver_name" },
+                    { "data": "driver_name.driver_name" },
                     { "data": "passengers" },
                     { "data": "price" },
 

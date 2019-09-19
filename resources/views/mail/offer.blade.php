@@ -16,6 +16,7 @@
     <div style="max-width: 900px; margin: 0 auto;
            background-size: cover;background-position: center center;background-repeat: no-repeat;" class="email-container">
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;color: #fff;">
+            @include('mail.header')
             <tr>
                 <td>
                     <table style="width: 100%;">
@@ -47,6 +48,7 @@
                 </td>
             </tr>
         </table>
+        @include('mail.footer')
     </div>
 </center>
 </body>

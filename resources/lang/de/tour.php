@@ -19,6 +19,30 @@ return [
     'attachments'=>'Anlagen',
     'drag'=>'Ziehen oder',
     'upload'=>'hochladen',
+    'travel_date'   =>'Reisetermin',
+    'deployment'   =>'Bereitstellung',
+    'travel_order'   =>'Fahrtauftrag Tagesfahrt/Reise',
+    'details_of_ride'   =>'Bitte die Angaben der Fahrt ergänzen',
+    'faq_details'   =>'Bei Fahrten mit Auslands-Kilometern bitte zeitnah den Fahrauftrag zurück ans Büro schicken. Mehrleistungen
+                        (Verlängerung, usw.), Parkplatzgebühren, notwendige Sonderreinigungen, etc. bitte auch zeitnah an das Büro melden.',
+    'km_level_end'=>'Km-Stand Ende',
+    'km_level_begining'=>'Km-Stand Anfang',
+    'km_total'=>'Km-Gesamt',
+    'use_beginning'=>'Einsatzbeginn',
+    'operation_clock'=>'Betrieb Uhr',
+    'promoted_persons'=>'beförderte Personen',
+    'expenses'=>'Auslagen (Quittung!)',
+    'country'=>'Land',
+    'km_driveway'=>'KM Einfahrt',
+    'total_km'=>'KM gesamt',
+    'extra_effort'=>'Mehraufwand',
+    'kilometre'=>'Kilometer',
+    'hours'=>'Stunden',
+    'pollution'=>'Verschmutzung',
+    'customer_signature'=>'Unterschrift des Kunden',
+    'driver_messages'=>'Fahrerhinweise',
+    'days'  =>  'Tage',
+
 
     'select_status'=>'Wählen Sie Status',
     'select_customer'=>'Wählen Sie Kunde',
@@ -49,5 +73,6 @@ return [
     'description' => 'Beschreibung',
     'send_invoice' => 'Rechnung senden',
     'invoice'       =>  'Rechnung',
-    'email'         =>  'Email wurde erfolgreich Versendet'
+    'email'         =>  'Email wurde erfolgreich Versendet',
+    'pls_create_invoice'    =>  'Bitte erstellen Sie eine Rechnung'
 ];

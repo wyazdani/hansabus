@@ -6,6 +6,7 @@ use App\Mail\TestEmail;
 use App\Mail\TourConfirmation;
 use App\Mail\TourConfirmationInvoice;
 use App\Models\DriverBooking;
+use App\Models\TourInvoice;
 use App\Models\TourInvoiceDetail;
 use App\Models\TourStatus;
 use App\Models\TourAttachment;
@@ -57,7 +58,8 @@ class ToursController extends Controller
 
             $events[$i]['title'] = ' 
             Customer: '.$row->customer->name.' 
-            Driver: '.$row->driver->driver_name;
+            Driver: '.$row->driver->driver_name.' 
+            vehicle: '.$row->vehicle->name;
             $events[$i]['url'] = url('/tour/'.$row->id);
             $events[$i]['backgroundColor'] = $colors[$j];
 
@@ -168,7 +170,7 @@ class ToursController extends Controller
         foreach($rows as $row){
 
             $row->vehicle;
-            $row->driver;
+            $row->driver_name;
             $row->customer;
             $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
             $row->to_date   = date('d.m.Y H:i',strtotime($row->to_date));
@@ -182,9 +184,11 @@ class ToursController extends Controller
         $pageTitle = __('messages.tours');
 
         $tour_statuses = TourStatus::get(['id','name']);
-        $vehicles = Vehicle::where('status','1')->get(['name','id']);
+        $vehicles = Vehicle::orderBy('name','ASC')->where('status','1')->get();
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
 
-        return view('tours.index',compact('vehicles','tour_statuses','pageTitle'));
+        return view('tours.index',compact('vehicles','tour_statuses','pageTitle','customers','drivers'));
     }
 
     public function create()
@@ -193,9 +197,11 @@ class ToursController extends Controller
         $general = new General();
         $randomKey = $general->randomKey();
         $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
-        $vehicles = Vehicle::where('status','1')->get();
+        $vehicles = Vehicle::orderBy('name','ASC')->where('status','1')->get();
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
 
-        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey'));
+        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey','customers','drivers'));
     }
 
     /**
@@ -379,15 +385,15 @@ class ToursController extends Controller
     {
         $pageTitle = __('messages.edit_tour');
         $tour = Tour::find($id);
-
+        $vehicles = Vehicle::orderBy('name','ASC')->where('status','1')->get();
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
         $general = new General();
         $randomKey = $general->randomKey();
         $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
-
-        $vehicles = Vehicle::where('status','1')->get(['name','make','year','transmission','licensePlate','id']);
         $attachments = TourAttachment::where('tour_id',$id)->get();
 
-        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments'));
+        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments','customers','drivers'));
     }
 
     /**
@@ -548,7 +554,14 @@ class ToursController extends Controller
     public function tour_customer_email(Request  $request)
     {
         if ($request->send_invoice){
-            Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
+            $invoice = TourInvoice::find($request->tour_id_email);
+            if ($invoice){
+                Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
+            }else{
+                toastr()->error(__('tour.pls_create_invoice'));
+                return redirect()->route('tours.index');
+            }
+
         }else{
             Mail::send(new TourConfirmation($request->customer_id_email,$request->tour_id_email));
         }

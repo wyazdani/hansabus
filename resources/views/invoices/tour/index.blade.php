@@ -24,9 +24,15 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type='text' name="customer_search" id="customer_search"
+                                    {{--<input type='text' name="customer_search" id="customer_search"
                                            placeholder="{{__('tour.customer')}}" class="form-control filterBox" value="{{ request()->get('customer_search') }}" >
-                                    <input type="hidden" id="customer_id" name="customer_id" value="{{ request()->get('customer_id') }}" >
+                                    <input type="hidden" id="customer_id" name="customer_id" value="{{ request()->get('customer_id') }}" >--}}
+                                    <select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                        <option value="">{{__('tour.select_customer')}}</option>
+                                        @foreach($customers as $customer)
+                                            <option value="{!! $customer->id !!}" >{!! $customer->name !!}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-2">

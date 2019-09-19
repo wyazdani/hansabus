@@ -31,7 +31,11 @@
 						<dd id="v_status_e"></dd>
 					</dl>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-12">
+					<h4>{{__('tour.description')}} :</h4>
+				</div>
+
+				<div class="col-md-12" id="v_description_e">
 				</div>
 				<div class="col-md-12" id="v_attachments_e">
 				</div>

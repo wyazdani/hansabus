@@ -128,7 +128,9 @@ class DriverController extends Controller
     public function create()
     {
         $pageTitle = trans('messages.drivers');
-        return view('drivers.add',compact('pageTitle'));
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
+        return view('drivers.add',compact('pageTitle','customers','drivers'));
     }
 
     /**
@@ -210,8 +212,9 @@ class DriverController extends Controller
     {
         $pageTitle = 'Edit Driver';
         $driver = Driver::find($id);
-
-        return view('drivers.add', compact('driver','pageTitle'));
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
+        return view('drivers.add', compact('driver','pageTitle','drivers','customers'));
     }
 
     /**

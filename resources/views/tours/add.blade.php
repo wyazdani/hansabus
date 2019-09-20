@@ -99,6 +99,7 @@
 																				   >--}}
 																		</div>
 																	</div>
+																	<input type="hidden" id="returnFlag" name="returnFlag" value="">
 																	<div class="col-md-4">
 																		<div class="form-group">
 																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}"></span></label>
@@ -108,7 +109,7 @@
 																				<option value="">{{__('tour.select_driver')}}</option>
 																				@foreach($drivers as $driver)
 																					<option value="{!! $driver->id !!}" @if(!empty($tour->driver_id) && $tour->driver_id==$driver->id ||
-																					old('customer_id')==$driver->id) selected @endif>{!! $driver->driver_name !!}</option>
+																					old('driver_id')==$driver->id) selected @endif>{!! $driver->driver_name !!}</option>
 																				@endforeach
 																			</select>
 																			{{--<input type='text' name="driver_search" id="driver_search"
@@ -269,7 +270,7 @@
 
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> {{__('messages.save')}}</button>
-							<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">
+							<button type="button" onclick="$('#returnFlag').val('1'); $('#tourForm').submit()"  class="btn btn-info">
 								<i class="icon-note"></i> {{__('messages.save_add_another')}}
 							</button>
 						@endif

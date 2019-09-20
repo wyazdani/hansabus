@@ -8,11 +8,10 @@
         <td>
             <table>
                 <tr>
-                    <td class="left" width="50%">
+                    <td class="left" width="70%">
                         <table>
                             <tr>
                                 <td>
-                                    <p></p><br>
                                     <p></p><br>
                                     <span style="display: block;color: #000;font-size: 8.5px;text-decoration: underline;">
                                     Omnibusbetrieb Inhaber , Alizada Timor Hoisbütteler Dorfstr. 1, 22949 Ammersbek
@@ -27,7 +26,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td class="right" width="50%" >
+                    <td width="30%" >
                         <table>
                             <tr>
                                 <td>
@@ -41,7 +40,7 @@
                                         <strong style="font-size: 7.5px;">www:</strong><span>www. hansebus.com</span><br><br>
                                         <span style="display: block;color: #000;font-size: 7px;">{{ __('tour_invoice.invoice_date') }}:</span><span>{!! date("d.m.Y",strtotime($invoice_date)) !!}</span><br>
                                         <span style="display: block;color: #000;font-size: 7px;">{{__('tour.invoice_number')}}:</span><span>{{  str_pad($invoice->id, 9, "0", STR_PAD_LEFT) }}</span><br>
-                                        <span style="display: block;color: #000;font-size: 7px;">{{ __('service.customer') }}</span><span style="display: block;color: #000;font-size: 7.5px;">{!! $customer->name !!}</span><br>
+                                        <span style="display: block;color: #000;font-size: 7px;">{{ __('service.customer') }}:</span><span style="display: block;color: #000;font-size: 7.5px;">{!! $customer->name !!}</span><br>
                                     </div>
                                 </td>
                             </tr>

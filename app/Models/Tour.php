@@ -33,7 +33,7 @@ class Tour extends Model
     }
     public function customer()
     {
-        return $this->hasOne('App\Models\Customer','id','customer_id')->select(['id','name']);
+        return $this->hasOne('App\Models\Customer','id','customer_id')->select(['id','name','address']);
     }
 
     public function vehicle()

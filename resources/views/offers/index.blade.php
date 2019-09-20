@@ -16,9 +16,7 @@
                                 <a href="{{ route('offers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2">{{__('offer.heading.add')}}</a>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
                 <div class="card-content mt-1">
                     <div class="card-body">
@@ -41,7 +39,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if(count($inquiries)>0))
+                                    @if(count($inquiries)>0)
                                         @foreach($inquiries  as $inquiry)
                                             <tr>
                                                 <td>{!! $inquiry->id !!}</td>

@@ -31,7 +31,7 @@ return [
     'use_beginning'=>'Einsatzbeginn',
     'operation_clock'=>'Betrieb Uhr',
     'promoted_persons'=>'beförderte Personen',
-    'expenses'=>'Auslagen (Quittung!)',
+    'expenses'=>'Auslagen(Quittung!)',
     'country'=>'Land',
     'km_driveway'=>'KM Einfahrt',
     'total_km'=>'KM gesamt',
@@ -42,6 +42,11 @@ return [
     'customer_signature'=>'Unterschrift des Kunden',
     'driver_messages'=>'Fahrerhinweise',
     'days'  =>  'Tage',
+    'clock'  =>  'Uhr',
+    'from_customer'  =>  'Ab Kunde',
+    'travel_end'  =>  'Reiseende',
+    'miles_traveled_abroad'  =>  'Gefahrene Kilometer im Ausland',
+    'km_exit'  =>  ' KM Ausfahrt',
 
 
     'select_status'=>'Wählen Sie Status',
@@ -74,5 +79,7 @@ return [
     'send_invoice' => 'Rechnung senden',
     'invoice'       =>  'Rechnung',
     'email'         =>  'Email wurde erfolgreich Versendet',
-    'pls_create_invoice'    =>  'Bitte erstellen Sie eine Rechnung'
+    'pls_create_invoice'    =>  'Bitte erstellen Sie eine Rechnung',
+    'driver_details'    =>  'Treiberdetails',
+
 ];

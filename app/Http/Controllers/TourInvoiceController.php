@@ -273,7 +273,10 @@ class TourInvoiceController extends Controller
 
         $tour   =   Tour::find($request->tour_id);
         $driver =   Driver::find($request->driver_id);
-        $html   =   view('driver-form.driver_form',compact('date','driver','tour'));
+        $details    =   $request->details;
+        $general = new General();
+        $number = $general->invoiceNumber($request->tour_id);
+        $html   =   view('driver-form.driver_form',compact('date','driver','tour','number','details'));
 
         return General::CreatePdf("P",$html,"driver_form","Form");
 

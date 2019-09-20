@@ -37,7 +37,7 @@
                                 <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {{__('offer.price')}}:
                                 </dt>
-                                <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
+                                <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {!! $price!!}
                                 </dt>
 

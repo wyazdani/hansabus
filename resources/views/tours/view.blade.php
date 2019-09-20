@@ -46,10 +46,15 @@
 					</div>
 					<div class="col-md-12" id="v_attachments">
 					</div>
+					<div class="col-md-12">
+						<label>{{__('tour.driver_details')}} :</label>
+						<textarea name="details" class="form-control"></textarea>
+					</div>
 				</div>
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-labeled btn-xxs btn-success"> Print</button>
+					<button type="submit" class="btn btn-labeled btn-xxs btn-success">{{__('tour.driver')}} Form</button>
 				</div>
 
 			</div>

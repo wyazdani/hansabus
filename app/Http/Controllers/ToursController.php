@@ -212,6 +212,7 @@ class ToursController extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = [
             'status' => 'required|integer',
             'customer_id' => 'required|integer',
@@ -347,7 +348,12 @@ class ToursController extends Controller
         }else{
             return redirect()->back()->withInput($request->all());
         }
-        return redirect('/tours');
+        if ($request->returnFlag){
+            return redirect()->back();
+        }else{
+            return redirect('/tours');
+        }
+
     }
 
     public function detail(Tour $Tour)
@@ -554,7 +560,7 @@ class ToursController extends Controller
     public function tour_customer_email(Request  $request)
     {
         if ($request->send_invoice){
-            $invoice = TourInvoice::find($request->tour_id_email);
+            $invoice = TourInvoiceDetail::where('tour_id','=',$request->tour_id_email)->first();
             if ($invoice){
                 Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
             }else{

@@ -35,7 +35,7 @@ class General
         $pdf = new \TCPDF($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('HansaBus');
-        $pdf->SetTitle('Driver Form');
+        $pdf->SetTitle('Hansabus');
         $pdf->SetSubject($subject);
         $pdf->SetKeywords('');
         // $pdf->SetHeaderData("", "", "JOLLYBEE RESTAURANT MANAGEMENT SYSTEM", "");
@@ -68,7 +68,7 @@ class General
         $pdf = new \TCPDF($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('HansaBus');
-        $pdf->SetTitle('Driver Form');
+        $pdf->SetTitle('HansaBus');
         $pdf->SetSubject($subject);
         $pdf->SetKeywords('');
         // $pdf->SetHeaderData("", "", "JOLLYBEE RESTAURANT MANAGEMENT SYSTEM", "");
@@ -95,6 +95,39 @@ class General
         $pdf->writeHTML($views, true, false, false, false, '');
 
         return $pdf->Output($subject.'_'.date("Y-m-d h:i:s").'_'.$outputname.".pdf", 'D');
+    }
+    public static function EmailPdf($orientation,$viewHtml,$outputname,$subject){
+
+        $pdf = new \TCPDF($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('HansaBus');
+        $pdf->SetTitle('HansaBus');
+        $pdf->SetSubject($subject);
+        $pdf->SetKeywords('');
+        // $pdf->SetHeaderData("", "", "JOLLYBEE RESTAURANT MANAGEMENT SYSTEM", "");
+
+
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+        $pdf->SetMargins(PDF_MARGIN_LEFT, 10, PDF_MARGIN_RIGHT);/*PDF_MARGIN_TOP*/
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetAutoPageBreak(TRUE, 10);/*PDF_MARGIN_BOTTOM*/
+
+        $lg = Array();
+        $lg['a_meta_charset'] = 'UTF-8';
+        /*$lg['a_meta_dir'] = 'rtl';*/
+        $lg['a_meta_language'] = 'fa';
+        $lg['w_page'] = 'page';
+        $pdf->SetFont('dejavusans');
+        $pdf->setLanguageArray($lg);
+        $pdf->AddPage();
+        $views= $viewHtml;
+        $pdf->writeHTML($views, true, false, false, false, '');
+
+        return $pdf->Output($subject.'_'.date("Y-m-d h:i:s").'_'.$outputname.".pdf", 'S');
     }
 }
 ?>

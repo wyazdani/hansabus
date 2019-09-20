@@ -67,7 +67,8 @@ class DriverInvoiceController extends Controller
             $row->status = ($row->status == 1)?'Unpaid':'Paid';
             $row->created = date('d.m.Y H:i',strtotime($row->created_at));
         }
-        return view('invoices.driver.index',compact('pageTitle','rows'));
+        $customers = Customer::where('status','1')->get(['name','id']);
+        return view('invoices.driver.index',compact('pageTitle','rows','customers'));
     }
 
     public function create(Request $request){
@@ -194,7 +195,8 @@ class DriverInvoiceController extends Controller
 //        dd($hires);
         $vat = ($total/100)*19;
         $invoice_date   =   date('Y-m-d');
-
+        $html   =   view('invoices.driver.pdf_design', compact('customer','invoice','hires','total','vat','invoice_date'));
+        return General::DownloadPdf("P",$html,"driver_invoice","Invoice");
         $pdf = PDF::loadView('invoices.driver.pdf_design', compact('customer','invoice','hires','total','vat','invoice_date'));
         return $pdf->download('hire_a_driver_invoice.pdf');
     }

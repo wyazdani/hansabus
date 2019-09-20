@@ -61,5 +61,6 @@
         'drag'=>'Ziehen Sie oder',
         'upload'=>'Hochladen',
         'allowed_extentions'=>'(nur PDF-, JPG-, GIF- und PNG-Dateien)',
+        'lang'    =>  'DE',
     ];
 

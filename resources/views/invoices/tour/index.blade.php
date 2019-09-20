@@ -56,7 +56,7 @@
                                         <option value="2" @if(request()->get('status') == 2) {{ 'Selected' }}  @endif >Paid</option></select>
                                 </div>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <a href="javascript:;" onclick="$('#searchForm').submit()"  class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                                 </div>

@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Models\HireDriver;
 use App\Models\HireAttachment;
 use App\Models\DriverBooking;
+use App\Models\Tour;
 use App\Models\TourStatus;
 use App\Models\Customer;
 use App\Models\Attachment;
@@ -26,6 +27,23 @@ class HireDriverController extends Controller
     public function calendar(Request $request)
     {
         $pageTitle = __('hire.heading.calendar');
+
+        $hire_driver_table  =   get_table_name(HireDriver::class);
+        $tour_table         =   get_table_name(Tour::class);
+        $driver_table       =   get_table_name(Driver::class);
+        $customer_table     =   get_table_name(Customer::class);
+
+        $data               =   HireDriver::from($hire_driver_table.' as hire_a_driver')
+                                            ->leftJoin($tour_table.' as t','t.driver_id','=','hire_a_driver.driver_id')
+                                            ->join($driver_table.' as d','d.id','hire_a_driver.driver_id')
+                                            ->join($customer_table.' as c','c.id','hire_a_driver.customer_id')
+                                            ->where('hire_a_driver.status','>',1)
+                                            ->where('hire_a_driver.status','<',4)
+                                            ->where('t.status','>',1)
+                                            ->where('t.status','<',4)
+                                            ->select('hire_a_driver.id','hire_a_driver.customer_id','hire_a_driver.driver_id','hire_a_driver.status',
+                                                    'hire_a_driver.price','hire_a_driver.from_date','hire_a_driver.to_date','c.name')
+                                            ->get();
 
         $rows = HireDriver::where('status','>',1)->where('status','<',4)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
 

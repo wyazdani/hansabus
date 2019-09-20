@@ -41,7 +41,12 @@ return [
     'pollution'=>'Pollution',
     'customer_signature'=>'Customer Signature',
     'driver_messages'=>'Driver Messages',
-    'days'  =>  'Tage',
+    'days'  =>  'Days',
+    'clock'  =>  'Clock',
+    'from_customer'  =>  'From customer',
+    'travel_end'  =>  'Travel End',
+    'miles_traveled_abroad'  =>  'Miles traveled abroad',
+    'km_exit'  =>  ' KM Exit',
 
 
     'select_one'=>'Select One',
@@ -74,6 +79,7 @@ return [
     'send_invoice' => 'Send Invoice',
     'invoice'       =>  'Invoice',
     'email'         =>  'Email Sent Successfully',
-    'pls_create_invoice'    =>  'Please Create Invoice'
+    'pls_create_invoice'    =>  'Please Create Invoice',
+    'driver_details'    =>  'Driver Details',
 
     ];

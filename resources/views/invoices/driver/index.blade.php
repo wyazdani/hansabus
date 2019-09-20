@@ -22,12 +22,18 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type='text' name="customer_search" id="customer_search"
+                                <select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                    <option value="">{{__('tour.select_customer')}}</option>
+                                    @foreach($customers as $customer)
+                                        <option value="{!! $customer->id !!}" >{!! $customer->name !!}</option>
+                                    @endforeach
+                                </select>
+                                {{--<input type='text' name="customer_search" id="customer_search"
                                        placeholder="{{__('tour.customer')}}" class="form-control filterBox"
                                        value="{{ request()->get('customer_search') }}"
                                        onkeyup="if(this.value=='')$('#customer_id').val('')">
                                 <input type="hidden" id="customer_id" name="customer_id"
-                                       value="{{ request()->get('customer_id') }}" >
+                                       value="{{ request()->get('customer_id') }}" >--}}
                             </div>
                         </div>
                         <div class="col-md-1.5">

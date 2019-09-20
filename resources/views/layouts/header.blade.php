@@ -11,7 +11,7 @@
 				@if(Auth::check())
 				<ul class="navbar-nav">
 
-					<li class="dropdown nav-item mt-1"><a id="dropdownBasic" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-flag blue-grey darken-4"></i><span class="selected-language d-none"></span></a>
+					<li class="dropdown nav-item mt-1"><a id="dropdownBasic" href="javascript:void(0)" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class=" blue-grey darken-4"></i><span class="selected-language d-none"></span>{{__('messages.lang')}}</a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<div class="arrow_box_right">
 								<a href="{{ url('locale/en') }}" class="dropdown-item py-1"><img src="{{asset('images/us.png')}}" alt="English Flag" class="langimg" /><span>

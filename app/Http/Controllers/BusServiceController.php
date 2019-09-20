@@ -302,6 +302,8 @@ class BusServiceController extends Controller
                     }
                     toastr()->success(__('service.updated'));
                     $invoice_date   =   date('Y-m-d');
+                    $html   =   view('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
+                    return General::CreatePdf("P",$html,"bus_service","Invoice");
                     $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
                     return $pdf->stream();
                 }

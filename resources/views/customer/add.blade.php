@@ -67,7 +67,7 @@
                                                                     <div class="form-group">
                                                                         <label for="projectinput2">{{__('customer.email')}} <span class="{{($errors->has('email')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="email" name="email" class="{{($errors->has('email')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->email))?$customer->email:old('email') }}"
-                                                                        @if(!empty($customer->id)) {{ 'readonly="readonly"'  }} @endif >
+                                                                        >
 
                                                                     </div>
                                                                 </div>

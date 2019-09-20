@@ -55,5 +55,6 @@
         'drag'=>'Drag or',
         'upload'=>'Upload',
         'allowed_extentions'=>'( pdf, jpg, gif and png files only)',
+        'lang'    =>  'EN',
 
     ];

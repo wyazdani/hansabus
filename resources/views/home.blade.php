@@ -46,7 +46,7 @@
 					<div class="px-3 py-3">
 						<div class="media">
 							<div class="media-body text-left align-self-center">
-								<i class="fa fa-university success font-large-2 float-left"></i>
+								<i class="icon-users success font-large-2 float-left"></i>
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalCustomers  }}</h3>

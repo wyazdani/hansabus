@@ -106,6 +106,7 @@
 
                     $( "#customer_search" ).val(res.name);
                     $( "#customer_id" ).val(res.id);
+                    location.reload();
                     $('#addCustomerPopup').modal('hide');
                 }
             },

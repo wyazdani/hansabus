@@ -14,6 +14,7 @@
 				<div class="modal-body row">
 					<input type="hidden" value="" id="v_tour_id" name="tour_id">
 					<input type="hidden" value="" id="v_driver_id" name="driver_id">
+
 					<div class="col-md-6">
 						<dl>
 							<dt>{{__('tour.driver')}}:</dt>
@@ -51,12 +52,10 @@
 						<textarea name="details" class="form-control"></textarea>
 					</div>
 				</div>
-
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 					<button type="submit" class="btn btn-labeled btn-xxs btn-success">{{__('tour.driver')}} Form</button>
 				</div>
-
 			</div>
 		</form>
 	</div>

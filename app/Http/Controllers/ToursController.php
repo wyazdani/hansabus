@@ -376,6 +376,8 @@ class ToursController extends Controller
         $Tour->attachments;
         $Tour->from_date = date('d.m.Y H:i',strtotime($Tour->from_date));
         $Tour->to_date   = date('d.m.Y H:i',strtotime($Tour->to_date));
+        $Tour->tourdetails;
+        $Tour->status;
 
         return $Tour;
     }
@@ -391,8 +393,8 @@ class ToursController extends Controller
     {
         $pageTitle = __('messages.edit_tour');
         $tour = Tour::find($id);
-        $vehicles = Vehicle::orderBy('name','ASC')->where('status','1')->get();
-        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $vehicles = Vehicle::orderBy('name','ASC')->get();
+        $customers  =   Customer::orderBy('name','ASC')->get();
         $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
         $general = new General();
         $randomKey = $general->randomKey();
@@ -573,6 +575,12 @@ class ToursController extends Controller
         }
         toastr()->success(__('tour.email'));
         return redirect('/tours');
+    }
+    public function tour_send_email(Request  $request)
+    {
+        $tour = Tour::find($request->tour_id);
+        return view('tours.email',compact('tour'));
+
     }
     public function destroy($id)
     {

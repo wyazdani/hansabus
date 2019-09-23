@@ -223,6 +223,7 @@ class TourInvoiceController extends Controller
                 $invoice_detail->invoice_id = $invoice->id;
                 $invoice_detail->tour_id = $id;
                 $invoice_detail->save();
+
             }
 
             /* change Tours status to invoiced */
@@ -234,7 +235,7 @@ class TourInvoiceController extends Controller
         }else{
             toastr()->error('Error!');
         }
-        return redirect('/tour-invoices');
+        return redirect()->back();
     }
     public function downloadInvoice(Request $request){
 

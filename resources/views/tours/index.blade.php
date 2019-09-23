@@ -104,11 +104,10 @@
                                         <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
                                         <th class="border-top-0" width="11%">{{__('tour.to')}}</th>
                                         <th class="border-top-0" width="15%">{{__('tour.driver')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
+                                        <th class="border-top-0" width="3%">{{__('tour.passengers')}}</th>
+                                        <th class="border-top-0" width="3%">{{__('tour.price')}}</th>
                                         <th class="border-top-0" width="5%">Status</th>
-                                        <th class="border-top-0 d-print-none" width="8%">&nbsp;</th>
-                                        <th class="border-top-0 d-print-none" width="8%">Email</th>
+                                        <th class="border-top-0 d-print-none text-center" width="21%">{{__('tour.action')}}</th>
 
                                     </tr>
                                     </thead>
@@ -126,9 +125,59 @@
 
 @endsection
 @section('pagejs')
-    @include('tours.email')
+    <div class="modal fade text-left" tabindex="-1" id="default_model"
+         role="dialog" aria-labelledby="myModalLabel17"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+        </div>
+    </div>
     @include('tours.view')
     <script>
+        $(document).ready(function() {
+            $('body').on('click', '#send_mail_popup', function () {
+                var elem        =   $(this);
+                var tour_id  =   elem.data('tour_id');
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('tour-send-email') !!}",
+                    data:   {
+                        tour_id:tour_id,
+
+                        _token:'{!! csrf_token() !!}',
+
+                    },
+                    success: function(data){
+                        $("#default_model .modal-dialog").html(data);
+                        $("#default_model").modal('show');
+
+                    }
+                });
+            });
+            $('body').on('click','.generate_invoice',function () {
+                var elem    =   $(this);
+                var customer_id = elem.data('customer_id');
+                var total = elem.data('total');
+                var ids= [];
+                ids[0] = elem.data('id');
+                $(this).remove();
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('generate-tour-invoice') !!}",
+                    data:   {
+                        customer_id:customer_id,
+                        total:total,
+                        ids:ids,
+                        _token:'{!! csrf_token() !!}',
+
+                    },
+                    success: function(data){
+                        toastr.success("{!! __('driver_invoice.generated') !!}");
+                    }
+                });
+
+            });
+
+        });
         var deleteMe = function(id){
 
             if(confirm('{{__("messages.want_to_delete")}}')){
@@ -162,6 +211,7 @@
                     $('#v_description').html(t.description?t.description:'None');
                     $('#v_tour_id').val(t.id);
                     $('#v_driver_id').val(t.driver_id);
+
 
 
                          if(t.status == 1) $('#v_status').html('Draft');
@@ -215,6 +265,10 @@
                     else if(t.status == 4) $('#v_status_e').html('Paid');
                     else if(t.status == 5) $('#v_status_e').html('Canceled');
                     else  $('#v_status_e').html('None');
+                    $('#e_customer_id').val(t.customer_id);
+                    $('#e_status').val(t.status);
+                    $('#e_ids').val(t.id);
+
 
                     var attachments = '<ul>';
                     $.each(t.attachments, function(index, item) {
@@ -236,7 +290,6 @@
                 }
             });
         };
-        //
         $(document).ready(function() {
 
             var tableDiv = $('#listingTable').DataTable({
@@ -269,7 +322,7 @@
                     "search": "{{__('messages.search')}}",
                     "emptyTable": "{{__('messages.no_record')}}"
                 },
-                "pageLength": 10,
+                "pageLength": 11,
                 "bLengthChange" : false,
                 "aoColumnDefs": [
                     // { aTargets: ["_all"], bSortable: false },
@@ -320,28 +373,46 @@
                         view  = '<a class="p-0 d-print-none" data-original-title="View" title="View" ';
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
+                        var email = "email_" + row.id;
+                        email  = '<a class="p-0 d-print-none" href="javascript:void(0)" data-tour_id='+row.id+' id="send_mail_popup" >';
+                        email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                        var generate_invoice = "generate_invoice_" + row.id;
+                        if(row.status==2){
+                            generate_invoice = '<a href="javascript:void(0)" title="{{__("messages.generate_invoice")}}" data-customer_id='+row.customer_id+' data-total="1" data-id='+row.id+' class="generate_invoice" id="generate_id['+row.id+']"><i class="fa fa-file-o font-medium-3 mr-2"></i></a>';
 
+                        }else{
+                            generate_invoice = '';
+                        }
                         buttons = ''+view;
                         if(row.status == '1' || row.status == '2'){
-                            buttons = edit+trash+view;
+                            buttons = edit+trash+view+email+generate_invoice;
                         }
                         return '<div class="text-right">'+buttons+'</div>';
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 },
-                    {
+                    /*{
                         "aTargets": [10],
                         "mData": "",
                         sortable: false,
                         "mRender": function (data, type, row) {
                             var email = "email_" + row.id;
-                            email  = '<a class="p-0 d-print-none" data-original-title="Email" title="Email" ';
-                            email += ' href="javascript:;" onclick="emailTour('+row.id+');" >';
+                            var fields;
+                            email  = '<a class="p-0 d-print-none" href="javascript:void(0)" data-tour_id='+row.id+' id="send_mail_popup" >';
                             email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                            var generate_invoice = "generate_invoice_" + row.id;
+                            if(row.status==2){
+                                generate_invoice = '<a href="javascript:void(0)" data-customer_id='+row.customer_id+' data-total="1" data-id='+row.id+' class="generate_invoice success"><i class="fa fa-file font-medium-3 mr-2"></i></a>';
 
-                            return '<div class="text-right">'+email+'</div>';
+                            }else{
+                                generate_invoice = '';
+                            }
+
+                            fields =email+generate_invoice;
+                            return '<div class="text-right">'+fields+'</div>';
                         }
-                    }
+                    }*/
+
                 ],
                 "ajax": {
                     "url": "{{ url('/tours-list') }}",

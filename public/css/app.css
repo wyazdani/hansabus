@@ -53829,3 +53829,6 @@ input:checked + .slider:before {
 .fc-today { background-color: #F2F3F8 !important;
     color: #777777 !important;
 }
+table tbody th, table tbody td{
+    white-space: nowrap;
+}

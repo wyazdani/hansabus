@@ -81,5 +81,6 @@ return [
     'email'         =>  'Email Sent Successfully',
     'pls_create_invoice'    =>  'Please Create Invoice',
     'driver_details'    =>  'Driver Details',
+    'action'    =>  'Action',
 
     ];

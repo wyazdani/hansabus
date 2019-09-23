@@ -109,6 +109,7 @@
 
                     $( "#driver_search" ).val(res.driver_name);
                     $( "#driver_id" ).val(res.id);
+                    location.reload();
                     $('#addDriverPopup').modal('hide');
                 }
             },

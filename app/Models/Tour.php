@@ -62,6 +62,8 @@ class Tour extends Model
 
     public function tourdetails()
     {
-        return  $this->hasOne(TourInvoiceDetail::class,'invoice_id','id');
+        return  $this->hasOne(TourInvoiceDetail::class,'invoice_id','id')->withDefault([
+            'tour_id'   =>  0
+        ]);
     }
 }

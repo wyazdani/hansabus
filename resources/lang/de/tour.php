@@ -81,5 +81,6 @@ return [
     'email'         =>  'Email wurde erfolgreich Versendet',
     'pls_create_invoice'    =>  'Bitte erstellen Sie eine Rechnung',
     'driver_details'    =>  'Treiberdetails',
+    'action'    =>  'Aktion',
 
 ];

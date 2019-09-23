@@ -63,7 +63,7 @@
 																	 }}</option>
 																				@endforeach
 																			</select>--}}
-																			<select name="vehicle_id" id="basic" class="{{($errors->has('vehicle_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true" onchange="getVehicleSeats(this.value);">
+																			<select name="vehicle_id" id="vehicle_id" class="{{($errors->has('vehicle_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true" onchange="getVehicleSeats(this.value);">
 																				<option value="">{{__('tour.select_vehicle')}}</option>
 																				@foreach($vehicles as $vehicle)
 																					<option value="{!! $vehicle->id !!}" @if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id ||
@@ -80,7 +80,7 @@
 																			<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 
 																			<span style="float: right"><a href="javascriot:;" onclick="addCustomer()">{{strtolower(__('customer.heading.add'))}}</a></span>
-																			<select name="customer_id" id="basic" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+																			<select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
 																					<option value="">{{__('tour.select_customer')}}</option>
 																					@foreach($customers as $customer)
 																					<option value="{!! $customer->id !!}" @if(!empty($tour->customer_id) && $tour->customer_id==$customer->id ||

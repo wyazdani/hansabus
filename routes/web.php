@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/tour/{Tour}', 'ToursController@detail')->name('tour-detail');
     Route::get('/tour-calendar', 'ToursController@calendar')->name('tour-calendar');
     Route::post('/tour-customer-email', 'ToursController@tour_customer_email')->name('tour-customer-email');
+    Route::post('/tour-send-email', 'ToursController@tour_send_email')->name('tour-send-email');
 
 
     /* Tour invoices*/

@@ -8,9 +8,9 @@
 				</button>
 			</div>
 			<div class="modal-body row">
-				<input type="hidden" id="tour_id_email" name="tour_id_email">
-				<input type="hidden" id="customer_id_email" name="customer_id_email">
-				<input type="hidden" id="e_status" name="e_status">
+				<input type="hidden" id="tour_id_email" name="tour_id_email" value="{!! !empty($tour)?$tour->id:0 !!}">
+				<input type="hidden" id="customer_id_email" name="customer_id_email" value="{!! !empty($tour)?$tour->customer_id:0 !!}">
+				<input type="hidden" id="e_status" name="e_status" value="{!! !empty($tour)?$tour->status:0 !!}">
 				<div class="col-md-6">
 					<dl>
 						<dt>{{__('tour.driver')}}:</dt>

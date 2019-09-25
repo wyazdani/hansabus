@@ -386,9 +386,9 @@
                         }
                         buttons = ''+view;
                         if(row.status == '1' || row.status == '2'){
-                            buttons = edit+trash+view+email+generate_invoice;
+                            buttons = edit+trash+view+generate_invoice;
                         }
-                        return '<div class="text-right">'+buttons+'</div>';
+                        return '<div class="text-right">'+buttons+email+'</div>';
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 },

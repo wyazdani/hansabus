@@ -144,21 +144,18 @@ class ToursController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
+            $from = date('Y-m-d ',strtotime($request->from_date));
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
+            $to = date('Y-m-d ',strtotime($request->to_date));
         }
-        if(!empty($from) && !empty($to)){
+        if(!empty($from)){
 
-            $query = $query->whereBetween('from_date', [$from, $to]);
+            $query = $query->whereDate('from_date','>=',$from);
+        }
+        if(!empty($to)){
 
-        }elseif(!empty($from)){
-
-            $query = $query->where('from_date','>=',$from);
-        }elseif(!empty($to)){
-
-            $query = $query->where('from_date','<=',$to);
+            $query = $query->whereDate('to_date','<=',$to);
         }
 
         $recordsTotal = $query->count();

@@ -31,7 +31,7 @@
 									<tr>
 										<th class="border-top-0" width="10%">ID</th>
 										<th class="border-top-0" width="80%">{{__('vehicle_type.name')}}</th>
-										<th class="border-top-0" width="10%">&nbsp;</th>
+										<th class="border-top-0" width="10%">{{__('tour.action')}}</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -124,6 +124,7 @@
 				},
 				'bSortable': true,
 				'bProcessing': true,
+				"order": [[ 0, "desc" ]],
 
 			});
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';

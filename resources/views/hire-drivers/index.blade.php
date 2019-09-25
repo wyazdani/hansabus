@@ -20,24 +20,36 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
+                        <div class="col-md-3">
+                            {{--<div class="form-group">
                                 <input type='text' name="customer_search" id="customer_search"
                                        placeholder="{{__('tour.customer')}}" class="form-control filterBox"
                                        value="{{ request()->get('customer_search') }}"
                                        onkeyup="if(this.value=='')$('#customer_id').val('')">
                                 <input type="hidden" id="customer_id" name="customer_id"
                                        value="{{ request()->get('customer_id') }}" >
-                            </div>
+                            </div>--}}
+                            <select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                <option value="">{{__('tour.select_customer')}}</option>
+                                @foreach($customers as $customer)
+                                    <option value="{!! $customer->id !!}" >{!! $customer->name !!}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' name="driver_search" id="driver_search"
+                                {{--<input type='text' name="driver_search" id="driver_search"
                                        placeholder="{{__('tour.driver')}}" class="form-control filterBox"
                                        value="{{ request()->get('driver_search') }}"
                                        onkeyup="if(this.value=='')$('#driver_id').val('')">
                                 <input type="hidden" id="driver_id" name="driver_id"
-                                       value="{{ request()->get('driver_id') }}">
+                                       value="{{ request()->get('driver_id') }}">--}}
+                                <select name="driver_id" id="driver_id" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                    <option value="">{{__('tour.select_driver')}}</option>
+                                    @foreach($drivers as $driver)
+                                        <option value="{!! $driver->id !!}" >{!! $driver->driver_name !!}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -76,7 +88,7 @@
                                         <th class="border-top-0" width="11%">{{__('hire.to')}}</th>
                                         <th class="border-top-0" width="8%">{{__('hire.price')}}</th>
                                         <th class="border-top-0" width="5%">Status</th>
-                                        <th class="border-top-0" width="8%">&nbsp;</th>
+                                        <th class="border-top-0" width="8%">{{__('tour.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -175,6 +187,7 @@
                 "serverSide": true,
                 // "searchable" : true,
                 'searching':false,
+                "order": [[ 0, "desc" ]],
                 "language": {
                     "search": "{{__('messages.search')}}",
                     "emptyTable": "{{__('messages.no_record')}}"

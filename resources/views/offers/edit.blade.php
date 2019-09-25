@@ -112,7 +112,7 @@
                             <a href="{{ route('offers.index')}}" class="btn btn-danger mr-1"><b>
                                     <i class="fa fa-times"></i></b> {{__('messages.cancel')}}</a>
                             <button type="submit" class="btn btn-success"><b>
-                                    <i class="icon-note"></i></b> {{__('messages.save')}}</button>
+                                    <i class="icon-note"></i></b> {{__('messages.update')}}</button>
                         </div>
                     </div>
                 {{ Form::close() }}

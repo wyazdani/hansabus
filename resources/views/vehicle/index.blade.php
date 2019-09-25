@@ -33,7 +33,7 @@
                                         <th class="border-top-0" width="13%">{{__('vehicle.license_plate')}}</th>
                                         <th class="border-top-0" width="13%">{{__('vehicle.engine_number')}}</th>
                                         <th class="border-top-0" width="13%">{{__('vehicle.reg_number')}}</th>
-                                        <th class="border-top-0 d-print-none " width="10%">&nbsp;</th>
+                                        <th class="border-top-0 d-print-none " width="10%">{{__('tour.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -120,6 +120,7 @@
                     }
                 ],
                 "bInfo": false,
+                "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,

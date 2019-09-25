@@ -184,9 +184,9 @@ class ToursController extends Controller
         $pageTitle = __('messages.tours');
 
         $tour_statuses = TourStatus::get(['id','name']);
-        $vehicles = Vehicle::orderBy('name','ASC')->where('status','1')->get();
-        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
-        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
+        $vehicles = Vehicle::orderBy('name','ASC')->get();
+        $customers  =   Customer::orderBy('name','ASC')->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->get();
 
         return view('tours.index',compact('vehicles','tour_statuses','pageTitle','customers','drivers'));
     }
@@ -219,7 +219,7 @@ class ToursController extends Controller
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            /*'driver_id' => 'required|integer',*/
+            'driver_id' => 'integer',
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
             'description' => 'required'
@@ -417,6 +417,7 @@ class ToursController extends Controller
             'status' => 'required|integer',
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
+            'driver_id' => 'integer',
             'from_date' => 'required',
             'to_date' => 'required',
             /*'driver_id' => 'required|integer',*/
@@ -581,6 +582,18 @@ class ToursController extends Controller
         $tour = Tour::find($request->tour_id);
         return view('tours.email',compact('tour'));
 
+    }
+
+    public function get_fields(){
+        $vehicles = Vehicle::orderBy('name','ASC')->get();
+        $customers  =   Customer::orderBy('name','ASC')->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
+
+        return response()->json([
+           'vehicles'       =>   $vehicles,
+           'customers'      =>   $customers,
+           'drivers'        =>   $drivers,
+        ]);
     }
     public function destroy($id)
     {

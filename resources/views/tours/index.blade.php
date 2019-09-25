@@ -314,6 +314,7 @@
                 // 'bProcessing': true,
                 "bInfo": false,
                 // "bAutoWidth": false,
+                "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
                 // "searchable" : true,

@@ -133,12 +133,10 @@ class VehicleTypeController extends Controller
     public function changePassword(Request $request){
 
         $rules = [
-            'password'      =>  'required|confirmed|min:6'
+            'password'      =>  'required|min:6|confirmed'
         ];
-        $messages = [
-            'password.required' => '',
-        ];
-        $this->validate(request(), $rules, $messages);
+
+        $this->validate(request(), $rules);
         if(true){
 
             $u = User::find(\Auth::user()->id);

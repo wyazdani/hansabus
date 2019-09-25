@@ -34,7 +34,7 @@
 											<th class="border-top-0" width="15%">{{__('driver.license')}}</th>
 											<th class="border-top-0" width="10%">{{__('driver.nin')}}</th>
 											<th class="border-top-0" width="10%">{{__('driver.phone')}}</th>
-											<th class="border-top-0" width="10%">&nbsp;</th>
+											<th class="border-top-0" width="10%">{{__('tour.action')}}</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -113,6 +113,7 @@
 				'bSortable': true,
 				'bProcessing': true,
 				"bInfo": false,
+				"order": [[ 0, "desc" ]],
 				"processing": true,
 				"serverSide": true,
 				"searchable" : true,

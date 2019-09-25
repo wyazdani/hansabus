@@ -34,7 +34,7 @@
                                     <th class="border-top-0" width="10%">{{__('customer.mobile')}}</th>
                                     <th class="border-top-0" width="20%">{{__('customer.address')}}</th>
                                     <th class="border-top-0" width="15%">{{__('customer.web')}}</th>
-                                    <th class="border-top-0 d-print-none" width="10%">&nbsp;</th>
+                                    <th class="border-top-0 d-print-none" width="10%">{{__('tour.action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,6 +109,7 @@
                 'bSortable': true,
                 'bProcessing': true,
                 "bInfo": false,
+                "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,

@@ -92,12 +92,12 @@
                                         <th class="border-top-0" width="10%">{{__('driver_invoice.total')}}</th>
                                         <th class="border-top-0" width="10%">{{__('driver_invoice.status')}}</th>
                                         <th class="border-top-0" width="10%">{{__('driver_invoice.date')}}</th>
-                                        <th class="border-top-0" width="7.5%">&nbsp;</th>
-                                        <th class="border-top-0" width="7.5%">&nbsp;</th>
+                                        <th class="border-top-0" width="7.5%">{{__('tour.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody id="toursDiv">
 
+                                    @if(count($rows)>0)
                                         @foreach($rows as $row)
                                         <tr>
                                             @if($row->status == 'Unpaid')
@@ -124,6 +124,9 @@
                                         </tr>
                                         @endforeach
                                         <tr><td colspan="7">{{$rows->appends(request()->input())->links()}}</td> </tr>
+                                        @else
+                                        <tr><td colspan="8" class="text-center">No data available in table.</td></tr>
+                                    @endif
                                     </tbody>
                                 </table>
                             </form>

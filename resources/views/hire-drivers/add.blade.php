@@ -100,12 +100,12 @@
 																		<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 
 																		<span style="float: right"><a href="javascriot:;" onclick="addCustomer()">{{strtolower(__('customer.heading.add'))}}</a></span>
-																		<select name="customer_id" id="basic" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
-																			<option value="">{{__('tour.select_customer')}}</option>
+																		<select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+																			{{--<option value="">{{__('tour.select_customer')}}</option>
 																			@foreach($customers as $customer)
 																				<option value="{!! $customer->id !!}" @if(!empty($hire->customer_id) && $hire->customer_id==$customer->id ||
 																					old('customer_id')==$customer->id) selected @endif>{!! $customer->name !!}</option>
-																			@endforeach
+																			@endforeach--}}
 																		</select>
 																		{{--<input type='text' name="customer_search" id="customer_search"
 																			   @if(!empty($hire->customer->name))
@@ -124,12 +124,12 @@
 																	<div class="form-group">
 																		<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}">*</span></label>
 																		<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
-																		<select name="driver_id" id="basic" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
-																			<option value="">{{__('tour.select_driver')}}</option>
+																		<select name="driver_id" id="driver_id" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+																			{{--<option value="">{{__('tour.select_driver')}}</option>
 																			@foreach($drivers as $driver)
 																				<option value="{!! $driver->id !!}" @if(!empty($hire->driver_id) && $hire->driver_id==$driver->id ||
 																					old('driver_id')==$driver->id) selected @endif>{!! $driver->driver_name !!}</option>
-																			@endforeach
+																			@endforeach--}}
 																		</select>
 																		{{--<input type='text' name="driver_search" id="driver_search"
 																			   @if(!empty($hire->driver->driver_name))
@@ -225,6 +225,81 @@
 	@include('customer.add_popup')
 	@include('drivers.add_popup')
 	<script type="text/javascript">
+		$(document).ready(function () {
+			loadCustomers();
+			loadDrivers();
+		});
+		function loadCustomers(){
+
+			var customer_id		=	'';
+			$.ajax({
+				type: "get",
+				url: "{{route('tour-get-fields')}}",
+				success: function(result)
+				{
+					$('#customer_id').html("");
+
+					if(result.customers.length > 0)
+					{
+						var option_selected	=	new Option("{{__('tour.select_customer')}}",'foo',true,true);
+						$('#customer_id').append(option_selected);
+						for(i=0 ; i<result.customers.length ; i++){
+							var newOption = new Option(result.customers[i].name, result.customers[i].id, i==0, i==0);
+							$('#customer_id').append(newOption);
+						}
+					}else
+					{
+						$('#customer_id').html("");
+					}
+					@if(!empty($hire))
+							customer_id = '{!! $hire->customer_id !!}';
+
+					@elseif(old('customer_id') &&  old('customer_id')!="foo")
+							customer_id = '{!! old('customer_id') !!}';
+					@else
+							customer_id	=	'foo';
+					@endif
+					$('#customer_id').val(customer_id).trigger('change');
+					$('.selectpicker').selectpicker('refresh');
+
+				}
+			});
+		}
+		function loadDrivers(){
+			var driver_id		=	'';
+			$.ajax({
+				type: "get",
+				url: "{{route('tour-get-fields')}}",
+				success: function(result)
+				{
+					$('#driver_id').html("{{__('tour.select_driver')}}");
+
+					if(result.drivers.length > 0)
+					{
+						var option_selected	=	new Option("{{__('tour.select_driver')}}",'foo',true,true);
+						$('#driver_id').append(option_selected);
+						for(i=0 ; i<result.drivers.length ; i++){
+							var newOption = new Option(result.drivers[i].driver_name, result.drivers[i].id, i==0, i==0);
+							$('#driver_id').append(newOption);
+						}
+					}else
+					{
+						$('#driver_id').html("{{__('tour.select_driver')}}");
+					}
+					@if(!empty($hire))
+							driver_id = '{!! $hire->driver_id !!}';
+
+					@elseif(old('driver_id') &&  old('driver_id')!="foo")
+							driver_id = '{!! old('driver_id') !!}';
+					@else
+							driver_id	=	'foo';
+					@endif
+					$('#driver_id').val(driver_id).trigger('change');
+					$('.selectpicker').selectpicker('refresh');
+
+				}
+			});
+		}
 		function passengersCheck(){
 
 			const passengers = parseInt($('#passengers').val());

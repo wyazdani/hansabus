@@ -53829,6 +53829,11 @@ input:checked + .slider:before {
 .fc-today { background-color: #F2F3F8 !important;
     color: #777777 !important;
 }
-table tbody th, table tbody td{
+.table-responsive table  tbody th,
+.table-responsive table tbody td{
     white-space: nowrap;
+}
+.bootstrap-select > .dropdown-toggle{
+    background: #fff;
+    border: 1px solid #CED4DA;
 }

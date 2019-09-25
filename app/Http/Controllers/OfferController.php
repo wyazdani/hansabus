@@ -19,7 +19,7 @@ class OfferController extends Controller
     public function index()
     {
 
-        $inquiries      =   Inquiry::orderBy('id','DESC')->paginate(20);
+        $inquiries      =   Inquiry::orderBy('id','DESC')->paginate(10);
         $pageTitle      =   __('offer.heading.index');
         return view('offers.index',compact('pageTitle','inquiries'));
     }

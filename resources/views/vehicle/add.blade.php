@@ -115,7 +115,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput4">{{__('vehicle.seats')}}<span class="{{($errors->has('seats')) ?'errorStar':''}}">*</span></label>
-                                                        <input type="number" name="seats" class="{{($errors->has('seats')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->seats))?$vehicle->seats:old('seats') }}">
+                                                        <input type="text" name="seats" class="{{($errors->has('seats')) ?'form-control has_numeric error_input':'form-control has_numeric'}}" value="{{ (!empty($vehicle->seats))?$vehicle->seats:old('seats') }}" maxlength = "9">
                                                     </div>
                                                 </div>
 

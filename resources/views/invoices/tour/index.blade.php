@@ -94,38 +94,40 @@
                                             <th class="border-top-0" width="10%">{{__('tour_invoice.total')}}</th>
                                             <th class="border-top-0" width="10%">{{__('tour_invoice.status')}}</th>
                                             <th class="border-top-0" width="20%">{{__('tour_invoice.date')}}</th>
-                                            <th class="border-top-0" width="7.5%">&nbsp;</th>
-                                            <th class="border-top-0" width="7.5%">&nbsp;</th>
+                                            <th class="border-top-0" width="7.5%">{{__('tour.action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody id="toursDiv">
-                                        @foreach($rows as $row)
-                                            <tr>
-                                                @if($row->status == 'Unpaid')
-                                                    <td><div class="custom-control custom-checkbox" style="top: -5px;">
-                                                            <input type="checkbox" id="a{{$row->id}}" class="custom-control-input form-check-input ids" onclick="showButton();" value="{{$row->id}}" name="ids[]">
-                                                            <label class="custom-control-label" for="a{{$row->id}}">&nbsp;</label>
-                                                        </div>
-                                                    </td>
-                                                @else
-                                                    <td>&nbsp;</td>
-                                                @endif
-                                                <td>{{ $row->invoice_id }}</td>
-                                                <td>{{ $row->customer->name }}</td>
-                                                <td>{{ $row->total }}</td>
-                                                <td>{{ $row->status }}</td>
-                                                <td>{{ $row->created }}</td>
-                                                <td>
+                                        @if(count($rows)>0)
+                                            @foreach($rows as $row)
+                                                <tr>
                                                     @if($row->status == 'Unpaid')
-                                                        <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
+                                                        <td><div class="custom-control custom-checkbox" style="top: -5px;">
+                                                                <input type="checkbox" id="a{{$row->id}}" class="custom-control-input form-check-input ids" onclick="showButton();" value="{{$row->id}}" name="ids[]">
+                                                                <label class="custom-control-label" for="a{{$row->id}}">&nbsp;</label>
+                                                            </div>
+                                                        </td>
                                                     @else
-                                                        <a href="{{ route('download-tours-invoice') }}?id={{$row->id}}" class="btn btn-sm btn-outline-primary">Download</a>
+                                                        <td>&nbsp;</td>
                                                     @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        <tr><td colspan="7">{{$rows->appends(request()->input())->links()}}</td> </tr>
-
+                                                    <td>{{ $row->invoice_id }}</td>
+                                                    <td>{{ $row->customer->name }}</td>
+                                                    <td>{{ $row->total }}</td>
+                                                    <td>{{ $row->status }}</td>
+                                                    <td>{{ $row->created }}</td>
+                                                    <td>
+                                                        @if($row->status == 'Unpaid')
+                                                            <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
+                                                        @else
+                                                            <a href="{{ route('download-tours-invoice') }}?id={{$row->id}}" class="btn btn-sm btn-outline-primary">Download</a>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            <tr><td colspan="7">{{$rows->appends(request()->input())->links()}}</td> </tr>
+                                        @else
+                                            <tr><td colspan="8" class="text-center">No data available in table.</td></tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </form>

@@ -31,6 +31,31 @@
     Dropzone.autoDiscover = false;
     $("#dpz-multiple-files").dropzone({   acceptedFiles: ".png, .jpg, .gif,.pdf" });
 
+    $(document).ready(function () {
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            let charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                evt.preventDefault();
+            } else {
+                return true;
+            }
+        }
+        $('.has_numeric').attr('min',1);
+        $('body').on('keypress','.has_numeric',function () {
+            var elem    =   $(this);
+            elem.attr('min',1);
+            isNumber();
+        });
+        $('body').on('input','.has_numeric',function () {
+            var elem    =   $(this);
+            elem.attr('min',1);
+        });
+        $('body').on('change','.has_numeric',function () {
+            var elem    =   $(this);
+            elem.attr('min',1);
+        });
+    });
     $( function() {
 
         $("#customer_search" ).autocomplete({

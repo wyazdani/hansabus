@@ -28,7 +28,7 @@
                                     {{ __('offer.thankyou_for_inquiry') }}.
                                 </dt>
 
-                                <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
+                                <dt style="font-weight: bold;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {{ __('offer.departure_time') }}
                                 </dt>
                                 <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">

@@ -63,6 +63,7 @@
 				{{--<div class="col-md-12 generate_invoice" >
 					<a href="javascript:void(0)" class="btn btn-success ml-2 mt-2 generate_invoice_click">{{__("messages.generate_invoice")}}</a>
 				</div>--}}
+				@if($tour->status!=1)
 				<div class="form-group" >
 					<label>{{__('tour.send_invoice')}}</label>
 					<div class="form-group">
@@ -75,6 +76,7 @@
 						</div>
 					</div>
 				</div>
+				@endif
 			</div>
 
 			<div class="modal-footer">

@@ -47,7 +47,7 @@ class HireDriverController extends Controller
 
         $rows = HireDriver::where('status','>',1)->where('status','<',4)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
 
-        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
+        $colors = ['#ff3908','#0bb9d4','#0da837','#d6c809','#db7107'];
         
         $events =  []; $i=$j=0;
         foreach($rows as $row){
@@ -55,8 +55,8 @@ class HireDriverController extends Controller
 
             $row->customer;
 
-            if($j>7){
-                $j = $j-8;
+            if($j>4){
+                $j = $j-5;
             }
 
 

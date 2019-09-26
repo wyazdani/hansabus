@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hire-drivers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hire-drivers/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mail/offer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/offer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mail/tour_confirmation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/tour_confirmation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/service/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/service/add.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/tours/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/email.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
     </list>
@@ -144,7 +147,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../logixinvent" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -236,7 +239,8 @@
       <workItem from="1569319102164" duration="602000" />
       <workItem from="1569324278682" duration="598000" />
       <workItem from="1569327361693" duration="1476000" />
-      <workItem from="1569394472343" duration="18994000" />
+      <workItem from="1569394472343" duration="19162000" />
+      <workItem from="1569475626496" duration="4576000" />
     </task>
     <servers />
   </component>

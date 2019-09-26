@@ -375,8 +375,12 @@
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
                         var email = "email_" + row.id;
-                        email  = '<a class="p-0 d-print-none" href="javascript:void(0)" data-tour_id='+row.id+' id="send_mail_popup" >';
-                        email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                        if(row.status == '1' || row.status == '2' || row.status == '3') {
+                            email = '<a class="p-0 d-print-none" href="javascript:void(0)" data-tour_id=' + row.id + ' id="send_mail_popup" >';
+                            email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                        }else{
+                            email = '';
+                        }
                         var generate_invoice = "generate_invoice_" + row.id;
                         if(row.status==2){
                             generate_invoice = '<a href="javascript:void(0)" title="{{__("messages.generate_invoice")}}" data-customer_id='+row.customer_id+' data-total="1" data-id='+row.id+' class="generate_invoice" id="generate_id['+row.id+']"><i class="fa fa-file-o font-medium-3 mr-2"></i></a>';

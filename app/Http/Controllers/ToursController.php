@@ -37,13 +37,13 @@ class ToursController extends Controller
         $rows = Tour::where('status','>',1)->where('status','<',4)->whereNull('deleted_at')->get(
             ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
-        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
+        $colors = ['#ff3908','#0bb9d4','#0da837','#d6c809','#db7107'];
 
         $events = []; $i = $j=0;
         foreach($rows as $row){
 
-            if($j>7){
-                $j = $j-8;
+            if($j>4){
+                $j = $j-5;
             }
 
             $row->driver;
@@ -216,7 +216,6 @@ class ToursController extends Controller
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            'driver_id' => 'integer',
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
             'description' => 'required'
@@ -250,6 +249,9 @@ class ToursController extends Controller
             /* check for driver bookings */
 
 
+            if ($request->driver_id == 'foo'){
+                $request->driver_id =0;
+            }
             if (!empty($request->driver_id)){
                 $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
                     ->where('from_date','<=',$from)
@@ -414,7 +416,6 @@ class ToursController extends Controller
             'status' => 'required|integer',
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
-            'driver_id' => 'integer',
             'from_date' => 'required',
             'to_date' => 'required',
             /*'driver_id' => 'required|integer',*/
@@ -442,7 +443,9 @@ class ToursController extends Controller
 
             $alreadyBooked = false;
             /* check for driver bookings */
-
+            if ($request->driver_id == 'foo'){
+                $request->driver_id =0;
+            }
             $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
                 ->where('with_vehicle', 1)->where('booking_id', '!=', $request->id)
                 ->where('from_date','<=',$from)
@@ -583,7 +586,7 @@ class ToursController extends Controller
 
     public function get_fields(){
         $vehicles = Vehicle::orderBy('name','ASC')->get();
-        $customers  =   Customer::orderBy('name','ASC')->get();
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
         $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
 
         return response()->json([

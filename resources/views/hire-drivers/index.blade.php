@@ -160,7 +160,29 @@
         };
 
         $(document).ready(function() {
+            $('body').on('click','.generate_invoice',function () {
+                var elem    =   $(this);
+                var customer_id = elem.data('customer_id');
+                var total = elem.data('total');
+                var ids= [];
+                ids[0] = elem.data('id');
+                $(this).remove();
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('generate-driver-invoice') !!}",
+                    data:   {
+                        customer_id:customer_id,
+                        total:total,
+                        ids:ids,
+                        _token:'{!! csrf_token() !!}',
 
+                    },
+                    success: function(data){
+                        toastr.success("{!! __('driver_invoice.generated') !!}");
+                    }
+                });
+
+            });
             var tableDiv = $('#listingTable').DataTable({
 
 
@@ -243,12 +265,18 @@
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
+                        var generate_invoice = "generate_invoice_" + row.id;
+                        if(row.status==2){
+                            generate_invoice = '<a href="javascript:void(0)" title="{{__("messages.generate_invoice")}}" data-customer_id='+row.customer_id+' data-total="1" data-id='+row.id+' class="generate_invoice" id="generate_id['+row.id+']"><i class="fa fa-file-o font-medium-3 mr-2"></i></a>';
 
+                        }else{
+                            generate_invoice = '';
+                        }
                         buttons = ''+view;
                         if(row.status == '1' || row.status == '2'){
                             buttons = edit+trash+view;
                         }
-                        return '<div class="text-right">'+buttons+'</div>';
+                        return '<div class="text-right">'+buttons+generate_invoice+'</div>';
 
 
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';

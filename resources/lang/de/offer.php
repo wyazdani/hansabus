@@ -15,7 +15,7 @@ return [
     'one_way'           =>  'Einweg',
     'trip_type'         =>  'Reiseart',
     'seats'             =>  'Sitze',
-
+    'description'       =>  'Beschreibung',
     'success'           =>  'Angebot erfolgreich erstellt',
     'success_update'    =>  'Angebot erfolgreich aktualisiert',
 

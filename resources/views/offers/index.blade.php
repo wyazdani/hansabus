@@ -93,6 +93,7 @@
     </div>
     <script>
         $(document).ready(function() {
+
             var tableDiv = $('#listingTable').DataTable( {
 
                 dom: 'Bfrtip',
@@ -128,22 +129,26 @@
                     "mData": "",
                     "mRender": function (data, type, row) {
 
-                        var edit = '';   var email = ''; var buttons = '';
+                        var edit = '';   var email = ''; var view = ''; var buttons = '';
 
 
                         if(row.status === 0){
-                            edit  = '<a class="btn" ';
+                            edit  = '<a class="btn" title="Edit" ';
                             edit += 'href="{!! url("/offers/'+row.id+'/edit") !!}">';
                             edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
                             email  = '<a class="btn" href="javascript:void(0)"';
-                            email += ' data-inquiry_id="'+row.id+'" id="send_mail_popup" >';
+                            email += ' data-inquiry_id="'+row.id+'" id="send_mail_popup" title="Email" >';
                             email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+
+
                         }
+                        view  = '<a class="p-0 d-print-none view_offer" data-inquiry_id="'+row.id+'" title="View" ';
+                        view += ' href="javascript:;"  >';
+                        view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
 
-
-                        buttons = edit+email;
+                        buttons = view+edit+email;
                         return buttons;
 
 
@@ -171,6 +176,25 @@
                     }
                 }
 
+            });
+            $('body').on('click', '.view_offer', function () {
+                var elem        =   $(this);
+                var inquiry_id  =   elem.data('inquiry_id');
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('offer-view') !!}",
+                    data:   {
+                        inquiry_id:inquiry_id,
+
+                        _token:'{!! csrf_token() !!}',
+
+                    },
+                    success: function(data){
+                        $("#default_model .modal-dialog").html(data);
+                        $("#default_model").modal('show');
+
+                    }
+                });
             });
             $('body').on('click', '#send_mail_popup', function () {
                 var elem        =   $(this);

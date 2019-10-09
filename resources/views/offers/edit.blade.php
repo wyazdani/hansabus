@@ -99,6 +99,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label for="projectinput3"> {{__('offer.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}"></span></label>
+                                                            <textarea  name="description" id="description"
+                                                                       class="{{($errors->has('description')) ?'error_input form-control':'form-control'}}"
+                                                            >{{ !empty($inquiry->description)?$inquiry->description:old('description') }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

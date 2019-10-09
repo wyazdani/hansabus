@@ -153,6 +153,7 @@ class OfferController extends Controller
            'name'           =>  $request->name,
            'email'          =>  $request->email,
            'seats'          =>  $request->seats,
+           'description'    =>  $request->description,
            'is_web'         =>  0,
            'with_driver'    =>  1,
            'status'         =>  0
@@ -231,6 +232,7 @@ class OfferController extends Controller
             'name'           =>  $request->name,
             'email'          =>  $request->email,
             'seats'          =>  $request->seats,
+            'description'    =>  $request->description,
             'is_web'         =>  !empty($inquiry->is_web)?$inquiry->is_web:0,
             'with_driver'    =>  1,
             'status'         =>  !empty($inquiry->status)?$inquiry->status:0,
@@ -308,15 +310,22 @@ class OfferController extends Controller
 
     }
 
+    public function offer_view(Request $request)
+    {
+
+        $inquiry    =   Inquiry::find($request->inquiry_id);
+        return view('offers.show',compact('inquiry'));
+    }
     public function ecoach_web(Request      $request)
     {
 
 
-        if ($request->name && $request->departure_date && $request->to_address && $request->email && $request->to_address){
+        if ($request->name && $request->departure_date && $request->to_address && $request->email){
             $inquiry    =   Inquiry::create([
                 'name'           =>  $request->name,
                 'email'          =>  $request->email,
                 'seats'          =>  $request->seats,
+                'description'   =>  $request->description,
                 'is_web'         =>  1,
                 'with_driver'    =>  1,
                 'status'         =>  0
@@ -335,6 +344,7 @@ class OfferController extends Controller
                 'name'           =>  $request->name_two,
                 'email'          =>  $request->email_two,
                 'seats'          =>  $request->seats_two,
+                'description'   =>  $request->description_two,
                 'is_web'         =>  1,
                 'with_driver'    =>  1,
                 'status'         =>  0

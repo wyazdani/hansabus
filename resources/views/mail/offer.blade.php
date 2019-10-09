@@ -22,10 +22,14 @@
                     <table style="width: 100%;">
                         <tbody><tr><td style="padding:50px 15px 0 15px;">
                                 <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
+                                    {{ __('offer.offer_no') }} O{!! $offer !!}/-{!! date('y') !!}
+                                </dt>
+                                <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     Hi {!! $inquiry->name !!},
                                 </dt>
                                 <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {{ __('offer.thankyou_for_inquiry') }}.
+
                                 </dt>
 
                                 <dt style="font-weight: bold;width: 80%;text-align: left;padding: 5px 15px; color: #000000">

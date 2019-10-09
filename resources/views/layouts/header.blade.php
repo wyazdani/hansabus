@@ -16,7 +16,7 @@
 							<div class="arrow_box_right">
 								<a href="{{ url('locale/en') }}" class="dropdown-item py-1"><img src="{{asset('images/us.png')}}" alt="English Flag" class="langimg" /><span>
 										English</span></a>
-								<a href="{{ url('locale/de') }}" class="dropdown-item py-1"><img src="{{asset('images/es.png')}}" alt="Spanish Flag" class="langimg" /><span>
+								<a href="{{ url('locale/de') }}" class="dropdown-item py-1"><img src="{{asset('images/de.png')}}" alt="Spanish Flag" class="langimg" /><span>
 										German</span></a>
 							</div>
 						</div>

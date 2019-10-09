@@ -39,7 +39,8 @@
                                         <strong style="font-size: 7.5px;">E-Mail:</strong><span>info@ hansebus.com</span><br>
                                         <strong style="font-size: 7.5px;">www:</strong><span>www. hansebus.com</span><br><br>
                                         <span style="display: block;color: #000;font-size: 7px;">{{ __('tour_invoice.invoice_date') }}:</span><span>{!! date("d.m.Y",strtotime($invoice_date)) !!}</span><br>
-                                        <span style="display: block;color: #000;font-size: 7px;">{{__('tour.invoice_number')}}:</span><span>{{  str_pad($invoice->id, 9, "0", STR_PAD_LEFT) }}</span><br>
+                                        <span style="display: block;color: #000;font-size: 7px;">{{__('tour.invoice_number')}}:</span>
+                                        <span>D{!! $invoice->id !!}/-{!! date('y') !!}</span><br>
                                         <span style="display: block;color: #000;font-size: 7px;">{{ __('service.customer') }}:</span><span style="display: block;color: #000;font-size: 7.5px;">{!! $customer->name !!}</span><br>
                                     </div>
                                 </td>

@@ -23,7 +23,7 @@
                         <div class="px-3 mb-4">
 
                             <div class="table-responsive">
-                                <table class="table table-hover table-xl mb-0" id="listingTable">
+                                <table class=" table table-hover datatable-basic table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
@@ -39,7 +39,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if(count($inquiries)>0)
+                                    {{--@if(count($inquiries)>0)
                                         @foreach($inquiries  as $inquiry)
                                             <tr>
                                                 <td>{!! $inquiry->id !!}</td>
@@ -67,12 +67,12 @@
                                         <tr>
                                             <td colspan="10" class="text-center">No data available in table</td>
                                         </tr>
-                                    @endif
+                                    @endif--}}
                                     </tbody>
                                 </table>
-                                <div class="pull-right">
+                                {{--<div class="pull-right">
                                     {!! $inquiries->links() !!}
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,85 @@
     </div>
     <script>
         $(document).ready(function() {
+            var tableDiv = $('#listingTable').DataTable( {
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
+
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
+                "bInfo": false,
+                "order": [[ 0, "desc" ]],
+                "processing": true,
+                "serverSide": true,
+                "searchable" : true,
+                "language": {
+                    "search": "{{__('messages.search')}}",
+                    "emptyTable": "{{__('messages.no_record')}}"
+                },
+                "pageLength": 10,
+                "bLengthChange" : false,
+                "aoColumnDefs": [{
+
+                    "aTargets": [9],
+                    "mData": "",
+                    "mRender": function (data, type, row) {
+
+                        var edit = '';   var email = ''; var buttons = '';
+
+
+                        if(row.status === 0){
+                            edit  = '<a class="btn" ';
+                            edit += 'href="{!! url("/offers/'+row.id+'/edit") !!}">';
+                            edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
+
+                            email  = '<a class="btn" href="javascript:void(0)"';
+                            email += ' data-inquiry_id="'+row.id+'" id="send_mail_popup" >';
+                            email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                        }
+
+
+
+                        buttons = edit+email;
+                        return buttons;
+
+
+
+                        // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
+                    }
+                }],
+                "ajax": "{{ url('/offer-list') }}",
+                'rowId': 'id',
+                "columns": [
+                    { "data": "id" },
+                    { "data": "name" },
+                    { "data": "from_address" },
+                    { "data": "to_address" },
+                    { "data": "time0" },
+                    { "data": "time1" },
+                    { "data": "type" },
+                    { "data": "email" },
+                    { "data": "web" },
+                    // { "data": "actions" }
+                ],
+                "fnDrawCallback": function(oSettings) {
+                    if ($('#listingTable tr').length < 12) {
+                        // $('.dataTables_paginate').hide();
+                    }
+                }
+
+            });
             $('body').on('click', '#send_mail_popup', function () {
                 var elem        =   $(this);
                 var inquiry_id  =   elem.data('inquiry_id');

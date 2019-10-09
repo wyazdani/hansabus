@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::resource('offers', 'OfferController');
     Route::post('/offer/send-mail', 'OfferController@send_mail')->name('offers.send_mail');
     Route::post('/offer/modal-mail', 'OfferController@modal_mail')->name('offers.modal_mail');
+    Route::get('/offer-list', 'OfferController@getList')->name('offer-list');
 
     /* file upload */
     Route::post('/file-upload', 'AttachmentController@uploadFiles')->name('file-upload');

@@ -14,15 +14,17 @@ class OfferEmail extends Mailable
 
     public $inquiry;
     public $price;
+    public $offer;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($inquiry_id,$price)
+    public function __construct($inquiry_id,$price,$offer_id)
     {
         $this->inquiry  =   Inquiry::find($inquiry_id);
         $this->price    =   $price;
+        $this->offer    =   $offer_id;
     }
 
     /**

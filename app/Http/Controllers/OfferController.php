@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\General;
 use App\Mail\OfferEmail;
 use App\Models\Inquiry;
 use App\Models\InquiryAddress;
@@ -22,6 +23,99 @@ class OfferController extends Controller
         $inquiries      =   Inquiry::orderBy('id','DESC')->paginate(10);
         $pageTitle      =   __('offer.heading.index');
         return view('offers.index',compact('pageTitle','inquiries'));
+    }
+    public function getList(Request $request)
+    {
+
+        $orderColumn = 'id';
+        $dir = 'desc';
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==1){
+            $orderColumn = 'name';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==2){
+            $orderColumn = 'customer';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
+            $orderColumn = 'from';
+        }
+
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
+            $orderColumn = 'to';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
+            $orderColumn = 'departuredate';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
+            $orderColumn = 'arrivaldate';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==7){
+            $orderColumn = 'type';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==8){
+            $orderColumn = 'email';
+        }
+        if(!empty($request->order[0]['dir'])){
+            $dir = $request->order[0]['dir'];
+        }
+
+
+        if(!empty($request->input('draw')) ) {
+            $draw = $request->input('draw');
+        }else{
+            $draw = 0;
+        }
+
+        $query = Inquiry::where('id','>',0);
+        $start =0;
+        if(!empty($request->input('start'))){
+
+//            if($request->input('start')>0){
+            $start = ($request->input('start')-1);
+//            }
+        }
+        $limit = 10;
+        if(!empty($request->input('length'))){
+            $limit = $request->input('length');
+        }
+        $search = '';
+        if(!empty($request->input('q'))){
+
+            $search = $request->input('q');
+        }else if(!empty($request->input('search.value'))){
+
+            $search = $request->input('search.value');
+        }
+
+        if(!empty($search)){
+
+            $query = Inquiry::where('name', 'LIKE','%'.$search.'%')
+                ->orWhere('email', 'LIKE','%'.$search.'%')
+                ->orWhere('is_web', 'LIKE','%'.$search.'%');
+
+
+        }
+        $recordsTotal = $query->count();
+        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','is_web','status']);
+
+        $data=[];
+        foreach($rows as $row){
+
+            $row->id;
+            $row->name;
+            $row->from_address  =   $row->inquiryaddresses[0]->from_address;
+            $row->to_address  = $row->inquiryaddresses[0]->to_address;
+            $row->time0 = !empty($row->inquiryaddresses[0]->time)?date('M j, Y, g:i a',strtotime($row->inquiryaddresses[0]->time)):'';
+            $row->time1 = !empty($row->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($row->inquiryaddresses[1]->time)):'';
+            $row->type  =   !empty($row->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way');
+            $row->email;
+            $row->web   =   !empty($row->is_web)?__('messages.yes'):__('messages.no');
+            $data[] = $row;
+        }
+        $recordsFiltered = $query->offset($start)->limit($limit)->count();
+
+        return ['draw'=>$draw, 'recordsTotal'=>$recordsTotal, 'recordsFiltered'=> $recordsTotal, 'data'=>$data];
     }
 
     /**
@@ -195,15 +289,16 @@ class OfferController extends Controller
     public function send_mail(Request  $request)
     {
         if ($request->price){
-            Offer::create([
+            $offer = Offer::create([
                'inquiry_id' =>  $request->inquiry_id,
                 'price'     =>  $request->price
             ]);
+            $general = new General();
             $inquiry    =   Inquiry::find($request->inquiry_id);
             $inquiry->update([
                'status'     =>  1
             ]);
-            Mail::send(new OfferEmail($request->inquiry_id,$request->price));
+            Mail::send(new OfferEmail($request->inquiry_id,$request->price,$offer->id));
             toastr()->success(__('offer.mail_sent'));
             return redirect()->route('offers.index');
         }else{

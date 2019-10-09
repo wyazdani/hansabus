@@ -33,6 +33,6 @@ return [
     'mail_sent'             =>  'Mail erfolgreich gesendet',
     'pls_enter_price'       =>  'Bitte Preis eingeben',
     'ofer_sent'             =>  'Angebot gesendet',
-
+    'offer_no'              =>  'Angebotsnummer.',
     'web'                   =>  'Netz',
 ];

@@ -54,8 +54,11 @@
         var deleteMe = function(id){
             // console.log('here');
 
+
             if(confirm('{{__("messages.want_to_delete")}}')){
 
+                $('#'+id).remove();
+                toastr.error('{{__("vehicle.vehicle_deleted")}}');
                 $.ajax({
                     url: 'vehicles/'+id,
                     data: "_token={{ csrf_token() }}",

@@ -32,6 +32,6 @@ return array(
     'mail_sent'             =>  'Mail Sent Succesfully',
     'pls_enter_price'       =>  'Please Enter Price',
     'ofer_sent'             =>  'Offer Sent',
-
+    'offer_no'              =>  'Offer No.',
     'web'                   =>  'Web',
 );

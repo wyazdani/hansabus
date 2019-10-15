@@ -80,6 +80,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/offer/modal-mail', 'OfferController@modal_mail')->name('offers.modal_mail');
     Route::get('/offer-list', 'OfferController@getList')->name('offer-list');
     Route::post('/offer-view', 'OfferController@offer_view')->name('offer-view');
+    Route::post('/add_customer_form', 'OfferController@add_customer_form')->name('add_customer_form');
 
     /* file upload */
     Route::post('/file-upload', 'AttachmentController@uploadFiles')->name('file-upload');

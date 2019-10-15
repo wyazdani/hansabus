@@ -88,6 +88,21 @@
 @endsection
 
 @section('pagejs')
+    <div class="modal fade text-left"  id="addCustomerPopup" role="dialog" aria-labelledby="myModalLabel18" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">{{ __('customer.heading.add') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="ft-x blue-grey darken-4"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade text-left" tabindex="-1" id="default_model"
          role="dialog" aria-labelledby="myModalLabel17"
          aria-hidden="true">
@@ -95,6 +110,52 @@
         </div>
     </div>
     <script>
+        function _addCustomer(){
+            $(".btn_submit").attr("disabled", true);
+            $('#customerAddForm input').removeClass('error_input');
+            $.ajax({
+                url: "{{ route('customers.store') }}",
+                data: $('#customerAddForm').serialize()+"&_token={{ csrf_token() }}&key=popup",
+                type: 'POST',
+                cache: false,
+                success: function(res){
+
+                    if(res.errors){
+                        $(".btn_submit").attr("disabled", false);
+                        $.each(res.errors, function (key, val) {
+                            $( "input[name="+key+"]" ).addClass('error_input');
+                        });
+
+                    }else{
+
+                        var newOption = new Option(res.name, res.id);
+                        $('#customer_id').append(newOption);
+                        $( "#customer_search" ).val(res.name);
+                        $('#customer_id').val(res.id).trigger('change');
+                        $('#customerAddForm')[0].reset();
+                        $('.selectpicker').selectpicker('refresh');
+                        $('#addCustomerPopup').modal('hide');
+                        $(".btn_submit").attr("disabled", false);
+                    }
+                },
+                error: function (reject) {
+                    $(".btn_submit").attr("disabled", false);
+                    if( reject.status === 422 ) {
+                        var errors = $.parseJSON(reject.responseText);
+                        $.each(errors.errors, function (key, val) {
+                            console.log(key+'=>'+val);
+                            $( "input[name="+key+"]" ).addClass('error_input');
+                        });
+                    }
+                }
+            });
+            return false;
+        }
+        function addCustomer(){
+
+            $('#customerAddForm input').removeClass('error_input');
+            $('#addCustomerPopup').modal('show');
+        }
         $(document).ready(function() {
             var tableDiv = $('#listingTable').DataTable( {
 
@@ -145,9 +206,21 @@
                         view  = '<a class="p-0 d-print-none view_offer" data-inquiry_id="'+row.id+'" title="View" ';
                         view += ' href="javascript:;"  >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
-
-
-                        buttons = view+edit+email;
+                        var add_customer    =   '';
+                        if(row.is_user ==0){
+                            add_customer    =   '<a class="p-0 d-print-none add_customer" data-inquiry_id="'+row.id+'" title="Add Customer" href="javascript:void(0);"><i class="icon-plus font-medium-3 mr-2"></i></a>';
+                        }
+                        else{
+                            var inquiryaddresses    =   row.inquiryaddresses;
+                            var query_string    =   '?offer_id='+row.id+'&email='+row.email+'&offer_type='+((inquiryaddresses.length ==2)?'1':'2')
+                            +'&from_address='+(inquiryaddresses[0].from_address)+'&to_address='+(inquiryaddresses[0].to_address)+"&time="+inquiryaddresses[0].time;
+                            if(inquiryaddresses.length ==2){
+                                query_string        +=  +'&from_address1='+(inquiryaddresses[1].from_address)+'&to_address1='+(inquiryaddresses[1].to_address)+"&time1="+inquiryaddresses[1].time;
+                            }
+                            console.log(query_string);
+                            add_customer    =   '<a target="_blank" class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Add Tour" href="{!! route('tours.create') !!}'+query_string+'"><i class="icon-plus font-medium-3 mr-2"></i></a>';
+                        }
+                        buttons = view+edit+email+add_customer;
                         return buttons;
 
 
@@ -175,6 +248,21 @@
                     }
                 }
 
+            });
+            $('body').on('click', '.add_customer', function () {
+                var elem        =   $(this);
+                $.ajax({
+                    type        :   'post',
+                    url         :   '{!! route('add_customer_form') !!}',
+                    data        :   {
+                        _token      :    '{!! csrf_token() !!}',
+                        offer_id    :      elem.attr('data-inquiry_id')
+                    },
+                    success     :   function(data){
+                        $("#addCustomerPopup .modal-body").html(data);
+                        $("#addCustomerPopup").modal('show');
+                    }
+                });
             });
             $('body').on('click', '#send_mail_popup', function () {
                 var elem        =   $(this);

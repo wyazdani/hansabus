@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Helpers\General;
 use App\Mail\OfferEmail;
+use App\Models\Customer;
 use App\Models\Inquiry;
 use App\Models\InquiryAddress;
 use App\Models\Offer;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -110,6 +112,7 @@ class OfferController extends Controller
             $row->time1 = !empty($row->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($row->inquiryaddresses[1]->time)):'';
             $row->type  =   !empty($row->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way');
             $row->email;
+            $row->is_user   =   Customer::where('email','=',$row->email)->count();
             $row->web   =   !empty($row->is_web)?__('messages.yes'):__('messages.no');
             $data[] = $row;
         }
@@ -127,6 +130,10 @@ class OfferController extends Controller
     {
         $pageTitle      =   __('offer.heading.add');
         return view('offers.create',compact('pageTitle'));
+    }
+    public function add_customer_form(Request $request){
+        $offer  =   Inquiry::find($request['offer_id']);
+        return view('offers.add_customer',compact('offer'));
     }
 
     /**

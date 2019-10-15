@@ -46,28 +46,11 @@
 					<div class="px-3 py-3">
 						<div class="media">
 							<div class="media-body text-left align-self-center">
-								<i class="fa fa-university success font-large-2 float-left"></i>
+								<i class="icon-users success font-large-2 float-left"></i>
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalCustomers  }}</h3>
 								<span><a href="{{ route('customers.index') }}" style="color: gray">{{ __('messages.customers') }}</a></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xl-3 col-lg-6 col-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="px-3 py-3">
-						<div class="media">
-							<div class="media-body text-left align-self-center">
-								<i class="icon-settings danger font-large-2 float-left"></i>
-							</div>
-							<div class="media-body text-right">
-								<h3>423</h3>
-								<span>{{ __('messages.vehicle_maintenance') }}</span>
 							</div>
 						</div>
 					</div>

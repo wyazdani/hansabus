@@ -19,7 +19,7 @@ class VehicleTable extends Migration
             $table->string('year',4)->nullable();
             $table->string('make',100)->nullable();
             $table->string('engineNumber',100)->nullable();
-            $table->integer('vehicle_type')->unsigned()->index()->nullable();
+            $table->integer('vehicle_type')->nullable();
             $table->string('licensePlate',50)->nullable();
             $table->integer('seats')->nullable();
             $table->string('color')->nullable();
@@ -32,8 +32,6 @@ class VehicleTable extends Migration
             $table->boolean('status')->nullable();
             $table->timestamps();
             $table->softdeletes();
-
-            $table->foreign('vehicle_type')->references('id')->on('vehicle_types')->onDelete('cascade');
 
             $table->collation = 'utf8_unicode_ci';
             $table->charset = 'utf8';

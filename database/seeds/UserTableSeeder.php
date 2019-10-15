@@ -14,8 +14,8 @@ class UserTableSeeder extends Seeder
     {
         User::updateOrCreate([
         'name'       =>  'Admin',
-        'email'      =>  'admin@ecoach.com',
-        'password'   =>  bcrypt('123456')
+        'email'      =>  'info@hansabus.com',
+        'password'   =>  bcrypt('12345678')
     ]);
     }
 }

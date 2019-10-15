@@ -25,7 +25,7 @@
                         <div class="px-3 mb-4">
 
                             <div class="table-responsive">
-                                <table class="table table-hover table-xl mb-0" id="listingTable">
+                                <table class=" table table-hover datatable-basic table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0" width="5%">ID</th>
@@ -96,7 +96,6 @@
     </div>
     <script>
         $(document).ready(function() {
-
 
             $('body').on('click', '#send_mail_popup', function () {
                 var elem        =   $(this);

@@ -27,7 +27,7 @@
         'no/yes'=>'Nein / Ja  ',
         'no_record'=>'Keine Daten in der Tabelle verfügbar',
         'copyright'=>'Urheberrechte ©',
-        'coach'=>'Reisebus',
+        'coach'=>'HansaBus',
         'management'=>'Verwaltung',
         'update'=>'Aktualisieren',
         'yes'=>'Ja',
@@ -61,5 +61,7 @@
         'drag'=>'Ziehen Sie oder',
         'upload'=>'Hochladen',
         'allowed_extentions'=>'(nur PDF-, JPG-, GIF- und PNG-Dateien)',
+        'lang'    =>  'DE',
+        'password_dont_match'    =>  'Das Passwort sollte aus mindestens 6 Zeichen bestehen, da die Passwörter sonst nicht übereinstimmen',
     ];
 

@@ -50,7 +50,7 @@
 																	<div class="col-md-4">
 																		<div class="form-group">
 																			<label>{{__('tour.vehicle')}}<span class="{{($errors->has('vehicle_id')) ?'errorStar':''}}">*</span></label>
-																			<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}" onchange="getVehicleSeats(this.value);">
+																			{{--<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}" onchange="getVehicleSeats(this.value);">
 																				<option value="">{{__('tour.select_vehicle')}}</option>
 																				@foreach($vehicles as $vehicle)
 																					<option value="{{ $vehicle->id  }}"
@@ -58,6 +58,16 @@
 																						{{ 'Selected' }}
 																							@endif
 																					>{{
+																	$vehicle->name.' - '.$vehicle->make.' - '.$vehicle->year.' - '.
+																	$vehicle->licensePlate.' - '.$vehicle->transmission
+																	 }}</option>
+																				@endforeach
+																			</select>--}}
+																			<select name="vehicle_id" id="vehicle_id" class="{{($errors->has('vehicle_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true" onchange="getVehicleSeats(this.value);">
+																				<option value="foo">{{__('tour.select_vehicle')}}</option>
+																				@foreach($vehicles as $vehicle)
+																					<option value="{!! $vehicle->id !!}" @if(!empty($tour->vehicle_id) && $tour->vehicle_id==$vehicle->id ||
+																					old('vehicle_id')==$vehicle->id) selected @endif>{{
 																	$vehicle->name.' - '.$vehicle->make.' - '.$vehicle->year.' - '.
 																	$vehicle->licensePlate.' - '.$vehicle->transmission
 																	 }}</option>
@@ -70,7 +80,14 @@
 																			<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 
 																			<span style="float: right"><a href="javascriot:;" onclick="addCustomer()">{{strtolower(__('customer.heading.add'))}}</a></span>
-																			<input type='text' name="customer_search" id="customer_search"
+																			<select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true" onclick="loadCustomers()">
+																					{{--<option value="">{{__('tour.select_customer')}}</option>
+																					@foreach($customers as $customer)
+																					<option value="{!! $customer->id !!}" @if(!empty($tour->customer_id) && $tour->customer_id==$customer->id ||
+																					old('customer_id')==$customer->id) selected @endif>{!! $customer->name !!}</option>
+																					@endforeach--}}
+																			</select>
+																			{{--<input type='text' name="customer_search" id="customer_search"
 																				   @if(!empty($tour->customer->name))
 																				   		value="{{ old('customer_search',$tour->customer->name) }}"
 																					@else value="{{ old('customer_search','') }}" @endif
@@ -79,14 +96,23 @@
 																				   @if(!empty($tour->customer_id))
 																				   value="{{ old('customer_id',$tour->customer_id) }}"
 																				   @else value="{{ old('customer_id','') }}" @endif
-																				   >
+																				   >--}}
 																		</div>
 																	</div>
+																	<input type="hidden" id="returnFlag" name="returnFlag" value="">
 																	<div class="col-md-4">
 																		<div class="form-group">
 																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}"></span></label>
+
 																			<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
-																			<input type='text' name="driver_search" id="driver_search"
+																			<select name="driver_id" id="driver_id" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+																				{{--<option value="">{{__('tour.select_driver')}}</option>
+																				@foreach($drivers as $driver)
+																					<option value="{!! $driver->id !!}" @if(!empty($tour->driver_id) && $tour->driver_id==$driver->id ||
+																					old('driver_id')==$driver->id) selected @endif>{!! $driver->driver_name !!}</option>
+																				@endforeach--}}
+																			</select>
+																			{{--<input type='text' name="driver_search" id="driver_search"
 																				   @if(!empty($tour->driver->driver_name))
 																				   value="{{ old('driver_search',$tour->driver->driver_name) }}"
 																				   @else value="{{ old('driver_search','') }}" @endif
@@ -95,7 +121,7 @@
 																				   @if(!empty($tour->driver_id))
 																				   value="{{ old('driver_id',$tour->driver_id) }}"
 																				   @else value="{{ old('driver_id','') }}" @endif
-																			>
+																			>--}}
 																		</div>
 																	</div>
 																	<div class="col-md-2">
@@ -146,9 +172,9 @@
 																	<div class="col-md-2">
 																		<div class="form-group">
 																			<label for="projectinput3">{{__('tour.price')}}<span class="{{($errors->has('price')) ?'errorStar':''}}">*</span></label>
-																			<input type="number" name="price"
-																				   class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}"
-																				   value="{{ (!empty($tour->price))?$tour->price:old('price') }}" >
+																			<input type="text" name="price"
+																				   class="{{($errors->has('price')) ?'form-control error_input has_numeric':'form-control has_numeric'}}"
+																				   value="{{ (!empty($tour->price))?$tour->price:old('price') }}" maxlength="10">
 																		</div>
 																	</div>
 																	<div class="col-md-2">
@@ -168,15 +194,12 @@
 																			</select>
 																		</div>
 																	</div>
-
-
-
 																</div>
-															<label for="projectinput3">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
-																<textarea type="text"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}} form form-control" placeholder="Decription" name="description" id="description">
-																</textarea>
-
-
+															<div class="form-group">
+																<label for="projectinput8">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
+																<textarea name="description" rows="3"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}}" >{!! !empty($tour->description)?$tour->description:old('description') !!}
+																			</textarea>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -209,8 +232,6 @@
 									@foreach($attachments as $attachment)
 										@php $ext = explode('.',$attachment->file); $ext = strtolower($ext[count($ext)-1]); @endphp
 										@if(!in_array($ext,['png','jpg','jpeg','gif']))
-
-
 											@if(in_array($ext,['PDF','pdf']))
 												<div class="col-md-3 mb-2"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank"><i
 																class="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i></a></div>
@@ -218,10 +239,8 @@
 												<div class="col-md-3 mb-1"><a href="{{ url('/attachments/'.$attachment->file) }}" target="_blank">
 														{{ $attachment->file }}</a></div>
 											@endif
-
 										@endif
 									@endforeach
-
 								</div>
 							</div>
 						@endif
@@ -244,7 +263,7 @@
 
 							<button type="button" onclick="$('#tourForm').submit()" class="btn btn-success"><b>
 									<i class="icon-note"></i></b> {{__('messages.save')}}</button>
-							<button type="button" onclick="$('#returnFlag').val('0'); $('#tourForm').submit()"  class="btn btn-info">
+							<button type="button" onclick="$('#returnFlag').val('1'); $('#tourForm').submit()"  class="btn btn-info">
 								<i class="icon-note"></i> {{__('messages.save_add_another')}}
 							</button>
 						@endif
@@ -262,6 +281,10 @@
 	@include('customer.add_popup')
 	@include('drivers.add_popup')
 	<script type="text/javascript">
+		$(document).ready(function () {
+			loadCustomers();
+			loadDrivers();
+		});
 		function passengersCheck(){
 
 			const passengers = parseInt($('#passengers').val());
@@ -304,8 +327,84 @@
 			$('#viewModel').modal('show');
 		}
 		// Start jQuery stuff
-		$(function() {
+		function loadCustomers(){
 
+			var customer_id		=	'';
+			$.ajax({
+				type: "get",
+				url: "{{route('tour-get-fields')}}",
+				success: function(result)
+				{
+					$('#customer_id').html("");
+
+					if(result.customers.length > 0)
+					{
+						var option_selected	=	new Option("{{__('tour.select_customer')}}",'foo',true,true);
+
+						$('#customer_id').append(option_selected);
+						for(i=0 ; i<result.customers.length ; i++){
+							var newOption = new Option(result.customers[i].name, result.customers[i].id, i==0, i==0);
+							$('#customer_id').append(newOption);
+						}
+
+					}else
+					{
+						$('#customer_id').html("");
+					}
+					@if(!empty($tour))
+							customer_id = '{!! $tour->customer_id !!}';
+
+					@elseif(old('customer_id') &&  old('customer_id')!="foo")
+							customer_id = '{!! old('customer_id') !!}';
+					@else
+							customer_id	=	'foo';
+					@endif
+
+					$('#customer_id').val(customer_id).trigger('change');
+
+
+					$('.selectpicker').selectpicker('refresh');
+
+				}
+			});
+		}
+		function loadDrivers(){
+			var driver_id		=	'';
+			$.ajax({
+				type: "get",
+				url: "{{route('tour-get-fields')}}",
+				success: function(result)
+				{
+					$('#driver_id').html("{{__('tour.select_driver')}}");
+
+					if(result.drivers.length > 0)
+					{
+						var option_selected	=	new Option("{{__('tour.select_driver')}}",'foo',true,true);
+						$('#driver_id').append(option_selected);
+						for(i=0 ; i<result.drivers.length ; i++){
+							var newOption = new Option(result.drivers[i].driver_name, result.drivers[i].id, i==0, i==0);
+							$('#driver_id').append(newOption);
+						}
+					}else
+					{
+						$('#driver_id').html("{{__('tour.select_driver')}}");
+					}
+					@if(!empty($tour))
+							driver_id = '{!! $tour->driver_id !!}';
+
+					@elseif(old('driver_id') &&  old('driver_id')!="foo")
+							driver_id = '{!! old('driver_id') !!}';
+					@else
+							driver_id	=	'foo';
+					@endif
+					$('#driver_id').val(driver_id).trigger('change');
+					$('.selectpicker').selectpicker('refresh');
+
+				}
+			});
+		}
+
+		$(function() {
 			@if(!empty($tour->id))
 			getVehicleSeats('{{ $tour->vehicle_id }}');
 			@endif

@@ -84,7 +84,7 @@
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="projectinput2">{{__('service.price')}}</label>
-                                                                                <input type="number" name="price[]"  value="{{$detail->price}}" class="form-control">
+                                                                                <input type="text" name="price[]"  value="{{$detail->price}}" class="form-control has_numeric">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -105,7 +105,7 @@
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="projectinput2">{{__('service.price')}}</label>
-                                                                                <input type="number" name="price[]" class="form-control" value="{{ old('price')[$i] }}">
+                                                                                <input type="text" name="price[]" class="form-control has_numeric" value="{{ old('price')[$i] }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -124,7 +124,7 @@
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="projectinput2">{{__('service.price')}} </label>
-                                                                        <input type="number" name="price[]" class="form-control">
+                                                                        <input type="text" name="price[]" class="form-control has_numeric">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -200,7 +200,7 @@
                 '<div class="col-md-2">\n' +
                 '    <div class="form-group">\n' +
                 '        <label for="projectinput2">{{__("service.price")}}</label>\n' +
-                '        <input type="number" name="price[]" class="form-control">\n' +
+                '        <input type="text" name="price[]" class="form-control has_numeric">\n' +
                 '    </div>\n' +
                 '</div>\n' +
                 '</div>';

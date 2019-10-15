@@ -69,7 +69,7 @@
                                     <th class="border-top-0" width="40%">{{__('service.customer')}}</th>
                                     <th class="border-top-0" width="10%">{{__('service.price')}}</th>
                                     <th class="border-top-0" width="15%">{{__('service.date')}}</th>
-                                    <th class="border-top-0 d-print-none" width="10%">&nbsp;</th>
+                                    <th class="border-top-0 d-print-none" width="10%">{{__('tour.action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,6 +110,7 @@
                 'bSortable': true,
                 'bProcessing': true,
                 "bInfo": false,
+                "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,

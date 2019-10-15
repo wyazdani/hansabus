@@ -67,7 +67,7 @@
                                                                     <div class="form-group">
                                                                         <label for="projectinput2">{{__('customer.email')}} <span class="{{($errors->has('email')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="email" name="email" class="{{($errors->has('email')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->email))?$customer->email:old('email') }}"
-                                                                        @if(!empty($customer->id)) {{ 'readonly="readonly"'  }} @endif >
+                                                                        >
 
                                                                     </div>
                                                                 </div>
@@ -84,7 +84,7 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="projectinput4">{{__('customer.mobile')}} <span class="{{($errors->has('phone')) ?'errorStar':''}}"></span></label>
-                                                                        <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" maxlength = "11"  value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
+                                                                        <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input has_numeric':'form-control has_numeric'}}" maxlength = "11"  value="{{ (!empty($customer->phone))?$customer->phone:old('phone') }}">
 
                                                                     </div>
                                                                 </div>

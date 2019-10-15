@@ -24,6 +24,7 @@ return [
     'phone_charging'=>'Phone Charging Jack',
     'is_active'=>'Is Active',
 
+    'vehicle_deleted'   =>  'Vehicle Deleted',
     'created'=>'Vehicle created.',
     'updated'=>'Vehicle updated.',
     'status_changed'=>'Vehicle status changed.',

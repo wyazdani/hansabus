@@ -61,9 +61,10 @@ class HomeController extends Controller
 
             $events[$i]['title'] = ' 
             Customer: '.$row->customer->name.' 
-            Driver: '.$row->driver->driver_name;
+            Driver: '.$row->driver->driver_name.' 
+            vehicle: '.$row->vehicle->name;;
             $events[$i]['url'] = url('/tour/'.$row->id);
-            $events[$i]['backgroundColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = !empty($row->vehicle->color)?$row->vehicle->color:'#ff3908';
 
             $i++; $j++;
         }

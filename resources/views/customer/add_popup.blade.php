@@ -36,8 +36,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput4">{{__('customer.mobile')}} <span class="{{($errors->has('phone')) ?'errorStar':''}}">*</span></label>
-                                        <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" maxlength = "11" >
+                                        <label for="projectinput4">{{__('customer.mobile')}} <span class="{{($errors->has('phone')) ?'errorStar':''}}"></span></label>
+                                        <input type="text" name="phone" class="{{($errors->has('phone')) ?'form-control error_input has_numeric':'form-control has_numeric'}}" maxlength = "11" >
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-md-12 text-left">
                     <div class="form-actions">
-                        <button type="button" onclick="_addCustomer();" class="btn btn-success">
+                        <button type="button" onclick="_addCustomer();" class="btn btn-success btn_submit">
                             <i class="icon-note"></i> {{__('messages.save')}}
                         </button>
                     </div>
@@ -83,10 +83,9 @@
     </div>
 </div>
 <script>
-    function _addCustomer(){
-
+    /*$(".btn_click").one('click', function() {
         $('#customerAddForm input').removeClass('error_input');
-        // console.log('clicked');
+
         $.ajax({
             url: "{{ route('customers.store') }}",
             data: $('#customerAddForm').serialize()+"&_token={{ csrf_token() }}&key=popup",
@@ -97,19 +96,63 @@
                 if(res.errors){
 
                     $.each(res.errors, function (key, val) {
-                        // console.log(key+'=>'+val);
+
                         $( "input[name="+key+"]" ).addClass('error_input');
                     });
                 }else{
 
-                    // console.log(res.name+'=>'+res.id);
-
+                    var newOption = new Option(res.name, res.id);
+                    $('#customer_id').append(newOption);
                     $( "#customer_search" ).val(res.name);
-                    $( "#customer_id" ).val(res.id);
+                    $('#customer_id').val(res.id).trigger('change');
+                    $('.selectpicker').selectpicker('refresh');
+                    $('#customerAddForm')[0].reset();
                     $('#addCustomerPopup').modal('hide');
                 }
             },
             error: function (reject) {
+                if( reject.status === 422 ) {
+                    var errors = $.parseJSON(reject.responseText);
+                    $.each(errors.errors, function (key, val) {
+                        console.log(key+'=>'+val);
+                        $( "input[name="+key+"]" ).addClass('error_input');
+                    });
+                }
+            }
+        });
+        return false;
+    });*/
+
+    function _addCustomer(){
+        $(".btn_submit").attr("disabled", true);
+        $('#customerAddForm input').removeClass('error_input');
+        $.ajax({
+            url: "{{ route('customers.store') }}",
+            data: $('#customerAddForm').serialize()+"&_token={{ csrf_token() }}&key=popup",
+            type: 'POST',
+            cache: false,
+            success: function(res){
+
+                if(res.errors){
+                    $(".btn_submit").attr("disabled", false);
+                    $.each(res.errors, function (key, val) {
+                        $( "input[name="+key+"]" ).addClass('error_input');
+                    });
+
+                }else{
+
+                    var newOption = new Option(res.name, res.id);
+                    $('#customer_id').append(newOption);
+                    $( "#customer_search" ).val(res.name);
+                    $('#customer_id').val(res.id).trigger('change');
+                    $('#customerAddForm')[0].reset();
+                    $('.selectpicker').selectpicker('refresh');
+                    $('#addCustomerPopup').modal('hide');
+                    $(".btn_submit").attr("disabled", false);
+                }
+            },
+            error: function (reject) {
+                $(".btn_submit").attr("disabled", false);
                 if( reject.status === 422 ) {
                     var errors = $.parseJSON(reject.responseText);
                     $.each(errors.errors, function (key, val) {

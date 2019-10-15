@@ -40,15 +40,16 @@ class TourConfirmationInvoice extends Mailable
     public function build()
     {
         $total=0;
-        $invoice = TourInvoice::find($this->tour_id);
 
+        $invoice = TourInvoiceDetail::where('tour_id','=',$this->tour_id)->first();
+        $invoice = TourInvoice::find($invoice->invoice_id);
         // Invoice Number
         $general = new General();
         $invoice->id = $general->invoiceNumber($invoice->id);
 
         $customer = $invoice->customer;
         $invoice_details = TourInvoiceDetail::where('invoice_id',$invoice->id)->get();
-        $tours =[];
+        $tour ='';
         foreach($invoice_details as $inv){
             $inv->tour;
             $inv->tour->driver;
@@ -56,14 +57,15 @@ class TourConfirmationInvoice extends Mailable
             $inv->tour->vehicle;
             $total += $inv->tour->price;
 
-            $tours[] = $inv->tour;
+            $tour = $inv->tour;
         }
         $vat = ($total/100)*19;
-
-        $pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tours','total','vat'));
+        $invoice_date   =   date('Y-m-d');
+        $html   =   view('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
+        $pdf= General::EmailPdf("P",$html,"tour_invoice","Invoice");
         return $this->to($this->customer->email)
             ->subject(' TourConfirmation')
             ->view('mail.tour_confirmation')
-            ->attachData($pdf->output(), 'tours_invoice.pdf');
+            ->attachData($pdf,'tour_invoice.pdf');
     }
 }

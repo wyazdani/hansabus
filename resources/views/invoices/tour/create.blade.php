@@ -66,6 +66,7 @@
                                 <form class="form" method="POST" action="{{ route('generate-tour-invoice') }}" id="theForm">
                                     @csrf
                                 <input type="hidden" name="customer_id" id="customerID" value="{{request()->get('customer_id')}}">
+                                <input type="hidden" name="customer_ids" id="customerIDs" value="{{request()->get('customer_id')}}">
                                 <input type="hidden" name="total" id="total" value="">
 
                                 <table class="table table-hover table-xl mb-0" id="listingTable">
@@ -91,8 +92,8 @@
                                     @foreach($rows as $row)
                                         <tr>
                                             <td><div class="custom-control custom-checkbox" style="top: -5px;">
-                                                    <input type="checkbox" id="a{{$row->id}}" class="custom-control-input form-check-input ids" onclick="addTours();" value="{{$row->id}}" name="ids[]">
-                                                    <label class="custom-control-label" for="a{{$row->id}}">&nbsp;</label>
+                                                    <input type="checkbox" id="{{$row->id}}"  class="custom-control-input form-check-input ids" onclick="addTours();" value="{{$row->id}}" name="ids[]">
+                                                    <label class="custom-control-label" for="{{$row->id}}">&nbsp;</label>
                                                 </div>
                                             </td>
                                             <td>{{ $row->id }}</td>
@@ -162,6 +163,7 @@
         }
         function addTours()
         {
+
             var checkboxs= document.getElementsByName("ids[]");
             var okay=false;
             for(var i=0; i<checkboxs.length; i++)

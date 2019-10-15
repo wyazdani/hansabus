@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="" />
+    <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/TourInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TourInvoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/hansa_logo_colored.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/hansa_logo_colored.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,19 +117,16 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
       <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
-      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
+      <path value="$PROJECT_DIR$/vendor/tecnickcom/tcpdf" />
+      <path value="$PROJECT_DIR$/vendor/elibyy/tcpdf-laravel" />
+      <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
     </include_path>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="y" value="-4" />
-    <option name="width" value="1309" />
-    <option name="height" value="764" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />

@@ -207,6 +207,7 @@ class TourInvoiceController extends Controller
     }
     public function generateInvoice(Request $request){
 
+        dd($request->all());
         if(!empty($request->customer_id) && $request->customer_id>0) {
 
             /* save invoice */

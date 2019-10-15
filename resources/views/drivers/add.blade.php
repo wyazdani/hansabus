@@ -52,16 +52,16 @@
 																	<div class="form-group">
 																		<label for="projectinput1">{{__('driver.name') }} *</label>
 																		<input type="text" name="driver_name"
-																			   class="{{($errors->has('driver_name')) ?'form-control error_input':'form-control'}}"
+																			   class="{{($errors->has('driver_name')) ?'form-control error_input ':'form-control'}}"
 																			   value="{{ (!empty($driver->driver_name))?$driver->driver_name:old('driver_name') }}" >
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="projectinput2">{{__('driver.mobile') }} *</label>
-																		<input type="number" name="mobile_number"
-																			   class="{{($errors->has('mobile_number')) ?'form-control error_input':'form-control'}}"
-																			   value="{{ (!empty($driver->mobile_number))?$driver->mobile_number:old('mobile_number') }}" >
+																		<input type="text" name="mobile_number"
+																			   class="{{($errors->has('mobile_number')) ?'form-control error_input has_numeric':'form-control has_numeric'}}"
+																			   value="{{ (!empty($driver->mobile_number))?$driver->mobile_number:old('mobile_number') }}" maxlength="11" >
 																	</div>
 																</div>
 															</div>
@@ -78,9 +78,9 @@
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="projectinput4">{{__('driver.nin') }} *</label>
-																		<input type="number" name="nic"
-																			   class="{{($errors->has('nic')) ?'form-control error_input':'form-control'}}"
-																			   value="{{ (!empty($driver->nic))?$driver->nic:old('nic') }}" >
+																		<input type="text" name="nic"
+																			   class="{{($errors->has('nic')) ?'form-control error_input has_numeric':'form-control has_numeric'}}"
+																			   value="{{ (!empty($driver->nic))?$driver->nic:old('nic') }}" maxlength="15">
 																	</div>
 																</div>
 															</div>
@@ -98,9 +98,9 @@
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="projectinput4">{{__('driver.phone') }} *</label>
-																		<input type="number"  name="phone"
-																			   class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}"
-																			   value="{{ (!empty($driver->phone))?$driver->phone:old('phone') }}">
+																		<input type="text"  name="phone"
+																			   class="{{($errors->has('phone')) ?'form-control error_input has_numeric':'form-control has_numeric'}}"
+																			   value="{{ (!empty($driver->phone))?$driver->phone:old('phone') }}" maxlength="11">
 																	</div>
 																</div>
 															</div>

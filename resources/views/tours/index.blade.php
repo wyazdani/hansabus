@@ -22,28 +22,33 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-
-                                <input type='text' name="customer_search" id="customer_search"
-                                       placeholder="{{__('tour.customer')}}" class="form-control filterBox"
-                                       value="{{ request()->get('customer_search') }}"
-                                       onkeyup="if(this.value=='')$('#customer_id').val('')">
-                                <input type="hidden" id="customer_id" name="customer_id"
-                                       value="{{ request()->get('customer_id') }}" >
+                                <select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                    <option value="">{{__('tour.select_customer')}}</option>
+                                    @foreach($customers as $customer)
+                                        <option value="{!! $customer->id !!}" >{!! $customer->name !!}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type='text' name="driver_search" id="driver_search"
+                                {{--<input type='text' name="driver_search" id="driver_search"
                                        placeholder="{{__('tour.driver')}}" class="form-control filterBox"
                                        value="{{ request()->get('driver_search') }}"
                                        onkeyup="if(this.value=='')$('#driver_id').val('')">
                                 <input type="hidden" id="driver_id" name="driver_id"
-                                       value="{{ request()->get('driver_id') }}">
+                                       value="{{ request()->get('driver_id') }}">--}}
+                                <select name="driver_id" id="driver_id" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                    <option value="">{{__('tour.select_driver')}}</option>
+                                    @foreach($drivers as $driver)
+                                        <option value="{!! $driver->id !!}" >{!! $driver->driver_name !!}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select id="vehicle_id" class="form-control filterBox">
+                                <select  name="vehicle_id" id="vehicle_id" class="{{($errors->has('vehicle_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control filterBox'}}" data-live-search="true">
                                     <option value="">{{__('tour.select_vehicle')}}</option>
                                     @foreach($vehicles as $vehicle)
                                         <option value="{{$vehicle->id}}">{{$vehicle->name}}</option>
@@ -84,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
@@ -98,11 +104,10 @@
                                         <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
                                         <th class="border-top-0" width="11%">{{__('tour.to')}}</th>
                                         <th class="border-top-0" width="15%">{{__('tour.driver')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.passengers')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
+                                        <th class="border-top-0" width="3%">{{__('tour.passengers')}}</th>
+                                        <th class="border-top-0" width="3%">{{__('tour.price')}}</th>
                                         <th class="border-top-0" width="5%">Status</th>
-                                        <th class="border-top-0 d-print-none" width="8%">&nbsp;</th>
-                                        <th class="border-top-0 d-print-none" width="8%">Email</th>
+                                        <th class="border-top-0 d-print-none text-center" width="21%">{{__('tour.action')}}</th>
 
                                     </tr>
                                     </thead>
@@ -120,9 +125,59 @@
 
 @endsection
 @section('pagejs')
-    @include('tours.email')
+    <div class="modal fade text-left" tabindex="-1" id="default_model"
+         role="dialog" aria-labelledby="myModalLabel17"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+        </div>
+    </div>
     @include('tours.view')
     <script>
+        $(document).ready(function() {
+            $('body').on('click', '#send_mail_popup', function () {
+                var elem        =   $(this);
+                var tour_id  =   elem.data('tour_id');
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('tour-send-email') !!}",
+                    data:   {
+                        tour_id:tour_id,
+
+                        _token:'{!! csrf_token() !!}',
+
+                    },
+                    success: function(data){
+                        $("#default_model .modal-dialog").html(data);
+                        $("#default_model").modal('show');
+
+                    }
+                });
+            });
+            $('body').on('click','.generate_invoice',function () {
+                var elem    =   $(this);
+                var customer_id = elem.data('customer_id');
+                var total = elem.data('total');
+                var ids= [];
+                ids[0] = elem.data('id');
+                $(this).remove();
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('generate-tour-invoice') !!}",
+                    data:   {
+                        customer_id:customer_id,
+                        total:total,
+                        ids:ids,
+                        _token:'{!! csrf_token() !!}',
+
+                    },
+                    success: function(data){
+                        toastr.success("{!! __('driver_invoice.generated') !!}");
+                    }
+                });
+
+            });
+
+        });
         var deleteMe = function(id){
 
             if(confirm('{{__("messages.want_to_delete")}}')){
@@ -153,6 +208,10 @@
                     $('#v_passengers').html(t.passengers?t.passengers:'None');
                     $('#v_guide').html(t.guide ? t.guide : 'None');
                     $('#v_price').html(t.price?t.price:'None');
+                    $('#v_description').html(t.description?t.description:'None');
+                    $('#v_tour_id').val(t.id);
+                    $('#v_driver_id').val(t.driver_id);
+
 
 
                          if(t.status == 1) $('#v_status').html('Draft');
@@ -197,7 +256,7 @@
                     $('#v_passengers_e').html(t.passengers?t.passengers:'None');
                     $('#v_guide_e').html(t.guide ? t.guide : 'None');
                     $('#v_price_e').html(t.price?t.price:'None');
-
+                    $('#v_description_e').html(t.description?t.description:'None');
                     $('#tour_id_email').val(t.id);
                     $('#customer_id_email').val(t.customer_id);
                     if(t.status == 1) $('#v_status_e').html('Draft');
@@ -206,6 +265,10 @@
                     else if(t.status == 4) $('#v_status_e').html('Paid');
                     else if(t.status == 5) $('#v_status_e').html('Canceled');
                     else  $('#v_status_e').html('None');
+                    $('#e_customer_id').val(t.customer_id);
+                    $('#e_status').val(t.status);
+                    $('#e_ids').val(t.id);
+
 
                     var attachments = '<ul>';
                     $.each(t.attachments, function(index, item) {
@@ -227,7 +290,6 @@
                 }
             });
         };
-        //
         $(document).ready(function() {
 
             var tableDiv = $('#listingTable').DataTable({
@@ -252,6 +314,7 @@
                 // 'bProcessing': true,
                 "bInfo": false,
                 // "bAutoWidth": false,
+                "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
                 // "searchable" : true,
@@ -260,7 +323,7 @@
                     "search": "{{__('messages.search')}}",
                     "emptyTable": "{{__('messages.no_record')}}"
                 },
-                "pageLength": 10,
+                "pageLength": 11,
                 "bLengthChange" : false,
                 "aoColumnDefs": [
                     // { aTargets: ["_all"], bSortable: false },
@@ -311,28 +374,50 @@
                         view  = '<a class="p-0 d-print-none" data-original-title="View" title="View" ';
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
+                        var email = "email_" + row.id;
+                        if(row.status == '1' || row.status == '2' || row.status == '3') {
+                            email = '<a class="p-0 d-print-none" href="javascript:void(0)" data-tour_id=' + row.id + ' id="send_mail_popup" >';
+                            email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                        }else{
+                            email = '';
+                        }
+                        var generate_invoice = "generate_invoice_" + row.id;
+                        if(row.status==2){
+                            generate_invoice = '<a href="javascript:void(0)" title="{{__("messages.generate_invoice")}}" data-customer_id='+row.customer_id+' data-total="1" data-id='+row.id+' class="generate_invoice" id="generate_id['+row.id+']"><i class="fa fa-file-o font-medium-3 mr-2"></i></a>';
 
+                        }else{
+                            generate_invoice = '';
+                        }
                         buttons = ''+view;
                         if(row.status == '1' || row.status == '2'){
-                            buttons = edit+trash+view;
+                            buttons = edit+trash+view+generate_invoice;
                         }
-                        return '<div class="text-right">'+buttons+'</div>';
+                        return '<div class="text-right">'+buttons+email+'</div>';
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 },
-                    {
+                    /*{
                         "aTargets": [10],
                         "mData": "",
                         sortable: false,
                         "mRender": function (data, type, row) {
                             var email = "email_" + row.id;
-                            email  = '<a class="p-0 d-print-none" data-original-title="Email" title="Email" ';
-                            email += ' href="javascript:;" onclick="emailTour('+row.id+');" >';
+                            var fields;
+                            email  = '<a class="p-0 d-print-none" href="javascript:void(0)" data-tour_id='+row.id+' id="send_mail_popup" >';
                             email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                            var generate_invoice = "generate_invoice_" + row.id;
+                            if(row.status==2){
+                                generate_invoice = '<a href="javascript:void(0)" data-customer_id='+row.customer_id+' data-total="1" data-id='+row.id+' class="generate_invoice success"><i class="fa fa-file font-medium-3 mr-2"></i></a>';
 
-                            return '<div class="text-right">'+email+'</div>';
+                            }else{
+                                generate_invoice = '';
+                            }
+
+                            fields =email+generate_invoice;
+                            return '<div class="text-right">'+fields+'</div>';
                         }
-                    }
+                    }*/
+
                 ],
                 "ajax": {
                     "url": "{{ url('/tours-list') }}",
@@ -359,7 +444,7 @@
                     { "data": "vehicle.name" },
                     { "data": "from_date" },
                     { "data": "to_date" },
-                    { "data": "driver.driver_name" },
+                    { "data": "driver_name.driver_name" },
                     { "data": "passengers" },
                     { "data": "price" },
 

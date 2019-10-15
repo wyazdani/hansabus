@@ -93,9 +93,19 @@
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label for="projectinput3"># {{__('offer.seats')}}<span class="{{($errors->has('seats')) ?'errorStar':''}}">*</span></label>
-                                                            <input type="number" name="seats" id="seats"
-                                                                   class="{{($errors->has('seats')) ?'error_input form-control':'form-control'}}"
+                                                            <input type="text" name="seats" id="seats"
+                                                                   class="{{($errors->has('seats')) ?'error_input form-control has_numeric':'form-control has_numeric'}}"
                                                                    value="{{ old('seats') }}" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label for="projectinput3"> {{__('offer.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}"></span></label>
+                                                            <textarea  name="description" id="description"
+                                                                   class="{{($errors->has('description')) ?'error_input form-control':'form-control'}}"
+                                                            >{{ old('description') }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>

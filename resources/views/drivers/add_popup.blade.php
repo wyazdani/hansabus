@@ -25,8 +25,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="projectinput2">{{__('driver.mobile') }} *</label>
-                                            <input type="number" name="mobile_number"
-                                                   class="{{($errors->has('mobile_number')) ?'form-control error_input':'form-control'}}">
+                                            <input type="text" name="mobile_number"
+                                                   class="{{($errors->has('mobile_number')) ?'form-control error_input has_numeric':'form-control has_numeric'}}" maxlength="11">
                                         </div>
                                     </div>
                                 </div>
@@ -42,8 +42,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="projectinput4">{{__('driver.nin') }} *</label>
-                                            <input type="number" name="nic"
-                                                   class="{{($errors->has('nic')) ?'form-control error_input':'form-control'}}" >
+                                            <input type="text" name="nic"
+                                                   class="{{($errors->has('nic')) ?'form-control error_input has_numeric':'form-control has_numeric'}}" maxlength="15">
                                         </div>
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="projectinput4">{{__('driver.phone') }} *</label>
-                                            <input type="number"  name="phone"
-                                                   class="{{($errors->has('phone')) ?'form-control error_input':'form-control'}}" >
+                                            <input type="text"  name="phone"
+                                                   class="{{($errors->has('phone')) ?'form-control error_input has_numeric':'form-control has_numeric'}}" maxlength="11">
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-md-12 text-left">
                     <div class="form-actions">
-                        <button type="button" onclick="_addDriver();" class="btn btn-success">
+                        <button type="button" onclick="_addDriver();"  class="btn btn-success btn_click">
                             <i class="icon-note"></i> {{__('messages.save')}}
                         </button>
                     </div>
@@ -87,8 +87,7 @@
     </div>
 </div>
 <script>
-    function _addDriver(){
-
+    /*$(".btn_click").one('click', function() {
         $('#driverAddForm input').removeClass('error_input');
         $.ajax({
             url: "{{ route('v-drivers.store') }}",
@@ -103,6 +102,53 @@
                         // console.log(key+'=>'+val);
                         $( "input[name="+key+"]" ).addClass('error_input');
                     });
+                    $("#btn_click").unbind('click');
+                }else{
+
+                    console.log(res.name+'=>'+res.id);
+
+                    $( "#driver_search" ).val(res.driver_name);
+                    $( "#driver_id" ).val(res.id);
+                    $('#driverAddForm')[0].reset();
+                    $('#addDriverPopup').modal('hide');
+                    var newOption = new Option(res.driver_name, res.id);
+                    $('#driver_id').append(newOption);
+                    $('#driver_id').val(res.id).trigger('change');
+                    $("#btn_click").unbind('click');
+                    $('.selectpicker').selectpicker('refresh');
+
+                }
+            },
+            error: function (reject) {
+                if( reject.status === 422 ) {
+                    var errors = $.parseJSON(reject.responseText);
+                    $.each(errors.errors, function (key, val) {
+                        console.log(key+'=>'+val);
+                        $( "input[name="+key+"]" ).addClass('error_input');
+                    });
+                }
+            }
+        });
+        return false;
+    });*/
+    function _addDriver(){
+        $(".btn_click").attr("disabled", true);
+        $('#driverAddForm input').removeClass('error_input');
+        $.ajax({
+            url: "{{ route('v-drivers.store') }}",
+            data: $('#driverAddForm').serialize()+"&_token={{ csrf_token() }}&key=popup",
+            type: 'POST',
+            cache: false,
+            success: function(res){
+
+                if(res.errors){
+                    alert('here');
+                    $(".btn_click").attr("disabled", false);
+                    $.each(res.errors, function (key, val) {
+                        // console.log(key+'=>'+val);
+                        $( "input[name="+key+"]" ).addClass('error_input');
+                    });
+
                 }else{
 
                     console.log(res.name+'=>'+res.id);
@@ -110,9 +156,17 @@
                     $( "#driver_search" ).val(res.driver_name);
                     $( "#driver_id" ).val(res.id);
                     $('#addDriverPopup').modal('hide');
+                    var newOption = new Option(res.driver_name, res.id);
+                    $('#driver_id').append(newOption);
+                    $('#driver_id').val(res.id).trigger('change');
+                    $('#driverAddForm')[0].reset();
+                    $('.selectpicker').selectpicker('refresh');
+                    $(".btn_click").attr("disabled", false);
+
                 }
             },
             error: function (reject) {
+                $(".btn_click").attr("disabled", false);
                 if( reject.status === 422 ) {
                     var errors = $.parseJSON(reject.responseText);
                     $.each(errors.errors, function (key, val) {

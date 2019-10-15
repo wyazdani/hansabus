@@ -21,6 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('calendar/jquery.dataTables.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css')}}">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 
 	<link href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' rel="stylesheet">

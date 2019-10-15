@@ -142,7 +142,7 @@
         public function store(Request $request)
         {
             $rules = [
-                'name' => 'required|string|max:150',
+                /*'name' => 'required|string|max:150',
                 'year' => 'required|integer|min:1900|max:2050',
                 'make' => 'required|string|max:100',
                 'engineNumber' => 'required|string|max:100',
@@ -151,7 +151,8 @@
                 'seats' => 'required|integer|min:1,max:500',
                 'color' => 'required|string|max:50',
                 'registrationNumber' => 'required|string|max:100',
-                'transmission' => 'required',
+                'transmission' => 'required',*/
+                'color'     => 'required'
             ];
             $messages = [
                 // 'name.required' => 'name is required',
@@ -164,10 +165,10 @@
                 $vehicle->year = $request->year;
                 $vehicle->make = $request->make;
                 $vehicle->engineNumber = $request->engineNumber;
-                $vehicle->vehicle_type = $request->vehicle_type;
+                $vehicle->vehicle_type = !empty($request->vehicle_type)?$request->vehicle_type:0;
                 $vehicle->licensePlate = $request->licensePlate;
                 $vehicle->color = $request->color;
-                $vehicle->seats = $request->seats;
+                $vehicle->seats = !empty($request->seats)?$request->seats:0;
                 $vehicle->registrationNumber = $request->registrationNumber;
                 $vehicle->transmission = $request->transmission;
 
@@ -239,7 +240,7 @@
         {
             // dd($vehicle);
             $rules = [
-                'name' => 'required|string|max:150',
+                /*'name' => 'required|string|max:150',
                 'year' => 'required|integer|min:1900|max:2050',
                 'make' => 'required|string|max:100',
                 'engineNumber' => 'required|string|max:100',
@@ -248,7 +249,8 @@
                 'seats' => 'required|integer|min:1,max:500',
                 'color' => 'required|string|max:50',
                 'registrationNumber' => 'required|string|max:100',
-                'transmission' => 'required',
+                'transmission' => 'required',*/
+                'color'     => 'required'
             ];
             $messages = [
                 // 'title.required' => 'Title is required',
@@ -261,10 +263,10 @@
                 $vehicle->year = $request->year;
                 $vehicle->make = $request->make;
                 $vehicle->engineNumber = $request->engineNumber;
-                $vehicle->vehicle_type = $request->vehicle_type;
+                $vehicle->vehicle_type = !empty($request->vehicle_type)?$request->vehicle_type:0;
                 $vehicle->licensePlate = $request->licensePlate;
                 $vehicle->color = $request->color;
-                $vehicle->seats = $request->seats;
+                $vehicle->seats = !empty($request->seats)?$request->seats:0;
                 $vehicle->registrationNumber = $request->registrationNumber;
                 $vehicle->transmission = $request->transmission;
 
@@ -305,5 +307,6 @@
         {
             $vehicle = Vehicle::find($id);
             $vehicle->delete();
+
         }
     }

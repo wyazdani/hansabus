@@ -20,24 +20,36 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
+                        <div class="col-md-3">
+                            {{--<div class="form-group">
                                 <input type='text' name="customer_search" id="customer_search"
                                        placeholder="{{__('tour.customer')}}" class="form-control filterBox"
                                        value="{{ request()->get('customer_search') }}"
                                        onkeyup="if(this.value=='')$('#customer_id').val('')">
                                 <input type="hidden" id="customer_id" name="customer_id"
                                        value="{{ request()->get('customer_id') }}" >
-                            </div>
+                            </div>--}}
+                            <select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                <option value="">{{__('tour.select_customer')}}</option>
+                                @foreach($customers as $customer)
+                                    <option value="{!! $customer->id !!}" >{!! $customer->name !!}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type='text' name="driver_search" id="driver_search"
+                                {{--<input type='text' name="driver_search" id="driver_search"
                                        placeholder="{{__('tour.driver')}}" class="form-control filterBox"
                                        value="{{ request()->get('driver_search') }}"
                                        onkeyup="if(this.value=='')$('#driver_id').val('')">
                                 <input type="hidden" id="driver_id" name="driver_id"
-                                       value="{{ request()->get('driver_id') }}">
+                                       value="{{ request()->get('driver_id') }}">--}}
+                                <select name="driver_id" id="driver_id" class="{{($errors->has('driver_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                    <option value="">{{__('tour.select_driver')}}</option>
+                                    @foreach($drivers as $driver)
+                                        <option value="{!! $driver->id !!}" >{!! $driver->driver_name !!}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -76,7 +88,7 @@
                                         <th class="border-top-0" width="11%">{{__('hire.to')}}</th>
                                         <th class="border-top-0" width="8%">{{__('hire.price')}}</th>
                                         <th class="border-top-0" width="5%">Status</th>
-                                        <th class="border-top-0" width="8%">&nbsp;</th>
+                                        <th class="border-top-0" width="8%">{{__('tour.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -148,7 +160,29 @@
         };
 
         $(document).ready(function() {
+            $('body').on('click','.generate_invoice',function () {
+                var elem    =   $(this);
+                var customer_id = elem.data('customer_id');
+                var total = elem.data('total');
+                var ids= [];
+                ids[0] = elem.data('id');
+                $(this).remove();
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('generate-driver-invoice') !!}",
+                    data:   {
+                        customer_id:customer_id,
+                        total:total,
+                        ids:ids,
+                        _token:'{!! csrf_token() !!}',
 
+                    },
+                    success: function(data){
+                        toastr.success("{!! __('driver_invoice.generated') !!}");
+                    }
+                });
+
+            });
             var tableDiv = $('#listingTable').DataTable({
 
 
@@ -175,6 +209,7 @@
                 "serverSide": true,
                 // "searchable" : true,
                 'searching':false,
+                "order": [[ 0, "desc" ]],
                 "language": {
                     "search": "{{__('messages.search')}}",
                     "emptyTable": "{{__('messages.no_record')}}"
@@ -230,12 +265,18 @@
                         view += ' href="javascript:;" onclick="viewTour('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
+                        var generate_invoice = "generate_invoice_" + row.id;
+                        if(row.status==2){
+                            generate_invoice = '<a href="javascript:void(0)" title="{{__("messages.generate_invoice")}}" data-customer_id='+row.customer_id+' data-total="1" data-id='+row.id+' class="generate_invoice" id="generate_id['+row.id+']"><i class="fa fa-file-o font-medium-3 mr-2"></i></a>';
 
+                        }else{
+                            generate_invoice = '';
+                        }
                         buttons = ''+view;
                         if(row.status == '1' || row.status == '2'){
                             buttons = edit+trash+view;
                         }
-                        return '<div class="text-right">'+buttons+'</div>';
+                        return '<div class="text-right">'+buttons+generate_invoice+'</div>';
 
 
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';

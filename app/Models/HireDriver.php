@@ -15,7 +15,8 @@ class HireDriver extends Model
         'driver_id',
         'from_date',
         'to_date',
-        'price'
+        'price',
+        'color'
     ];
 
     use SoftDeletes;

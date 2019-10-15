@@ -15,6 +15,7 @@ return array(
     'one_way'           =>  'One Way',
     'trip_type'         =>  'Trip Type',
     'seats'             =>  'Seats',
+    'description'       =>  'Description',
 
     'success'           =>  'Offer Created Successfully',
     'success_update'    =>  'Offer Updated Successfully',
@@ -26,12 +27,11 @@ return array(
     'arrival'           =>  'Arrival Date',
     'action'            =>  'Action',
     'type'              =>  'Type',
-
     'price'                 =>  'Price',
     'thankyou_for_inquiry'  =>  'Thank You For Your inquiry Please see details below',
     'mail_sent'             =>  'Mail Sent Succesfully',
     'pls_enter_price'       =>  'Please Enter Price',
     'ofer_sent'             =>  'Offer Sent',
-
+    'offer_no'              =>  'Offer No.',
     'web'                   =>  'Web',
 );

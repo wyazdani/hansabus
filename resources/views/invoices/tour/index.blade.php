@@ -24,9 +24,15 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type='text' name="customer_search" id="customer_search"
+                                    {{--<input type='text' name="customer_search" id="customer_search"
                                            placeholder="{{__('tour.customer')}}" class="form-control filterBox" value="{{ request()->get('customer_search') }}" >
-                                    <input type="hidden" id="customer_id" name="customer_id" value="{{ request()->get('customer_id') }}" >
+                                    <input type="hidden" id="customer_id" name="customer_id" value="{{ request()->get('customer_id') }}" >--}}
+                                    <select name="customer_id" id="customer_id" class="{{($errors->has('customer_id')) ?'selectpicker show-tick form-control error_input':'selectpicker show-tick form-control'}}" data-live-search="true">
+                                        <option value="">{{__('tour.select_customer')}}</option>
+                                        @foreach($customers as $customer)
+                                            <option value="{!! $customer->id !!}" >{!! $customer->name !!}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -50,11 +56,13 @@
                                         <option value="2" @if(request()->get('status') == 2) {{ 'Selected' }}  @endif >Paid</option></select>
                                 </div>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <a href="javascript:;" onclick="$('#searchForm').submit()"  class="btn btn-outline-success"><i class="ft-search"></i> {{__('messages.search')}}</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-12" >
                                 <div class="form-group text-left">
                                     <a href="javascript:;" onclick="$('#theForm').submit()"
@@ -86,38 +94,40 @@
                                             <th class="border-top-0" width="10%">{{__('tour_invoice.total')}}</th>
                                             <th class="border-top-0" width="10%">{{__('tour_invoice.status')}}</th>
                                             <th class="border-top-0" width="20%">{{__('tour_invoice.date')}}</th>
-                                            <th class="border-top-0" width="7.5%">&nbsp;</th>
-                                            <th class="border-top-0" width="7.5%">&nbsp;</th>
+                                            <th class="border-top-0" width="7.5%">{{__('tour.action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody id="toursDiv">
-                                        @foreach($rows as $row)
-                                            <tr>
-                                                @if($row->status == 'Unpaid')
-                                                    <td><div class="custom-control custom-checkbox" style="top: -5px;">
-                                                            <input type="checkbox" id="a{{$row->id}}" class="custom-control-input form-check-input ids" onclick="showButton();" value="{{$row->id}}" name="ids[]">
-                                                            <label class="custom-control-label" for="a{{$row->id}}">&nbsp;</label>
-                                                        </div>
-                                                    </td>
-                                                @else
-                                                    <td>&nbsp;</td>
-                                                @endif
-                                                <td>{{ $row->invoice_id }}</td>
-                                                <td>{{ $row->customer->name }}</td>
-                                                <td>{{ $row->total }}</td>
-                                                <td>{{ $row->status }}</td>
-                                                <td>{{ $row->created }}</td>
-                                                <td>
+                                        @if(count($rows)>0)
+                                            @foreach($rows as $row)
+                                                <tr>
                                                     @if($row->status == 'Unpaid')
-                                                        <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
+                                                        <td><div class="custom-control custom-checkbox" style="top: -5px;">
+                                                                <input type="checkbox" id="a{{$row->id}}" class="custom-control-input form-check-input ids" onclick="showButton();" value="{{$row->id}}" name="ids[]">
+                                                                <label class="custom-control-label" for="a{{$row->id}}">&nbsp;</label>
+                                                            </div>
+                                                        </td>
                                                     @else
-                                                        <a href="{{ route('download-tours-invoice') }}?id={{$row->id}}" class="btn btn-sm btn-outline-primary">Download</a>
+                                                        <td>&nbsp;</td>
                                                     @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        <tr><td colspan="7">{{$rows->appends(request()->input())->links()}}</td> </tr>
-
+                                                    <td>{{ $row->invoice_id }}</td>
+                                                    <td>{{ $row->customer->name }}</td>
+                                                    <td>{{ $row->total }}</td>
+                                                    <td>{{ $row->status }}</td>
+                                                    <td>{{ $row->created }}</td>
+                                                    <td>
+                                                        @if($row->status == 'Unpaid')
+                                                            <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
+                                                        @else
+                                                            <a href="{{ route('download-tours-invoice') }}?id={{$row->id}}" class="btn btn-sm btn-outline-primary">Download</a>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            <tr><td colspan="7">{{$rows->appends(request()->input())->links()}}</td> </tr>
+                                        @else
+                                            <tr><td colspan="8" class="text-center">No data available in table.</td></tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </form>

@@ -21,7 +21,8 @@ class Tour extends Model
         'passengers',
         'guide',
         'price',
-        'description'
+        'description',
+        'color'
     ];
 
     protected $dates = ['deleted_at'];
@@ -33,7 +34,7 @@ class Tour extends Model
     }
     public function customer()
     {
-        return $this->hasOne('App\Models\Customer','id','customer_id')->select(['id','name']);
+        return $this->hasOne('App\Models\Customer','id','customer_id')->select(['id','name','address']);
     }
 
     public function vehicle()
@@ -43,11 +44,27 @@ class Tour extends Model
 
     public function driver()
     {
-        return $this->hasOne('App\Models\Driver','id','driver_id')->select(['id','driver_name']);
+        return $this->hasOne('App\Models\Driver','id','driver_id')->select(['id','driver_name'])->withDefault([
+            'driver_name'   =>  'None'
+        ]);
+    }
+
+    public function driver_name(){
+        $driver_name    =   $this->hasOne('App\Models\Driver','id','driver_id')->withDefault([
+            'driver_name'   =>  'None'
+        ]);
+        if ($driver_name!=null){
+            return $driver_name;
+        }else{
+            return 'None';
+        }
+
     }
 
     public function tourdetails()
     {
-        return  $this->hasOne(TourInvoiceDetail::class,'invoice_id','id');
+        return  $this->hasOne(TourInvoiceDetail::class,'invoice_id','id')->withDefault([
+            'tour_id'   =>  0
+        ]);
     }
 }

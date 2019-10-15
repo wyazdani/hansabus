@@ -198,8 +198,10 @@ class BusServiceController extends Controller
                             $i++;
                         }
                         toastr()->success(__('service.created'));
-
-                        $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
+                        $invoice_date   =   date('Y-m-d');
+                    $html   =   view('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
+                    return General::CreatePdf("P",$html,"bus_service","Invoice");
+                        $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
                         return $pdf->stream();
 //                return $pdf->download('service_invoice.pdf');
                     }
@@ -223,7 +225,8 @@ class BusServiceController extends Controller
         $vat = ($total/100)*19;
         $details = $service->details;
         $invoice_date   =   date('Y-m-d');
-
+        $html   =   view('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
+        return General::CreatePdf("P",$html,"bus_service","Invoice");
         $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
         return $pdf->stream();
     }
@@ -298,8 +301,10 @@ class BusServiceController extends Controller
                         $i++;
                     }
                     toastr()->success(__('service.updated'));
-
-                    $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat'));
+                    $invoice_date   =   date('Y-m-d');
+                    $html   =   view('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
+                    return General::CreatePdf("P",$html,"bus_service","Invoice");
+                    $pdf = PDF::loadView('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));
                     return $pdf->stream();
                 }
             }

@@ -44,6 +44,12 @@
                                                                             <input type="password" name="password"
                                                                                    class="{{($errors->has('password')) ?'form-control error_input':'form-control'}}"
                                                                                    value="">
+                                                                            @error('password')
+                                                                            {{--<span class="text-danger" role="alert">
+                    <strong>{{__('messages.password_dont_match')}}</strong>--}}
+                                                                                <span class="text-danger">{!! $errors->first('password') !!}</span>
+                </span>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                 </div>

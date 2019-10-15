@@ -23,7 +23,7 @@ return [
     'sunroof'=>'Schiebedach',
     'phone_charging'=>'Telefon Ladebuchse',
     'is_active'=>'Ist aktiv',
-
+    'vehicle_deleted'   =>  'Fahrzeug gelöscht',
     'created'=>'Fahrzeug angelegt.',
     'updated'=>'Fahrzeug aktualisiert.',
     'status_changed'=>'Fahrzeugstatus geändert.',

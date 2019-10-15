@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Models\HireDriver;
 use App\Models\HireAttachment;
 use App\Models\DriverBooking;
+use App\Models\Tour;
 use App\Models\TourStatus;
 use App\Models\Customer;
 use App\Models\Attachment;
@@ -26,9 +27,27 @@ class HireDriverController extends Controller
     public function calendar(Request $request)
     {
         $pageTitle = __('hire.heading.calendar');
+
+        $hire_driver_table  =   get_table_name(HireDriver::class);
+        $tour_table         =   get_table_name(Tour::class);
+        $driver_table       =   get_table_name(Driver::class);
+        $customer_table     =   get_table_name(Customer::class);
+
+        $data               =   HireDriver::from($hire_driver_table.' as hire_a_driver')
+                                            ->leftJoin($tour_table.' as t','t.driver_id','=','hire_a_driver.driver_id')
+                                            ->join($driver_table.' as d','d.id','hire_a_driver.driver_id')
+                                            ->join($customer_table.' as c','c.id','hire_a_driver.customer_id')
+                                            ->where('hire_a_driver.status','>',1)
+                                            ->where('hire_a_driver.status','<',4)
+                                            ->where('t.status','>',1)
+                                            ->where('t.status','<',4)
+                                            ->select('hire_a_driver.id','hire_a_driver.customer_id','hire_a_driver.driver_id','hire_a_driver.status',
+                                                    'hire_a_driver.price','hire_a_driver.from_date','hire_a_driver.to_date','c.name')
+                                            ->get();
+
         $rows = HireDriver::where('status','>',1)->where('status','<',4)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
 
-        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
+        $colors = ['#ff3908','#0bb9d4','#0da837','#d6c809','#db7107'];
         
         $events =  []; $i=$j=0;
         foreach($rows as $row){
@@ -36,8 +55,8 @@ class HireDriverController extends Controller
 
             $row->customer;
 
-            if($j>7){
-                $j = $j-8;
+            if($j>4){
+                $j = $j-5;
             }
 
 
@@ -50,7 +69,7 @@ class HireDriverController extends Controller
             Driver: '.$row->driver->driver_name.', 
             Customer: '.$row->customer->name;
             $events[$i]['url'] = url('/hire-driver/'.$row->id);
-            $events[$i]['backgroundColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = $row->color;
             $i++; $j++;
         }
 //        dd($data);
@@ -124,21 +143,18 @@ class HireDriverController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d h:i',strtotime($request->from_date)).':00';
+            $from = date('Y-m-d',strtotime($request->from_date));
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d h:i',strtotime($request->to_date)).':59';
+            $to = date('Y-m-d',strtotime($request->to_date));
         }
-        if(!empty($from) && !empty($to)){
+        if(!empty($from)){
 
-            $query = $query->whereBetween('from_date', [$from, $to]);
+            $query = $query->whereDate('from_date','>=',$from);
+        }
+        if(!empty($to)){
 
-        }elseif(!empty($from)){
-
-            $query = $query->where('from_date','>=',$from);
-        }elseif(!empty($to)){
-
-            $query = $query->where('from_date','<=',$to);
+            $query = $query->whereDate('to_date','<=',$to);
         }
 
         $recordsTotal = $query->count();
@@ -159,8 +175,9 @@ class HireDriverController extends Controller
     public function index()
     {
         $pageTitle = __('hire.heading.index');
-
-        return view('hire-drivers.index',compact('pageTitle'));
+        $customers  =   Customer::orderBy('name','ASC')->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->get();
+        return view('hire-drivers.index',compact('pageTitle','drivers','customers'));
     }
 
     public function create()
@@ -190,7 +207,8 @@ class HireDriverController extends Controller
             'customer_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            'price' => 'required|numeric|digits_between:1,20'
+            'price' => 'required|numeric|digits_between:1,20',
+            'color' =>  'required'
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -234,6 +252,7 @@ class HireDriverController extends Controller
                 $HireDriver->from_date = $from;
                 $HireDriver->to_date = $to;
                 $HireDriver->price = (int)$request->price;
+                $HireDriver->color = $request->color;
                 if ($HireDriver->save()) {
 
                     toastr()->success(__('hire.created'));
@@ -334,7 +353,8 @@ class HireDriverController extends Controller
             'from_date' => 'required',
             'to_date' => 'required',
             'driver_id' => 'required|integer',
-            'price' => 'required|numeric|digits_between:1,20'
+            'price' => 'required|numeric|digits_between:1,20',
+            'color' =>  'required'
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -381,6 +401,7 @@ class HireDriverController extends Controller
                 $hire->from_date = date('Y-m-d h:i', strtotime($request->from_date));
                 $hire->to_date = date('Y-m-d h:i', strtotime($request->to_date));
                 $hire->price = (int)$request->price;
+                $hire->color = $request->color;
                 if ($hire->save()) {
                     toastr()->success(__('hire.updated'));
 

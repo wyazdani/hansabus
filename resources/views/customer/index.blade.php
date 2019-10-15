@@ -34,7 +34,7 @@
                                     <th class="border-top-0" width="10%">{{__('customer.mobile')}}</th>
                                     <th class="border-top-0" width="20%">{{__('customer.address')}}</th>
                                     <th class="border-top-0" width="15%">{{__('customer.web')}}</th>
-                                    <th class="border-top-0 d-print-none" width="10%">&nbsp;</th>
+                                    <th class="border-top-0 d-print-none" width="10%">{{__('tour.action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,11 +73,11 @@
                 cache: false,
                 success: function(cus){
 
-                    $('#v_name').html(cus.name);
-                    $('#v_email').html(cus.email);
-                    $('#v_phone').html(cus.phone);
-                    $('#v_url').html(cus.url);
-                    $('#v_address').html(cus.address);
+                    $('#v_name').html(cus.name?cus.name:'None');
+                    $('#v_email').html(cus.email?cus.email:'None');
+                    $('#v_phone').html(cus.phone?cus.phone:'None');
+                    $('#v_url').html(cus.url?cus.url:'None');
+                    $('#v_address').html(cus.address?cus.address:'None');
 
                     if(cus.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
 
@@ -109,6 +109,7 @@
                 'bSortable': true,
                 'bProcessing': true,
                 "bInfo": false,
+                "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,

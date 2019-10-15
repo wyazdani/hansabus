@@ -15,7 +15,7 @@ return [
     'one_way'           =>  'Einweg',
     'trip_type'         =>  'Reiseart',
     'seats'             =>  'Sitze',
-
+    'description'       =>  'Beschreibung',
     'success'           =>  'Angebot erfolgreich erstellt',
     'success_update'    =>  'Angebot erfolgreich aktualisiert',
 
@@ -33,6 +33,6 @@ return [
     'mail_sent'             =>  'Mail erfolgreich gesendet',
     'pls_enter_price'       =>  'Bitte Preis eingeben',
     'ofer_sent'             =>  'Angebot gesendet',
-
+    'offer_no'              =>  'Angebotsnummer.',
     'web'                   =>  'Netz',
 ];

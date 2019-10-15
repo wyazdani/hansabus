@@ -6,6 +6,7 @@ use App\Mail\TestEmail;
 use App\Mail\TourConfirmation;
 use App\Mail\TourConfirmationInvoice;
 use App\Models\DriverBooking;
+use App\Models\TourInvoice;
 use App\Models\TourInvoiceDetail;
 use App\Models\TourStatus;
 use App\Models\TourAttachment;
@@ -36,13 +37,13 @@ class ToursController extends Controller
         $rows = Tour::where('status','>',1)->where('status','<',4)->whereNull('deleted_at')->get(
             ['id','vehicle_id','customer_id','driver_id','status','passengers','guide','price','from_date','to_date']);
 
-        $colors = ['#1E9FF2','#34D093','#FD4961','#FF9149','#2FAC68','#F8C631','#9ABE21','#3D84E8','#E74D17'];
+        $colors = ['#ff3908','#0bb9d4','#0da837','#d6c809','#db7107'];
 
         $events = []; $i = $j=0;
         foreach($rows as $row){
 
-            if($j>7){
-                $j = $j-8;
+            if($j>4){
+                $j = $j-5;
             }
 
             $row->driver;
@@ -57,9 +58,10 @@ class ToursController extends Controller
 
             $events[$i]['title'] = ' 
             Customer: '.$row->customer->name.' 
-            Driver: '.$row->driver->driver_name;
+            Driver: '.$row->driver->driver_name.' 
+            vehicle: '.$row->vehicle->name;
             $events[$i]['url'] = url('/tour/'.$row->id);
-            $events[$i]['backgroundColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = !empty($row->vehicle->color)?$row->vehicle->color:'#ff3908';
 
             $j++; $i++;
         }
@@ -142,21 +144,18 @@ class ToursController extends Controller
         $from =''; $to ='';
         if(!empty($request->from_date)){
 
-            $from = date('Y-m-d H:i',strtotime($request->from_date)).':00';
+            $from = date('Y-m-d ',strtotime($request->from_date));
         }
         if(!empty($request->to_date)){
-            $to = date('Y-m-d H:i',strtotime($request->to_date)).':59';
+            $to = date('Y-m-d ',strtotime($request->to_date));
         }
-        if(!empty($from) && !empty($to)){
+        if(!empty($from)){
 
-            $query = $query->whereBetween('from_date', [$from, $to]);
+            $query = $query->whereDate('from_date','>=',$from);
+        }
+        if(!empty($to)){
 
-        }elseif(!empty($from)){
-
-            $query = $query->where('from_date','>=',$from);
-        }elseif(!empty($to)){
-
-            $query = $query->where('from_date','<=',$to);
+            $query = $query->whereDate('to_date','<=',$to);
         }
 
         $recordsTotal = $query->count();
@@ -168,7 +167,7 @@ class ToursController extends Controller
         foreach($rows as $row){
 
             $row->vehicle;
-            $row->driver;
+            $row->driver_name;
             $row->customer;
             $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
             $row->to_date   = date('d.m.Y H:i',strtotime($row->to_date));
@@ -182,9 +181,11 @@ class ToursController extends Controller
         $pageTitle = __('messages.tours');
 
         $tour_statuses = TourStatus::get(['id','name']);
-        $vehicles = Vehicle::where('status','1')->get(['name','id']);
+        $vehicles = Vehicle::orderBy('name','ASC')->get();
+        $customers  =   Customer::orderBy('name','ASC')->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->get();
 
-        return view('tours.index',compact('vehicles','tour_statuses','pageTitle'));
+        return view('tours.index',compact('vehicles','tour_statuses','pageTitle','customers','drivers'));
     }
 
     public function create()
@@ -193,9 +194,11 @@ class ToursController extends Controller
         $general = new General();
         $randomKey = $general->randomKey();
         $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
-        $vehicles = Vehicle::where('status','1')->get();
+        $vehicles = Vehicle::orderBy('name','ASC')->where('status','1')->get();
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
 
-        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey'));
+        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey','customers','drivers'));
     }
 
     /**
@@ -206,16 +209,17 @@ class ToursController extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = [
             'status' => 'required|integer',
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            /*'driver_id' => 'required|integer',*/
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
-            'description' => 'required'
+            'description' => 'required',
+            'color' => 'required'
 //            'guide' => 'required',
         ];
         $messages = [
@@ -246,6 +250,9 @@ class ToursController extends Controller
             /* check for driver bookings */
 
 
+            if ($request->driver_id == 'foo'){
+                $request->driver_id =0;
+            }
             if (!empty($request->driver_id)){
                 $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
                     ->where('from_date','<=',$from)
@@ -294,6 +301,7 @@ class ToursController extends Controller
                 $tour->price = !empty($request->price)?(int)$request->price:0;
                 $tour->guide = !empty($request->guide)?$request->guide:'';
                 $tour->description = !empty($request->description)?$request->description:'';
+                $tour->color = $request->color;
 
                 if ($tour->save()) {
 
@@ -341,7 +349,12 @@ class ToursController extends Controller
         }else{
             return redirect()->back()->withInput($request->all());
         }
-        return redirect('/tours');
+        if ($request->returnFlag){
+            return redirect()->back();
+        }else{
+            return redirect('/tours');
+        }
+
     }
 
     public function detail(Tour $Tour)
@@ -364,6 +377,8 @@ class ToursController extends Controller
         $Tour->attachments;
         $Tour->from_date = date('d.m.Y H:i',strtotime($Tour->from_date));
         $Tour->to_date   = date('d.m.Y H:i',strtotime($Tour->to_date));
+        $Tour->tourdetails;
+        $Tour->status;
 
         return $Tour;
     }
@@ -379,15 +394,15 @@ class ToursController extends Controller
     {
         $pageTitle = __('messages.edit_tour');
         $tour = Tour::find($id);
-
+        $vehicles = Vehicle::orderBy('name','ASC')->get();
+        $customers  =   Customer::orderBy('name','ASC')->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
         $general = new General();
         $randomKey = $general->randomKey();
         $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
-
-        $vehicles = Vehicle::where('status','1')->get(['name','make','year','transmission','licensePlate','id']);
         $attachments = TourAttachment::where('tour_id',$id)->get();
 
-        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments'));
+        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments','customers','drivers'));
     }
 
     /**
@@ -408,7 +423,8 @@ class ToursController extends Controller
             /*'driver_id' => 'required|integer',*/
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
-            'description' => 'required'
+            'description' => 'required',
+            'color' => 'required'
 //            'guide' => 'required',
         ];
         $messages = [
@@ -430,7 +446,9 @@ class ToursController extends Controller
 
             $alreadyBooked = false;
             /* check for driver bookings */
-
+            if ($request->driver_id == 'foo'){
+                $request->driver_id =0;
+            }
             $driverBooked = DriverBooking::where('driver_id', $request->driver_id)
                 ->where('with_vehicle', 1)->where('booking_id', '!=', $request->id)
                 ->where('from_date','<=',$from)
@@ -481,6 +499,7 @@ class ToursController extends Controller
                 $tour->price = (int)$request->price;
                 $tour->description = $request->description;
                 $tour->guide = $request->guide;
+                $tour->color = $request->color;
                 if ($tour->save()) {
                     toastr()->success(__('tour.updated'));
 
@@ -548,12 +567,37 @@ class ToursController extends Controller
     public function tour_customer_email(Request  $request)
     {
         if ($request->send_invoice){
-            Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
+            $invoice = TourInvoiceDetail::where('tour_id','=',$request->tour_id_email)->first();
+            if ($invoice){
+                Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
+            }else{
+                toastr()->error(__('tour.pls_create_invoice'));
+                return redirect()->route('tours.index');
+            }
+
         }else{
             Mail::send(new TourConfirmation($request->customer_id_email,$request->tour_id_email));
         }
         toastr()->success(__('tour.email'));
         return redirect('/tours');
+    }
+    public function tour_send_email(Request  $request)
+    {
+        $tour = Tour::find($request->tour_id);
+        return view('tours.email',compact('tour'));
+
+    }
+
+    public function get_fields(){
+        $vehicles = Vehicle::orderBy('name','ASC')->get();
+        $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
+        $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
+
+        return response()->json([
+           'vehicles'       =>   $vehicles,
+           'customers'      =>   $customers,
+           'drivers'        =>   $drivers,
+        ]);
     }
     public function destroy($id)
     {

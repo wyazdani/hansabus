@@ -16,18 +16,23 @@
     <div style="max-width: 900px; margin: 0 auto;
            background-size: cover;background-position: center center;background-repeat: no-repeat;" class="email-container">
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;color: #fff;">
+            @include('mail.header')
             <tr>
                 <td>
                     <table style="width: 100%;">
                         <tbody><tr><td style="padding:50px 15px 0 15px;">
                                 <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
+                                    {{ __('offer.offer_no') }} O{!! $offer !!}/-{!! date('y') !!}
+                                </dt>
+                                <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     Hi {!! $inquiry->name !!},
                                 </dt>
                                 <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {{ __('offer.thankyou_for_inquiry') }}.
+
                                 </dt>
 
-                                <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
+                                <dt style="font-weight: bold;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {{ __('offer.departure_time') }}
                                 </dt>
                                 <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
@@ -36,7 +41,7 @@
                                 <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {{__('offer.price')}}:
                                 </dt>
-                                <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
+                                <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
                                     {!! $price!!}
                                 </dt>
 
@@ -47,6 +52,7 @@
                 </td>
             </tr>
         </table>
+        @include('mail.footer')
     </div>
 </center>
 </body>

@@ -99,6 +99,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label for="projectinput3"> {{__('offer.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}"></span></label>
+                                                            <textarea  name="description" id="description"
+                                                                       class="{{($errors->has('description')) ?'error_input form-control':'form-control'}}"
+                                                            >{{ !empty($inquiry->description)?$inquiry->description:old('description') }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +122,7 @@
                             <a href="{{ route('offers.index')}}" class="btn btn-danger mr-1"><b>
                                     <i class="fa fa-times"></i></b> {{__('messages.cancel')}}</a>
                             <button type="submit" class="btn btn-success"><b>
-                                    <i class="icon-note"></i></b> {{__('messages.save')}}</button>
+                                    <i class="icon-note"></i></b> {{__('messages.update')}}</button>
                         </div>
                     </div>
                 {{ Form::close() }}

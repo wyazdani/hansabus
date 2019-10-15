@@ -230,7 +230,7 @@ class CustomerController extends Controller
 
         $rules = [
             'name' => 'required|string|max:200',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:customer,email,'.$id,
 //            'url' => 'required|url|max:200',
             /*'phone' => 'required|numeric',*/
             'address' => 'required|string|max:200',

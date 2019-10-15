@@ -29,8 +29,8 @@
             </div>
             <div class="col-md-6">
                 <label>{{__('offer.price')}}</label>
-                <input type="number" name="price" id="price"
-                       class="{{($errors->has('price')) ?'error_input form-control':'form-control'}}">
+                <input type="text" name="price" id="price"
+                       class="{{($errors->has('price')) ?'error_input form-control has_numeric':'form-control has_numeric'}}">
             </div>
         </div>
 

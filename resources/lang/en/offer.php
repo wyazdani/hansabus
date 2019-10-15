@@ -20,8 +20,8 @@ return array(
     'success_update'    =>  'Offer Updated Successfully',
 
     'customer'          =>  'Customer',
-    'from'              =>  'From',
-    'to'                =>  'To',
+    'from'              =>  'Departure',
+    'to'                =>  'Destination',
     'departure'         =>  'Departure Date',
     'arrival'           =>  'Arrival Date',
     'action'            =>  'Action',

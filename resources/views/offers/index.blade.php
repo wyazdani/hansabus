@@ -54,11 +54,18 @@
                                                 <td>{!! !empty($inquiry->is_web)?__('messages.yes'):__('messages.no') !!}</td>
                                                 <td>
                                                     @if($inquiry->status)
-                                                        {{__('offer.ofer_sent')}}
+                                                        <div class="btn-group">
+                                                            <a class="btn" href="{!! route('offers.edit',$inquiry->id) !!}"><i class="icon-pencil font-medium-3 mr-2"></i></a>
+                                                            <a class="btn" href="javascript:void(0)" data-inquiry_id="{!! $inquiry->id !!}" id="send_mail_popup" >
+                                                                <i {!! ($inquiry->status==1)?'style="color:green;"':'' !!} class="icon-envelope font-medium-3 mr-2"></i>
+                                                            </a>
+                                                        </div>
                                                     @else
                                                     <div class="btn-group">
                                                         <a class="btn" href="{!! route('offers.edit',$inquiry->id) !!}"><i class="icon-pencil font-medium-3 mr-2"></i></a>
-                                                        <a class="btn" href="javascript:void(0)" data-inquiry_id="{!! $inquiry->id !!}" id="send_mail_popup" ><i class="icon-envelope font-medium-3 mr-2"></i></a>
+                                                        <a class="btn" href="javascript:void(0)" data-inquiry_id="{!! $inquiry->id !!}" id="send_mail_popup" >
+                                                            <i {!! ($inquiry->status==1)?'style="color:green;"':'' !!} class="icon-envelope font-medium-3 mr-2"></i>
+                                                        </a>
                                                     </div>
                                                     @endif
                                                 </td>
@@ -89,6 +96,7 @@
     </div>
     <script>
         $(document).ready(function() {
+
 
             $('body').on('click', '#send_mail_popup', function () {
                 var elem        =   $(this);

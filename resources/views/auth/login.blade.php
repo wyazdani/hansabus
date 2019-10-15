@@ -43,10 +43,10 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ml-5">
+                                            {{--<div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ml-5">
                                                 <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                 <label class="custom-control-label float-left" for="rememberme">{{ __('Remember Me') }}</label>
-                                            </div>
+                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>

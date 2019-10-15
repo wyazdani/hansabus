@@ -72,7 +72,7 @@ return [
     'updated'=>'Tour updated.',
     'status_changed'=>'Tour status changed.',
     'vehicle_already_booked'=>'Vehicle already booked.',
-
+    'calendar_color'    =>  'Calendar Color',
     'booked_for_tour'   =>  'You Have Booked For the Tour',
     'passengers_allowed'=>' passengers allowed.',
     'description' => 'Description',
@@ -82,5 +82,14 @@ return [
     'pls_create_invoice'    =>  'Please Create Invoice',
     'driver_details'    =>  'Driver Details',
     'action'    =>  'Action',
+    'select_color'    =>  'Select Color',
+    'colors'=>[
+        'red'       =>'Red',
+        'blue'      =>'Blue',
+        'dark_green'=>'Dark Green',
+        'yellow'    =>'Yellow',
+        'orange'    =>  'Orange'
+    ],
+
 
     ];

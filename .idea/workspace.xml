@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/offers/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Inquiry.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inquiry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/de/offer.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/offer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/offer.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/offer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/offers/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/offers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/offers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/HireDriver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/HireDriver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tour.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/tour.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/tour.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vehicle/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehicle/add.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -148,18 +151,18 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pay-per-view-blade" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\ecoach\app\Models" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\laragon\www\ecoach\resources\views\tours" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\ecoach\app\Models" />
       <recent name="D:\laragon\www\ecoach\resources\views\tours" />
     </key>
   </component>
@@ -246,7 +249,8 @@
       <workItem from="1569593542854" duration="18000" />
       <workItem from="1570446857984" duration="4132000" />
       <workItem from="1570511958622" duration="15497000" />
-      <workItem from="1570599188844" duration="7573000" />
+      <workItem from="1570599188844" duration="9039000" />
+      <workItem from="1571129533899" duration="5473000" />
     </task>
     <servers />
   </component>

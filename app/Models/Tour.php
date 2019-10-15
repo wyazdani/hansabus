@@ -21,7 +21,8 @@ class Tour extends Model
         'passengers',
         'guide',
         'price',
-        'description'
+        'description',
+        'color'
     ];
 
     protected $dates = ['deleted_at'];

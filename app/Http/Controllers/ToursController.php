@@ -61,7 +61,7 @@ class ToursController extends Controller
             Driver: '.$row->driver->driver_name.' 
             vehicle: '.$row->vehicle->name;
             $events[$i]['url'] = url('/tour/'.$row->id);
-            $events[$i]['backgroundColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = !empty($row->vehicle->color)?$row->vehicle->color:'#ff3908';
 
             $j++; $i++;
         }
@@ -218,7 +218,8 @@ class ToursController extends Controller
             'to_date' => 'required',
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
-            'description' => 'required'
+            'description' => 'required',
+            'color' => 'required'
 //            'guide' => 'required',
         ];
         $messages = [
@@ -300,6 +301,7 @@ class ToursController extends Controller
                 $tour->price = !empty($request->price)?(int)$request->price:0;
                 $tour->guide = !empty($request->guide)?$request->guide:'';
                 $tour->description = !empty($request->description)?$request->description:'';
+                $tour->color = $request->color;
 
                 if ($tour->save()) {
 
@@ -421,7 +423,8 @@ class ToursController extends Controller
             /*'driver_id' => 'required|integer',*/
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
-            'description' => 'required'
+            'description' => 'required',
+            'color' => 'required'
 //            'guide' => 'required',
         ];
         $messages = [
@@ -496,6 +499,7 @@ class ToursController extends Controller
                 $tour->price = (int)$request->price;
                 $tour->description = $request->description;
                 $tour->guide = $request->guide;
+                $tour->color = $request->color;
                 if ($tour->save()) {
                     toastr()->success(__('tour.updated'));
 

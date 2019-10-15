@@ -95,7 +95,7 @@
 																</div>
 
 
-																<div class="col-md-6">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 
@@ -120,7 +120,7 @@
 
 																	</div>
 																</div>
-																<div class="col-md-6">
+																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}">*</span></label>
 																		<span style="float: right"><a href="javascriot:;" onclick="addDriver()">{{strtolower(__('driver.heading.add'))}}</a></span>
@@ -141,6 +141,22 @@
 																			   value="{{ old('driver_id',$hire->driver_id) }}"
 																			   @else value="{{ old('driver_id','') }}" @endif
 																		>--}}
+																	</div>
+																</div>
+																<div class="col-md-4">
+																	<div class="form-group">
+																		<label for="projectinput3">{{__('tour.select_color')}}<span class="{{($errors->has('color')) ?'errorStar':''}}">*</span></label>
+																		<select name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}"
+
+																		>
+																			<option value="">{{__('tour.select_color')}}</option>
+																			<option value="#04b1cc" @if(!empty($vehicle) && $vehicle->color=="#04b1cc" || old('color') == "#04b1cc") selected @endif>{{__('tour.colors.blue')}}</option>
+																			<option value="#00731f" @if(!empty($vehicle) && $vehicle->color=="#00731f" || old('color') == "#00731f") selected @endif>{{__('tour.colors.dark_green')}}</option>
+																			<option value="#d6c809" @if(!empty($vehicle) && $vehicle->color=="#d6c809" || old('color') == "#d6c809") selected @endif>{{__('tour.colors.yellow')}}</option>
+																			<option value="#db7107" @if(!empty($vehicle) && $vehicle->color=="#db7107" || old('color') == "#db7107") selected @endif>{{__('tour.colors.orange')}}</option>
+																			<option value="#ff1408" @if(!empty($vehicle) && $vehicle->color=="#ff1408" || old('color') == "#ff1408") selected @endif>{{__('tour.colors.red')}}</option>
+
+																		</select>
 																	</div>
 																</div>
 

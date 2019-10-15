@@ -152,6 +152,7 @@
                 'color' => 'required|string|max:50',
                 'registrationNumber' => 'required|string|max:100',
                 'transmission' => 'required',*/
+                'color'     => 'required'
             ];
             $messages = [
                 // 'name.required' => 'name is required',
@@ -249,6 +250,7 @@
                 'color' => 'required|string|max:50',
                 'registrationNumber' => 'required|string|max:100',
                 'transmission' => 'required',*/
+                'color'     => 'required'
             ];
             $messages = [
                 // 'title.required' => 'Title is required',

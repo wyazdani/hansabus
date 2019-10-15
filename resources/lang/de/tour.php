@@ -73,6 +73,7 @@ return [
     'status_changed'=>'Tourstatus geändert.',
     'vehicle_already_booked'=>'Fahrzeug bereits gebucht.',
 
+    'calendar_color'    =>  'Kalenderfarbe',
     'booked_for_tour'   =>  'Sie haben für die Tour gebucht',
     'passengers_allowed'=>' passagiere erlaubt.',
     'description' => 'Beschreibung',
@@ -82,5 +83,13 @@ return [
     'pls_create_invoice'    =>  'Bitte erstellen Sie eine Rechnung',
     'driver_details'    =>  'Treiberdetails',
     'action'    =>  'Aktion',
+    'select_color'    =>  'Wähle Farbe',
+    'colors'=>[
+        'red'       =>'Rot',
+        'blue'      =>'Blau',
+        'dark_green'=>'Dunkelgrün',
+        'yellow'    =>'Gelb',
+        'orange'    =>  'Orange'
+    ],
 
 ];

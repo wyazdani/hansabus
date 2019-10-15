@@ -69,7 +69,7 @@ class HireDriverController extends Controller
             Driver: '.$row->driver->driver_name.', 
             Customer: '.$row->customer->name;
             $events[$i]['url'] = url('/hire-driver/'.$row->id);
-            $events[$i]['backgroundColor'] = $colors[$j];
+            $events[$i]['backgroundColor'] = $row->color;
             $i++; $j++;
         }
 //        dd($data);
@@ -207,7 +207,8 @@ class HireDriverController extends Controller
             'customer_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            'price' => 'required|numeric|digits_between:1,20'
+            'price' => 'required|numeric|digits_between:1,20',
+            'color' =>  'required'
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -251,6 +252,7 @@ class HireDriverController extends Controller
                 $HireDriver->from_date = $from;
                 $HireDriver->to_date = $to;
                 $HireDriver->price = (int)$request->price;
+                $HireDriver->color = $request->color;
                 if ($HireDriver->save()) {
 
                     toastr()->success(__('hire.created'));
@@ -351,7 +353,8 @@ class HireDriverController extends Controller
             'from_date' => 'required',
             'to_date' => 'required',
             'driver_id' => 'required|integer',
-            'price' => 'required|numeric|digits_between:1,20'
+            'price' => 'required|numeric|digits_between:1,20',
+            'color' =>  'required'
         ];
         $messages = [
             'customer_id.required' => 'Please select customer.',
@@ -398,6 +401,7 @@ class HireDriverController extends Controller
                 $hire->from_date = date('Y-m-d h:i', strtotime($request->from_date));
                 $hire->to_date = date('Y-m-d h:i', strtotime($request->to_date));
                 $hire->price = (int)$request->price;
+                $hire->color = $request->color;
                 if ($hire->save()) {
                     toastr()->success(__('hire.updated'));
 

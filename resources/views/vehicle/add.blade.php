@@ -128,11 +128,18 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput4">{{__('vehicle.color')}}<span class="{{($errors->has('color')) ?'errorStar':''}}"></span></label>
+                                                        <label for="projectinput3">{{__('vehicle.color')}}<span class="{{($errors->has('color')) ?'errorStar':''}}">*</span></label>
+                                                        <select name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}"
 
-                                                        <input type="text" name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($vehicle->color))?$vehicle->color:old('color') }}">
+                                                        >
+                                                            <option value="">{{__('tour.select_color')}}</option>
+                                                            <option value="#04b1cc" @if(!empty($vehicle) && $vehicle->color=="#04b1cc" || old('color') == "#04b1cc") selected @endif>{{__('tour.colors.blue')}}</option>
+                                                            <option value="#00731f" @if(!empty($vehicle) && $vehicle->color=="#00731f" || old('color') == "#00731f") selected @endif>{{__('tour.colors.dark_green')}}</option>
+                                                            <option value="#d6c809" @if(!empty($vehicle) && $vehicle->color=="#d6c809" || old('color') == "#d6c809") selected @endif>{{__('tour.colors.yellow')}}</option>
+                                                            <option value="#db7107" @if(!empty($vehicle) && $vehicle->color=="#db7107" || old('color') == "#db7107") selected @endif>{{__('tour.colors.orange')}}</option>
+                                                            <option value="#ff1408" @if(!empty($vehicle) && $vehicle->color=="#ff1408" || old('color') == "#ff1408") selected @endif>{{__('tour.colors.red')}}</option>
 
-
+                                                        </select>
                                                     </div>
                                                 </div>
 

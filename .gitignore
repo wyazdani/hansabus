@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/attachments
 /storage/*.key
 /storage/framework
 /storage/logs
@@ -9,6 +10,9 @@
 .env.backup
 .phpunit.result.cache
 .idea
+.idea/workspace.xml
+.idea/ecoach.iml
+.idea/php.xml
 Homestead.json
 Homestead.yaml
 npm-debug.log

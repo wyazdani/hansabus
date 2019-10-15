@@ -16,7 +16,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalVehicles }}</h3>
-								<span>{{ __('messages.vehicles') }}</span>
+								<span><a href="{{ route('vehicles.index') }}" style="color: gray">{{ __('messages.vehicles') }}</a></span>
 							</div>
 						</div>
 					</div>
@@ -33,7 +33,7 @@
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalDrivers  }}</h3>
-								<span>{{ __('messages.drivers') }}</span>
+								<span><a href="{{ route('v-drivers.index') }}" style="color: gray">{{ __('messages.drivers') }}</a></span>
 							</div>
 						</div>
 					</div>
@@ -46,28 +46,11 @@
 					<div class="px-3 py-3">
 						<div class="media">
 							<div class="media-body text-left align-self-center">
-								<i class="fa fa-university success font-large-2 float-left"></i>
+								<i class="icon-users success font-large-2 float-left"></i>
 							</div>
 							<div class="media-body text-right">
 								<h3>{{ $totalCustomers  }}</h3>
-								<span>{{ __('messages.customers') }}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xl-3 col-lg-6 col-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="px-3 py-3">
-						<div class="media">
-							<div class="media-body text-left align-self-center">
-								<i class="icon-settings danger font-large-2 float-left"></i>
-							</div>
-							<div class="media-body text-right">
-								<h3>423</h3>
-								<span>{{ __('messages.vehicle_maintenance') }}</span>
+								<span><a href="{{ route('customers.index') }}" style="color: gray">{{ __('messages.customers') }}</a></span>
 							</div>
 						</div>
 					</div>
@@ -93,7 +76,7 @@
 						<table class="table table-hover table-xl mb-0" id="recent-orders">
 							<thead>
 							<tr>
-								<th class="border-top-0" width="5%">ID</th>
+								<th class="border-top-0" width="5%">Tour ID</th>
 								<th class="border-top-0" width="15%">{{__('tour.customer')}}</th>
 								<th class="border-top-0" width="15%">{{__('tour.vehicle')}}</th>
 								<th class="border-top-0" width="12%">{{__('tour.from')}}</th>
@@ -105,15 +88,15 @@
 							</tr>
 							</thead>
 							<tbody>
-							@if(count($recentTours))
 							@foreach($recentTours as $tour)
+
 								<tr>
-									<td class="text-truncate">{!! $tour->id !!}</td>
-									<td class="text-truncate">{!! !empty($tour->customer_id)?$tour->customer->name:'' !!}</td>
-									<td class="text-truncate">{!! !empty($tour->vehicle_id)?$tour->vehicle->name:'' !!}</td>
+									<td class="text-truncate"><a href="{{ route('tour-detail',$tour->id) }}">{!! $tour->id !!}</a></td>
+									<td class="text-truncate">{!! !empty($tour->customer->name)?$tour->customer->name:'' !!}</td>
+									<td class="text-truncate">{!! !empty($tour->vehicle->name)?$tour->vehicle->name:'' !!}</td>
 									<td class="text-truncate">{!! $tour->from_date !!}</td>
 									<td class="text-truncate">{!! $tour->to_date !!}</td>
-									<td class="text-truncate">{!! !empty($tour->driver_id)?$tour->driver->driver_name:'' !!}</td>
+									<td class="text-truncate">{!! !empty($tour->driver->driver_name)?$tour->driver->driver_name:'' !!}</td>
 									<td class="text-truncate">{!! $tour->passengers !!}</td>
 									<td class="text-truncate">{!! $tour->price !!}</td>
 									<td class="text-truncate">
@@ -126,9 +109,6 @@
 									</td>
 								</tr>
 							@endforeach
-							@else
-								<tr><td colspan="9" style="text-align: center">{{__('messages.no_records')}}</td></tr>
-							@endif
 							</tbody>
 
 						</table>
@@ -158,43 +138,27 @@
 					</div>
 					<p>&nbsp;</p>
 				</div>
-
-
 			</div>
 		</div>
-
-
-
 	</div>
 @endsection
 @section('pagejs')
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			var calendarEl = document.getElementById('calendar');
 
-			var calendar = new FullCalendar.Calendar(calendarEl, {
-				plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-				height: 'parent',
+		$(function() { // document ready
+			$('#calendar').fullCalendar({
+				now: '{{ date('Y-m-d') }}',
+				aspectRatio: 1.8,
 				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+					left: 'title',
+					center: '',
+					right: 'prev,next' // today agendaDay,month prev,next'
 				},
-				buttonText: {
-					today: '{{__("tour.today")}}',
-					month: '{{__("tour.month")}}',
-					week: '{{__("tour.week")}}',
-					day: '{{__("tour.day")}}'
-				},
-				defaultView: 'dayGridMonth',
-				defaultDate: '2019-06-12',
-				navLinks: true, // can click day/week names to navigate views
-				editable: true,
-				eventLimit: true, // allow "more" link when too many events
-				events: {!! json_encode($calendarTours) !!}
+				defaultView: 'month', // month, agendaDay
+				fixedWeekCount: false,
+				events:{!! json_encode($events) !!},
+				timeFormat: 'h(:mm) A'
 			});
-
-			calendar.render();
 		});
 	</script>
 @endsection

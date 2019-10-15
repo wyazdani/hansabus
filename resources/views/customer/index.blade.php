@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6 text-right">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <a href="{{ route('customers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i> {{__('customer.heading.add')}}</a>
+                                <a href="{{ route('customers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"> {{__('customer.heading.add')}}</a>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                                     <th class="border-top-0" width="10%">{{__('customer.mobile')}}</th>
                                     <th class="border-top-0" width="20%">{{__('customer.address')}}</th>
                                     <th class="border-top-0" width="15%">{{__('customer.web')}}</th>
-                                    <th class="border-top-0" width="10%">&nbsp;</th>
+                                    <th class="border-top-0 d-print-none" width="10%">{{__('tour.action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,10 +47,9 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('pagejs')
-    @include('customer.view')
+@include('customer.view')
     <script>
         var deleteMe = function(id){
 
@@ -74,11 +73,11 @@
                 cache: false,
                 success: function(cus){
 
-                    $('#v_name').html(cus.name);
-                    $('#v_email').html(cus.email);
-                    $('#v_phone').html(cus.phone);
-                    $('#v_url').html(cus.url);
-                    $('#v_address').html(cus.address);
+                    $('#v_name').html(cus.name?cus.name:'None');
+                    $('#v_email').html(cus.email?cus.email:'None');
+                    $('#v_phone').html(cus.phone?cus.phone:'None');
+                    $('#v_url').html(cus.url?cus.url:'None');
+                    $('#v_address').html(cus.address?cus.address:'None');
 
                     if(cus.status == 1) $('#v_status').html('Yes'); else $('#v_status').html('No');
 
@@ -91,20 +90,40 @@
 
             var tableDiv = $('#listingTable').DataTable({
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
 
-                "language": {
-                    "search": "{{__('messages.search')}}"
-                },
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
+                'bSortable': true,
+                'bProcessing': true,
                 "bInfo": false,
+                "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
                 "searchable" : true,
+                "language": {
+                    "search": "{{__('messages.search')}}",
+                    "emptyTable": "{{__('messages.no_record')}}"
+                },
                 "pageLength": 10,
                 "bLengthChange" : false,
                 "aoColumnDefs": [{
 
                     "aTargets": [6],
                     "mData": "",
+                    'className' : "d-print-none",
                     "mRender": function (data, type, row) {
 
                         var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';
@@ -131,7 +150,7 @@
                         view += ' href="javascript:;" onclick="viewCustomer('+row.id+');" >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
-                        buttons = status+edit+trash+view;
+                        buttons = status+edit+view;
                         return buttons;
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
@@ -145,13 +164,11 @@
                     { "data": "phone" },
                     { "data": "address" },
                     { "data": "url" },
-
-                    // { "data": "actions" }
                 ],
                 drawCallback: deleteMe|viewCustomer,
                 "fnDrawCallback": function(oSettings) {
                     if ($('#listingTable tr').length < 11) {
-                        $('.dataTables_paginate').hide();
+                        // $('.dataTables_paginate').hide();
                     }
                 }
 

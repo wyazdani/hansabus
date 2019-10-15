@@ -16,7 +16,7 @@ class TourStatusTable extends Migration
         Schema::create('tour_status', function ($table) {
 
             $table->increments('id')->unsigned();
-            $table->string('name',200);
+            $table->string('name',200)->nullable();
 
             $table->softDeletes();
             $table->timestamps();

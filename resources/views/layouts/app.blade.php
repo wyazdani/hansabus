@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="de" class="loading">
 @include('layouts.head')
 
 @if(Auth::check())
@@ -26,7 +26,7 @@
 </body>
 @else
 <body data-col="1-column" class=" 1-column  blank-page blank-page">
-	@yield('content')     
+	@yield('content')
 </body>		
 @endif
 </html>

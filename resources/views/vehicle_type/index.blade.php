@@ -14,7 +14,7 @@
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('vehicle_type.heading.add')}}</a>
+								<a href="{{ route('vehicle-type.create') }}" id="addRow" class="btn btn-info ml-2 mt-2">{{__('vehicle_type.heading.add')}}</a>
 							</div>
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 									<tr>
 										<th class="border-top-0" width="10%">ID</th>
 										<th class="border-top-0" width="80%">{{__('vehicle_type.name')}}</th>
-										<th class="border-top-0" width="10%">&nbsp;</th>
+										<th class="border-top-0" width="10%">{{__('tour.action')}}</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -69,13 +69,14 @@
 
 			var tableDiv = $('#listingTable').DataTable({
 
-				"language": {
-					"search": "{{__('messages.search')}}"
-				},
 				"bInfo": false,
 				"processing": true,
 				"serverSide": true,
 				"searchable": true,
+				"language": {
+					"search": "{{__('messages.search')}}",
+					"emptyTable": "{{__('messages.no_record')}}"
+				},
 				"pageLength": 10,
 				"bLengthChange" : false,
 				"aoColumnDefs": [{
@@ -86,13 +87,13 @@
 
 						var edit = '';  var trash = '';  var view = ''; var status=''; var buttons = '';
 
-						// console.log(row.status);
 						status  = '<a class="danger p-0" data-original-title="Change Status" title="Change Status" ';
 						if(row.status == '1'){
 							status  = '<a class="success p-0" data-original-title="Change Status" title="Change Status" ';
 						}
 
-
+						status += 'href="{!! url("/vehicle-type/change-status/'+row.id+'") !!}">';
+						status += '<i class="icon-power font-medium-3 mr-2"></i></a>';
 
 
 						edit  = '<a class="info p-0" data-original-title="Edit" title="Edit" ';
@@ -103,7 +104,7 @@
 						trash += ' href="javascript:;" onclick="deleteMe('+row.id+')" >';
 						trash += '<i class="icon-trash font-medium-3 mr-2"></i></a>';
 
-						buttons = edit+trash;
+						buttons = status+edit;
 						return buttons;
 						// return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
 					}
@@ -118,9 +119,12 @@
 				// drawCallback: deleteMe,
 				"fnDrawCallback": function(oSettings) {
 					if ($('#listingTable tr').length < 11) {
-						$('.dataTables_paginate').hide();
+						// $('.dataTables_paginate').hide();
 					}
-				}
+				},
+				'bSortable': true,
+				'bProcessing': true,
+				"order": [[ 0, "desc" ]],
 
 			});
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';

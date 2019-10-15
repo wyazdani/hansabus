@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class VehicleType extends Model
 {
      protected $table = 'vehicle_types';
-     protected $fillable =['name'];
+     protected $fillable =['name','status'];
 
 
     use SoftDeletes;

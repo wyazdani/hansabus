@@ -14,11 +14,10 @@
 
 						<div class="col-sm-6 col-md-6 text-right">
 							<div class="dataTables_filter">
-								<a href="{{ route('v-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2"><i class="ft-plus"></i>{{__('driver.heading.add')}}</a>
+								<a href="{{ route('v-drivers.create') }}" id="addRow" class="btn btn-info ml-2 mt-2">{{__('driver.heading.add')}}</a>
 							</div>
 						</div>
 					</div>
-					<div class="row"><div class="col-12">@include('layouts.errors')</div></div>
 				</div>
 
 				<div class="card-content mt-1">
@@ -35,7 +34,7 @@
 											<th class="border-top-0" width="15%">{{__('driver.license')}}</th>
 											<th class="border-top-0" width="10%">{{__('driver.nin')}}</th>
 											<th class="border-top-0" width="10%">{{__('driver.phone')}}</th>
-											<th class="border-top-0" width="10%">&nbsp;</th>
+											<th class="border-top-0" width="10%">{{__('tour.action')}}</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -58,7 +57,7 @@
 			if(confirm('{{__("messages.want_to_delete")}}')){
 
 				$.ajax({
-					url: '/v-drivers/'+id,
+					url: '{{ url('/v-drivers') }}/'+id,
 					data: "_token={{ csrf_token() }}",
 					type: 'DELETE',  // user.destroy
 					success: function(result) {
@@ -95,13 +94,33 @@
 
 			var tableDiv = $('#listingTable').DataTable({
 
-				"language": {
-					"search": "{{__('messages.search')}}"
-				},
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'print',
+						customize: function ( win ) {
+							$(win.document.body)
+									.css( 'font-size', '10pt' )
+									.prepend('@include('layouts.print_header')')
+									.append('@include('layouts.print_footer')');
+
+							$(win.document.body).find( 'table' )
+									.addClass( 'compact' )
+									.css( 'font-size', 'inherit' );
+						}
+					}
+				],
+				'bSortable': true,
+				'bProcessing': true,
 				"bInfo": false,
+				"order": [[ 0, "desc" ]],
 				"processing": true,
 				"serverSide": true,
 				"searchable" : true,
+				"language": {
+					"search": "{{__('messages.search')}}",
+					"emptyTable": "{{__('messages.no_record')}}"
+				},
 				"pageLength": 10,
 				"bLengthChange" : false,
 				"aoColumnDefs": [{
@@ -134,7 +153,7 @@
 						view += ' href="javascript:;" onclick="viewDriver('+row.id+');" >';
 						view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 
-						buttons = status+edit+trash+view;
+						buttons = status+edit+view;
 						return buttons;
 						// return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
 					}
@@ -148,16 +167,13 @@
 					{ "data": "driver_license" },
 					{ "data": "nic" },
 					{ "data": "phone" },
-
-					// { "data": "actions" }
 				],
 				drawCallback: deleteMe|viewDriver,
 				"fnDrawCallback": function(oSettings) {
 					if ($('#listingTable tr').length < 11) {
-						$('.dataTables_paginate').hide();
+						// $('.dataTables_paginate').hide();
 					}
 				}
-
 			});
 			tableDiv.sPaging = 'btn btn-info ml-2 mt-2';
 		} );

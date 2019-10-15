@@ -16,9 +16,9 @@ class TourAttachmentsTable extends Migration
         Schema::create('tour_attachments', function ($table) {
 
             $table->increments('id');
-            $table->integer('tour_id')->unsigned();
-            $table->string('file')->default('');
-            $table->string('ext',10)->default('');
+            $table->integer('tour_id')->unsigned()->nullable();
+            $table->string('file')->default('')->nullable();
+            $table->string('ext',10)->default('')->nullable();
             $table->timestamps();
         });
     }

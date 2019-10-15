@@ -221,8 +221,11 @@ th {
 }
 
 label {
-  display : inline-block;
-  margin-bottom : 0.5rem;
+    color: #75787D;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
 }
 
 button {
@@ -12870,9 +12873,9 @@ input:focus ~ .bg-success {
 }
 
 .alert-success {
-  border-color : #1e9ff2 !important;
-  background-color : #1e9ff2 !important;
-  color : #0B3A29 !important;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 }
 .alert-success .alert-link {
   color : #051811 !important;
@@ -53655,7 +53658,7 @@ dl {
   color: #000;
 }
 dt{
-	width: 50%;
+	width: 60%;
   float: left;
 }
 dd{
@@ -53755,8 +53758,82 @@ input:checked + .slider:before {
 	top: 4px;
 }
 
+.card-content .modal-body.row {
+    border-top: 1px solid #E9ECEF;
+    padding: 20px 40px 20px;
+    margin: 0 0px;
+}
+.upload-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding: 15px;
+    letter-spacing: -5px;
+}
+
+.upload-list li {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
+    letter-spacing: 0;
+    overflow: hidden;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+
+.upload-list li img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 .error_input{
     border-color : red !important;
 }
+.datepicker table tr td span.active,
+.datepicker table tr td span.active:hover,
+.datepicker table tr td span.active.disabled,
+.datepicker table tr td span.active.disabled:hover {
+    background: #0C84D1 !important;
+    background-image:none;
+}
 
-
+.errorStar{
+    color: #FE3600;
+    font-size: 18px;
+}
+.dropzone {
+    border: dashed 3px #B4B4B4;
+}
+.fc-time {
+    display:block;
+    padding-left: 10px !important;
+    letter-spacing: 1px !important;
+    font-family: 'Montserrat', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+    font-weight: 100 !important;
+    font-size: 14px !important;
+    line-height: 1.2em !important;
+    color: black !important;
+}
+.fc-title {
+    display: inline-block !important;
+    padding: 0 0 10px 10px !important;
+    letter-spacing: 1px !important;
+    font-family: 'Montserrat', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+    font-weight: 100 !important;
+    font-size: 16px !important;
+    line-height: 1.2em !important;
+    color: black !important;
+}
+.fc-today { background-color: #F2F3F8 !important;
+    color: #777777 !important;
+}
+.table-responsive table  tbody th,
+.table-responsive table tbody td{
+    white-space: nowrap;
+}
+.bootstrap-select > .dropdown-toggle{
+    background: #fff;
+    border: 1px solid #CED4DA;
+}

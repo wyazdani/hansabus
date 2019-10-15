@@ -96,7 +96,86 @@
     </div>
     <script>
         $(document).ready(function() {
+            var tableDiv = $('#listingTable').DataTable( {
 
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' )
+                                .prepend('@include('layouts.print_header')')
+                                .append('@include('layouts.print_footer')');
+
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
+                "bInfo": false,
+                "order": [[ 0, "desc" ]],
+                "processing": true,
+                "serverSide": true,
+                "searchable" : true,
+                "language": {
+                    "search": "{{__('messages.search')}}",
+                    "emptyTable": "{{__('messages.no_record')}}"
+                },
+                "pageLength": 10,
+                "bLengthChange" : false,
+                "aoColumnDefs": [{
+
+                    "aTargets": [9],
+                    "mData": "",
+                    "mRender": function (data, type, row) {
+
+                        var edit = '';   var email = ''; var view = ''; var buttons = '';
+
+
+
+                            edit  = '<a class="btn" title="Edit" ';
+                            edit += 'href="{!! url("/offers/'+row.id+'/edit") !!}">';
+                            edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
+
+                            email  = '<a class="btn" href="javascript:void(0)"';
+                            email += ' data-inquiry_id="'+row.id+'" id="send_mail_popup" title="Email" >';
+                            email += '<i style="'+((row.status ==1)?"color:green":'')+'" class="icon-envelope font-medium-3 mr-2"></i></a>';
+                        view  = '<a class="p-0 d-print-none view_offer" data-inquiry_id="'+row.id+'" title="View" ';
+                        view += ' href="javascript:;"  >';
+                        view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
+
+
+                        buttons = view+edit+email;
+                        return buttons;
+
+
+
+                        // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
+                    }
+                }],
+                "ajax": "{{ url('/offer-list') }}",
+                'rowId': 'id',
+                "columns": [
+                    { "data": "id" },
+                    { "data": "name" },
+                    { "data": "from_address" },
+                    { "data": "to_address" },
+                    { "data": "time0" },
+                    { "data": "time1" },
+                    { "data": "type" },
+                    { "data": "email" },
+                    { "data": "web" },
+                    // { "data": "actions" }
+                ],
+                "fnDrawCallback": function(oSettings) {
+                    if ($('#listingTable tr').length < 12) {
+                        // $('.dataTables_paginate').hide();
+                    }
+                }
+
+            });
             $('body').on('click', '#send_mail_popup', function () {
                 var elem        =   $(this);
                 var inquiry_id  =   elem.data('inquiry_id');

@@ -62,5 +62,7 @@ return [
     'gross' =>  'Gross',
     'invoice_amount' =>  'Invoice Amount',
     'payable_amount' =>  'Payable Amount',
+    'date_of_service' =>  'Date Of Service',
+    'departure_time' =>  'Departure Time',
 
     ];

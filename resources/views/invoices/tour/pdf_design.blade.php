@@ -65,10 +65,10 @@
                                 </tr>
                                 <tr>
                                     <td class="left">
-                                        <span>{{ __('tour_invoice.calculate_as_follows') }}:</span><br><br>
+                                        {{--<span>{{ __('tour_invoice.calculate_as_follows') }}:</span><br><br>--}}
                                         {{--<span>{{ __('tour_invoice.holiday_destination') }} :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Miete Waschhalle, Werkstatt, Stellplatz</span><br>--}}
-                                        <span>{{ __('tour_invoice.when_to_go') }} :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{!! date("d.m.Y",strtotime($tour->from_date)) !!} - {!! date("d.m.Y",strtotime($tour->to_date)) !!}</span><br>
-                                        <span>{{ __('tour_invoice.passengers') }} :</span>&nbsp;&nbsp;&nbsp;<span>{!! $tour->passengers !!}</span><br>
+                                        {{--<span>{{ __('tour_invoice.when_to_go') }} :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{!! date("d.m.Y",strtotime($tour->from_date)) !!} - {!! date("d.m.Y",strtotime($tour->to_date)) !!}</span><br>--}}
+                                        {{--<span>{{ __('tour_invoice.passengers') }} :</span>&nbsp;&nbsp;&nbsp;<span>{!! $tour->passengers !!}</span>--}}<br>
                                     </td>
                                 </tr>
                             </table>
@@ -82,42 +82,50 @@
                 <table id="table" style="padding: 5px 5px;font-size: 7.5px;">
                     <thead>
                     <tr class="header">
-                        <th><strong style="display: block;text-transform: capitalize">{{__('tour_invoice.tour_id')}}</strong> </th>
-                        <th><strong style="display: block;text-transform: capitalize">{{ __('tour.vehicle') }}</strong> </th>
+                        <th><strong style="display: block;text-transform: capitalize">{{__('tour_invoice.date_of_service')}}</strong> </th>
+                        <th><strong style="display: block;text-transform: capitalize">{{ __('tour.customer') }}</strong> </th>
+                        <th><strong style="display: block;text-transform: capitalize">{{ __('tour_invoice.departure_time') }}</strong> </th>
+                        <th><strong style="display: block;text-transform: capitalize">{{ __('tour.from') }}</strong> </th>
+                        <th><strong style="display: block;text-transform: capitalize">{{ __('tour.to') }}</strong> </th>
                         <th><strong style="display: block;text-transform: capitalize">{{ __('tour.price') }}</strong> </th>
                         <th><strong style="display: block;text-transform: capitalize">{{__('tour_invoice.gross')}}</strong> </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{!! $tour->id !!}</td>
-                        <td>{{ $tour->vehicle->name }}</td>
-                        <td>{{ $tour->price }}</td>
-                        <td>{{ $tour->price }} €</td>
+                        @foreach($tour as $t)
+                            <td>Hansa Bustouristik {{date("d.m.Y",strtotime($t->from_date)) }}</td>
+                            <td>Nr. {{ $customer->id  }}</td>
+                            <td>{{ date("H:i:s",strtotime($t->from_date)) }}</td>
+                            <td>{{ date("H:i:s",strtotime($t->from_date)) }}</td>
+                            <td>{{ date("H:i:s",strtotime($t->from_date)) }}</td>
+                            <td>{{ $t->price }}</td>
+                            <td>{{ $t->price }} €</td>
+                        @endforeach
                     </tr>
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="2" style="text-align: left;font-size: 8px;">{{__('tour_invoice.included_in_value')}}:</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour.total_amount')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">{{ $total }} €</td>
+                        <td colspan="3" style="text-align: left;font-size: 8px;">{{__('tour_invoice.included_in_value')}}:</td>
+                        <td colspan="4" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour.total_amount')}}</td>
+                        <td colspan="4" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">{{ $total }} €</td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="text-align: left;font-size: 8px;">{{__('tour_invoice.vat')}} <strong style="float: right">@if(!empty($vat)) {{$vat}} @endif €</strong></td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;">+ {{__('tour_invoice.value_added')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;font-weight: bold;">@if(!empty($vat)) {{$vat}} @endif €</td>
+                        <td colspan="3" style="text-align: left;font-size: 8px;">{{__('tour_invoice.vat')}} <strong style="float: right">@if(!empty($vat)) {{$vat}} @endif €</strong></td>
+                        <td colspan="3" style="text-align: left;font-size: 8px;">+ {{__('tour_invoice.value_added')}}</td>
+                        <td colspan="3" style="text-align: left;font-size: 8px;font-weight: bold;">@if(!empty($vat)) {{$vat}} @endif €</td>
                     </tr>
                     <tr>
-                        <td colspan="1"></td>
-                        <td colspan="1"></td>
-                        <td colspan="1" style="text-align: right;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour_invoice.invoice_amount')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">@if(!empty($total)) {{$total + $vat}} @endif €</td>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
+                        <td colspan="2" style="text-align: right;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour_invoice.invoice_amount')}}</td>
+                        <td colspan="2" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">@if(!empty($total)) {{$total + $vat}} @endif €</td>
                     </tr>
                     <tr>
-                        <td colspan="1"></td>
-                        <td colspan="1"></td>
-                        <td colspan="1" style="text-align: right;font-size: 8.5px;border-top: 0.5px solid #000;font-weight: bold;">{{__('tour_invoice.payable_amount')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8.5px;border-top: 0.5px solid #000;font-weight: bold;">@if(!empty($total)) {{$total + $vat}} @endif €</td>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
+                        <td colspan="2" style="text-align: right;font-size: 8.5px;border-top: 0.5px solid #000;font-weight: bold;">{{__('tour_invoice.payable_amount')}}</td>
+                        <td colspan="2" style="text-align: left;font-size: 8.5px;border-top: 0.5px solid #000;font-weight: bold;">@if(!empty($total)) {{$total + $vat}} @endif €</td>
                     </tr>
                     </tfoot>
                 </table>

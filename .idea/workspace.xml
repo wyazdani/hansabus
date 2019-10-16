@@ -4,15 +4,14 @@
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HireDriverController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/General.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/General.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TourInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TourInvoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/hansa_logo_colored.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/hansa_logo_colored.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hire-drivers/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/print_footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/print_footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,12 +127,13 @@
       <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
     </include_path>
   </component>
+  <component name="ProjectId" id="1SGwCFL3pHOQqOZwcDRQBR9LrK6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pay-per-view-blade" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -179,7 +179,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0bbddbc2-aed8-44c7-b061-be5d8e47153b" name="Default Changelist" comment="" />
+      <changelist id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="" />
       <created>1560322992124</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -188,11 +188,23 @@
       <workItem from="1560418421222" duration="2161000" />
       <workItem from="1560420594837" duration="314000" />
       <workItem from="1560420993581" duration="44574000" />
+      <workItem from="1571203125477" duration="8340000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

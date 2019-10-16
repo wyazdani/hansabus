@@ -61,4 +61,6 @@ return [
     'gross' => 'bruto',
     'invoice_amount' =>  'Rechnungsbetrag',
     'payable_amount' =>  'zu zahlender Betrag',
+    'date_of_service' =>  'Fahrtdatum',
+    'departure_time' =>  'Abfahrtzeit',
 ];

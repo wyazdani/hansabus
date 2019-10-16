@@ -94,7 +94,7 @@ class General
         $views= $viewHtml;
         $pdf->writeHTML($views, true, false, false, false, '');
 
-        return $pdf->Output($subject.'_'.date("Y-m-d h:i:s").'_'.$outputname.".pdf", 'D');
+        return $pdf->Output($subject.'_'.date("Y-m-d h:i:s").'_'.$outputname.".pdf", 'I');
     }
     public static function EmailPdf($orientation,$viewHtml,$outputname,$subject){
 

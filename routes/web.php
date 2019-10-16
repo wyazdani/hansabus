@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/download-tours-invoice', 'TourInvoiceController@downloadInvoice')->name('download-tours-invoice');
     Route::post('/generate-tour-invoice', 'TourInvoiceController@generateInvoice')->name('generate-tour-invoice');
     Route::post('/tour-driver-form', 'TourInvoiceController@driver_pdf')->name('tour-driver-form');
+    Route::post('/generate-bulk-tour-invoice', 'TourInvoiceController@generateInvoiceBulk')->name('generate-bulk-tour-invoice');
 
     /* Drivers */
     Route::resource('v-drivers', 'DriverController');

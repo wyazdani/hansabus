@@ -113,7 +113,7 @@ class TourInvoiceController extends Controller
             $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
             $row->to_date   = date('d.m.Y H:i',strtotime($row->to_date));
         }
-        return view('invoices.tour.create',compact('pageTitle','customers','rows'));
+        return view('invoices.tour.create',compact('pageTitle','customers','rows','request'));
     }
 
     public function getList(Request $request)
@@ -207,7 +207,7 @@ class TourInvoiceController extends Controller
     }
     public function generateInvoice(Request $request){
 
-        dd($request->all());
+
         if(!empty($request->customer_id) && $request->customer_id>0) {
 
             /* save invoice */
@@ -215,6 +215,7 @@ class TourInvoiceController extends Controller
             $invoice->customer_id = (int)$request->customer_id;
             $invoice->total = (int)$request->total;
             $invoice->status = 1;
+            $invoice->is_bulk = 0;
             $invoice->save();
 
             /* save invoice details */
@@ -250,7 +251,7 @@ class TourInvoiceController extends Controller
 
         $customer = $invoice->customer;
         $invoice_details = TourInvoiceDetail::where('invoice_id',$invoice->id)->get();
-        $tour ='';
+        $tour =[];
         foreach($invoice_details as $inv){
             $inv->tour;
             $inv->tour->driver;
@@ -258,11 +259,12 @@ class TourInvoiceController extends Controller
             $inv->tour->vehicle;
             $total += $inv->tour->price;
 
-            $tour = $inv->tour;
+            $tour[] = $inv->tour;
         }
 
         $vat = ($total/100)*19;
 
+        
         $invoice_date   =   date('Y-m-d');
         $html   =   view('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
         return General::DownloadPdf("P",$html,"tour_invoice","Invoice");
@@ -282,7 +284,35 @@ class TourInvoiceController extends Controller
 
         return General::CreatePdf("P",$html,"driver_form","Form");
 
+    }
+    public function generateInvoiceBulk(Request $request){
+        $invoice = new TourInvoice;
+        $invoice->customer_id = (int)$request->customer_id;
+        $invoice->total = $request->grand_total;
+        $invoice->status = 1;
+        $invoice->is_bulk = 1;
+        $invoice->save();
+        foreach ($request->tours_ids as $tours_id){
+            $invoice_detail = new TourInvoiceDetail;
+            $invoice_detail->invoice_id = $invoice->id;
+            $invoice_detail->tour_id = $tours_id;
+            $invoice_detail->save();
+        }
+        foreach ($request->tours_ids as $tours_id){
+            $invoice = new TourInvoice;
+            $tour   =   Tour::find($tours_id);
+            $invoice->customer_id = (int)$request->customer_id;
+            $invoice->total = $tour->price;
+            $invoice->status = 1;
+            $invoice->save();
+            $invoice_detail = new TourInvoiceDetail;
+            $invoice_detail->invoice_id = $invoice->id;
+            $invoice_detail->tour_id = $tours_id;
+            $invoice_detail->save();
+        }
+        if (!empty($request->tours_ids)) {
 
-
+            Tour::whereIn('id', $request->tours_ids)->update(['status' => 3]);
+        }
     }
 }

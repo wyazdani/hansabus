@@ -28,6 +28,7 @@ return array(
     'action'            =>  'Action',
     'type'              =>  'Type',
     'price'                 =>  'Price',
+    'comment'                 =>  'Comment',
     'thankyou_for_inquiry'  =>  'Thank You For Your inquiry Please see details below',
     'mail_sent'             =>  'Mail Sent Succesfully',
     'pls_enter_price'       =>  'Please Enter Price',

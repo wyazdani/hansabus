@@ -264,7 +264,7 @@ class TourInvoiceController extends Controller
 
         $vat = ($total/100)*19;
 
-        
+
         $invoice_date   =   date('Y-m-d');
         $html   =   view('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
         return General::DownloadPdf("P",$html,"tour_invoice","Invoice");

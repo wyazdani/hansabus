@@ -112,7 +112,12 @@ class OfferController extends Controller
             $row->time1 = !empty($row->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($row->inquiryaddresses[1]->time)):'';
             $row->type  =   !empty($row->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way');
             $row->email;
-            $row->is_user   =   Customer::where('email','=',$row->email)->count();
+            $count  =   Customer::where('email','=',$row->email)->count();
+            $row->is_user       =   $count;
+            if ($count>0){
+                $row->customer_id   =   Customer::where('email','=',$row->email)->first()->id;
+            }
+
             $row->web   =   !empty($row->is_web)?__('messages.yes'):__('messages.no');
             $data[] = $row;
         }
@@ -298,15 +303,27 @@ class OfferController extends Controller
     public function send_mail(Request  $request)
     {
         if ($request->price){
-            $offer = Offer::create([
-               'inquiry_id' =>  $request->inquiry_id,
-                'price'     =>  $request->price
-            ]);
-            $general = new General();
+            $offer  =   Offer::where('inquiry_id','=',$request->inquiry_id)->first();
+            if (!$offer){
+                $offer = Offer::create([
+                    'inquiry_id' =>  $request->inquiry_id,
+                    'price'     =>  $request->price,
+                    'comment'     =>  $request->comment,
+                ]);
+            }
+            else
+            {
+                $offer->update([
+                    'inquiry_id' =>  $request->inquiry_id,
+                    'price'     =>  $request->price,
+                    'comment'     =>  $request->comment,
+                ]);
+            }
             $inquiry    =   Inquiry::find($request->inquiry_id);
             $inquiry->update([
                'status'     =>  1
             ]);
+
             Mail::send(new OfferEmail($request->inquiry_id,$request->price,$offer->id));
             toastr()->success(__('offer.mail_sent'));
             return redirect()->route('offers.index');

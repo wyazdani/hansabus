@@ -13,4 +13,7 @@ class Inquiry extends Model
     {
         return  $this->hasMany(InquiryAddress::class,'inquiry_id','id');
     }
+    public function offer(){
+        return $this->hasOne(Offer::class,'inquiry_id','id');
+    }
 }

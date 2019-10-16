@@ -29,9 +29,15 @@
             </div>
             <div class="col-md-6">
                 <label>{{__('offer.price')}}</label>
-                <input type="text" name="price" id="price"
+                <input required type="text" name="price" id="price"
                        class="{{($errors->has('price')) ?'error_input form-control has_numeric':'form-control has_numeric'}}">
             </div>
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <label>{{__('offer.comment')}}</label>
+                <textarea required rows="5" type="text" name="comment" id="comment" class="{{($errors->has('comment')) ?'error_input form-control':'form-control'}}"></textarea>
+            </div>
+
         </div>
 
         <div class="modal-footer">

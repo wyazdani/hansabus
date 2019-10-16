@@ -41,7 +41,12 @@ class TourConfirmationInvoice extends Mailable
     {
         $total=0;
 
-        $invoice = TourInvoiceDetail::where('tour_id','=',$this->tour_id)->first();
+        /*$invoice = TourInvoiceDetail::where('tour_id','=',$this->tour_id)->first();*/
+        $invoice = TourInvoiceDetail::join('tour_invoice as ti','ti.id','tour_invoice_details.invoice_id')
+                                    ->where('ti.is_bulk',0)
+                                    ->where('tour_id','=',$this->tour_id)
+                                    ->select('tour_invoice_details.id','tour_invoice_details.invoice_id')
+                                    ->first();
         $invoice = TourInvoice::find($invoice->invoice_id);
         // Invoice Number
         $general = new General();
@@ -49,7 +54,7 @@ class TourConfirmationInvoice extends Mailable
 
         $customer = $invoice->customer;
         $invoice_details = TourInvoiceDetail::where('invoice_id',$invoice->id)->get();
-        $tour ='';
+        $tour =[];
         foreach($invoice_details as $inv){
             $inv->tour;
             $inv->tour->driver;
@@ -57,7 +62,7 @@ class TourConfirmationInvoice extends Mailable
             $inv->tour->vehicle;
             $total += $inv->tour->price;
 
-            $tour = $inv->tour;
+            $tour[] = $inv->tour;
         }
         $vat = ($total/100)*19;
         $invoice_date   =   date('Y-m-d');

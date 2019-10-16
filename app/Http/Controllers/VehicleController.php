@@ -90,6 +90,13 @@
 
 
             }
+            if ($request->deleted){
+                $query = Vehicle::where('status', '=',0);
+            }else{
+                $query = Vehicle::where('status', '=',1);
+            }
+
+
             $recordsTotal = $query->count();
             $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','make','year','licensePlate','engineNumber','registrationNumber','status']);
 
@@ -109,7 +116,7 @@
         {
             $pageTitle = __('vehicle.heading.index');
 
-            return view('vehicle.index', compact('pageTitle'));
+            return view('vehicle.index', compact('pageTitle','request'));
         }
 
         public function status(Vehicle $Vehicle)

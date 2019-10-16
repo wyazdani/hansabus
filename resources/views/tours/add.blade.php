@@ -241,7 +241,7 @@
 															</div>
 
 
-
+<input type="hidden" value="{!! $request->is_offer !!}" name="is_offer">
 															<div class="form-group">
 																<label for="projectinput8">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
 																@if($request->description)

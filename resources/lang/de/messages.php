@@ -57,6 +57,7 @@
         'confirm_password'=>'Passwort bestätigen',
         'password_updated'=>'Passwort aktualisiert.',
         'offers'            =>  'Bietet an',
+        'trash'            =>  'Müll',
 
         'drag'=>'Ziehen Sie oder',
         'upload'=>'Hochladen',

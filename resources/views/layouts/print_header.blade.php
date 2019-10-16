@@ -1,1 +1,1 @@
-<p><img width="300px" src="{{ asset('images/hansa_logo_colored.png') }}" ></p>
+<p><img width="300px" src="{{ asset('images/hansa_logo_colored_2.png') }}" ></p>

@@ -6,6 +6,7 @@ use App\Mail\TestEmail;
 use App\Mail\TourConfirmation;
 use App\Mail\TourConfirmationInvoice;
 use App\Models\DriverBooking;
+use App\Models\OfferTour;
 use App\Models\TourInvoice;
 use App\Models\TourInvoiceDetail;
 use App\Models\TourStatus;
@@ -535,6 +536,12 @@ class ToursController extends Controller
                 $files = [];
                 $attachments = [];
 
+                if ($request->offer_id){
+                    OfferTour::create([
+                       'offer_id'   =>   $request->offer_id,
+                        'tour_id'   =>  $tour->id
+                    ]);
+                }
                 /* delete old tour attachments */
                 TourAttachment::where('tour_id', $tour->id)->delete();
 
@@ -578,7 +585,13 @@ class ToursController extends Controller
     public function tour_customer_email(Request  $request)
     {
         if ($request->send_invoice){
-            $invoice = TourInvoiceDetail::where('tour_id','=',$request->tour_id_email)->first();
+            /*$invoice = TourInvoiceDetail::where('tour_id','=',$request->tour_id_email)->first();*/
+            $invoice = TourInvoiceDetail::join('tour_invoice as ti','ti.id','tour_invoice_details.invoice_id')
+                ->where('ti.is_bulk',0)
+                ->where('tour_id','=',$request->tour_id_email)
+                ->select('tour_invoice_details.id')
+                ->first();
+
             if ($invoice){
                 Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
             }else{
@@ -594,6 +607,7 @@ class ToursController extends Controller
     }
     public function tour_send_email(Request  $request)
     {
+
         $tour = Tour::find($request->tour_id);
         return view('tours.email',compact('tour'));
 

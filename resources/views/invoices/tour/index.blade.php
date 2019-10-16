@@ -100,6 +100,7 @@
                                         <tbody id="toursDiv">
                                         @if(count($rows)>0)
                                             @foreach($rows as $row)
+
                                                 <tr>
                                                     @if($row->status == 'Unpaid')
                                                         <td><div class="custom-control custom-checkbox" style="top: -5px;">

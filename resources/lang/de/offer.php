@@ -28,7 +28,7 @@ return [
     'type'              =>  'Art',
 
     'price'             =>  'Preis',
-
+    'comment'                 =>  'Kommentar',
     'thankyou_for_inquiry'  =>  'Vielen Dank für Ihre Anfrage. Einzelheiten finden Sie weiter unten',
     'mail_sent'             =>  'Mail erfolgreich gesendet',
     'pls_enter_price'       =>  'Bitte Preis eingeben',

@@ -219,7 +219,6 @@ class ToursController extends Controller
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
             'description' => 'required',
-            'color' => 'required'
 //            'guide' => 'required',
         ];
         $messages = [
@@ -301,7 +300,7 @@ class ToursController extends Controller
                 $tour->price = !empty($request->price)?(int)$request->price:0;
                 $tour->guide = !empty($request->guide)?$request->guide:'';
                 $tour->description = !empty($request->description)?$request->description:'';
-                $tour->color = $request->color;
+                /*$tour->color = $request->color;*/
 
                 if ($tour->save()) {
 
@@ -424,7 +423,7 @@ class ToursController extends Controller
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
             'description' => 'required',
-            'color' => 'required'
+            /*'color' => 'required'*/
 //            'guide' => 'required',
         ];
         $messages = [
@@ -499,7 +498,7 @@ class ToursController extends Controller
                 $tour->price = (int)$request->price;
                 $tour->description = $request->description;
                 $tour->guide = $request->guide;
-                $tour->color = $request->color;
+                /*$tour->color = $request->color;*/
                 if ($tour->save()) {
                     toastr()->success(__('tour.updated'));
 

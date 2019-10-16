@@ -88,8 +88,8 @@
 																<div class="col-md-3">
 																	<div class="form-group">
 																		<label for="projectinput3">{{__('tour.price')}} <span class="{{($errors->has('price')) ?'errorStar':''}}">*</span></label>
-																		<input type="number" name="price"
-																			   class="{{($errors->has('price')) ?'form-control error_input':'form-control'}}"
+																		<input type="text" name="price"
+																			   class="{{($errors->has('price')) ?'form-control error_input has_numeric':'form-control has_numeric'}}"
 																			   value="{{ (!empty($hire->price))?$hire->price:old('price') }}" >
 																	</div>
 																</div>
@@ -146,23 +146,16 @@
 																<div class="col-md-4">
 																	<div class="form-group">
 																		<label for="projectinput3">{{__('tour.select_color')}}<span class="{{($errors->has('color')) ?'errorStar':''}}">*</span></label>
-																		<select name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}"
-
-																		>
+																		<select name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}">
 																			<option value="">{{__('tour.select_color')}}</option>
-																			<option value="#04b1cc" @if(!empty($vehicle) && $vehicle->color=="#04b1cc" || old('color') == "#04b1cc") selected @endif>{{__('tour.colors.blue')}}</option>
-																			<option value="#00731f" @if(!empty($vehicle) && $vehicle->color=="#00731f" || old('color') == "#00731f") selected @endif>{{__('tour.colors.dark_green')}}</option>
-																			<option value="#d6c809" @if(!empty($vehicle) && $vehicle->color=="#d6c809" || old('color') == "#d6c809") selected @endif>{{__('tour.colors.yellow')}}</option>
-																			<option value="#db7107" @if(!empty($vehicle) && $vehicle->color=="#db7107" || old('color') == "#db7107") selected @endif>{{__('tour.colors.orange')}}</option>
-																			<option value="#ff1408" @if(!empty($vehicle) && $vehicle->color=="#ff1408" || old('color') == "#ff1408") selected @endif>{{__('tour.colors.red')}}</option>
-
+																			<option value="#04b1cc" @if(!empty($hire) && $hire->color=="#04b1cc" || old('color') == "#04b1cc") selected @endif>{{__('tour.colors.blue')}}</option>
+																			<option value="#00731f" @if(!empty($hire) && $hire->color=="#00731f" || old('color') == "#00731f") selected @endif>{{__('tour.colors.dark_green')}}</option>
+																			<option value="#d6c809" @if(!empty($hire) && $hire->color=="#d6c809" || old('color') == "#d6c809") selected @endif>{{__('tour.colors.yellow')}}</option>
+																			<option value="#db7107" @if(!empty($hire) && $hire->color=="#db7107" || old('color') == "#db7107") selected @endif>{{__('tour.colors.orange')}}</option>
+																			<option value="#ff1408" @if(!empty($hire) && $hire->color=="#ff1408" || old('color') == "#ff1408") selected @endif>{{__('tour.colors.red')}}</option>
 																		</select>
 																	</div>
 																</div>
-
-
-
-
 															</div>
 														</div>
 													</div>
@@ -171,8 +164,6 @@
 										</div>
 									</div>
 								</form>
-
-
 								<div class="col-sm-12"><h5>{{__('tour.attachments')}}:</h5></div>
 								@if(!empty($attachments))
 									<div class="row">

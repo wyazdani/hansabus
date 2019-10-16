@@ -45,7 +45,7 @@ class HireDriverController extends Controller
                                                     'hire_a_driver.price','hire_a_driver.from_date','hire_a_driver.to_date','c.name')
                                             ->get();
 
-        $rows = HireDriver::where('status','>',1)->where('status','<',4)->get(['id','customer_id','driver_id','status','price','from_date','to_date']);
+        $rows = HireDriver::where('status','>',1)->where('status','<',4)->get(['id','customer_id','driver_id','status','price','from_date','to_date','color']);
 
         $colors = ['#ff3908','#0bb9d4','#0da837','#d6c809','#db7107'];
         
@@ -207,7 +207,7 @@ class HireDriverController extends Controller
             'customer_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
-            'price' => 'required|numeric|digits_between:1,20',
+            'price' => 'required',
             'color' =>  'required'
         ];
         $messages = [
@@ -251,7 +251,7 @@ class HireDriverController extends Controller
                 $HireDriver->driver_id = (int)$request->driver_id;
                 $HireDriver->from_date = $from;
                 $HireDriver->to_date = $to;
-                $HireDriver->price = (int)$request->price;
+                $HireDriver->price = $request->price;
                 $HireDriver->color = $request->color;
                 if ($HireDriver->save()) {
 
@@ -353,7 +353,7 @@ class HireDriverController extends Controller
             'from_date' => 'required',
             'to_date' => 'required',
             'driver_id' => 'required|integer',
-            'price' => 'required|numeric|digits_between:1,20',
+            'price' => 'required',
             'color' =>  'required'
         ];
         $messages = [
@@ -400,7 +400,7 @@ class HireDriverController extends Controller
                 $hire->driver_id = (int)$request->driver_id;
                 $hire->from_date = date('Y-m-d h:i', strtotime($request->from_date));
                 $hire->to_date = date('Y-m-d h:i', strtotime($request->to_date));
-                $hire->price = (int)$request->price;
+                $hire->price = $request->price;
                 $hire->color = $request->color;
                 if ($hire->save()) {
                     toastr()->success(__('hire.updated'));

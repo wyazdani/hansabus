@@ -303,15 +303,27 @@ class OfferController extends Controller
     public function send_mail(Request  $request)
     {
         if ($request->price){
-            $offer = Offer::create([
-               'inquiry_id' =>  $request->inquiry_id,
-                'price'     =>  $request->price
-            ]);
-            $general = new General();
+            $offer  =   Offer::where('inquiry_id','=',$request->inquiry_id)->first();
+            if (!$offer){
+                $offer = Offer::create([
+                    'inquiry_id' =>  $request->inquiry_id,
+                    'price'     =>  $request->price,
+                    'comment'     =>  $request->comment,
+                ]);
+            }
+            else
+            {
+                $offer->update([
+                    'inquiry_id' =>  $request->inquiry_id,
+                    'price'     =>  $request->price,
+                    'comment'     =>  $request->comment,
+                ]);
+            }
             $inquiry    =   Inquiry::find($request->inquiry_id);
             $inquiry->update([
                'status'     =>  1
             ]);
+
             Mail::send(new OfferEmail($request->inquiry_id,$request->price,$offer->id));
             toastr()->success(__('offer.mail_sent'));
             return redirect()->route('offers.index');

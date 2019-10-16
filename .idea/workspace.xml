@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_10_16_053654_add_comment_to_offers_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/offers/pdf_offers.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/offers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/OfferEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/OfferEmail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Inquiry.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inquiry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Offer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Offer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/offers/send_mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/send_mail.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,6 +137,8 @@
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
       <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
+      <path value="$PROJECT_DIR$/vendor/elibyy/tcpdf-laravel" />
+      <path value="$PROJECT_DIR$/vendor/tecnickcom/tcpdf" />
     </include_path>
   </component>
   <component name="ProjectId" id="1QPEqRdWeYSobXOnwcWHxrNyId6" />
@@ -138,6 +146,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel_products" />
@@ -147,11 +156,11 @@
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\ecoach\app\Models" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\laragon\www\ecoach\resources\views\tours" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\ecoach\app\Models" />
       <recent name="D:\laragon\www\ecoach\resources\views\tours" />
     </key>
   </component>
@@ -239,6 +248,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_10_16_053654_add_comment_to_offers_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/offers/pdf_offers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/OfferEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/OfferEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Inquiry.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inquiry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Offer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Offer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/offers/send_mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/send_mail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/offers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

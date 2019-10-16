@@ -212,7 +212,7 @@
                         }
                         else{
                             var inquiryaddresses    =   row.inquiryaddresses;
-                            var query_string    =   '?offer_id='+row.id+'&customer_id='+row.customer_id+'&offer_type='+((inquiryaddresses.length ==2)?'1':'2')
+                            var query_string    =   '?offer_id='+row.id+'&customer_id='+row.customer_id+'&offer_type='+((inquiryaddresses.length ==2)?'2':'1')
                             +'&from_address='+(inquiryaddresses[0].from_address)+'&to_address='+(inquiryaddresses[0].to_address)+"&time="+inquiryaddresses[0].time;
                             if(inquiryaddresses.length ==2){
                                 console.log(row);

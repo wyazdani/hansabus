@@ -99,7 +99,7 @@ class OfferController extends Controller
 
         }
         $recordsTotal = $query->count();
-        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','is_web','status']);
+        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','is_web','status','seats','description']);
 
         $data=[];
         foreach($rows as $row){

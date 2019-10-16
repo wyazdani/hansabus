@@ -161,16 +161,18 @@ class ToursController extends Controller
         $recordsTotal = $query->count();
 
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get([
-            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date']);
+            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date','custom_tour_id']);
 
         $data=[];
         foreach($rows as $row){
 
+            $row->id    =   !empty($row->custom_tour_id)?$row->custom_tour_id:$row->id;
+            $row->custom_id =   !empty($row->custom_tour_id)?$row->custom_tour_id:$row->id;
             $row->vehicle;
             $row->driver_name;
             $row->customer;
-            $row->from_date = date('d.m.Y H:i',strtotime($row->from_date));
-            $row->to_date   = date('d.m.Y H:i',strtotime($row->to_date));
+            $row->from_date = !empty($row->from_date)?date('d.m.Y H:i',strtotime($row->from_date)):'';
+            $row->to_date   = !empty($row->to_date)?date('d.m.Y H:i',strtotime($row->to_date)):'';
             $data[] = $row;
         }
 
@@ -188,7 +190,7 @@ class ToursController extends Controller
         return view('tours.index',compact('vehicles','tour_statuses','pageTitle','customers','drivers'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $pageTitle = __('tour.heading.add');
         $general = new General();
@@ -198,7 +200,7 @@ class ToursController extends Controller
         $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
         $drivers  =   Driver::orderBy('driver_name','ASC')->where('status','=',1)->get();
 
-        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey','customers','drivers'));
+        return view('tours.add',compact('pageTitle','vehicles','tour_statuses','randomKey','customers','drivers','request'));
     }
 
     /**
@@ -215,10 +217,10 @@ class ToursController extends Controller
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
-            'to_date' => 'required',
+            /*'to_date' => 'required',*/
             'from_address' => 'required',
             'to_address' => 'required',
-            'price' => 'required|numeric|digits_between:1,20',
+            'price' => 'required',
             /*'passengers' => 'required|integer|min:1,max:500',*/
             'description' => 'required',
 //            'guide' => 'required',
@@ -243,10 +245,8 @@ class ToursController extends Controller
                 $from = date('Y-m-d H:i:s', strtotime($request->from_date));
             }
            if ($request->to_date){
-               $to = date('Y-m-d H:i:s', strtotime($request->to_date));
+               $to = empty($request->to_date) ? null : date('Y-m-d H:i', strtotime($request->to_date));
            }
-
-
             $alreadyBooked = false;
             /* check for driver bookings */
 
@@ -297,13 +297,16 @@ class ToursController extends Controller
                 $tour->vehicle_id = !empty($request->vehicle_id)?(int)$request->vehicle_id:0;
                 $tour->driver_id = !empty($request->driver_id)?(int)$request->driver_id:0;
                 $tour->from_date = !empty($request->from_date)?date('Y-m-d H:i', strtotime($request->from_date)):null;
-                $tour->to_date = !empty($request->to_date)?date('Y-m-d H:i', strtotime($request->to_date)):null;
+                $tour->to_date = empty($request->to_date) ? null : date('Y-m-d H:i', strtotime($request->to_date));
+
+
                 $tour->passengers = !empty($request->passengers)?(int)$request->passengers:0;
                 $tour->price = !empty($request->price)?(int)$request->price:0;
                 $tour->guide = !empty($request->guide)?$request->guide:'';
                 $tour->description = !empty($request->description)?$request->description:'';
                 $tour->from_address = !empty($request->from_address)?$request->from_address:'';
                 $tour->to_address = !empty($request->to_address)?$request->to_address:'';
+                $tour->custom_tour_id = !empty($request->custom_tour_id)?$request->custom_tour_id:'';
                 /*$tour->color = $request->color;*/
 
                 if ($tour->save()) {
@@ -321,7 +324,7 @@ class ToursController extends Controller
                             'booking_id' => $tour->id,
                             'driver_id' => $request->driver_id,
                             'from_date' => $from,
-                            'to_date' => $to,
+                            'to_date' => !empty($to)?$to:null,
                             'with_vehicle' => 1]);
                     }
                 }
@@ -393,7 +396,7 @@ class ToursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
         $pageTitle = __('messages.edit_tour');
         $tour = Tour::find($id);
@@ -405,7 +408,7 @@ class ToursController extends Controller
         $tour_statuses = TourStatus::whereIn('id',[1,2,5])->get(['id','name']);
         $attachments = TourAttachment::where('tour_id',$id)->get();
 
-        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments','customers','drivers'));
+        return view('tours.add',compact('tour','pageTitle','vehicles','tour_statuses','randomKey','attachments','customers','drivers','request'));
     }
 
     /**
@@ -422,7 +425,7 @@ class ToursController extends Controller
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
-            'to_date' => 'required',
+            /*'to_date' => 'required',*/
             'from_address' => 'required',
             'to_address' => 'required',
             /*'driver_id' => 'required|integer',*/
@@ -506,6 +509,7 @@ class ToursController extends Controller
                 $tour->guide = $request->guide;
                 $tour->from_address = !empty($request->from_address)?$request->from_address:'';
                 $tour->to_address = !empty($request->to_address)?$request->to_address:'';
+                $tour->custom_tour_id = !empty($request->custom_tour_id)?$request->custom_tour_id:'';
                 /*$tour->color = $request->color;*/
                 if ($tour->save()) {
                     toastr()->success(__('tour.updated'));

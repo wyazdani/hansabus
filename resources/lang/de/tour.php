@@ -93,5 +93,6 @@ return [
     ],
     'from_address'    =>  'Von der Adresse',
     'to_address'    =>  'An Adresse',
+    'custom_tour_id'    =>  'Benutzerdefinierte Tour-ID',
 
 ];

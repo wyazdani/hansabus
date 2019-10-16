@@ -46,8 +46,15 @@
 														<div class="form-body">
 
 																<div class="row">
-
-																	<div class="col-md-4">
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>{{__('tour.custom_tour_id')}}<span class="{{($errors->has('custom_tour_id')) ?'errorStar':''}}"></span></label>
+																			<input type="text" name="custom_tour_id"
+																				   class="{{($errors->has('custom_tour_id')) ?'form-control error_input ':'form-control '}}"
+																				   value="{{ (!empty($tour->custom_tour_id))?$tour->custom_tour_id:old('custom_tour_id') }}">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
 																		<div class="form-group">
 																			<label>{{__('tour.vehicle')}}<span class="{{($errors->has('vehicle_id')) ?'errorStar':''}}">*</span></label>
 																			{{--<select name="vehicle_id" class="{{($errors->has('vehicle_id')) ?'form-control error_input':'form-control'}}" onchange="getVehicleSeats(this.value);">
@@ -75,7 +82,7 @@
 																			</select>
 																		</div>
 																	</div>
-																	<div class="col-md-4">
+																	<div class="col-md-3">
 																		<div class="form-group">
 																			<label for="customSelect">{{__('tour.customer')}}<span class="{{($errors->has('customer_id')) ?'errorStar':''}}">*</span></label>
 
@@ -100,7 +107,7 @@
 																		</div>
 																	</div>
 																	<input type="hidden" id="returnFlag" name="returnFlag" value="">
-																	<div class="col-md-4">
+																	<div class="col-md-3">
 																		<div class="form-group">
 																			<label for="customSelect">{{__('tour.driver')}}<span class="{{($errors->has('driver_id')) ?'errorStar':''}}"></span></label>
 
@@ -128,10 +135,18 @@
 																		<div class="form-group">
 																			<label for="fromDate">{{__('tour.from')}}<span class="{{($errors->has('from_date')) ?'errorStar':''}}">*</span></label>
 																			<div class='input-group date'>
-																				<input type='text' name="from_date" autocomplete="off"
-																					   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
-																					   value="{{ (!empty($tour->from_date))?date('d.m.Y H:i',strtotime($tour->from_date)):old('from_date') }}"
-																				/>
+																				@if($request->time)
+																					<input type='text' name="from_date" autocomplete="off"
+																						   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
+																						   value="{{ (!empty($request->time))?date('d.m.Y H:i',strtotime($request->time)):old('from_date') }}"
+																					>
+																					@else
+																					<input type='text' name="from_date" autocomplete="off"
+																						   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
+																						   value="{{ (!empty($tour->from_date))?date('d.m.Y H:i',strtotime($tour->from_date)):old('from_date') }}"
+																					>
+																				@endif
+
 																			</div>
 																		</div>
 																	</div>
@@ -139,15 +154,20 @@
 																		<div class="form-group">
 																			<label for="toDate">{{__('tour.to')}}<span class="{{($errors->has('to_date')) ?'errorStar':''}}">*</span></label>
 																			<div class='input-group date'>
+																				@if($request->time1)
 																				<input type='text' name="to_date" autocomplete="off"
 																					   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
-																					   value="{{ (!empty($tour->to_date))?date('d.m.Y H:i',strtotime($tour->to_date)):old('to_date') }}"
-																				/>
+																					   value="{{ (!empty($request->time1))?date('d.m.Y H:i',strtotime($request->time1)):old('to_date') }}"
+																				>
+																				@else
+																					<input type='text' name="to_date" autocomplete="off"
+																						   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
+																						   value="{{ (!empty($tour->to_date))?date('d.m.Y H:i',strtotime($tour->to_date)):old('to_date') }}"
+																					>
+																				@endif
 																			</div>
 																		</div>
 																	</div>
-
-
 																	<div class="col-md-2">
 																		<div class="form-group">
 																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}"></span></label>
@@ -195,15 +215,28 @@
 															<div class="row">
 																<div class="col-md-12">
 																	<label for="projectinput3">{{__('tour.from_address')}}<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
+																	@if($request->from_address)
 																	<input type="text" name="from_address"
 																		   class="{{($errors->has('from_address')) ?'form-control error_input' :'form-control '}}"
-																		   value="{{ (!empty($tour->from_address))?$tour->from_address:old('from_address') }}">
+																		   value="{{ (!empty($request->from_address))?$request->from_address:old('from_address') }}">
+																		@else
+																		<input type="text" name="from_address"
+																			   class="{{($errors->has('from_address')) ?'form-control error_input' :'form-control '}}"
+																			   value="{{ (!empty($tour->from_address))?$tour->from_address:old('from_address') }}">
+																		@endif
 																</div>
 																<div class="col-md-12">
 																	<label for="projectinput3">{{__('tour.to_address')}}<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
+																	@if($request->to_address)
 																	<input type="text" name="to_address"
 																		   class="{{($errors->has('to_address')) ?'form-control error_input' :'form-control '}}"
-																		   value="{{ (!empty($tour->to_address))?$tour->to_address:old('to_address') }}">
+																		   value="{{ (!empty($request->to_address))?$request->to_address:old('to_address') }}">
+																		@else
+																		<input type="text" name="to_address"
+																			   class="{{($errors->has('to_address')) ?'form-control error_input' :'form-control '}}"
+																			   value="{{ (!empty($tour->to_address))?$tour->to_address:old('to_address') }}">
+																		@endif
+
 																</div>
 															</div>
 
@@ -211,8 +244,13 @@
 
 															<div class="form-group">
 																<label for="projectinput8">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
-																<textarea name="description" rows="3"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}}" >{!! !empty($tour->description)?$tour->description:old('description') !!}
+																@if($request->description)
+																<textarea name="description" rows="3"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}}" >{!! !empty($request->description)?$request->description:old('description') !!}
 																			</textarea>
+																	@else
+																	<textarea name="description" rows="3"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}}" >{!! !empty($tour->description)?$tour->description:old('description') !!}
+																			</textarea>
+																	@endif
 															</div>
 														</div>
 													</div>
@@ -370,6 +408,8 @@
 
 					@elseif(old('customer_id') &&  old('customer_id')!="foo")
 							customer_id = '{!! old('customer_id') !!}';
+                    @elseif($request->customer_id)
+                        customer_id = '{!! $request->customer_id !!}';
 					@else
 							customer_id	=	'foo';
 					@endif

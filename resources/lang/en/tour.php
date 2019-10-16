@@ -92,6 +92,7 @@ return [
     ],
     'from_address'    =>  'From Address',
     'to_address'    =>  'To Address',
+    'custom_tour_id'    =>  'Custom Tour Id',
 
 
     ];

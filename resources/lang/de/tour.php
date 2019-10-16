@@ -91,5 +91,7 @@ return [
         'yellow'    =>'Gelb',
         'orange'    =>  'Orange'
     ],
+    'from_address'    =>  'Von der Adresse',
+    'to_address'    =>  'An Adresse',
 
 ];

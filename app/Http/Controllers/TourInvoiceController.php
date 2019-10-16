@@ -24,7 +24,7 @@ class TourInvoiceController extends Controller
 
         $pageTitle = __('tour_invoice.heading.index');
         $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
-        $query = TourInvoice::where('status','>',0);
+        $query = TourInvoice::where('status','>',0)->where('is_bulk','=',0);
         if(!empty($request->status)){
             $query = TourInvoice::where('status',$request->status);
         }
@@ -207,7 +207,6 @@ class TourInvoiceController extends Controller
     }
     public function generateInvoice(Request $request){
 
-
         if(!empty($request->customer_id) && $request->customer_id>0) {
 
             /* save invoice */
@@ -286,6 +285,7 @@ class TourInvoiceController extends Controller
 
     }
     public function generateInvoiceBulk(Request $request){
+
         $invoice = new TourInvoice;
         $invoice->customer_id = (int)$request->customer_id;
         $invoice->total = $request->grand_total;

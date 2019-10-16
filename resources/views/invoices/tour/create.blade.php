@@ -60,7 +60,7 @@
                             @else
                             <div class="col-lg-12">
                                 <div class="alert alert-danger">
-                                    IMPORTANT: Search Customer to generate Bulk Invoice!
+                                    {{__('tour_invoice.important_message')}}
                                 </div>
                             </div>
                         @endif
@@ -83,14 +83,12 @@
                                 <table class="table table-hover table-xl mb-0" id="listingTable">
                                     <thead>
                                     <tr>
-                                        @if($request->customer_id)
                                         <th class="border-top-0" width="5%">
                                             <div class="custom-control custom-checkbox" style="top: -5px;">
                                                 <input type="checkbox" class="custom-control-input" id="isSelected">
                                                 <label class="custom-control-label" for="isSelected">&nbsp;</label>
                                             </div>
                                         </th>
-                                        @endif
                                         <th class="border-top-0" width="5%">Tour #</th>
                                         <th class="border-top-0" width="20%">{{__('tour.vehicle')}}</th>
                                         <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
@@ -105,13 +103,11 @@
 
                                     @foreach($rows as $row)
                                         <tr>
-                                            @if($request->customer_id)
                                             <td><div class="custom-control custom-checkbox" style="top: -5px;">
                                                     <input type="checkbox" id="{{$row->id}}" data-customer_id="{!! $row->customer_id !!}" class="custom-control-input form-check-input ids" onclick="addTours();" value="{{$row->id}}" name="ids[]">
                                                     <label class="custom-control-label" for="{{$row->id}}">&nbsp;</label>
                                                 </div>
                                             </td>
-                                            @endif
                                             <td>{{ $row->id }}</td>
                                             <td>{{ $row->vehicle->name }}</td>
                                             <td>{{ $row->from_date }}</td>
@@ -154,6 +150,7 @@
             }
             var total = getTotal();
             $('#total').val(total);
+
 
             $.ajax({
                 url: '{{ url('/tours') }}/'+id,
@@ -222,14 +219,12 @@
                 }
             }
             if(okay){
-
                 var total = getTotal();
                 $('#grand_total').val(total);
                 var customers   =   getCustomers();
 
                 $('#customerIDs').val(customers);
-                var tours   =   getTours();
-                $('#tour_ids').val(tours);
+
                 if($('#customerIDs').val() != '') {
 
                     $('#generate_invoice').removeClass('disabled');
@@ -245,6 +240,7 @@
 
             @if($request->customer_id)
                 $('body').on('click','.generate_invoice',function () {
+
                     var customer_id  =   $('#customerIDs').val();
                     var grand_total     =   $('#grand_total').val();
                     var tours_ids     =   getTours();

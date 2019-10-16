@@ -92,23 +92,23 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($tour as $t)
                     <tr>
-                        @foreach($tour as $t)
-                            <td>Hansa Bustouristik {{date("d.m.Y",strtotime($t->from_date)) }}</td>
-                            <td>Nr. {{ $customer->id  }}</td>
-                            <td>{{ date("H:i:s",strtotime($t->from_date)) }}</td>
-                            <td>{{ date("H:i:s",strtotime($t->from_date)) }}</td>
-                            <td>{{ date("H:i:s",strtotime($t->from_date)) }}</td>
-                            <td>{{ $t->price }}</td>
-                            <td>{{ $t->price }} €</td>
-                        @endforeach
+                        <td>Hansa Bustouristik {{date("d.m.Y",strtotime($t->from_date)) }}</td>
+                        <td>Nr. {{ $customer->id  }}</td>
+                        <td>{{ date("H:i:s",strtotime($t->from_date)) }} Uhr</td>
+                        <td>{{ $t->from_address }}</td>
+                        <td>{{ $t->to_address }}</td>
+                        <td>{{ $t->price }}</td>
+                        <td>{{ $t->price }} €</td>
                     </tr>
+                    @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
                         <td colspan="3" style="text-align: left;font-size: 8px;">{{__('tour_invoice.included_in_value')}}:</td>
-                        <td colspan="4" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour.total_amount')}}</td>
-                        <td colspan="4" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">{{ $total }} €</td>
+                        <td colspan="3" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour.total_amount')}}</td>
+                        <td colspan="3" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">{{ $total }} €</td>
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align: left;font-size: 8px;">{{__('tour_invoice.vat')}} <strong style="float: right">@if(!empty($vat)) {{$vat}} @endif €</strong></td>

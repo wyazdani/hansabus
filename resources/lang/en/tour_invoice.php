@@ -64,5 +64,5 @@ return [
     'payable_amount' =>  'Payable Amount',
     'date_of_service' =>  'Date Of Service',
     'departure_time' =>  'Departure Time',
-
+    'important_message' =>  'IMPORTANT: Search Customer to generate Bulk Invoice!',
     ];

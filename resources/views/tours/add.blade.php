@@ -158,9 +158,6 @@
 																				   value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 																		</div>
 																	</div>
-
-
-
 																	<div class="col-md-2">
 																		<div class="form-group">
 																			<label for="projectinput3">{{__('tour.guide')}}</label>
@@ -195,6 +192,23 @@
 																		</div>
 																	</div>
 																</div>
+															<div class="row">
+																<div class="col-md-12">
+																	<label for="projectinput3">{{__('tour.from_address')}}<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
+																	<input type="text" name="from_address"
+																		   class="{{($errors->has('from_address')) ?'form-control error_input' :'form-control '}}"
+																		   value="{{ (!empty($tour->from_address))?$tour->from_address:old('from_address') }}">
+																</div>
+																<div class="col-md-12">
+																	<label for="projectinput3">{{__('tour.to_address')}}<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
+																	<input type="text" name="to_address"
+																		   class="{{($errors->has('to_address')) ?'form-control error_input' :'form-control '}}"
+																		   value="{{ (!empty($tour->to_address))?$tour->to_address:old('to_address') }}">
+																</div>
+															</div>
+
+
+
 															<div class="form-group">
 																<label for="projectinput8">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
 																<textarea name="description" rows="3"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}}" >{!! !empty($tour->description)?$tour->description:old('description') !!}

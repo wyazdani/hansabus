@@ -22,7 +22,10 @@ class Tour extends Model
         'guide',
         'price',
         'description',
-        'color'
+        'color',
+        'from_address',
+        'to_address',
+        'custom_tour_id'
     ];
 
     protected $dates = ['deleted_at'];

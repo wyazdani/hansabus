@@ -216,6 +216,8 @@ class ToursController extends Controller
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
+            'from_address' => 'required',
+            'to_address' => 'required',
             'price' => 'required|numeric|digits_between:1,20',
             /*'passengers' => 'required|integer|min:1,max:500',*/
             'description' => 'required',
@@ -300,6 +302,8 @@ class ToursController extends Controller
                 $tour->price = !empty($request->price)?(int)$request->price:0;
                 $tour->guide = !empty($request->guide)?$request->guide:'';
                 $tour->description = !empty($request->description)?$request->description:'';
+                $tour->from_address = !empty($request->from_address)?$request->from_address:'';
+                $tour->to_address = !empty($request->to_address)?$request->to_address:'';
                 /*$tour->color = $request->color;*/
 
                 if ($tour->save()) {
@@ -419,8 +423,10 @@ class ToursController extends Controller
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
             'to_date' => 'required',
+            'from_address' => 'required',
+            'to_address' => 'required',
             /*'driver_id' => 'required|integer',*/
-            'price' => 'required|numeric|digits_between:1,20',
+            'price' => 'required',
             /*'passengers' => 'required|integer|min:1,max:500',*/
             'description' => 'required',
             /*'color' => 'required'*/
@@ -498,6 +504,8 @@ class ToursController extends Controller
                 $tour->price = (int)$request->price;
                 $tour->description = $request->description;
                 $tour->guide = $request->guide;
+                $tour->from_address = !empty($request->from_address)?$request->from_address:'';
+                $tour->to_address = !empty($request->to_address)?$request->to_address:'';
                 /*$tour->color = $request->color;*/
                 if ($tour->save()) {
                     toastr()->success(__('tour.updated'));

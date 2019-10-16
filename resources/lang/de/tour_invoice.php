@@ -63,4 +63,5 @@ return [
     'payable_amount' =>  'zu zahlender Betrag',
     'date_of_service' =>  'Fahrtdatum',
     'departure_time' =>  'Abfahrtzeit',
+    'important_message' =>  'WICHTIG: Suchen Sie den Kunden, um eine Sammelrechnung zu erstellen!',
 ];

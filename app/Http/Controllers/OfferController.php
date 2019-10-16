@@ -112,7 +112,12 @@ class OfferController extends Controller
             $row->time1 = !empty($row->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($row->inquiryaddresses[1]->time)):'';
             $row->type  =   !empty($row->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way');
             $row->email;
-            $row->is_user   =   Customer::where('email','=',$row->email)->count();
+            $count  =   Customer::where('email','=',$row->email)->count();
+            $row->is_user       =   $count;
+            if ($count>0){
+                $row->customer_id   =   Customer::where('email','=',$row->email)->first()->id;
+            }
+
             $row->web   =   !empty($row->is_web)?__('messages.yes'):__('messages.no');
             $data[] = $row;
         }

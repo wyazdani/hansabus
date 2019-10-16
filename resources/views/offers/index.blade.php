@@ -212,12 +212,12 @@
                         }
                         else{
                             var inquiryaddresses    =   row.inquiryaddresses;
-                            var query_string    =   '?offer_id='+row.id+'&email='+row.email+'&offer_type='+((inquiryaddresses.length ==2)?'1':'2')
+                            var query_string    =   '?offer_id='+row.id+'&customer_id='+row.customer_id+'&offer_type='+((inquiryaddresses.length ==2)?'1':'2')
                             +'&from_address='+(inquiryaddresses[0].from_address)+'&to_address='+(inquiryaddresses[0].to_address)+"&time="+inquiryaddresses[0].time;
                             if(inquiryaddresses.length ==2){
-                                query_string        +=  +'&from_address1='+(inquiryaddresses[1].from_address)+'&to_address1='+(inquiryaddresses[1].to_address)+"&time1="+inquiryaddresses[1].time;
+                                console.log(row);
+                                query_string        +=  '&from_address1='+(inquiryaddresses[1].from_address)+'&to_address1='+(inquiryaddresses[1].to_address)+"&time1="+inquiryaddresses[1].time;
                             }
-                            console.log(query_string);
                             add_customer    =   '<a target="_blank" class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Add Tour" href="{!! route('tours.create') !!}'+query_string+'"><i class="icon-plus font-medium-3 mr-2"></i></a>';
                         }
                         buttons = view+edit+email+add_customer;

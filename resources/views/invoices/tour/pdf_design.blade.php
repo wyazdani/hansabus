@@ -173,11 +173,11 @@
                 </table>
             </td>
         </tr>
-        <tr>
+        {{--<tr>
             <td class="left">
                 @include('layouts.print_footer')
             </td>
-        </tr>
+        </tr>--}}
     </table>
 </div>
 @endsection

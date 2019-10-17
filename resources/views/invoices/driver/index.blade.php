@@ -115,6 +115,9 @@
                                                 <td>{{ $row->status }}</td>
                                                 <td>{{ $row->created }}</td>
                                                 <td>
+                                                    <a class="p-0" data-original-title="View" title="View" target="_blank"
+                                                       href="{{ route('download-driver-invoice') }}?id={{$row->id}}&view=1">
+                                                        <i class="icon-eye font-medium-3 mr-2"></i></a>
                                                     @if($row->status == 'Unpaid')
                                                     <a href="{{ route('driver-mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
                                                     @else

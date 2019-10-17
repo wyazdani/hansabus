@@ -17,36 +17,58 @@
            background-size: cover;background-position: center center;background-repeat: no-repeat;" class="email-container">
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;color: #fff;">
             @include('mail.header')
+            <tr><td style="">
+                    <dt style="font-weight: bold; font-size:16px; width: 100%;text-align: left; color: #000000">
+                        Hi {!! $inquiry->name !!},
+                    </dt>
+                    <dt style="font-weight: normal;width: 100%;text-align: left; color: #000000">
+                        {{ __('offer.thankyou_for_inquiry') }}.
+                    </dt>
+                </td>
+
+            </tr>
             <tr>
                 <td>
-                    <table style="width: 100%;">
-                        <tbody><tr><td style="padding:50px 15px 0 15px;">
-                                <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
-                                    {{ __('offer.offer_no') }} O{!! $offer !!}/-{!! date('y') !!}
-                                </dt>
-                                <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
-                                    Hi {!! $inquiry->name !!},
-                                </dt>
-                                <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
-                                    {{ __('offer.thankyou_for_inquiry') }}.
-
-                                </dt>
-
-                                <dt style="font-weight: bold;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
-                                    {{ __('offer.departure_time') }}
-                                </dt>
-                                <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
-                                    {!! !empty($inquiry->inquiryaddresses[0]->time)?date('M j, Y, g:i a',strtotime($inquiry->inquiryaddresses[0]->time)):'' !!}
-                                </dt>
-                                <dt style="font-weight: bold; font-size:16px; width: 80%;text-align: left;padding: 5px 15px; color: #000000">
-                                    {{__('offer.price')}}:
-                                </dt>
-                                <dt style="font-weight: normal;width: 80%;text-align: left;padding: 5px 15px; color: #000000">
-                                    {!! $price!!}
-                                </dt>
-
-                            </td>
+                    <table id="table" style="font-size: 12px;color: #0A160A">
+                        <tbody>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.offer_no')}}</strong> </dt>
+                            <td>O{!!  $inquiry->offer->id !!}/-{!! date('Y',strtotime( $inquiry->offer->created_at)) !!}</td>
                         </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.customer_name')}}</strong> </dt>
+                            <td>{!!  $inquiry->name !!}</td>
+                        </tr>
+
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.from')}}</strong> </dt>
+                            <td>{!! $inquiry->inquiryaddresses[0]->from_address !!}</td>
+                        </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.to')}}</strong> </dt>
+                            <td>{!! $inquiry->inquiryaddresses[0]->to_address !!}</td>
+                        </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.departure')}}</strong> </dt>
+                            <td>{!! !empty($inquiry->inquiryaddresses[0]->time)?date('M j, Y, g:i a',strtotime($inquiry->inquiryaddresses[0]->time)):'' !!}</td>
+                        </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.arrival')}}</strong> </dt>
+                            <td>{!! !empty($inquiry->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($inquiry->inquiryaddresses[1]->time)):'Not Available' !!}</td>
+                        </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.type')}}</strong> </dt>
+                            <td>{!! !empty($inquiry->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way') !!}</td>
+                        </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.price')}}</strong> </dt>
+                            <td>{!! $inquiry->offer->price !!}</td>
+                        </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.comment')}}</strong> </dt>
+                            <td>{!! $inquiry->offer->comment !!}</td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </td>

@@ -73,12 +73,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{--<div class="row">
                         <div class="col-md-3">
                             <a href="{{ route('driver-invoice-create') }}" class="btn btn-success ml-2 mt-2">
                                 {{ __('driver_invoice.heading.add') }}</a>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
                 <div class="card-content mt-1">
                     <div class="card-body">

@@ -167,8 +167,7 @@ class ToursController extends Controller
         $data=[];
         foreach($rows as $row){
 
-            $row->id    =   !empty($row->custom_tour_id)?$row->custom_tour_id:$row->id;
-            $row->custom_id =   !empty($row->custom_tour_id)?$row->custom_tour_id:$row->id;
+            $row->custom_id =   $row->id;
             $row->vehicle;
             $row->driver_name;
             $row->customer;
@@ -218,6 +217,7 @@ class ToursController extends Controller
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
+            'to_date' => 'sometimes|required',
             /*'to_date' => 'required',*/
             'from_address' => 'required',
             'to_address' => 'required',
@@ -426,7 +426,7 @@ class ToursController extends Controller
             'customer_id' => 'required|integer',
             'vehicle_id' => 'required|integer',
             'from_date' => 'required',
-            /*'to_date' => 'required',*/
+            'to_date' => 'sometimes|required',
             'from_address' => 'required',
             'to_address' => 'required',
             /*'driver_id' => 'required|integer',*/

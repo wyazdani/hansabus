@@ -273,7 +273,11 @@ class TourInvoiceController extends Controller
 
         $invoice_date   =   date('Y-m-d');
         $html   =   view('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
-        return General::DownloadPdf("P",$html,"tour_invoice","Invoice");
+        if ($request->view){
+            return General::CreatePdf("P",$html,"tour_invoice","Invoice");
+        }else{
+            return General::DownloadPdf("P",$html,"tour_invoice","Invoice");
+        }
         /*$pdf = PDF::loadView('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
 
         return $pdf->download('tours_invoice.pdf');*/

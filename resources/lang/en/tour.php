@@ -95,5 +95,6 @@ return [
     'custom_tour_id'    =>  'Custom Tour Id',
     'single_invoice'    =>  'Single Invoices',
     'bulk_invoice'    =>  'Bulk Invoices',
+    'create_invoices'    =>  'Create Invoices',
 
     ];

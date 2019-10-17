@@ -51,13 +51,13 @@
                                 <a href="javascript:;" onclick="$('#searchForm').submit()" id="searchBtn" class="btn btn-warning ml-2 bg-warning"><i class="ft-search"></i> {{__('messages.search')}}</a>
                             </div>
                         </div>
-                        <div class="col-md-6" >
+                        {{--<div class="col-md-6" >
                             <div class="form-group text-left">
                                 <a href="javascript:;" onclick="$('#theForm').submit()"
                                    class="btn btn-info disabled"
                                    id="generate_invoice">{{ __('messages.generate_invoice') }}</a>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                     </form>
                 <div class="card-content mt-1">

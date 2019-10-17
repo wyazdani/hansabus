@@ -192,6 +192,7 @@ class ToursController extends Controller
 
     public function create(Request $request)
     {
+
         $pageTitle = __('tour.heading.add');
         $general = new General();
         $randomKey = $general->randomKey();

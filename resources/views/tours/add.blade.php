@@ -203,6 +203,7 @@
 
 																</div>
 															</div>
+															<input type="hidden" name="offer_id" value="{!! $request->offer_id !!}">
 															<div class="row">
 																<div class="col-md-6">
 																	<div class="form-group">

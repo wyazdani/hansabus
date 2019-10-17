@@ -311,12 +311,12 @@
         </tr>
         <tr>
             <td class="left" >
-                <p>{{__('tour.faq_details')}}</p><br><br><br><br>
+                <p>{{__('tour.faq_details')}}</p>
             </td>
         </tr>
         <tr>
             <td  class="bg-color">
-                <table style="padding: 5px 0">
+                <table style="padding: 3px 0">
                     <tr style="display: block;color: #000;font-size: 10px;font-weight: bold;text-align: left">
                         <td>{{__('tour.driver_messages')}} </td>
                     </tr>
@@ -336,7 +336,7 @@
         </tr>
         <tr>
             <td class="left">
-                <table style="padding: 30px 0 0;">
+                <table style="padding: 10px 0 0;">
                     <tr>
                         <td>
                             <table style="padding: 10px 0 0;border-top: 1px solid #000;">

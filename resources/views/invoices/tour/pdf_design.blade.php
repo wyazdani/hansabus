@@ -12,9 +12,8 @@
                        <table>
                            <tr>
                                <td>
-                                   <p></p><br>
-                                   <span style="display: block;color: #000;font-size: 8.5px;text-decoration: underline;">
-                                        Omnibusbetrieb Inhaber , Alizada Timor Hoisbütteler Dorfstr. 1, 22949 Ammersbek
+                                   <span style="display: block;color: #000;font-size: 8.5px;">
+                                       Omnibusbetrieb Inhaber , Alizada Timor Hoisbütteler Dorfstr. 1, 22949 Ammersbek
                                    </span>
                                    <p></p><br>
                                    <span style="display: block;color: #000;font-size: 8px;font-weight: bold"> Ust-IdNr.: DE256517113</span><br>
@@ -173,11 +172,11 @@
                 </table>
             </td>
         </tr>
-        {{--<tr>
+        <tr>
             <td class="left">
                 @include('layouts.print_footer')
             </td>
-        </tr>--}}
+        </tr>
     </table>
 </div>
 @endsection

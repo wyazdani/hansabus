@@ -6,7 +6,7 @@ namespace App\Helpers;
 
 class HansbusPdf extends \TCPDF
 {
-    public function Header() {
+    public function Headers() {
        /* // Logo
         $this->SetFont('helvetica', 'B', 20);
         // Title
@@ -14,7 +14,7 @@ class HansbusPdf extends \TCPDF
     }
 
     // Page footer
-    public function Footer() {
+    public function Footers() {
         // Position at 15 mm from bottom
         $this->SetY(-15);
         // Set font
@@ -44,6 +44,5 @@ class HansbusPdf extends \TCPDF
         $html   =   '<img  src="'.url('images/footer.png').'"/>  ';
 
         $this->writeHTML($html, false, true, false, true);
-        $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
 }

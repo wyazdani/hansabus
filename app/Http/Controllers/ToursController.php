@@ -192,6 +192,7 @@ class ToursController extends Controller
 
     public function create(Request $request)
     {
+
         $pageTitle = __('tour.heading.add');
         $general = new General();
         $randomKey = $general->randomKey();
@@ -237,6 +238,7 @@ class ToursController extends Controller
             'description.required' => 'Please provide description.',
         ];
         $this->validate(request(), $rules, $messages);
+
         if(true){
 
             /* check if driver is available for this time slot */
@@ -327,6 +329,12 @@ class ToursController extends Controller
                             'from_date' => $from,
                             'to_date' => !empty($to)?$to:null,
                             'with_vehicle' => 1]);
+                    }
+                    if ($request->offer_id){
+                        OfferTour::create([
+                            'offer_id'   =>   $request->offer_id,
+                            'tour_id'   =>  $tour->id
+                        ]);
                     }
                 }
 
@@ -530,18 +538,14 @@ class ToursController extends Controller
                             'to_date' => $to,
                             'with_vehicle' => 1]);
                     }
+
                 }
 
                 /* if files uploaded */
                 $files = [];
                 $attachments = [];
 
-                if ($request->offer_id){
-                    OfferTour::create([
-                       'offer_id'   =>   $request->offer_id,
-                        'tour_id'   =>  $tour->id
-                    ]);
-                }
+
                 /* delete old tour attachments */
                 TourAttachment::where('tour_id', $tour->id)->delete();
 

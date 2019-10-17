@@ -214,14 +214,18 @@
                             add_customer    =   '<a class="p-0 d-print-none add_customer" data-inquiry_id="'+row.id+'" title="Add Customer" href="javascript:void(0);"><i class="fa fa-user-plus"></i></a>';
                         }
                         else{
-                            var inquiryaddresses    =   row.inquiryaddresses;
-                            var query_string    =   '?offer_id='+row.id+'&description='+row.description+'&customer_id='+row.customer_id+'&offer_type='+((inquiryaddresses.length ==2)?'2':'1')
-                            +'&from_address='+(inquiryaddresses[0].from_address)+'&to_address='+(inquiryaddresses[0].to_address)+"&time="+inquiryaddresses[0].time;
-                            if(inquiryaddresses.length ==2){
 
-                                query_string        +=  '&from_address1='+(inquiryaddresses[1].from_address)+'&to_address1='+(inquiryaddresses[1].to_address)+"&time1="+inquiryaddresses[1].time;
+                            if(row.offer_id >0){
+                                var inquiryaddresses    =   row.inquiryaddresses;
+                                var query_string    =   '?offer_id='+row.offer_id+'&description='+row.description+'&customer_id='+row.customer_id+'&offer_type='+((inquiryaddresses.length ==2)?'2':'1')
+                                    +'&from_address='+(inquiryaddresses[0].from_address)+'&to_address='+(inquiryaddresses[0].to_address)+"&time="+inquiryaddresses[0].time;
+                                if(inquiryaddresses.length ==2){
+
+                                    query_string        +=  '&from_address1='+(inquiryaddresses[1].from_address)+'&to_address1='+(inquiryaddresses[1].to_address)+"&time1="+inquiryaddresses[1].time;
+                                }
+                                add_customer    =   '<a target="_blank" class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Add Tour" href="{!! route('tours.create') !!}'+query_string+'"><i class="icon-plus font-medium-3 mr-2"></i></a>';
                             }
-                            add_customer    =   '<a target="_blank" class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Add Tour" href="{!! route('tours.create') !!}'+query_string+'"><i class="icon-plus font-medium-3 mr-2"></i></a>';
+
                         }
                         var deleted    =   '<a class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Delete" href="{!! url('offers/deleted') !!}/'+row.id+'"><i style="color:red" class="icon-power font-medium-3 mr-2"></i></a>';
                         <?php if (isset($_GET['is_deleted']) && $_GET['is_deleted'] ==0){?>

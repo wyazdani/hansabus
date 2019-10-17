@@ -148,11 +148,11 @@
 																		<label for="projectinput3">{{__('tour.select_color')}}<span class="{{($errors->has('color')) ?'errorStar':''}}">*</span></label>
 																		<select name="color" class="{{($errors->has('color')) ?'form-control error_input':'form-control'}}">
 																			<option value="">{{__('tour.select_color')}}</option>
-																			<option value="#04b1cc" @if(!empty($hire) && $hire->color=="#04b1cc" || old('color') == "#04b1cc") selected @endif>{{__('tour.colors.blue')}}</option>
-																			<option value="#00731f" @if(!empty($hire) && $hire->color=="#00731f" || old('color') == "#00731f") selected @endif>{{__('tour.colors.dark_green')}}</option>
-																			<option value="#d6c809" @if(!empty($hire) && $hire->color=="#d6c809" || old('color') == "#d6c809") selected @endif>{{__('tour.colors.yellow')}}</option>
+																			<option value="#04b1cc" @if(!empty($hire) && $hire->color=="#04b1cc" || old('color') == "#04b1cc") selected @endif>Blue</option>
+																			<option value="#00731f" @if(!empty($hire) && $hire->color=="#00731f" || old('color') == "#00731f") selected @endif>Dark Green</option>
+																			<option value="#d6c809" @if(!empty($hire) && $hire->color=="#d6c809" || old('color') == "#d6c809") selected @endif>Yellow</option>
 																			<option value="#db7107" @if(!empty($hire) && $hire->color=="#db7107" || old('color') == "#db7107") selected @endif>{{__('tour.colors.orange')}}</option>
-																			<option value="#ff1408" @if(!empty($hire) && $hire->color=="#ff1408" || old('color') == "#ff1408") selected @endif>{{__('tour.colors.red')}}</option>
+																			<option value="#ff1408" @if(!empty($hire) && $hire->color=="#ff1408" || old('color') == "#ff1408") selected @endif>Red</option>
 																			<option value="#FFD700" @if(!empty($hire) && $hire->color=="#FFD700" || old('color') == "#FFD700") selected @endif>Gold</option>
 																			<option value="#F0E68C" @if(!empty($hire) && $hire->color=="#F0E68C" || old('color') == "#F0E68C") selected @endif>Khaki</option>
 																			<option value="#800080" @if(!empty($hire) && $hire->color=="#800080" || old('color') == "#800080") selected @endif>Purple</option>

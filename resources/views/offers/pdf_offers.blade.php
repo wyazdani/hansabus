@@ -34,8 +34,8 @@
                                         <span style="display: block;background: #fff;width: 100%;">
                                             <img width="70px" src="images/hansa_logo_colored.png" alt="">
                                         </span><br>
-                                            <strong style="font-size: 9px;"><span>Tel:</span></strong><span>  040/521 580 81</span><br>
-                                            <strong style="font-size: 7.5px;">Fax:</strong><span> 040/ 521 580 82</span><br>
+                                            <strong style="font-size: 9px;"><span>Tel:</span></strong><span>  (+49)   040 / 521 580 81</span><br>
+                                            <strong style="font-size: 7.5px;">Fax:</strong><span> (+49)   040 / 521 580 82</span><br>
                                             <strong style="font-size: 7.5px;">E-Mail:</strong><span>info@ hansebus.com</span><br>
                                             <strong style="font-size: 7.5px;">www:</strong><span>www. hansebus.com</span><br><br>
                                             <span style="display: block;color: #000;font-size: 7px;">{{ __('offer.offer_no') }}:</span><span>O{!!  $inquiry->offer->id !!}/-{!! date('Y',strtotime( $inquiry->offer->created_at)) !!}</span><br>
@@ -112,7 +112,7 @@
             </tr>
             <tr>
                 <td class="left">
-                    <table style="font-size: 12px; padding: 10px 0 0;">
+                    <table style="font-size: 8.5px; padding: 10px 0 0;">
                         <tr>
                             <td></td>
                         </tr>

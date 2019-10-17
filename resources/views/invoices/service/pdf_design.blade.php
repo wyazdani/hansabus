@@ -34,8 +34,8 @@
                                         <span style="display: block;background: #fff;width: 100%;">
                                             <img width="70px" src="images/hansa_logo_colored.png" alt="">
                                         </span><br>
-                                            <strong style="font-size: 9px;"><span>Tel:</span></strong><span>  040/521 580 81</span><br>
-                                            <strong style="font-size: 7.5px;">Fax:</strong><span> 040/ 521 580 82</span><br>
+                                            <strong style="font-size: 9px;"><span>Tel:</span></strong><span>  (+49)   040 / 521 580 81</span><br>
+                                            <strong style="font-size: 7.5px;">Fax:</strong><span> (+49)   040 / 521 580 82</span><br>
                                             <strong style="font-size: 7.5px;">E-Mail:</strong><span>info@ hansebus.com</span><br>
                                             <strong style="font-size: 7.5px;">www:</strong><span>www. hansebus.com</span><br><br>
                                             <span style="display: block;color: #000;font-size: 7px;">{{ __('tour_invoice.invoice_date') }}:</span><span>{!! date("d.m.Y",strtotime($invoice_date)) !!}</span><br>
@@ -122,7 +122,7 @@
         </tr>
         <tr>
             <td>
-                <table style="font-size: 12px; padding: 15px 0px;  width:100%">
+                <table style="font-size: 8.5px; padding: 15px 0px;  width:100%">
                     <tr>
                         <td>
                             <table style="padding: 2px;  width:100%">
@@ -140,7 +140,7 @@
         </tr>
         <tr>
             <td class="left">
-                <table style="font-size: 12px; padding: 10px 0 0;">
+                <table style="font-size: 8.5px; padding: 10px 0 0;">
                     <tr>
                         <td class="left">
                             <strong>{{__('tour_invoice.yours_sincerely')}},</strong>

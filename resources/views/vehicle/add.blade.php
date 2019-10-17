@@ -138,6 +138,11 @@
                                                             <option value="#d6c809" @if(!empty($vehicle) && $vehicle->color=="#d6c809" || old('color') == "#d6c809") selected @endif>{{__('tour.colors.yellow')}}</option>
                                                             <option value="#db7107" @if(!empty($vehicle) && $vehicle->color=="#db7107" || old('color') == "#db7107") selected @endif>{{__('tour.colors.orange')}}</option>
                                                             <option value="#ff1408" @if(!empty($vehicle) && $vehicle->color=="#ff1408" || old('color') == "#ff1408") selected @endif>{{__('tour.colors.red')}}</option>
+                                                            <option value="#FFD700" @if(!empty($vehicle) && $vehicle->color=="#FFD700" || old('color') == "#FFD700") selected @endif>Gold</option>
+                                                            <option value="#F0E68C" @if(!empty($vehicle) && $vehicle->color=="#F0E68C" || old('color') == "#F0E68C") selected @endif>Khaki</option>
+                                                            <option value="#800080" @if(!empty($vehicle) && $vehicle->color=="#800080" || old('color') == "#800080") selected @endif>Purple</option>
+                                                            <option value="#00FFFF" @if(!empty($vehicle) && $vehicle->color=="#00FFFF" || old('color') == "#00FFFF") selected @endif>Aqua</option>
+                                                            <option value="#ADFF2F" @if(!empty($vehicle) && $vehicle->color=="#ADFF2F" || old('color') == "#ADFF2F") selected @endif>GreenYellow</option>
 
                                                         </select>
                                                     </div>

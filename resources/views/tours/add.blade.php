@@ -131,44 +131,8 @@
 																			>--}}
 																		</div>
 																	</div>
-																	<div class="col-md-2">
-																		<div class="form-group">
-																			<label for="fromDate">{{__('tour.from')}}<span class="{{($errors->has('from_date')) ?'errorStar':''}}">*</span></label>
-																			<div class='input-group date'>
-																				@if($request->time)
-																					<input type='text' name="from_date" autocomplete="off"
-																						   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
-																						   value="{{ (!empty($request->time))?date('d.m.Y H:i',strtotime($request->time)):old('from_date') }}"
-																					>
-																					@else
-																					<input type='text' name="from_date" autocomplete="off"
-																						   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
-																						   value="{{ (!empty($tour->from_date))?date('d.m.Y H:i',strtotime($tour->from_date)):old('from_date') }}"
-																					>
-																				@endif
 
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-md-2">
-																		<div class="form-group">
-																			<label for="toDate">{{__('tour.to')}}<span class="{{($errors->has('to_date')) ?'errorStar':''}}">*</span></label>
-																			<div class='input-group date'>
-																				@if($request->time1)
-																				<input type='text' name="to_date" autocomplete="off"
-																					   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
-																					   value="{{ (!empty($request->time1))?date('d.m.Y H:i',strtotime($request->time1)):old('to_date') }}"
-																				>
-																				@else
-																					<input type='text' name="to_date" autocomplete="off"
-																						   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
-																						   value="{{ (!empty($tour->to_date))?date('d.m.Y H:i',strtotime($tour->to_date)):old('to_date') }}"
-																					>
-																				@endif
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-md-2">
+																	<div class="col-md-3">
 																		<div class="form-group">
 																			<label for="projectinput3"># {{__('tour.passengers')}}<span class="{{($errors->has('passengers')) ?'errorStar':''}}"></span></label>
 																			<input type="number" name="passengers" id="passengers"
@@ -178,7 +142,7 @@
 																				   value="{{ (!empty($tour->passengers))?$tour->passengers:old('passengers') }}" >
 																		</div>
 																	</div>
-																	<div class="col-md-2">
+																	<div class="col-md-3">
 																		<div class="form-group">
 																			<label for="projectinput3">{{__('tour.guide')}}</label>
 																			<input type="text" name="guide"
@@ -186,7 +150,7 @@
 																				   value="{{ (!empty($tour->guide))?$tour->guide:old('guide') }}" >
 																		</div>
 																	</div>
-																	<div class="col-md-2">
+																	<div class="col-md-3">
 																		<div class="form-group">
 																			<label for="projectinput3">{{__('tour.price')}}<span class="{{($errors->has('price')) ?'errorStar':''}}">*</span></label>
 																			<input type="text" name="price"
@@ -194,7 +158,7 @@
 																				   value="{{ (!empty($tour->price))?$tour->price:old('price') }}" maxlength="10">
 																		</div>
 																	</div>
-																	<div class="col-md-2">
+																	<div class="col-md-3">
 																		<div class="form-group">
 																			<label for="projectinput3">Status<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
 																			<select name="status" class="{{($errors->has('status')) ?'form-control error_input':'form-control'}}"
@@ -213,30 +177,82 @@
 																	</div>
 																</div>
 															<div class="row">
-																<div class="col-md-12">
+																<div class="col-md-6">
 																	<label for="projectinput3">{{__('tour.from_address')}}<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
 																	@if($request->from_address)
-																	<input type="text" name="from_address"
+																	<input type="text" id="from_address1" name="from_address"
 																		   class="{{($errors->has('from_address')) ?'form-control error_input' :'form-control '}}"
 																		   value="{{ (!empty($request->from_address))?$request->from_address:old('from_address') }}">
 																		@else
-																		<input type="text" name="from_address"
+																		<input type="text" id="from_address" name="from_address"
 																			   class="{{($errors->has('from_address')) ?'form-control error_input' :'form-control '}}"
 																			   value="{{ (!empty($tour->from_address))?$tour->from_address:old('from_address') }}">
 																		@endif
 																</div>
-																<div class="col-md-12">
+																<div class="col-md-6">
 																	<label for="projectinput3">{{__('tour.to_address')}}<span class="{{($errors->has('status')) ?'errorStar':''}}">*</span></label>
 																	@if($request->to_address)
-																	<input type="text" name="to_address"
+																	<input type="text" id="to_address1" name="to_address"
 																		   class="{{($errors->has('to_address')) ?'form-control error_input' :'form-control '}}"
 																		   value="{{ (!empty($request->to_address))?$request->to_address:old('to_address') }}">
 																		@else
-																		<input type="text" name="to_address"
+																		<input type="text" id="to_address"  name="to_address"
 																			   class="{{($errors->has('to_address')) ?'form-control error_input' :'form-control '}}"
 																			   value="{{ (!empty($tour->to_address))?$tour->to_address:old('to_address') }}">
 																		@endif
 
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label>{{__('offer.one_way/two_way')}}</label>
+																		<div class="form-group">
+																			<div class="display-inline-block">
+																				<label class="switch">
+																					<input type="checkbox" name="trip_type" id="trip_type" @if($request->time1) checked @elseif(!empty($tour->to_date)) checked @endif>
+																					<span class="slider round"></span>
+																				</label>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-3">
+																	<div class="form-group">
+																		<label for="fromDate">{{__('offer.departure_time')}}<span class="{{($errors->has('from_date')) ?'errorStar':''}}">*</span></label>
+																		<div class='input-group date'>
+																			@if($request->time)
+																				<input type='text' id="from_date" name="from_date" autocomplete="off"
+																					   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
+																					   value="{{ (!empty($request->time))?date('d.m.Y H:i',strtotime($request->time)):old('from_date') }}"
+																				>
+																			@else
+																				<input type='text' id="from_date" name="from_date" autocomplete="off"
+																					   class="{{($errors->has('from_date')) ?'form-control error_input':'form-control'}} datetimepicker1"
+																					   value="{{ (!empty($tour->from_date))?date('d.m.Y H:i',strtotime($tour->from_date)):old('from_date') }}"
+																				>
+																			@endif
+
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-3">
+																	<div class="form-group">
+																		<label for="toDate">{{__('offer.arrival_time')}}<span class="{{($errors->has('to_date')) ?'errorStar':''}}">*</span></label>
+																		<div class='input-group date'>
+																			@if($request->time1)
+																				<input type='text' id="to_date" name="to_date" autocomplete="off"
+																					   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
+																					   value="{{ (!empty($request->time1))?date('d.m.Y H:i',strtotime($request->time1)):old('to_date') }}"
+																				>
+																			@else
+																				<input type='text' id="to_date" name="to_date" autocomplete="off"
+																					   class="{{($errors->has('to_date')) ?'form-control error_input':'form-control'}} datetimepicker2"
+																					   value="{{ (!empty($tour->to_date))?date('d.m.Y H:i',strtotime($tour->to_date)):old('to_date') }}"
+																				>
+																			@endif
+																		</div>
+																	</div>
 																</div>
 															</div>
 
@@ -332,10 +348,37 @@
 	@include('tours.img_view')
 	@include('customer.add_popup')
 	@include('drivers.add_popup')
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPi8W87YGBfBsNwR6KytqCD_y5N3r5Zs&libraries=places&callback=initAutocomplete" async defer></script>
+	<script type="text/javascript">
+		function initAutocomplete() {
+			var data_input  =   ['from_address','to_address','from_address1','to_address1'];
+			for (var i=0;i<data_input.length;i++){
+				var input_place     =   document.getElementById(data_input[i]);
+				var autocomplete = new google.maps.places.Autocomplete(input_place);
+				autocomplete.setFields([
+					'address_components', 'geometry', 'icon', 'name'
+				]);
+			}
+		}
+	</script>
 	<script type="text/javascript">
 		$(document).ready(function () {
 			loadCustomers();
 			loadDrivers();
+			@if($request->time1)
+			$("#to_date").prop('disabled', false);
+			@elseif(!empty($tour->to_date))
+			$("#to_date").prop('disabled', false);
+			@else
+			$("#to_date").prop('disabled', true);
+			@endif
+			$('body').on('change', '#trip_type', function () {
+				if (this.checked){
+					$("#to_date").prop('disabled', false);
+				}else{
+					$("#to_date").prop('disabled', true);
+				}
+			});
 		});
 		function passengersCheck(){
 

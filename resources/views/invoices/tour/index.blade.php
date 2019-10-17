@@ -81,8 +81,8 @@
                                     <a class="nav-link btn btn-outline-info" href="{!! route('tour-invoices') !!}">{{ __('tour.single_invoice') }}</a>
 
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-outline-info" href="{!! route('tour-invoices',['is_bulk' => '1']) !!}">{{ __('tour.bulk_invoice') }}</a>
+                                <li class="nav-item ml-2">
+                                    <a class="nav-link btn btn-outline-info " href="{!! route('tour-invoices',['is_bulk' => '1']) !!}">{{ __('tour.bulk_invoice') }}</a>
                                 </li>
                             </ul>
                             <div class="table-responsive">
@@ -125,6 +125,9 @@
                                                     <td>{{ $row->status }}</td>
                                                     <td>{{ $row->created }}</td>
                                                     <td>
+                                                       <a class="p-0" data-original-title="View" title="View" target="_blank"
+                                                        href="{{ route('download-tours-invoice') }}?id={{$row->id}}&view=1">
+                                                        <i class="icon-eye font-medium-3 mr-2"></i></a>
                                                         @if($row->status == 'Unpaid')
                                                             <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
                                                         @else

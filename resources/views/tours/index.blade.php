@@ -88,12 +88,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{--<div class="row">
                         <div class="col-sm-6 col-md-6">
                             <a href="{{ route('tour-invoice-create') }}" class="btn btn-success ml-2 mt-2">
                                 {{ __('tour_invoice.heading.add') }}</a>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
                 <div class="card-content mt-1">
                     <div class="card-body">

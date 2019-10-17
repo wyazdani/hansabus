@@ -80,9 +80,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="pull-right">
-                                    {!! $inquiries->links() !!}
-                                </div>
                             </div>
                         </div>
                     </div>

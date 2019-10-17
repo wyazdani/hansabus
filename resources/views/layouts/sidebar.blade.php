@@ -48,7 +48,7 @@
 						<li><a href="{{ route('tour-invoice-create') }}" class="menu-item">{{ __('tour.create_invoices') }}</a></li>
 					</ul>
 				</li>
-				<li @if(Request::route()->getName() == 'offers.index') {!!  ' class="open has-sub"' !!} @endif >
+				<li @if(Request::route()->getName() == 'offers.index') {!!  ' class="open has-sub"' !!} @else {!! 'class="has-sub"' !!} @endif >
 					<a href="{{ route('offers.index') }}" class="menu-item">{{ __('messages.offers') }}</a>
 					<ul class="menu-content">
 						<li><a href="{{ route('offers.index') }}" class="menu-item">{{ __('messages.offers') }}</a></li>

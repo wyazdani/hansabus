@@ -24,8 +24,8 @@ class OfferController extends Controller
 
         $request['is_deleted'] =    !empty($request['is_deleted'])?$request['is_deleted']:1;
        /* $inquiries      =   Inquiry::orderBy('id','DESC')->paginate(10);*/
-        $inquiries      =   Inquiry::join('offers','offers.inquiry_id','=','inquiries.id')
-            ->join('offer_tours','offer_tours.offer_id','<>','offers.id')
+        $inquiries      =   Inquiry::leftjoin('offers','offers.inquiry_id','=','inquiries.id')
+            ->leftjoin('offer_tours','offer_tours.offer_id','<>','offers.id')
             ->select(
                 'inquiries.id','inquiries.name','inquiries.email','inquiries.seats','inquiries.description','inquiries.is_web',
                 'inquiries.with_driver','inquiries.status','inquiries.created_at','inquiries.updated_at'
@@ -87,15 +87,15 @@ class OfferController extends Controller
 
 
         $query = Inquiry::where('id','>',0);
-        $query =    Inquiry::join('offers','offers.inquiry_id','=','inquiries.id')
-            ->join('offer_tours','offer_tours.offer_id','<>','offers.id')
+        $query =    Inquiry::leftjoin('offers','offers.inquiry_id','=','inquiries.id')
+            ->leftjoin('offer_tours','offer_tours.offer_id','<>','offers.id')
             ->select(
                 'inquiries.id','inquiries.name','inquiries.email','inquiries.seats','inquiries.description','inquiries.is_web',
                 'inquiries.with_driver','inquiries.status','inquiries.created_at','inquiries.updated_at'
             );
 
-        if (isset($request['is_deleted'])){
-            $query      =   $query->where('inquiries.status','=',$request['is_deleted']);
+        if (isset($request['is_deleted'])==0){
+            $query      =   $query->where('inquiries.status','=',1);
         }
         $start =0;
         if(!empty($request->input('start'))){
@@ -120,7 +120,7 @@ class OfferController extends Controller
         if(!empty($search)){
 
             $query =    Inquiry::join('offers','offers.inquiry_id','=','inquiries.id')
-                ->join('offer_tours','offer_tours.offer_id','<>','offers.id')
+                ->leftjoin('offer_tours','offer_tours.offer_id','<>','offers.id')
                 ->select(
                     'inquiries.id','inquiries.name','inquiries.email','inquiries.seats','inquiries.description','inquiries.is_web',
                     'inquiries.with_driver','inquiries.status','inquiries.created_at','inquiries.updated_at'
@@ -146,6 +146,8 @@ class OfferController extends Controller
             $row->time1 = !empty($row->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($row->inquiryaddresses[1]->time)):'';
             $row->type  =   !empty($row->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way');
             $row->email;
+            $offer  =   Offer::where('inquiry_id','=',$row->id)->first();
+            $row->offer_id  =   !empty($offer->id)?$offer->id:0;
             $count  =   Customer::where('email','=',$row->email)->count();
             $row->is_user       =   $count;
             if ($count>0){

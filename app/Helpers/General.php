@@ -7,17 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 class General
 {
-    public function Footer() {
-        $mpdf   =   new \TCPDF();
-        // Position at 15 mm from bottom
-        $html   =   view('layouts.print_footer');
-        $mpdf->writeHTML($html, true, false, false, false);
-        $mpdf->SetY(-15);
-        // Set font
-        $mpdf->SetFont('helvetica', 'I', 8);
-        // Page number
-        $mpdf->Cell(0, 10, 'Page '.$mpdf->getAliasNumPage().'/'.$mpdf->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
-    }
+
     public function invoiceNumber($id){
         return str_pad($id, 9, "0", STR_PAD_LEFT);
     }
@@ -57,7 +47,7 @@ class General
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
         $pdf->SetMargins(PDF_MARGIN_LEFT, 10, PDF_MARGIN_RIGHT);/*PDF_MARGIN_TOP*/
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(0);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
         $pdf->SetAutoPageBreak(TRUE, 10);/*PDF_MARGIN_BOTTOM*/
 
         $lg = Array();

@@ -49,7 +49,7 @@
 					</ul>
 				</li>
 				<li @if(Request::route()->getName() == 'offers.index') {!!  ' class="open has-sub"' !!} @else {!! 'class="has-sub"' !!} @endif >
-					<a href="{{ route('offers.index') }}" class="menu-item">{{ __('messages.offers') }}</a>
+					<a href="javascript:void(0);" class="menu-item">{{ __('messages.offers') }}</a>
 					<ul class="menu-content">
 						<li><a href="{{ route('offers.index') }}" class="menu-item">{{ __('messages.offers') }}</a></li>
 						<li><a href="{{ route('offers.index') }}?is_deleted=0" class="menu-item">{{ __('messages.trash') }}</a></li>

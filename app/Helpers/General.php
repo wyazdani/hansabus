@@ -32,7 +32,7 @@ class General
     }
     public static function CreatePdf($orientation,$viewHtml,$outputname,$subject){
 
-        $pdf = new \TCPDF($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf = new HansbusPdf($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('HansaBus');
         $pdf->SetTitle('Hansabus');
@@ -47,7 +47,7 @@ class General
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
         $pdf->SetMargins(PDF_MARGIN_LEFT, 10, PDF_MARGIN_RIGHT);/*PDF_MARGIN_TOP*/
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetFooterMargin(0);
         $pdf->SetAutoPageBreak(TRUE, 10);/*PDF_MARGIN_BOTTOM*/
 
         $lg = Array();
@@ -65,7 +65,7 @@ class General
     }
     public static function DownloadPdf($orientation,$viewHtml,$outputname,$subject){
 
-        $pdf = new \TCPDF($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf = new HansbusPdf($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('HansaBus');
         $pdf->SetTitle('HansaBus');
@@ -98,7 +98,7 @@ class General
     }
     public static function EmailPdf($orientation,$viewHtml,$outputname,$subject){
 
-        $pdf = new \TCPDF($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf = new HansbusPdf($orientation, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('HansaBus');
         $pdf->SetTitle('HansaBus');

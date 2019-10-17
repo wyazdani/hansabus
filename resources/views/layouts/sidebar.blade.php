@@ -48,7 +48,13 @@
 						<li><a href="{{ route('tour-invoice-create') }}" class="menu-item">{{ __('tour.create_invoices') }}</a></li>
 					</ul>
 				</li>
-				<li @if(Request::route()->getName() == 'offers.index') {{ ' class=open' }} @endif ><a href="{{ route('offers.index') }}" class="menu-item">{{ __('messages.offers') }}</a></li>
+				<li @if(Request::route()->getName() == 'offers.index') {!!  ' class="open has-sub"' !!} @endif >
+					<a href="{{ route('offers.index') }}" class="menu-item">{{ __('messages.offers') }}</a>
+					<ul class="menu-content">
+						<li><a href="{{ route('offers.index') }}" class="menu-item">{{ __('messages.offers') }}</a></li>
+						<li><a href="{{ route('offers.index') }}?is_deleted=0" class="menu-item">{{ __('messages.trash') }}</a></li>
+					</ul>
+				</li>
 				<li class="{{ (in_array(Request::route()->getName(),[
 				'bus-services.index','bus-services.create','bus-services.edit'])) ? 'open' : '' }}">
 					<a href="{{ route('bus-services.index') }}" class="menu-item">{{ __('service.heading.index') }}</a>

@@ -44,7 +44,7 @@
 					<ul class="menu-content">
 						<li><a href="{{ route('tours.index') }}" class="menu-item">{{ __('messages.tours') }}</a></li>
 						<li><a href="{{ route('tour-calendar') }}" class="menu-item">{{__('tour.heading.calendar')}}</a></li>
-						<li><a href="{{ route('tour-invoices') }}" class="menu-item">{{ __('tour_invoice.heading.index') }}</a></li>
+						<li><a href="{{ route('tour-invoices') }}" class="menu-item">{{ __('tour.invoice_list') }}</a></li>
 						<li><a href="{{ route('tour-invoice-create') }}" class="menu-item">{{ __('tour.create_invoices') }}</a></li>
 					</ul>
 				</li>
@@ -71,7 +71,7 @@
 						<li><a href="{{ route('v-drivers.index') }}" class="menu-item">{{ __('messages.drivers') }}</a></li>
 						<li><a href="{{ route('hire-drivers.index') }}" class="menu-item">{{ __('messages.hire_drivers') }}</a></li>
 						<li><a href="{{ route('hire-driver-calendar') }}" class="menu-item">{{ __('messages.drivers_calendar') }}</a></li>
-						<li><a href="{{ route('driver-invoices') }}" class="menu-item">{{ __('driver_invoice.heading.index') }}</a></li>
+						<li><a href="{{ route('driver-invoices') }}" class="menu-item">{{ __('tour.invoice_list') }}</a></li>
 						<li><a href="{{ route('driver-invoice-create') }}" class="menu-item">{{ __('tour.create_invoices') }}</a></li>
 					</ul>
 				</li>

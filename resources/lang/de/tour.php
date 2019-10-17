@@ -96,6 +96,9 @@ return [
     'custom_tour_id'    =>  'Benutzerdefinierte Tour-ID',
     'single_invoice'    =>  'Einzelrechnungen',
     'bulk_invoice'    =>  'Sammelrechnungen',
+    'single_invoice_mark_as_paid'    =>  'Einzelrechnung bezahlt',
+    'bulk_invoice_mark_as_paid'    =>  'Bulk-Rechnung bezahlt',
     'create_invoices'    =>  'Rechnungen erstellen',
+    'invoice_list'    =>  'Rechnungsliste',
 
 ];

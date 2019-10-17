@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/driver-mark-as-paid', 'DriverInvoiceController@markAsPaid')->name('driver-mark-as-paid');
     Route::get('/download-driver-invoice', 'DriverInvoiceController@downloadInvoice')->name('download-driver-invoice');
     Route::post('/generate-driver-invoice', 'DriverInvoiceController@generateInvoice')->name('generate-driver-invoice');
+    Route::post('/generate-bulk-driver-invoice', 'DriverInvoiceController@generateInvoiceBulk')->name('generate-bulk-driver-invoice');
 
 
     /* Vehicles */

@@ -55,6 +55,11 @@ return [
     'invoice_footer_line1' => 'Bitte überweisen Sie den Rechnungsbetrag inerhalb von 7 tagen auf das unten genannte Konto Nr,',
     'invoice_footer_line2' => 'Wir bedanken uns für Ihren Auftrag und Ihr Vertrauen .',
     'yours_sincerely'=>'Dein',
+    'subject'=>'Gegenstand',
+    'body'=>'Körper',
+    'invoice_email'=>'Rechnungs-E-Mail',
+    'pls_enter_subject'=>'Bitte geben Sie einen Betreff ein',
+    'pls_enter_body'=>'Bitte Körper eingeben',
 
     'generated'=>'Rechnung erstellt.',
     'mark_paid'=>'Rechnungsstatus wurde in bezahlt geändert.',

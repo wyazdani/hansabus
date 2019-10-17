@@ -75,7 +75,7 @@
                 <table id="table" style="padding: 5px 5px;font-size: 7.5px;">
                     <thead>
                     <tr class="header">
-                        <th><strong style="display: block;text-transform: capitalize">&nbsp;</strong> </th>
+                        <th><strong style="display: block;text-transform: capitalize">&nbsp;</strong> ID</th>
                         <th><strong style="display: block;text-transform: capitalize">{{__('service.type')}}</strong> </th>
                         <th><strong style="display: block;text-transform: capitalize">{{__('service.title')}}</strong> </th>
                         <th><strong style="display: block;text-transform: capitalize">{{__('tour.price')}}</strong> </th>

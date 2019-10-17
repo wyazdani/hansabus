@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\General;
+use App\Mail\InvoiceEmail;
 use App\Models\Customer;
 use App\Models\Driver;
 use App\Models\HireDriver;
@@ -10,6 +11,7 @@ use App\Models\Tour;
 use App\Models\TourInvoice;
 use App\Models\TourInvoiceDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 
 
@@ -331,5 +333,28 @@ class TourInvoiceController extends Controller
 
             Tour::whereIn('id', $request->tours_ids)->update(['status' => 3]);
         }
+    }
+
+    public function modal_mail(Request $request){
+        $invoice        =   TourInvoice::find($request->invoice_id);
+        return view('invoices.tour.modal_mail',compact('invoice'));
+    }
+    public function send_mail(Request $request){
+        $invoice    =   TourInvoice::find($request->invoice_id);
+        $subject    =   $request->subject;
+        $body       =   $request->body;
+        if (empty($subject)){
+            toastr()->error(__('tour_invoice.pls_enter_subject'));
+            return redirect()->route('tour-invoices');
+        }elseif(empty($body)){
+            toastr()->error(__('tour_invoice.pls_enter_body'));
+            return redirect()->route('tour-invoices');
+        }
+        if ($invoice){
+            Mail::send(new InvoiceEmail($invoice,$subject,$body));
+            toastr()->success(__('offer.mail_sent'));
+            return redirect()->route('tour-invoices');
+        }
+
     }
 }

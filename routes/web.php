@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/generate-tour-invoice', 'TourInvoiceController@generateInvoice')->name('generate-tour-invoice');
     Route::post('/tour-driver-form', 'TourInvoiceController@driver_pdf')->name('tour-driver-form');
     Route::post('/generate-bulk-tour-invoice', 'TourInvoiceController@generateInvoiceBulk')->name('generate-bulk-tour-invoice');
+    Route::post('/tour-invoice/send-mail', 'TourInvoiceController@send_mail')->name('tour-invoice.send_mail');
+    Route::post('/tour-invoice/modal-mail', 'TourInvoiceController@modal_mail')->name('tour-invoice.modal_mail');
 
     /* Drivers */
     Route::resource('v-drivers', 'DriverController');

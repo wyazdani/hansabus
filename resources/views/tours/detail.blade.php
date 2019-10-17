@@ -50,13 +50,15 @@
 								<dt>{{ __('tour.from') }}:</dt>
 								<dd>{{ date('d.m.Y H:i',strtotime($Tour->from_date)) }}</dd>
 								<dt>{{ __('tour.to') }}:</dt>
-								<dd>{{ date('d.m.Y H:i',strtotime($Tour->to_date)) }}</dd>
+								<dd>{{ !empty($Tour->to_date)?date('d.m.Y H:i',strtotime($Tour->to_date)):'None' }}</dd>
 
 								<dt>{{ __('tour.guide') }}:</dt>
 								<dd>{{ !empty($Tour->guide)?$Tour->guide:'None' }}</dd>
 
 								<dt>{{ __('tour.price') }}:</dt>
 								<dd>{{ $Tour->price }}</dd>
+								<dt>{{ __('offer.type') }}:</dt>
+								<dd>{{ !empty($Tour->to_date)?'Two Way':'One Way' }}</dd>
 							</dl>
 						</div>
 						<div class="col-md-12">

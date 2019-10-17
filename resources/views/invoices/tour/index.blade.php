@@ -136,6 +136,9 @@
                                                        <a class="p-0" data-original-title="View" title="View" target="_blank"
                                                         href="{{ route('download-tours-invoice') }}?id={{$row->id}}&view=1">
                                                         <i class="icon-eye font-medium-3 mr-2"></i></a>
+                                                        <a class="p-0 send_mail_popup" data-invoice_id="{!! $row->id !!}" data-original-title="View" title="Email"
+                                                           href="javascript:void(0);">
+                                                            <i class="icon-envelope font-medium-3 mr-2"></i></a>
                                                         @if($row->status == 'Unpaid')
                                                             <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
                                                         @else
@@ -161,6 +164,12 @@
 
 @endsection
 @section('pagejs')
+    <div class="modal fade text-left" tabindex="-1" id="default_model"
+         role="dialog" aria-labelledby="myModalLabel17"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+        </div>
+    </div>
     <script>
         function showButton()
         {
@@ -185,7 +194,28 @@
 
         $(document).ready(function() {
 
+            $('body').on('click', '.send_mail_popup', function () {
+                var elem        =   $(this);
+                var invoice_id  =   elem.data('invoice_id');
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('tour-invoice.modal_mail') !!}",
+                    data:   {
+                        invoice_id:invoice_id,
 
+                        _token:'{!! csrf_token() !!}',
+
+                    },
+                    success: function(data){
+                        $("#default_model .modal-dialog").html(data);
+                        $("#default_model").modal('show');
+
+
+
+                    }
+                });
+
+            });
             /* check / uncheck all tours */
             $('#isSelected').click(function() {
 

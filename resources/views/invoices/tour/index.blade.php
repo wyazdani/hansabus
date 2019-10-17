@@ -76,7 +76,15 @@
                 <div class="card-content mt-1">
                     <div class="card-body">
                         <div class="px-3 mb-4">
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-outline-info" href="{!! route('tour-invoices') !!}">{{ __('tour.single_invoice') }}</a>
 
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-outline-info" href="{!! route('tour-invoices',['is_bulk' => '1']) !!}">{{ __('tour.bulk_invoice') }}</a>
+                                </li>
+                            </ul>
                             <div class="table-responsive">
                                 <form class="form" method="GET" action="{{ route('mark-as-paid') }}" id="theForm">
                                     @csrf

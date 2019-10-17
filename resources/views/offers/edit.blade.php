@@ -42,12 +42,12 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <label>{{__('offer.from_address')}}<span class="{{($errors->has('from_address')) ?'errorStar':''}}">*</span></label>
-                                                        <input type='text' name="from_address" class="{{($errors->has('from_address')) ?'form-control error_input':'form-control'}}"
+                                                        <input type='text' id="from_address" name="from_address" class="{{($errors->has('from_address')) ?'form-control error_input':'form-control'}}"
                                                                value="{{!empty($inquiry->inquiryaddresses[0]->from_address)?$inquiry->inquiryaddresses[0]->from_address:old('from_address') }}">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label >{{__('offer.to_address')}}<span class="{{($errors->has('to_address')) ?'errorStar':''}}">*</span></label>
-                                                        <input type='text' name="to_address" class="{{($errors->has('to_address')) ?'form-control error_input':'form-control'}}"
+                                                        <input type='text' id="to_address" name="to_address" class="{{($errors->has('to_address')) ?'form-control error_input':'form-control'}}"
                                                                value="{{!empty($inquiry->inquiryaddresses[0]->to_address)?$inquiry->inquiryaddresses[0]->to_address:old('to_address') }}">
                                                     </div>
                                                 </div>
@@ -134,6 +134,19 @@
     </div>
 @endsection
 @section('pagejs')
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPi8W87YGBfBsNwR6KytqCD_y5N3r5Zs&libraries=places&callback=initAutocomplete" async defer></script>
+    <script type="text/javascript">
+        function initAutocomplete() {
+            var data_input  =   ['from_address','to_address'];
+            for (var i=0;i<data_input.length;i++){
+                var input_place     =   document.getElementById(data_input[i]);
+                var autocomplete = new google.maps.places.Autocomplete(input_place);
+                autocomplete.setFields([
+                    'address_components', 'geometry', 'icon', 'name'
+                ]);
+            }
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#arrival_date").prop('disabled', true);

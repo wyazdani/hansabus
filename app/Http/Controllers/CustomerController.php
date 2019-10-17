@@ -54,6 +54,11 @@ class CustomerController extends Controller
         }
 
         $query = Customer::where('id','>',0);
+        if ($request->deleted==1){
+            $query->where('status',0);
+        }else{
+            $query->where('status',1);
+        }
         $start =0;
         if(!empty($request->input('start'))){
 
@@ -86,6 +91,7 @@ class CustomerController extends Controller
             if(!empty($request->key) && $request->key=='auto'){
                 $query->where('status',1);
             }
+
         }
 
 
@@ -104,7 +110,7 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $pageTitle = trans('messages.customers');
-        return view('customer.index', compact( 'pageTitle'));
+        return view('customer.index', compact( 'pageTitle','request'));
     }
 
     public function status(Customer $Customer)

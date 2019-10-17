@@ -31,4 +31,5 @@
 {{--	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.css">--}}
 
 	@toastr_css
+
 </head>

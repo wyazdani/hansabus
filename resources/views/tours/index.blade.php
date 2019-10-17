@@ -445,7 +445,7 @@
                 },
                 'rowId': 'id',
                 "columns": [
-                    { "data": "id" },
+                    { "data": "custom_id" },
                     { "data": "customer.name" },
                     { "data": "vehicle.name" },
                     { "data": "from_date" },

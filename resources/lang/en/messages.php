@@ -52,6 +52,7 @@
         'password_updated'=>'Password updated.',
 
         'offers'            =>  'Offers',
+        'trash'            =>  'Trash',
         'drag'=>'Drag or',
         'upload'=>'Upload',
         'allowed_extentions'=>'( pdf, jpg, gif and png files only)',

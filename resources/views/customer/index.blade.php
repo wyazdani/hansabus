@@ -155,7 +155,11 @@
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],
+                @if($request->deleted)
+                "ajax": "{{ url('/customer-list?deleted=1') }}",
+                @else
                 "ajax": "{{ url('/customer-list') }}",
+                @endif
                 'rowId': 'id',
                 "columns": [
                     { "data": "id" },

@@ -29,6 +29,7 @@ class OfferController extends Controller
     public function getList(Request $request)
     {
 
+
         $orderColumn = 'id';
         $dir = 'desc';
 
@@ -40,23 +41,26 @@ class OfferController extends Controller
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==3){
-            $orderColumn = 'from';
+            $orderColumn = 'from_address';
         }
 
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==4){
-            $orderColumn = 'to';
+            $orderColumn = 'to_address';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==5){
-            $orderColumn = 'departuredate';
+            $orderColumn = 'time0';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==6){
-            $orderColumn = 'arrivaldate';
+            $orderColumn = 'time1';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==7){
             $orderColumn = 'type';
         }
         if(!empty($request->order[0]['column']) && $request->order[0]['column']==8){
             $orderColumn = 'email';
+        }
+        if(!empty($request->order[0]['column']) && $request->order[0]['column']==8){
+            $orderColumn = 'web';
         }
         if(!empty($request->order[0]['dir'])){
             $dir = $request->order[0]['dir'];
@@ -94,12 +98,10 @@ class OfferController extends Controller
 
             $query = Inquiry::where('name', 'LIKE','%'.$search.'%')
                 ->orWhere('email', 'LIKE','%'.$search.'%')
-                ->orWhere('is_web', 'LIKE','%'.$search.'%');
-
-
+                ->orWhere('is_web ', 'LIKE','%'.$search.'%');
         }
         $recordsTotal = $query->count();
-        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','is_web','status']);
+        $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','is_web','status','seats','description']);
 
         $data=[];
         foreach($rows as $row){

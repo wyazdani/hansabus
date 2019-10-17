@@ -22,10 +22,17 @@
 					<ul class="menu-content">
 						<li><a href="{{ route('vehicles.index') }}" class="menu-item">{{ __('messages.vehicles') }}</a></li>
 						<li><a href="{{ route('vehicle-type.index') }}" class="menu-item">{{ __('messages.vehicle_types') }}</a></li>
+						<li><a href="{{ route('vehicles.index',['deleted' => '1']) }}" class="menu-item">{{ __('messages.trash') }}</a></li>
 					</ul>
 				</li>
-				<li @if(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit']))
-					{{ ' class=open' }} @endif ><a href="{{ route('customers.index') }}" class="menu-item">{{ __('messages.customers') }}</a>
+				<li class="has-sub nav-item {{(in_array(Request::route()->getName(),['customers.index','customers.create','customers.edit']))
+					? ' class=open':'' }}"  >
+					<a href="javascript:void(0);" class="menu-item">{{ __('messages.customers') }}</a>
+					<ul class="menu-content">
+						<li><a href="{{ route('customers.index') }}" class="menu-item">{{ __('messages.customers') }}</a></li>
+
+						<li><a href="{{ route('customers.index',['deleted' => '1']) }}" class="menu-item">{{ __('messages.trash') }}</a></li>
+					</ul>
 				</li>
 				<li class="has-sub nav-item {{ (in_array(Request::route()->getName(),[
 				'tours.index','tours.create','tours.edit','tour-detail',

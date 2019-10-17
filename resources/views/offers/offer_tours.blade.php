@@ -48,36 +48,36 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($inquiries  as $inquiry)
-                                            <tr>
-                                                <td>{!! $inquiry->id !!}</td>
-                                                <td>{!! $inquiry->name !!}</td>
-                                                <td>{!! $inquiry->inquiryaddresses[0]->from_address !!}</td>
-                                                <td>{!! $inquiry->inquiryaddresses[0]->to_address !!}</td>
-                                                <td>{!! !empty($inquiry->inquiryaddresses[0]->time)?date('M j, Y, g:i a',strtotime($inquiry->inquiryaddresses[0]->time)):'' !!}</td>
-                                                <td>{!! !empty($inquiry->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($inquiry->inquiryaddresses[1]->time)):'' !!}</td>
-                                                <td>{!! !empty($inquiry->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way') !!}</td>
-                                                <td>{!! $inquiry->email !!}</td>
-                                                <td>{!! !empty($inquiry->is_web)?__('messages.yes'):__('messages.no') !!}</td>
-                                                <td>
-                                                    @if($inquiry->status)
-                                                        <div class="btn-group">
-                                                            <a class="btn" href="{!! route('offers.edit',$inquiry->id) !!}"><i class="icon-pencil font-medium-3 mr-2"></i></a>
-                                                            <a class="btn" href="javascript:void(0)" data-inquiry_id="{!! $inquiry->id !!}" id="send_mail_popup" >
-                                                                <i {!! ($inquiry->status==1)?'style="color:green;"':'' !!} class="icon-envelope font-medium-3 mr-2"></i>
-                                                            </a>
-                                                        </div>
-                                                    @else
-                                                    <div class="btn-group">
+                                    @foreach($inquiries  as $inquiry)
+                                        <tr>
+                                            <td>{!! $inquiry->id !!}</td>
+                                            <td>{!! $inquiry->name !!}</td>
+                                            <td>{!! $inquiry->inquiryaddresses[0]->from_address !!}</td>
+                                            <td>{!! $inquiry->inquiryaddresses[0]->to_address !!}</td>
+                                            <td>{!! !empty($inquiry->inquiryaddresses[0]->time)?date('M j, Y, g:i a',strtotime($inquiry->inquiryaddresses[0]->time)):'' !!}</td>
+                                            <td>{!! !empty($inquiry->inquiryaddresses[1])?date('M j, Y, g:i a',strtotime($inquiry->inquiryaddresses[1]->time)):'' !!}</td>
+                                            <td>{!! !empty($inquiry->inquiryaddresses[1])?__('offer.two_way'):__('offer.one_way') !!}</td>
+                                            <td>{!! $inquiry->email !!}</td>
+                                            <td>{!! !empty($inquiry->is_web)?__('messages.yes'):__('messages.no') !!}</td>
+                                            <td>
+                                                @if($inquiry->status)
+                                                    <div style="display: none" class="btn-group">
                                                         <a class="btn" href="{!! route('offers.edit',$inquiry->id) !!}"><i class="icon-pencil font-medium-3 mr-2"></i></a>
                                                         <a class="btn" href="javascript:void(0)" data-inquiry_id="{!! $inquiry->id !!}" id="send_mail_popup" >
                                                             <i {!! ($inquiry->status==1)?'style="color:green;"':'' !!} class="icon-envelope font-medium-3 mr-2"></i>
                                                         </a>
                                                     </div>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                @else
+                                                    <div  style="display: none" class="btn-group">
+                                                        <a class="btn" href="{!! route('offers.edit',$inquiry->id) !!}"><i class="icon-pencil font-medium-3 mr-2"></i></a>
+                                                        <a class="btn" href="javascript:void(0)" data-inquiry_id="{!! $inquiry->id !!}" id="send_mail_popup" >
+                                                            <i {!! ($inquiry->status==1)?'style="color:green;"':'' !!} class="icon-envelope font-medium-3 mr-2"></i>
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                                 <div class="pull-right">
@@ -89,7 +89,9 @@
                 </div>
             </div>
         </div>
+
     </div>
+
 @endsection
 
 @section('pagejs')
@@ -199,41 +201,21 @@
 
                         var edit = '';   var email = ''; var view = ''; var buttons = '';
 
-                        console.log(row);
 
 
-                            edit  = '<a class="btn" title="Edit" ';
-                            edit += 'href="{!! url("/offers/'+row.id+'/edit") !!}">';
-                            edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
+                        /*edit  = '<a class="btn" title="Edit" ';
+                        edit += 'href="{!! url("/offers/'+row.id+'/edit") !!}">';
+                        edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';*/
 
-                            email  = '<a class="btn" href="javascript:void(0)"';
-                            email += ' data-inquiry_id="'+row.id+'" id="send_mail_popup" title="Email" >';
-                            email += '<i style="'+((row.status ==1)?"color:green":'')+'" class="icon-envelope font-medium-3 mr-2"></i></a>';
+                        email  = '<a class="btn" href="javascript:void(0)"';
+                        email += ' data-inquiry_id="'+row.id+'" id="send_mail_popup" title="Email" >';
+                        email += '<i style="'+((row.status ==1)?"color:green":'')+'" class="icon-envelope font-medium-3 mr-2"></i></a>';
                         view  = '<a class="p-0 d-print-none view_offer" data-inquiry_id="'+row.id+'" title="View" ';
                         view += ' href="javascript:;"  >';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
                         var add_customer    =   '';
-                        if(row.is_user ==0){
-                            add_customer    =   '<a class="p-0 d-print-none add_customer" data-inquiry_id="'+row.id+'" title="Add Customer" href="javascript:void(0);"><i class="fa fa-user-plus"></i></a>';
-                        }
-                        else{
-                            var inquiryaddresses    =   row.inquiryaddresses;
-                            var query_string    =   '?offer_id='+row.id+'&description='+row.description+'&customer_id='+row.customer_id+'&offer_type='+((inquiryaddresses.length ==2)?'2':'1')
-                            +'&from_address='+(inquiryaddresses[0].from_address)+'&to_address='+(inquiryaddresses[0].to_address)+"&time="+inquiryaddresses[0].time;
-                            if(inquiryaddresses.length ==2){
 
-                                query_string        +=  '&from_address1='+(inquiryaddresses[1].from_address)+'&to_address1='+(inquiryaddresses[1].to_address)+"&time1="+inquiryaddresses[1].time;
-                            }
-                            add_customer    =   '<a target="_blank" class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Add Tour" href="{!! route('tours.create') !!}'+query_string+'"><i class="icon-plus font-medium-3 mr-2"></i></a>';
-                        }
-                        var deleted    =   '<a class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Delete" href="{!! url('offers/deleted') !!}/'+row.id+'"><i style="color:red" class="icon-power font-medium-3 mr-2"></i></a>';
-                        <?php if (isset($_GET['is_deleted']) && $_GET['is_deleted'] ==0){?>
-                        var deleted    =   '<a class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Restore" href="{!! url('offers/deleted') !!}/'+row.id+'"><i style="color:green" class="icon-power font-medium-3 mr-2"></i></a>';
-                             buttons = view+deleted;
-                        <?php }
-                        else{?>
-                            buttons = view+deleted+edit+email+add_customer;
-                        <?php }?>
+                        buttons = view+edit;
                         return buttons;
 
 
@@ -241,7 +223,7 @@
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],
-                "ajax": "{{ url('/offer-list?is_deleted='.(isset($_GET['is_deleted'])?$_GET['is_deleted']:1)) }}",
+                "ajax": "{{ route('offer_tour_list') }}",
                 'rowId': 'id',
                 "columns": [
                     { "data": "id" },

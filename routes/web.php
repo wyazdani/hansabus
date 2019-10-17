@@ -77,9 +77,13 @@ Route::group(['middleware' => 'auth'], function (){
 
     /*Offers*/
     Route::resource('offers', 'OfferController');
+    Route::get('offers/deleted/{id}', 'OfferController@offer_deleted')->name('offer_deleted');
+    Route::get('offer-tours', 'OfferController@offer_tours')->name('offer_tours');
+    Route::get('/offer_tour_list', 'OfferController@offer_get_lists')->name('offer_tour_list');
     Route::post('/offer/send-mail', 'OfferController@send_mail')->name('offers.send_mail');
     Route::post('/offer/modal-mail', 'OfferController@modal_mail')->name('offers.modal_mail');
     Route::get('/offer-list', 'OfferController@getList')->name('offer-list');
+
     Route::post('/offer-view', 'OfferController@offer_view')->name('offer-view');
     Route::post('/add_customer_form', 'OfferController@add_customer_form')->name('add_customer_form');
 

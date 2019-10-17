@@ -53,8 +53,8 @@
                         </div>
                         {{--<div class="col-md-6" >
                             <div class="form-group text-left">
-                                <a href="javascript:;" onclick="$('#theForm').submit()"
-                                   class="btn btn-info disabled"
+                                <a href="javascript:void(0);"
+                                   class="btn btn-info disabled generate_invoice"
                                    id="generate_invoice">{{ __('messages.generate_invoice') }}</a>
                             </div>
                         </div>--}}
@@ -64,6 +64,9 @@
                     <div class="card-body">
                         <div class=" mb-4">
                             <div class="table-responsive">
+                                <input type="hidden" name="customer_ids" id="customerIDs" >
+                                <input type="hidden" name="hire_ids" id="hire_ids" >
+                                <input type="hidden" name="grand_total" id="grand_total" value="">
                                 <form class="form" method="POST" action="{{ route('generate-driver-invoice') }}"
                                       id="theForm">
                                     @csrf
@@ -100,6 +103,8 @@
                                                 </div>
                                             </td>
                                             <td>{{$row->id}}</td>
+                                            <input type="hidden" id="customer_id_{!! $row->id !!}" value="{!! $row->customer_id !!}">
+                                            <input type="hidden" id="hire_id_{!! $row->id !!}" value="{!! $row->id !!}">
                                             <td>{{$row->customer->name}}</td>
                                             <td>{{$row->driver->driver_name}}</td>
                                             <td>{{$row->from_date}}</td>
@@ -184,8 +189,12 @@
                 console.log('OK');
                 var total = getTotal();
                 $('#total').val(total);
+                var totals = getTotal();
+                $('#grand_total').val(totals);
+                var customers   =   getCustomers();
 
-                if($('#customerID').val() != '') {
+                $('#customerIDs').val(customers);
+                if($('#customerIDs').val() != '') {
 
                     console.log(total);
                     $('#generate_invoice').removeClass('disabled');
@@ -198,10 +207,57 @@
             }
         }
 
+        function getCustomers(){
 
+            var checkboxs= document.getElementsByName("ids[]");
+            var customers='';
+            for(var i=0; i<checkboxs.length; i++)
+            {
+                if(checkboxs[i].checked)
+                {
+                    customers= parseInt($('#customer_id_'+checkboxs[i].value).val());
+                    /*customers.push(parseInt($('#customer_id_'+checkboxs[i].value).val()));*/
+                }
+            }
+            return customers;
+        }
+        function getHires(){
+
+            var checkboxs= document.getElementsByName("ids[]");
+            var tours=[];
+            for(var i=0; i<checkboxs.length; i++)
+            {
+                if(checkboxs[i].checked)
+                {
+                    /*customers= parseInt($('#customer_id_'+checkboxs[i].value).val());*/
+                    tours.push(parseInt($('#hire_id__'+checkboxs[i].value).val()));
+                }
+            }
+            return tours;
+        }
         $(document).ready(function() {
 
+            $('body').on('click','.generate_invoice',function () {
 
+                var customer_id  =   $('#customerIDs').val();
+                var grand_total     =   $('#grand_total').val();
+                var hire_ids     =   getHires();
+                console.log(hire_ids);
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('generate-bulk-driver-invoice') !!}",
+                    data:   {
+                        customer_id:customer_id,
+                        grand_total:grand_total,
+                        hire_ids:hire_ids,
+                        _token:'{!! csrf_token() !!}',
+                    },
+                    success: function(data){
+                        toastr.success("{!! __('driver_invoice.generated') !!}");
+                        /*window.location = "{!! url('/tour-invoices') !!}";*/
+                    }
+                });
+            });
             /* check / uncheck all tours */
             /* check / uncheck all tours */
             $('#isSelected').click(function() {

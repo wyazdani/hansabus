@@ -77,12 +77,20 @@
                     <div class="card-body">
                         <div class="px-3 mb-4">
                             <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-outline-info" href="{!! route('tour-invoices') !!}">{{ __('tour.single_invoice') }}</a>
+                                <li class="nav-item ">
+                                    <a class="nav-link btn btn-outline-info  {!! (empty($_GET['is_bulk']) && empty($_GET['single_status']) && empty($_GET['bulk_status']))?'active':'' !!}" href="{!! route('tour-invoices') !!}" >{{ __('tour.single_invoice') }}</a>
 
                                 </li>
                                 <li class="nav-item ml-2">
-                                    <a class="nav-link btn btn-outline-info " href="{!! route('tour-invoices',['is_bulk' => '1']) !!}">{{ __('tour.bulk_invoice') }}</a>
+                                    <a class="nav-link btn btn-outline-info  {!! (isset($_GET['single_status']) && $_GET['single_status']==2  )?'active':'' !!}" href="{!! route('tour-invoices',['single_status' => '2']) !!}" >{{ __('tour.single_invoice_mark_as_paid') }}</a>
+
+                                </li>
+                                <li class="nav-item ml-2">
+                                    <a class="nav-link btn btn-outline-info {!! (isset($_GET['is_bulk']) && $_GET['is_bulk']==1)?'active':'' !!}" href="{!! route('tour-invoices',['is_bulk' => '1']) !!}">{{ __('tour.bulk_invoice') }}</a>
+                                </li>
+                                <li class="nav-item ml-2">
+                                    <a class="nav-link btn btn-outline-info  {!! ( isset($_GET['bulk_status']) &&$_GET['bulk_status']==2 )?'active':'' !!}" href="{!! route('tour-invoices',['bulk_status' => '2']) !!}" >{{ __('tour.bulk_invoice_mark_as_paid') }}</a>
+
                                 </li>
                             </ul>
                             <div class="table-responsive">

@@ -24,15 +24,21 @@ class TourInvoiceController extends Controller
 
         $pageTitle = __('tour_invoice.heading.index');
         $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
-        $query = TourInvoice::where('status','>',0);
+        $query = TourInvoice::where('status','=',1);
         if(!empty($request->is_bulk)){
-            $query = TourInvoice::where('is_bulk',1);
+            $query = TourInvoice::where('is_bulk',1)->where('status','=',1);
         }else
         {
-            $query = TourInvoice::where('is_bulk',0);
+            $query = TourInvoice::where('is_bulk',0)->where('status','=',1);
         }
         if(!empty($request->status)){
             $query = TourInvoice::where('status',$request->status);
+        }
+        if (!empty($request->single_status)){
+            $query = TourInvoice::where('status',2)->where('is_bulk',0);
+        }
+        if (!empty($request->bulk_status)){
+            $query = TourInvoice::where('status',2)->where('is_bulk',1);
         }
 
 

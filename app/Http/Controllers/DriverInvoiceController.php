@@ -169,6 +169,9 @@ class DriverInvoiceController extends Controller
 
         return redirect('/driver-invoices');
     }
+    public function generateInvoiceBulk(Request $request){
+        dd($request->all());
+    }
     public function downloadInvoice(Request $request){
 
 

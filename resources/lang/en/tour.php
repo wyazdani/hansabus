@@ -96,5 +96,9 @@ return [
     'single_invoice'    =>  'Single Invoices',
     'bulk_invoice'    =>  'Bulk Invoices',
     'create_invoices'    =>  'Create Invoices',
+    'single_invoice_mark_as_paid'    =>  'Single Invoice Paid',
+    'bulk_invoice_mark_as_paid'    =>  'Bulk Invoice Paid',
+    'invoice_list'    =>  'Invoice List',
+
 
     ];

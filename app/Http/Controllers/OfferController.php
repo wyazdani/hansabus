@@ -22,7 +22,6 @@ class OfferController extends Controller
     public function index(Request $request)
     {
 
-        $request['is_deleted'] =    !empty($request['is_deleted'])?$request['is_deleted']:1;
        /* $inquiries      =   Inquiry::orderBy('id','DESC')->paginate(10);*/
         $inquiries      =   Inquiry::leftjoin('offers','offers.inquiry_id','=','inquiries.id')
             ->leftjoin('offer_tours','offer_tours.offer_id','<>','offers.id')
@@ -32,12 +31,8 @@ class OfferController extends Controller
             )
             ->orderBy('id','DESC');
 
-        if (!empty($request['is_deleted']) && $request['is_deleted'] ==1){
-            $inquiries      =   $inquiries->where('inquiries.status','=',1);
-        }
-        $inquiries      =   $inquiries->paginate(10);
         $pageTitle      =   __('offer.heading.index');
-        return view('offers.index',compact('pageTitle','inquiries'));
+        return view('offers.index',compact('pageTitle','inquiries','request'));
     }
     public function getList(Request $request)
     {
@@ -91,12 +86,10 @@ class OfferController extends Controller
             ->leftjoin('offer_tours','offer_tours.offer_id','<>','offers.id')
             ->select(
                 'inquiries.id','inquiries.name','inquiries.email','inquiries.seats','inquiries.description','inquiries.is_web',
-                'inquiries.with_driver','inquiries.status','inquiries.created_at','inquiries.updated_at'
+                'inquiries.with_driver','inquiries.status','inquiries.created_at','inquiries.updated_at','inquiries.is_deleted'
             );
 
-        if (isset($request['is_deleted'])==0){
-            $query      =   $query->where('inquiries.status','=',1);
-        }
+
         $start =0;
         if(!empty($request->input('start'))){
 
@@ -128,9 +121,11 @@ class OfferController extends Controller
                 ->where('name', 'LIKE','%'.$search.'%')
                 ->orWhere('email', 'LIKE','%'.$search.'%')
                 ->orWhere('is_web ', 'LIKE','%'.$search.'%');
-            if (isset($request['is_deleted']) ){
-                $query      =   $query->where('inquiries.status','=',$request['is_deleted']);
-            }
+        }
+        if ($request->is_deleted){
+            $query      =   $query->where('inquiries.is_deleted','=',1);
+        }else{
+            $query      =   $query->where('inquiries.is_deleted','=',0);
         }
         $recordsTotal = $query->count();
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get(['id','name','email','is_web','status','seats','description']);
@@ -562,15 +557,15 @@ class OfferController extends Controller
 
         $inquiry        =   Inquiry::where('id','=',$inquiry_id)->first();
         if ($inquiry){
-            if ($inquiry->status ==1){
+            if ($inquiry->is_deleted ==1){
                 $inquiry->update([
-                    'status'    =>  0
+                    'is_deleted'    =>  0
                 ]);
-                return redirect()->to('offers?is_deleted=0');
+                return redirect()->to('offers');
             }
             else{
                 $inquiry->update([
-                    'status'    =>  1
+                    'is_deleted'    =>  1
                 ]);
                 return redirect()->to('offers?is_deleted=1');
             }

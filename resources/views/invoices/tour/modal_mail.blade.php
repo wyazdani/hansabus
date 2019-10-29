@@ -13,12 +13,12 @@
             <div class="col-md-6">
                 <label>{{__('tour_invoice.subject')}}</label>
                 <input required type="text" name="subject"
-                       class="{{($errors->has('subject')) ?'error_input form-control ':'form-control '}}">
+                       class="{{($errors->has('subject')) ?'error_input form-control ':'form-control '}}" value="{!! $invoice->subject !!}">
             </div>
             <div class="col-md-6"></div>
             <div class="col-md-6">
                 <label>{{__('tour_invoice.body')}}</label>
-                <textarea required rows="5" type="text" name="body" class="{{($errors->has('body')) ?'error_input form-control':'form-control'}}"></textarea>
+                <textarea required rows="5" type="text" name="body" class="{{($errors->has('body')) ?'error_input form-control':'form-control'}}">{!! $invoice->body !!}</textarea>
             </div>
 
         </div>

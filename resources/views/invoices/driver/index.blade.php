@@ -109,7 +109,7 @@
                                             @else
                                                 <td>&nbsp;</td>
                                             @endif
-                                                <td>{{ $row->invoice_id }}</td>
+                                                <td>D{!! $row->id !!}/-{!! date('y',strtotime($row->created_at)) !!}</td>
                                                 <td>{{ $row->customer->name }}</td>
                                                 <td>{{ $row->total }}</td>
                                                 <td>{{ $row->status }}</td>

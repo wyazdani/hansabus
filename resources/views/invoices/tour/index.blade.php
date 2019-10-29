@@ -127,7 +127,7 @@
                                                     @else
                                                         <td>&nbsp;</td>
                                                     @endif
-                                                    <td>{{ $row->invoice_id }}</td>
+                                                    <td>T{!! $row->id !!}/-{!! date('y',strtotime($row->created_at)) !!}</td>
                                                     <td>{{ $row->customer->name }}</td>
                                                     <td>{{ $row->total }}</td>
                                                     <td>{{ $row->status }}</td>
@@ -138,7 +138,7 @@
                                                         <i class="icon-eye font-medium-3 mr-2"></i></a>
                                                         <a class="p-0 send_mail_popup" data-invoice_id="{!! $row->id !!}" data-original-title="View" title="Email"
                                                            href="javascript:void(0);">
-                                                            <i class="icon-envelope font-medium-3 mr-2"></i></a>
+                                                            <i style="{{!empty($row->subject)?"color:green":''}}" class="icon-envelope font-medium-3 mr-2"></i></a>
                                                         @if($row->status == 'Unpaid')
                                                             <a href="{{ route('mark-as-paid')}}?ids[]={{$row->id}}" class="btn btn-sm btn-outline-info">{{__('driver_invoice.mark_as_paid')}}</a>
                                                         @else

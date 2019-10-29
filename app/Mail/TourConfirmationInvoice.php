@@ -20,16 +20,20 @@ class TourConfirmationInvoice extends Mailable
     public $customer;
     public $tour_id;
     public $tour;
+    public $subject;
+    public $body;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($customer_id,$tour_id)
+    public function __construct($customer_id,$tour_id,$subject,$body)
     {
         $this->customer =   Customer::find($customer_id);
         $this->tour_id  =   $tour_id;
         $this->tour     =   Tour::find($tour_id);
+        $this->subject     =   $subject;
+        $this->body     =   $body;
     }
 
     /**
@@ -39,6 +43,8 @@ class TourConfirmationInvoice extends Mailable
      */
     public function build()
     {
+        $subject    =   $this->subject;
+        $body       =   $this->body;
         $total=0;
 
         /*$invoice = TourInvoiceDetail::where('tour_id','=',$this->tour_id)->first();*/
@@ -69,7 +75,7 @@ class TourConfirmationInvoice extends Mailable
         $html   =   view('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
         $pdf= General::EmailPdf("P",$html,"tour_invoice","Invoice");
         return $this->to($this->customer->email)
-            ->subject(' TourConfirmation')
+            ->subject($subject)
             ->view('mail.tour_confirmation')
             ->attachData($pdf,'tour_invoice.pdf');
     }

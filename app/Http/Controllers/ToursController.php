@@ -162,7 +162,7 @@ class ToursController extends Controller
         $recordsTotal = $query->count();
 
         $rows = $query->orderBy($orderColumn,$dir)->offset($start)->limit($limit)->get([
-            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date','custom_tour_id']);
+            'id','customer_id','vehicle_id','driver_id','status','passengers','guide','price','from_date','to_date','custom_tour_id','subject']);
 
         $data=[];
         foreach($rows as $row){
@@ -248,7 +248,7 @@ class ToursController extends Controller
                 $from = date('Y-m-d H:i:s', strtotime($request->from_date));
             }
            if ($request->to_date){
-               $to = empty($request->to_date) ? null : date('Y-m-d H:i', strtotime($request->to_date));
+               $to = empty($request->to_date) ? $from : date('Y-m-d H:i', strtotime($request->to_date));
            }
             $alreadyBooked = false;
             /* check for driver bookings */
@@ -588,26 +588,31 @@ class ToursController extends Controller
 
     public function tour_customer_email(Request  $request)
     {
-        if ($request->send_invoice){
-            /*$invoice = TourInvoiceDetail::where('tour_id','=',$request->tour_id_email)->first();*/
-            $invoice = TourInvoiceDetail::join('tour_invoice as ti','ti.id','tour_invoice_details.invoice_id')
-                ->where('ti.is_bulk',0)
-                ->where('tour_id','=',$request->tour_id_email)
-                ->select('tour_invoice_details.id')
-                ->first();
+        $tour   =   Tour::find($request->tour_id_email);
+        if ($tour){
+            $tour->update([
+                'subject'    =>   $request->subject,
+                'body'       =>   $request->body,
+            ]);
+            if ($request->send_invoice){
+                $invoice = TourInvoiceDetail::join('tour_invoice as ti','ti.id','tour_invoice_details.invoice_id')
+                    ->where('ti.is_bulk',0)
+                    ->where('tour_id','=',$request->tour_id_email)
+                    ->select('tour_invoice_details.id')
+                    ->first();
 
-            if ($invoice){
-                Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email));
+                if ($invoice){
+                    Mail::send(new TourConfirmationInvoice($request->customer_id_email,$request->tour_id_email,$request->subject,$request->body));
+                }else{
+                    toastr()->error(__('tour.pls_create_invoice'));
+                    return redirect()->route('tours.index');
+                }
             }else{
-                toastr()->error(__('tour.pls_create_invoice'));
-                return redirect()->route('tours.index');
+                Mail::send(new TourConfirmation($request->customer_id_email,$request->tour_id_email,$request->subject,$request->body));
             }
-
-        }else{
-            Mail::send(new TourConfirmation($request->customer_id_email,$request->tour_id_email));
+            toastr()->success(__('tour.email'));
+            return redirect('/tours');
         }
-        toastr()->success(__('tour.email'));
-        return redirect('/tours');
     }
     public function tour_send_email(Request  $request)
     {

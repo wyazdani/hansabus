@@ -351,10 +351,13 @@ class TourInvoiceController extends Controller
             return redirect()->route('tour-invoices');
         }
         if ($invoice){
+            $invoice->update([
+               'subject'    =>  $request->subject,
+               'body'       =>  $request->body
+            ]);
             Mail::send(new InvoiceEmail($invoice,$subject,$body));
             toastr()->success(__('offer.mail_sent'));
             return redirect()->route('tour-invoices');
         }
-
     }
 }

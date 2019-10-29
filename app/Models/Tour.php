@@ -25,7 +25,9 @@ class Tour extends Model
         'color',
         'from_address',
         'to_address',
-        'custom_tour_id'
+        'custom_tour_id',
+        'subject',
+        'body'
     ];
 
     protected $dates = ['deleted_at'];

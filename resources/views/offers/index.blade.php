@@ -138,6 +138,8 @@
                         $('.selectpicker').selectpicker('refresh');
                         $('#addCustomerPopup').modal('hide');
                         $(".btn_submit").attr("disabled", false);
+                        toastr.success(__('customer.created'));
+                        location.reload();
                     }
                 },
                 error: function (reject) {
@@ -228,7 +230,7 @@
 
                         }
                         var deleted    =   '<a class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Delete" href="{!! url('offers/deleted') !!}/'+row.id+'"><i style="color:red" class="icon-power font-medium-3 mr-2"></i></a>';
-                        <?php if (isset($_GET['is_deleted']) && $_GET['is_deleted'] ==0){?>
+                        <?php if (isset($_GET['is_deleted']) && $_GET['is_deleted'] ==1){?>
                         var deleted    =   '<a class="p-0 d-print-none add_offer" data-inquiry_id="'+row.id+'" title="Restore" href="{!! url('offers/deleted') !!}/'+row.id+'"><i style="color:green" class="icon-power font-medium-3 mr-2"></i></a>';
                              buttons = view+deleted;
                         <?php }
@@ -242,7 +244,11 @@
                         // return '<a href="#" onclick="alert(\''+ full[0] +'\');">Edit</a>';
                     }
                 }],
-                "ajax": "{{ url('/offer-list?is_deleted='.(isset($_GET['is_deleted'])?$_GET['is_deleted']:1)) }}",
+                @if($request->is_deleted)
+                "ajax": "{{ url('/offer-list?is_deleted=1') }}",
+                @else
+                "ajax": "{{ url('/offer-list') }}",
+                @endif
                 'rowId': 'id',
                 "columns": [
                     { "data": "id" },

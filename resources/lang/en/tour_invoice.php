@@ -57,7 +57,7 @@ return [
     'invoice_footer_line2' => 'We thank you for your order and your trust.',
     'yours_sincerely'=>'Yours Sincerely',
     'subject'=>'Subject',
-    'body'=>'Body',
+    'body'=>'Message Body',
     'invoice_email'=>'Invoice Email',
     'pls_enter_subject'=>'Please Enter Subject',
     'pls_enter_body'=>'Please Enter Body',

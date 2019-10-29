@@ -76,27 +76,28 @@
             text-indent: 0 !important;
         }
         .header{
-            background-color: #00838F;
+            background-color: #cc0001;
             color: #fff;
-            text-transform: capitalize;
+        }
+
+        .bg-color{
+            background-color: #ccc;
         }
         #table tr.header{
             font-weight: 800;
             color:#FFFFFF;
             font-size: 11px;
             text-transform: uppercase;
-
+            border-bottom:1px solid #DDDDDD;
             border-collapse: collapse;
-            text-transform: capitalize;
         }
         #table tr td{
             font-weight: lighter;
             color:#444444;
-
+            border-bottom:1px solid #DDDDDD;
             vertical-align: middle;
             border-collapse: collapse;
             text-indent: 0 !important;
-            padding: 10px;
 
         }
         #table .gray{
@@ -171,7 +172,7 @@
             width: 600px;
         }
         .gray{
-            background: #f1f1f1;
+            background: #f1f1f1 !right;
         }
         @page  {
             size: letter;
@@ -181,11 +182,14 @@
         .pagetitle {
             page-break-before: always;
         }
-        p,
         tr,
         tbody{
             margin: 0 !important;
             padding: 0 !important;
+        }
+
+        th{
+            padding: 5px !important;
         }
 
     </style>

@@ -2,19 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/invoices/tour/modal_mail.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mail/tour-invoice.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/TourConfirmation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/TourConfirmation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/TourConfirmationInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/TourConfirmationInvoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Inquiry.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inquiry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tour.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/TourInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TourInvoice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/service/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/service/pdf_design.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/modal_mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/modal_mail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/print_footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/print_footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tours/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/pdf.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mail/tour_confirmation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/tour_confirmation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/offers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/offers/pdf_offers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/pdf_offers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/email.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +161,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../huntingscrape" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -207,6 +218,9 @@
       <workItem from="1560420993581" duration="44574000" />
       <workItem from="1571203125477" duration="8340000" />
       <workItem from="1571290010387" duration="10111000" />
+      <workItem from="1571376622319" duration="10223000" />
+      <workItem from="1571394419099" duration="5066000" />
+      <workItem from="1572336286529" duration="5480000" />
     </task>
     <servers />
   </component>

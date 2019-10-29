@@ -382,7 +382,7 @@
                         var email = "email_" + row.id;
                         if(row.status == '1' || row.status == '2' || row.status == '3') {
                             email = '<a class="p-0 d-print-none" href="javascript:void(0)" data-tour_id=' + row.id + ' id="send_mail_popup" >';
-                            email += '<i class="icon-envelope font-medium-3 mr-2"></i></a>';
+                            email += '<i style="'+((row.subject)?"color:green":'')+'" class="icon-envelope font-medium-3 mr-2"></i></a>';
                         }else{
                             email = '';
                         }

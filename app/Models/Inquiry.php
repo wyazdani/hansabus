@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inquiry extends Model
 {
-    protected $fillable =   ['name','email','is_web','with_driver','status','seats','description'];
+    protected $fillable =   ['name','email','is_web','with_driver','status','seats','description','is_deleted'];
 
 
     public function inquiryaddresses()

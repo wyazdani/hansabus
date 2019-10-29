@@ -2,153 +2,93 @@
 
 @section('content')
 
+<div style="font-size: 8px;">
     <table id="table" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="color: #333;font-size: 8px;">
         <tbody>
         <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td class="left" width="70%">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p></p><br>
-                                        <span style="display: block;color: #000;font-size: 8.5px;text-decoration: underline;">
-                                        Omnibusbetrieb Inhaber , Alizada Timor Hoisbütteler Dorfstr. 1, 22949 Ammersbek
-                                   </span>
-                                        <p></p><br>
-                                        <span style="display: block;color: #000;font-size: 8px;font-weight: bold"> Ust-IdNr.: DE256517113</span><br>
-                                        <span style="display: block;color: #000;font-size: 8px;font-weight: bold"> Hansa Bustouristik</span><br>
-                                        <span style="display: block;color: #000;font-size: 8px;font-weight: bold"> Inh. Timor Alizada</span><br>
-                                        <span style="display: block;color: #000;font-size: 8px;font-weight: bold"> Hoisbütteler Dorfstraße 1</span><br><br>
-                                        <span style="display: block;color: #000;font-size: 8px;font-weight: bold"> D 22949 Ammersbek</span><br>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="30%">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div class="right" style=";float: right;text-align: left;">
-                                        <span style="display: block;background: #fff;width: 100%;">
-                                            <img width="70px" src="images/hansa_logo_colored.png" alt="">
-                                        </span><br>
-                                            <strong style="font-size: 9px;"><span>Tel:</span></strong><span>  (+49)   040 / 521 580 81</span><br>
-                                            <strong style="font-size: 7.5px;">Fax:</strong><span> (+49)   040 / 521 580 82</span><br>
-                                            <strong style="font-size: 7.5px;">E-Mail:</strong><span>info@ hansebus.com</span><br>
-                                            <strong style="font-size: 7.5px;">www:</strong><span>www. hansebus.com</span><br><br>
-                                            <span style="display: block;color: #000;font-size: 7px;">{{ __('tour_invoice.invoice_date') }}:</span><span>{!! date("d.m.Y",strtotime($invoice_date)) !!}</span><br>
-                                            <span style="display: block;color: #000;font-size: 7px;">{{__('tour.invoice_number')}}:</span><span>B{!! $service->id !!}/-{!! date('y') !!}</span><br>
-                                            <span style="display: block;color: #000;font-size: 7px;">{{ __('service.customer') }}:</span><span style="display: block;color: #000;font-size: 7.5px;">{!! $service->customer !!}</span><br>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+            <td class="left" style="width: 70% !important;">
+                <div class="left">
+                    <span style="text-decoration: underline;text-indent: 0;">Omnibusbetrieb Inhaber , Alizada Timor Hoisbütteler Dorfstr. 1, 22949 Ammersbek</span><br><br><br>
+                    <strong>Ust-IdNr.</strong><br>
+                    <strong>Hansa Bustouristik DE256517113</strong><br>
+                    <strong>Inh. Timor Alizada</strong><br>
+                    <strong>Hoisbütteler Dorfstraße 1</strong><br><br>
+                    <strong>D 22949 Ammersbek</strong><br><br><br>
+                    <strong style="font-size: 9px"><i>{{ __('tour_invoice.invoice') }}</i></strong>
+                </div>
+            </td>
+            <td class="right" style="width: 30% !important;">
+                <div class="right" style="text-align: left !important;">
+            <span style="display: block;background: #fff;width: 100%;">
+                <img width="120px" src="https://crm.hansabus.com/images/hansa_logo_colored.png" alt="">
+            </span><br><br>
+                    <strong style="font-size: 8px;"><span>Tel:</span></strong><span> (+49)   040 / 521 580 81</span><br>
+                    <strong style="font-size: 8px;">Fax:</strong><span>(+49)   040 / 521 580 82</span><br>
+                    <strong style="font-size: 8px;">Notruf-Tel:</strong><span>+49 157 30108363</span><br>
+                    <strong style="font-size: 8px;">E-Mail:</strong><span>info@ hansabus.com</span><br>
+                    <strong style="font-size: 8px;">www:</strong><span>www. hansabus.com</span><br><br>
+                    <strong style="font-size: 8px;"><span>{{ __('tour_invoice.invoice_date') }}:</span></strong><span>{!! date("d.m.Y",strtotime($service->created_at)) !!}</span><br>
+                    <strong style="font-size: 8px;">{{__('tour.invoice_number')}}:</strong><span>B{!! $service->id !!}/-{!! date('y',strtotime($service->created_at)) !!}</span><br>
+                    <strong style="font-size: 8px;">{{ __('service.customer') }}:</strong><span>{!! $service->customer !!}</span><br>
+                </div>
             </td>
         </tr>
         </tbody>
     </table>
+</div>
 <div class="body">
-
-    <table id="table" align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;color: #333;font-size: 8px;">
+    <table id="table"  align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;color: #333;font-size: 8px;">
         <tr>
             <td>
-                <table style="font-size: 8px;padding: 15px 0px;">
-                    <tr>
-                        <td>
-                            <table style="padding: 2px;">
-                                <tr>
-                                    <td class="left"><strong style="font-size: 12px;font-style: italic;">{{ __('tour_invoice.invoice') }}</strong></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td class="left" >
-                <table id="table" style="padding: 5px 5px;font-size: 7.5px;">
+                <table id="table" cellspacing="0" cellpadding="5" >
                     <thead>
                     <tr class="header">
-                        <th><strong style="display: block;text-transform: capitalize">&nbsp;</strong> ID</th>
-                        <th><strong style="display: block;text-transform: capitalize">{{__('service.type')}}</strong> </th>
-                        <th><strong style="display: block;text-transform: capitalize">{{__('service.title')}}</strong> </th>
-                        <th><strong style="display: block;text-transform: capitalize">{{__('tour.price')}}</strong> </th>
+                        <th>ID</th>
+                        <th>{{__('service.type')}}</th>
+                        <th>{{__('service.title')}}</th>
+                        <th>{{__('tour.price')}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @php $i=1; @endphp
                     @foreach($details as $detail)
-                        <tr>
-                            <td> @if ($service->type_id==1) {!! 'BS'.$i !!} @else {!! 'OS'.$i !!} @endif</td>
-                            <td>{{ $service->service->name }}</td>
-                            <td>{{ $detail['title'] }}</td>
-                            <td>{{ $detail['price'] }}</td>
+                        <tr class="left">
+                            <td style="border-bottom: 0.5px solid #ccc">@if ($service->type_id==1) {!! 'BS'.$i !!} @else {!! 'OS'.$i !!} @endif</td>
+                            <td style="border-bottom: 0.5px solid #ccc">{{ $service->service->name }}</td>
+                            <td style="border-bottom: 0.5px solid #ccc">{{ $detail['title'] }}</td>
+                            <td style="border-bottom: 0.5px solid #ccc">{{ $detail['price'] }}</td>
                         </tr>
                         @php $i++; @endphp
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="2" style="text-align: left;font-size: 8px;">{{__('tour_invoice.included_in_value')}}:</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour.total_amount')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">{{ $total }} €</td>
+                        <th colspan="2" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.included_in_value')}}:</th>
+                        <th colspan="1" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour.total_amount')}}: </th>
+                        <th colspan="1" align="left" bgcolor="#f5f5f5" style="border-top: 0.5px solid #ccc"><b>{{ $total }} €</b></th>
                     </tr>
                     <tr>
-                        <td colspan="2" style="text-align: left;font-size: 8px;">{{__('tour_invoice.vat')}} <strong style="float: right">@if(!empty($vat)) {{$vat}} @endif €</strong></td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;">+ {{__('tour_invoice.value_added')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;font-weight: bold;">@if(!empty($vat)) {{$vat}} @endif €</td>
+                        <th colspan="2" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.vat')}} <b>@if(!empty($vat)) {{$vat}} @endif €</b> </th>
+                        <th colspan="1" align="right" style="border-top: 0.5px solid #ccc;">+ {{__('tour_invoice.value_added')}} </th>
+                        <th colspan="1" align="left" bgcolor="#f5f5f5" style="border-top: 0.5px solid #ccc"><b>@if(!empty($vat)) {{$vat}} @endif €</b></th>
                     </tr>
-                    <tr>
-                        <td colspan="1"></td>
-                        <td colspan="1"></td>
-                        <td colspan="1" style="text-align: right;font-size: 8px;border-top: 0.5px solid #000;">{{__('tour_invoice.invoice_amount')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8px;border-top: 0.5px solid #000;font-weight: bold;">@if(!empty($total)) {{$total + $vat}} @endif €</td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"></td>
-                        <td colspan="1"></td>
-                        <td colspan="1" style="text-align: right;font-size: 8.5px;border-top: 0.5px solid #000;font-weight: bold;">{{__('tour_invoice.payable_amount')}}</td>
-                        <td colspan="1" style="text-align: left;font-size: 8.5px;border-top: 0.5px solid #000;font-weight: bold;">@if(!empty($total)) {{$total + $vat}} @endif €</td>
+                    <tr bgcolor="#f5f5f5">
+                        <th colspan="3" align="right" style="font-size: 8.5px;border-top: 1px solid #ccc"><b>{{__('tour_invoice.invoice_amount')}}</b></th>
+                        <th colspan="1" align="left" style="font-size: 8.5px;border-top: 0.5px solid #ccc;border-left: 0.5px solid #ccc"><b>@if(!empty($total)) {{$total + $vat}} @endif €</b></th>
                     </tr>
                     </tfoot>
                 </table>
             </td>
         </tr>
         <tr>
-            <td>
-                <table style="font-size: 8.5px; padding: 15px 0px;  width:100%">
-                    <tr>
-                        <td>
-                            <table style="padding: 2px;  width:100%">
-                                <tr>
-                                    <td class="left">{{ __('tour_invoice.invoice_footer_line1') }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="left">{{ __('tour_invoice.invoice_footer_line2') }}</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td class="left">
-                <table style="font-size: 8.5px; padding: 10px 0 0;">
-                    <tr>
-                        <td class="left">
-                            <strong>{{__('tour_invoice.yours_sincerely')}},</strong>
-                            <p>Mit freundlichen Grüßen<br>iA Alizada <br> <strong>Mobile tel.</strong> 0173/94 80 246</p>
-
-                        </td>
-                    </tr>
-                </table>
+            <td><br><br><br><br><br>
+                <span><b>Note:</b> {{ __('tour_invoice.invoice_footer_line1') }}.</span><br><br>
+                <span>{{ __('tour_invoice.invoice_footer_line2') }}</span>
+                <br><br><br><br><br><br>
+                <strong>{{__('tour_invoice.yours_sincerely')}},</strong><br><br>
+                <span>Mit freundlichen Grüßen</span><br>
+                <span>iA Alizada</span><br>
+                <span><b>Mobile tel.</b> 0173/94 80 246</span><br>
             </td>
         </tr>
         <tr>

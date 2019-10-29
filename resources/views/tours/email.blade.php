@@ -63,19 +63,30 @@
 				{{--<div class="col-md-12 generate_invoice" >
 					<a href="javascript:void(0)" class="btn btn-success ml-2 mt-2 generate_invoice_click">{{__("messages.generate_invoice")}}</a>
 				</div>--}}
+				<div class="col-md-12">
+					<label>{{__('tour_invoice.subject')}}</label>
+					<input required type="text" name="subject"
+						   class="{{($errors->has('subject')) ?'error_input form-control ':'form-control '}}" value="{!! $tour->subject !!}">
+				</div>
+				<div class="col-md-12">
+					<label>{{__('tour_invoice.body')}}</label>
+					<textarea required rows="5" type="text" name="body" class="{{($errors->has('body')) ?'error_input form-control':'form-control'}}">{!! $tour->body !!}</textarea>
+				</div>
 				@if($tour->status!=1)
-				<div class="form-group" >
-					<label>{{__('tour.send_invoice')}}</label>
-					<div class="form-group">
-						<div class="display-inline-block">
-							<label class="switch">
-								<input type="checkbox" name="send_invoice">
-								<span class="slider round"></span>
-								<p>{{__('messages.no/yes')}}</p>
-							</label>
+					<div class="col-md-6">
+						<div class="form-group" >
+							<label>{{__('tour.send_invoice')}}</label>
+							<div class="form-group">
+								<div class="display-inline-block">
+									<label class="switch">
+										<input type="checkbox" name="send_invoice">
+										<span class="slider round"></span>
+										<p>{{__('messages.no/yes')}}</p>
+									</label>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
 				@endif
 			</div>
 

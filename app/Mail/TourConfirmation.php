@@ -15,15 +15,19 @@ class TourConfirmation extends Mailable
 
     public $customer;
     public $tour;
+    public $subject;
+    public $body;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($customer_id,$tour_id)
+    public function __construct($customer_id,$tour_id,$subject,$body)
     {
         $this->customer =   Customer::find($customer_id);
         $this->tour     =   Tour::find($tour_id);
+        $this->subject     =   $subject;
+        $this->body     =   $body;
     }
 
     /**
@@ -33,8 +37,10 @@ class TourConfirmation extends Mailable
      */
     public function build()
     {
+        $subject    =   $this->subject;
+        $body       =   $this->body;
         return $this->to($this->customer->email)
-            ->subject(' TourConfirmation')
+            ->subject($subject)
             ->view('mail.tour_confirmation');
     }
 }

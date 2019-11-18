@@ -43,37 +43,41 @@
                 <table id="table" cellspacing="0" cellpadding="5" >
                     <thead>
                     <tr class="header">
+                        <th>{{__('tour_invoice.date_of_service')}}</th>
                         <th>ID</th>
                         <th>{{__('service.type')}}</th>
                         <th>{{__('service.title')}}</th>
                         <th>{{__('tour.price')}}</th>
+                        <th>{{__('tour_invoice.gross')}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @php $i=1; @endphp
                     @foreach($details as $detail)
                         <tr class="left">
+                            <td style="border-bottom: 0.5px solid #ccc">Hansa Bustouristik {{date("d.m.Y",strtotime($service->created_at)) }}</td>
                             <td style="border-bottom: 0.5px solid #ccc">@if ($service->type_id==1) {!! 'BS'.$i !!} @else {!! 'OS'.$i !!} @endif</td>
                             <td style="border-bottom: 0.5px solid #ccc">{{ $service->service->name }}</td>
                             <td style="border-bottom: 0.5px solid #ccc">{{ $detail['title'] }}</td>
-                            <td style="border-bottom: 0.5px solid #ccc">{{ $detail['price'] }}</td>
+                            <td style="border-bottom: 0.5px solid #ccc">{{ $detail['price'] }} €</td>
+                            <td style="border-bottom: 0.5px solid #ccc">{{ $detail['price'] }} €</td>
                         </tr>
                         @php $i++; @endphp
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th colspan="2" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.included_in_value')}}:</th>
-                        <th colspan="1" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour.total_amount')}}: </th>
+                        <th colspan="3" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.included_in_value')}}:</th>
+                        <th colspan="2" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour.total_amount')}}: </th>
                         <th colspan="1" align="left" bgcolor="#f5f5f5" style="border-top: 0.5px solid #ccc"><b>{{ $total }} €</b></th>
                     </tr>
                     <tr>
-                        <th colspan="2" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.vat')}} <b>@if(!empty($vat)) {{$vat}} @endif €</b> </th>
-                        <th colspan="1" align="right" style="border-top: 0.5px solid #ccc;">+ {{__('tour_invoice.value_added')}} </th>
+                        <th colspan="3" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.vat')}} <b>@if(!empty($vat)) {{$vat}} @endif €</b> </th>
+                        <th colspan="2" align="right" style="border-top: 0.5px solid #ccc;">+ {{__('tour_invoice.value_added')}} </th>
                         <th colspan="1" align="left" bgcolor="#f5f5f5" style="border-top: 0.5px solid #ccc"><b>@if(!empty($vat)) {{$vat}} @endif €</b></th>
                     </tr>
                     <tr bgcolor="#f5f5f5">
-                        <th colspan="3" align="right" style="font-size: 8.5px;border-top: 1px solid #ccc"><b>{{__('tour_invoice.invoice_amount')}}</b></th>
+                        <th colspan="5" align="right" style="font-size: 8.5px;border-top: 1px solid #ccc"><b>{{__('tour_invoice.invoice_amount')}}</b></th>
                         <th colspan="1" align="left" style="font-size: 8.5px;border-top: 0.5px solid #ccc;border-left: 0.5px solid #ccc"><b>@if(!empty($total)) {{$total + $vat}} @endif €</b></th>
                     </tr>
                     </tfoot>

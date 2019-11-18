@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\General;
+use App\Mail\InquiryEmailCustomer;
+use App\Mail\InquiryEmailHansaBus;
 use App\Mail\OfferEmail;
 use App\Models\Customer;
 use App\Models\Inquiry;
@@ -524,6 +526,8 @@ class OfferController extends Controller
                 'time'          =>  !empty($request->departure_date)?date('Y-m-d H:i:s',strtotime($request->departure_date.$request->departure_time)):'',
                 'trip_type'     =>  1,
             ]);
+            Mail::send(new InquiryEmailCustomer($inquiry->id));
+            Mail::send(new InquiryEmailHansaBus($inquiry->id,'info@hansabus.com'));
             return  $inquiry;
         }elseif ($request->name_two && $request->from_address_two && $request->to_address_two &&$request->departure_date_two &&$request->arrival_date_two){
             $inquiry    =   Inquiry::create([
@@ -550,6 +554,8 @@ class OfferController extends Controller
                 'time'          =>  !empty($request->arrival_date_two)?date('Y-m-d H:i:s',strtotime($request->arrival_date_two.$request->arrival_time_two)):'',
                 'trip_type'     =>  2,
             ]);
+            Mail::send(new InquiryEmailCustomer($inquiry->id));
+            Mail::send(new InquiryEmailHansaBus($inquiry->id,'info@hansabus.com'));
             return  $inquiry;
         }
     }

@@ -18,7 +18,7 @@
                     </div>
                     <div>&nbsp;</div>
 
-                    <form class="form" method="GET" action="{{ route('tour-invoices') }}" id="searchForm">
+                    <form class="form" method="GET" action="{{ route('tour-invoices',[!empty($_GET['is_bulk'])?'is_bulk='.$_GET['is_bulk']:'']) }}" id="searchForm">
                         @csrf
                         <div class="row">
 

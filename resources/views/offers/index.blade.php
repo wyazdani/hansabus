@@ -306,6 +306,26 @@
                 });
 
             });
+            $('body').on('click', '.view_offer', function () {
+                var elem        =   $(this);
+                var inquiry_id  =   elem.data('inquiry_id');
+                $.ajax({
+                    type:   "POST",
+                    url:    "{!! route('offer-view') !!}",
+                    data:   {
+                        inquiry_id:inquiry_id,
+                        _token:'{!! csrf_token() !!}',
+                    },
+                    success: function(data){
+                        $("#default_model .modal-dialog").html(data);
+                        $("#default_model").modal('show');
+
+
+
+                    }
+                });
+
+            });
             /* DateTime Picker */
             $('.datetimepicker1').datetimepicker(
                 {format:'DD.MM.YYYY HH:mm'}

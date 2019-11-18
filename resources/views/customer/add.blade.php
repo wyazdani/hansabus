@@ -89,13 +89,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="projectinput4">{{__('customer.address')}} <span class="{{($errors->has('address')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="text" name="address" class="{{($errors->has('address')) ?'form-control error_input':'form-control'}}" value="{{ (!empty($customer->address))?$customer->address:old('address') }}">
-
                                                                     </div>
                                                                 </div>
 
@@ -142,6 +140,8 @@
                                                                 {{ 'checked' }}
                                                                     @elseif(!empty($customer->status) && $customer->status)
                                                                 {{ 'checked' }}
+                                                                    @elseif(!empty($customer) && $customer->status==0)
+
                                                                     @elseif(empty($customer->status))
                                                                 {{ 'checked' }}
                                                                     @endif >

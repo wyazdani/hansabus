@@ -2,30 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93539d14-5558-4039-8a3b-6ba25e7984bd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/customer_inquiry.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/hansabus_inquiry.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfferController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TourInvoiceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToursController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/TourConfirmation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/TourConfirmation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/TourConfirmationInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/TourConfirmationInvoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Inquiry.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inquiry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tour.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TourInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TourInvoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/tour_invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/tour_invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/driver/pdf_design.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/InvoiceEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/InvoiceEmail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/de/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/de/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/add.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/service/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/service/pdf_design.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/modal_mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/modal_mail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/tour/pdf_design.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/pdf.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mail/tour_confirmation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/tour_confirmation.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/offers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/offers/pdf_offers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/offers/pdf_offers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tours/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tours/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tours/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/service/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/service/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -168,11 +160,12 @@
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\laragon\www\ecoach\resources\views\mail" />
+      <recent name="D:\laragon\www\ecoach\app\Models" />
       <recent name="D:\laragon\www\ecoach\resources\views\tours" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\ecoach\app\Models" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\laragon\www\ecoach\resources\views\tours" />
     </key>
   </component>
@@ -220,7 +213,9 @@
       <workItem from="1571290010387" duration="10111000" />
       <workItem from="1571376622319" duration="10223000" />
       <workItem from="1571394419099" duration="5066000" />
-      <workItem from="1572336286529" duration="5480000" />
+      <workItem from="1572336286529" duration="8256000" />
+      <workItem from="1572356909443" duration="619000" />
+      <workItem from="1572502535813" duration="8354000" />
     </task>
     <servers />
   </component>

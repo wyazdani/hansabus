@@ -132,7 +132,7 @@
                         edit += 'href="{!! url("/bus-services/'+row.id+'/edit") !!}">';
                         edit += '<i class="icon-pencil font-medium-3 mr-2"></i></a>';
 
-                        view  = '<a class="p-0" data-original-title="View" title="View" ';
+                        view  = '<a class="p-0" data-original-title="View" title="View" target="_blank"';
                         view += 'href="{!! url("/bus-services/'+row.id+'") !!}">';
                         view += '<i class="icon-eye font-medium-3 mr-2"></i></a>';
 

@@ -58,5 +58,6 @@
         'allowed_extentions'=>'( pdf, jpg, gif and png files only)',
         'lang'    =>  'EN',
         'password_dont_match'    =>  'Password should be atleast 6 characters or passwords do not match',
+        'new_inquiry'    =>  'New Inquiry Received Details are as follows',
 
     ];

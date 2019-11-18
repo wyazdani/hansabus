@@ -64,5 +64,6 @@
         'allowed_extentions'=>'(nur PDF-, JPG-, GIF- und PNG-Dateien)',
         'lang'    =>  'DE',
         'password_dont_match'    =>  'Das Passwort sollte aus mindestens 6 Zeichen bestehen, da die Passwörter sonst nicht übereinstimmen',
+        'new_inquiry'    =>  'Neue Anfrage erhalten Details sind wie folgt',
     ];
 

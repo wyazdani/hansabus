@@ -456,10 +456,11 @@ class ToursController extends Controller
         ];
         $this->validate(request(), $rules, $messages);
         if(true){
-
+            $from   =   '';
+            $to     =   '';
             /* check if driver is available for this time slot */
             $from = date('Y-m-d H:i:s', strtotime($request->from_date));
-            $to = date('Y-m-d H:i:s', strtotime($request->to_date));
+            $to = $to = empty($request->to_date) ? $from : date('Y-m-d H:i', strtotime($request->to_date));
 
             $alreadyBooked = false;
             /* check for driver bookings */
@@ -510,8 +511,8 @@ class ToursController extends Controller
                 $tour->customer_id = (int)$request->customer_id;
                 $tour->vehicle_id = (int)$request->vehicle_id;
                 $tour->driver_id = !empty($request->driver_id)?(int)$request->driver_id:0;
-                $tour->from_date = date('Y-m-d H:i', strtotime($request->from_date));
-                $tour->to_date = date('Y-m-d H:i', strtotime($request->to_date));
+                $tour->from_date = !empty($request->from_date)?date('Y-m-d H:i', strtotime($request->from_date)):null;
+                $tour->to_date = empty($request->to_date) ? null : date('Y-m-d H:i', strtotime($request->to_date));
                 $tour->passengers = !empty($request->passengers)?(int)$request->passengers:0;
                 $tour->price = (int)$request->price;
                 $tour->description = $request->description;

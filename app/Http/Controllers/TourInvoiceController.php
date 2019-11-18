@@ -24,6 +24,7 @@ class TourInvoiceController extends Controller
 
     public function index(Request $request){
 
+        /*dd($request->all());*/
         $pageTitle = __('tour_invoice.heading.index');
         $customers  =   Customer::orderBy('name','ASC')->where('status','=',1)->get();
         $query = TourInvoice::where('status','=',1);
@@ -218,6 +219,9 @@ class TourInvoiceController extends Controller
             }
         }
         toastr()->success(__('tour_invoice.mark_paid'));
+        /*if ($request->is_bulk){
+            return redirect('/tour-invoices?is_bulk=1');
+        }*/
         return redirect('/tour-invoices');
     }
     public function generateInvoice(Request $request){

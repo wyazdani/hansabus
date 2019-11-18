@@ -20,7 +20,6 @@
                 <label>{{__('tour_invoice.body')}}</label>
                 <textarea required rows="5" type="text" name="body" class="{{($errors->has('body')) ?'error_input form-control':'form-control'}}">{!! $invoice->body !!}</textarea>
             </div>
-
         </div>
 
         <div class="modal-footer">

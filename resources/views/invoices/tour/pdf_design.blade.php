@@ -14,7 +14,7 @@
                     <strong>Inh. Timor Alizada</strong><br>
                     <strong>Hoisbütteler Dorfstraße 1</strong><br><br>
                     <strong>D 22949 Ammersbek</strong><br><br><br>
-                    <strong style="font-size: 9px"><i>{{ __('tour_invoice.invoice') }}</i></strong>
+                    <strong style="font-size: 9px"><i>Invoice</i></strong>
                 </div>
             </td>
             <td class="right" style="width: 30% !important;">
@@ -70,7 +70,7 @@
                     <tfoot>
                     <tr>
                         <th colspan="4" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.included_in_value')}}:</th>
-                        <th colspan="3" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour.total_amount')}}: </th>
+                        <th colspan="3" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour.total_amount')}} </th>
                         <th colspan="1" align="left" bgcolor="#f5f5f5" style="border-top: 0.5px solid #ccc"><b>{{ $total }} €</b></th>
                     </tr>
                     <tr>

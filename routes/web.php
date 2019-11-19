@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/generate-bulk-tour-invoice', 'TourInvoiceController@generateInvoiceBulk')->name('generate-bulk-tour-invoice');
     Route::post('/tour-invoice/send-mail', 'TourInvoiceController@send_mail')->name('tour-invoice.send_mail');
     Route::post('/tour-invoice/modal-mail', 'TourInvoiceController@modal_mail')->name('tour-invoice.modal_mail');
+    /*Route::post('/vat-modal','TourInvoiceController@vat_modal');*/
 
     /* Drivers */
     Route::resource('v-drivers', 'DriverController');
@@ -89,6 +90,7 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::post('/offer-view', 'OfferController@offer_view')->name('offer-view');
     Route::post('/add_customer_form', 'OfferController@add_customer_form')->name('add_customer_form');
+
 
     /* file upload */
     Route::post('/file-upload', 'AttachmentController@uploadFiles')->name('file-upload');

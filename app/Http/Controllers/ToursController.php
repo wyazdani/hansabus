@@ -224,7 +224,7 @@ class ToursController extends Controller
             'to_address' => 'required',
             'price' => 'required',
             /*'passengers' => 'required|integer|min:1,max:500',*/
-            'description' => 'required',
+            /*'description' => 'required',*/
 //            'guide' => 'required',
         ];
         $messages = [
@@ -440,7 +440,7 @@ class ToursController extends Controller
             /*'driver_id' => 'required|integer',*/
             'price' => 'required',
             /*'passengers' => 'required|integer|min:1,max:500',*/
-            'description' => 'required',
+            /*'description' => 'required',*/
             /*'color' => 'required'*/
 //            'guide' => 'required',
         ];
@@ -515,7 +515,7 @@ class ToursController extends Controller
                 $tour->to_date = empty($request->to_date) ? null : date('Y-m-d H:i', strtotime($request->to_date));
                 $tour->passengers = !empty($request->passengers)?(int)$request->passengers:0;
                 $tour->price = (int)$request->price;
-                $tour->description = $request->description;
+                $tour->description = !empty($request->description)?$request->description:'';
                 $tour->guide = $request->guide;
                 $tour->from_address = !empty($request->from_address)?$request->from_address:'';
                 $tour->to_address = !empty($request->to_address)?$request->to_address:'';

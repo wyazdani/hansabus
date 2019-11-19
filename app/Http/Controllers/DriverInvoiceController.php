@@ -145,6 +145,7 @@ class DriverInvoiceController extends Controller
             $invoice->customer_id = (int)$request->customer_id;
             $invoice->total = (int)$request->total;
             $invoice->status = 1;
+            $invoice->vat = !empty($request->vat)?(int)$request->vat:0;
             if ($invoice->save()) {
                 toastr()->success(__('driver_invoice.generated'));
 
@@ -196,7 +197,7 @@ class DriverInvoiceController extends Controller
             $hires[] = $inv->hire;
         }
 //        dd($hires);
-        $vat = ($total/100)*19;
+        $vat = !empty($invoice->vat)?($total/100)*$invoice->vat:0;
         $invoice_date   =   date('Y-m-d');
         $html   =   view('invoices.driver.pdf_design', compact('customer','invoice','hires','total','vat','invoice_date'));
         if ($request->view){

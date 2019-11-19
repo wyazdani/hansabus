@@ -38,7 +38,14 @@
                             <dt><strong style="display: block;text-transform: capitalize">{{__('offer.customer_name')}}</strong> </dt>
                             <td>{!!  $inquiry->name !!}</td>
                         </tr>
-
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.email')}}</strong> </dt>
+                            <td>{!! $inquiry->email!!}</td>
+                        </tr>
+                        <tr>
+                            <dt><strong style="display: block;text-transform: capitalize">{{__('offer.description')}}</strong> </dt>
+                            <td>{!! $inquiry->description!!}</td>
+                        </tr>
                         <tr>
                             <dt><strong style="display: block;text-transform: capitalize">{{__('offer.from')}}</strong> </dt>
                             <td>{!! $inquiry->inquiryaddresses[0]->from_address !!}</td>

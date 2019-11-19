@@ -46,7 +46,7 @@ return [
 
     'is_active'=>'Is Active',
     'mark_as_paid'=>'Mark as Paid',
-    'vat'=>'VAT 19%',
+    'vat'=>'VAT',
     'value_added'=>'Value Added Tax',
 
     'invoice_header_line1' => 'Dear Ladies and Gentlemen,',

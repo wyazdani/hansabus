@@ -9,7 +9,7 @@ class BusService extends Model
 {
     use SoftDeletes;
     protected $table = 'bus_service';
-    protected $fillable = ['type_id','customer','total'];
+    protected $fillable = ['type_id','customer','total','vat'];
 
     public function details(){
 

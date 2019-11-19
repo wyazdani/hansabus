@@ -155,11 +155,13 @@ class BusServiceController extends Controller
 
         $rules = [
             'type_id'=>'required',
+            'vat'=>'required',
             'customer' => 'required|string'
         ];
         $messages = [
             'type_id.required' => 'Please select service type.',
-            'customer.required' => 'Customer info required.'
+            'customer.required' => 'Customer info required.',
+            'vat.required' => 'Vat is required.'
         ];
 
         $this->validate(request(), $rules, $messages);
@@ -169,7 +171,7 @@ class BusServiceController extends Controller
             foreach($request->price as $price){
                 $total += $price;
             }
-            $vat = ($total/100)*19;
+            $vat = !empty($request->vat)?($total/100)*$request->vat:0;
 
             if($total>0){
 
@@ -177,6 +179,7 @@ class BusServiceController extends Controller
                 $service->type_id = $request->type_id;
                 $service->customer = $request->customer;
                 $service->total = $total;
+                $service->vat = !empty($request->vat)?$request->vat:0;
                 if ($service->save()) {
 
                         $details=[];
@@ -222,7 +225,7 @@ class BusServiceController extends Controller
     {
         $service = BusService::find($id);
         $total = $service->total;
-        $vat = ($total/100)*19;
+        $vat = !empty($service->vat)?($total/100)*$service->vat:0;
         $details = $service->details;
         $invoice_date   =   date('Y-m-d');
         $html   =   view('invoices.service.pdf_design', compact('service','details','total','vat','invoice_date'));

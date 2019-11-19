@@ -47,7 +47,7 @@ return [
 
     'is_active'=>'Ist aktiv',
     'mark_as_paid'=>'Als bezahlt markieren',
-    'vat'=>'Mehrwertsteuer 19%',
+    'vat'=>'Mehrwertsteuer',
 
     'invoice_header_line1' => 'Sehr geehrte Damen und Herren,',
     'invoice_header_line2' => 'für den Transfer/Busanmietung /Dienstleistung gem. Ihres Auftrages bestätigen/berechnen wir wie folgt',

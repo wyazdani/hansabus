@@ -65,6 +65,19 @@
             var elem    =   $(this);
             elem.attr('min',1);
         });
+        $('.has_numeric_value').attr('min',1);
+        $('body').on('keypress','.has_numeric_value',function () {
+            var elem    =   $(this);
+            elem.attr('min',1);
+            $(".has_numeric_value").keydown(false);
+            isNumber();
+        });
+        $('body').on('input','.has_numeric_value',function () {
+            var elem    =   $(this);
+            $(".has_numeric_value").keydown(false);
+            elem.attr('min',1);
+        });
+
     });
     $( function() {
 

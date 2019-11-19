@@ -260,7 +260,7 @@
 
 <input type="hidden" value="{!! $request->is_offer !!}" name="is_offer">
 															<div class="form-group">
-																<label for="projectinput8">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}">*</span></label>
+																<label for="projectinput8">{{__('tour.description')}}<span class="{{($errors->has('description')) ?'errorStar':''}}"></span></label>
 																@if($request->description)
 																<textarea name="description" rows="3"  class="{{($errors->has('description')) ?'form-control error_input':'form-control'}}" >{!! !empty($request->description)?$request->description:old('description') !!}
 																			</textarea>

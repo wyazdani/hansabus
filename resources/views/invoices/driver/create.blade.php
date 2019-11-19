@@ -66,12 +66,14 @@
                             <div class="table-responsive">
                                 <input type="hidden" name="customer_ids" id="customerIDs" >
                                 <input type="hidden" name="hire_ids" id="hire_ids" >
+
                                 <input type="hidden" name="grand_total" id="grand_total" value="">
                                 <form class="form" method="POST" action="{{ route('generate-driver-invoice') }}"
                                       id="theForm">
                                     @csrf
                                 <input type="hidden" name="customer_id" id="customer_id" value="{{request()->get('customer_id')}}">
                                 <input type="hidden" name="total" id="total" value="">
+                                    <input type="hidden" name="vat" id="vat">
 
                                 <table class="table table-xl mb-0" id="listingTable">
                                     <thead>
@@ -82,13 +84,14 @@
                                                 <label class="custom-control-label" for="isSelected">&nbsp;</label>
                                             </div>
                                         </th>
-                                        <th class="border-top-0" width="5%">{{__('driver_invoice.hire_id')}}</th>
-                                        <th class="border-top-0" width="19%">{{__('tour.customer')}}</th>
-                                        <th class="border-top-0" width="19%">{{__('tour.driver')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('tour.from')}}</th>
-                                        <th class="border-top-0" width="11%">{{__('tour.to')}}</th>
-                                        <th class="border-top-0" width="8%">{{__('tour.price')}}</th>
-                                        <th class="border-top-0" width="8%">&nbsp;</th>
+                                        <th class="border-top-0" >{{__('driver_invoice.hire_id')}}</th>
+                                        <th class="border-top-0" >{{__('tour.customer')}}</th>
+                                        <th class="border-top-0" >{{__('tour.driver')}}</th>
+                                        <th class="border-top-0">{{__('tour.from')}}</th>
+                                        <th class="border-top-0">{{__('tour.to')}}</th>
+                                        <th class="border-top-0">{{__('tour.price')}}</th>
+                                        <th class="border-top-0" >&nbsp;</th>
+                                        <th class="border-top-0">{{ __('tour_invoice.vat') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody id="hiresDiv">
@@ -111,14 +114,16 @@
                                             <td>{{$row->to_date}}</td>
                                             <td id="price_{{$row->id}}">{{$row->price}}</td>
                                             <td><a href="javascript:;" onclick="generateSingleInvoice('{{$row->id}}')" class="btn-sm btn btn-outline-primary">{{__("messages.generate_invoice")}}</a></td>
+                                            <td><input style="width: 64px" type="number" id="vat_single_{!! $row->id !!}"
+                                                       class="form-control has_numeric_value" value=0 min="0" max="99"></td>
                                         </tr>
                                     @endforeach
 
                                     @if(!count($rows))
-                                        <tr><td colspan="8" class="text-center">{{__("messages.no_record")}}.</td></tr>
+                                        <tr><td colspan="9" class="text-center">{{__("messages.no_record")}}.</td></tr>
                                     @endif
 
-                                    <tr><td colspan="8">{{$rows->appends(request()->input())->links()}}</td> </tr>
+                                    <tr><td colspan="9">{{$rows->appends(request()->input())->links()}}</td> </tr>
 
                                     </tbody>
                                 </table>
@@ -147,6 +152,8 @@
                 }
             }
             var total = getTotal();
+            var vat   = $('#vat_single_'+id).val();
+            $('#vat').val(vat);
             $('#total').val(total);
 
             $.ajax({

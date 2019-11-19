@@ -63,12 +63,19 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label for="projectinput3">{{__('service.customer')}}<span class="{{($errors->has('customer')) ?'errorStar':''}}">*</span></label>
                                                                         <input type="text" name="customer"
                                                                                class="{{($errors->has('customer')) ?'form-control error_input':'form-control'}}"
                                                                                value="{{ (!empty($service->customer))?$service->customer:old('customer') }}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label for="projectinput3">{{__('tour_invoice.vat')}}<span class="{{($errors->has('vat')) ?'errorStar':''}}">*</span></label>
+                                                                <input style="width: 64px" type="number" id="vat" name="vat"
+                                                                       class="{{($errors->has('vat')) ?'form-control error_input has_numeric_value':'form-control has_numeric_value'}}" value=0 min="0" max="99">
                                                                     </div>
                                                                 </div>
                                                             </div>

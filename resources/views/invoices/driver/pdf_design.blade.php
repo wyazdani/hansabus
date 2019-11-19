@@ -73,7 +73,7 @@
                         <th colspan="1" align="left" bgcolor="#f5f5f5" style="border-top: 0.5px solid #ccc"><b>{{ $total }} €</b></th>
                     </tr>
                     <tr>
-                        <th colspan="4" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.vat')}} <b>@if(!empty($vat)) {{$vat}} @endif €</b> </th>
+                        <th colspan="4" align="right" style="border-top: 0.5px solid #ccc;">{{__('tour_invoice.vat')}} {!! $invoice->vat !!}% <b>@if(!empty($vat)) {{$vat}} €@endif </b> </th>
                         <th colspan="3" align="right" style="border-top: 0.5px solid #ccc;">+ {{__('tour_invoice.value_added')}} </th>
                         <th colspan="1" align="left" bgcolor="#f5f5f5" style="border-top: 0.5px solid #ccc"><b>@if(!empty($vat)) {{$vat}} @endif €</b></th>
                     </tr>

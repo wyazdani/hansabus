@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class DriverInvoice extends Model
 {
     protected $table = 'driver_invoice';
-    protected $fillable =['customer_id','total','status','is_bulk'];
+    protected $fillable =['customer_id','total','status','is_bulk','vat'];
     use SoftDeletes;
 
     public function customer()

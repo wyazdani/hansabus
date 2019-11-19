@@ -56,7 +56,7 @@ class InvoiceEmail extends Mailable
 
             $tour[] = $inv->tour;
         }
-        $vat = ($total/100)*19;
+        $vat = !empty($invoice->vat)?($total/100)*$invoice->vat:0;
         $html   =   view('invoices.tour.pdf_design', compact('customer','invoice','tour','total','vat','invoice_date'));
         $pdf    =    General::EmailPdf("P",$html,"Invoice","Invoice");
         return $this->to($this->customer->email)

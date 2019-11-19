@@ -234,6 +234,7 @@ class TourInvoiceController extends Controller
             $invoice->total = (int)$request->total;
             $invoice->status = 1;
             $invoice->is_bulk = 0;
+            $invoice->vat = !empty($request->vat)?(int)$request->vat:0;
             $invoice->save();
 
             /* save invoice details */
@@ -280,7 +281,12 @@ class TourInvoiceController extends Controller
             $tour[] = $inv->tour;
         }
 
-        $vat = ($total/100)*19;
+        if ($invoice->vat){
+            $vat = ($total/100)*$invoice->vat;
+        }else{
+            $vat    =   0;
+        }
+
 
 
         $invoice_date   =   date('Y-m-d');
@@ -314,6 +320,7 @@ class TourInvoiceController extends Controller
         $invoice->total = $request->grand_total;
         $invoice->status = 1;
         $invoice->is_bulk = 1;
+        $invoice->vat = !empty($request->vat_bulk)?$request->vat_bulk:0;
         $invoice->save();
         foreach ($request->tours_ids as $tours_id){
             $invoice_detail = new TourInvoiceDetail;
